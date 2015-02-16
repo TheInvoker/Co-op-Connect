@@ -95,6 +95,12 @@ var MESSAGE_MODULE = {
 			$.mobile.changePage("#message-page", { 
 				transition: "slide"
 			});
+			
+			MESSAGE_MODULE.displayMessages(response);
 		});
+	},
+	
+	displayMessages : function(response) {
+		
 	}
 };
