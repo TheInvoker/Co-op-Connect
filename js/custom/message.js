@@ -57,15 +57,13 @@ var MESSAGE_MODULE = {
 		var picList = '';
 		for(var i=0; i<nameList.length; i+=1) {
 			var nameObj = nameList[i];
-			
 			var thisname = nameObj['first_name'] + ' ' + nameObj['last_name'];
-
 			picList += '<span class="thread-image"><div><img title="' + thisname + '" alt="' + thisname + '" src="' + nameObj['picURL'] + '" class="small-image"/></div><div>' + thisname + '</div></span>';
 		}
 
 		if (obj['message'] != null) {
-			str += '<tr title="Message"><td valign="top"><span class="ui-icon-comment ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['message'] + '</td></tr>';
-			str += '<tr title="Date Sent"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">Date Sent: ' + obj['date_sent'] + '</td></tr>';
+			str += '<tr title="Message"><td valign="top"><span class="ui-icon-comment ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + Autolinker.link(obj['message']) + '</td></tr>';
+			str += '<tr title="Date Sent"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['date_sent'] + '</td></tr>';
 		}
 		
 		str += '<tr title="Recipants"><td valign="top"><span class="ui-icon-user ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + picList + '</td></tr>';
