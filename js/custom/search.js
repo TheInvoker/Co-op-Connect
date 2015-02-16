@@ -87,7 +87,7 @@ var SEARCH_MODULE = {
 		for(var i=0;i<response.length; i+=1) {
 			var obj = response[i];
 			acc += "<tr class=\"search-person\" data-id=\"" + obj['id'] + "\">";
-			acc += "<th><img class=\"search-image\" src=\"" + obj['picURL'] + "\"/></th>";
+			acc += "<th><img class=\"small-image\" src=\"" + obj['picURL'] + "\"/></th>";
 			acc += "<td>" + obj['firstname'] + " " + obj['lastname'] + "</td>";
 			acc += "<td>" + obj['role_name'] + "</td>";
 			acc += "<td>" + obj['department_name'] + "</td>";

@@ -7,7 +7,7 @@
 		$query1 = "SELECT thread_id, MAX(date_sent) date_sent
 				   FROM thread_message
 				   GROUP BY thread_id";
-		$query = "SELECT th.id, tm.message, tm.date_sent
+		$query = "SELECT th.id, tm.message, tm.date_sent, tm.date_sent>tu.last_read_date AS new
 		          FROM thread th
 				  JOIN thread_user tu ON th.id=tu.thread_id AND tu.user_id={$user_id}
 				  LEFT JOIN thread_message tm ON th.id=tm.thread_id
@@ -58,6 +58,7 @@
 				'id' => $thread_id,
 				'message' => $message,
 				'date_sent' => $row['date_sent'],
+				'new' => $row['new'],
 				'member_names' => $tempList
 			);
 			

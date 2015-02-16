@@ -33,7 +33,7 @@ var RESOURCE_MODULE = {
 		var myListContent = "";
 		for(var i=0; i<response.length; i+=1) {
 			var obj = response[i];
-			myListContent += '<li' + RESOURCE_MODULE.checkNew(obj) + '>' + RESOURCE_MODULE.formatLocation(obj) + '</li>';
+			myListContent += '<li' + RESOURCE_MODULE.checkNew(obj) + '>' + RESOURCE_MODULE.formatResource(obj) + '</li>';
 		}
 		
 		list.append(myListContent).listview().trigger('create');
@@ -42,15 +42,15 @@ var RESOURCE_MODULE = {
 	
 	checkNew : function(obj) {
 		if (obj['new']=='1') {
-			return ' class="new_resource"'; 
+			return ' class="new_item"'; 
 		}
 		return '';
 	},
 	
-	formatLocation : function(obj) {
+	formatResource : function(obj) {
 		var str = '<table>';
-		str += '<tr><td title="Description" valign="top"><span class="ui-icon-info ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['text'] + '</td></tr>';
-		str += '<tr><td title="Last Updated" valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">Updated: ' + obj['date_modified'] + '</td></tr>';
+		str += '<tr title="Description"><td valign="top"><span class="ui-icon-info ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['text'] + '</td></tr>';
+		str += '<tr title="Last Updated"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">Updated: ' + obj['date_modified'] + '</td></tr>';
 		str += '</table>';
 		return str;
 	}
