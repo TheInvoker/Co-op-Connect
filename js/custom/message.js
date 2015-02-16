@@ -157,7 +157,7 @@ var MESSAGE_MODULE = {
 					last_name : null
 				};
 				
-				field.val("");
+				field.val("").focus();
 				
 				MESSAGE_MODULE.displayMessages([obj]);
 				

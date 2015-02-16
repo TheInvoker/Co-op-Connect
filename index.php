@@ -99,11 +99,11 @@
 				<a id="map-button" href="#" data-role="button" data-icon="location" data-iconpos="left">Map</a> 
 				<a id="message-button" href="#" data-role="button" data-icon="comment" data-iconpos="left">
 					Messages
-					<span id="message-number" class="ui-li-count ui-btn-corner-all countBubl"></span>
+					<span id="message-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
 				</a> 
 				<a id="resource-button" href="#" data-role="button" data-icon="info" data-iconpos="left">
 					Resources
-					<span id="resource-number" class="ui-li-count ui-btn-corner-all countBubl"></span>
+					<span id="resource-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
 				</a> 
 			</div>
 		</div> 
