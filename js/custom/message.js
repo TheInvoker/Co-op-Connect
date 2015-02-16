@@ -76,12 +76,33 @@ var MESSAGE_MODULE = {
 		
 		var items = $("#thread-list > li > a");
 		
-		// when clicked, store the obj reference
 		items.unbind('click').click(function() {
 			var index = items.index(this);
 			var obj = response[index];
 			
-			alert(obj['id']);
+			MESSAGE_MODULE.gotoMessage(obj['id']);
 		});
 	},
+	
+	gotoMessage : function(thread_id) {
+		var formData = 'page=message/getmessages&id=' + thread_id;
+		
+		$.ajax({
+			type: 'POST',
+			url: GLOBAL_DATA.server_link,
+			data: formData,
+			dataType: 'json',
+			success: function(jsonData) {
+				handleResponse(jsonData, function(response) {
+					$.mobile.changePage("#message-page", { 
+						transition: "slide"
+					});
+					
+				});
+			},
+			error: function(data,status,xhr) {
+				alert('Error Occured!');
+			}
+		});
+	}
 };
