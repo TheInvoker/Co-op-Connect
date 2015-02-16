@@ -4,9 +4,9 @@
 
 		$user_id = $_POST['id'];
 	
-		$query1 = "SELECT  thread_id, MAX(date_sent) date_sent
-						FROM    thread_message
-						GROUP   BY thread_id";
+		$query1 = "SELECT thread_id, MAX(date_sent) date_sent
+				   FROM thread_message
+				   GROUP BY thread_id";
 		$query = "SELECT th.id, tm.message, tm.date_sent
 		          FROM thread th
 				  JOIN thread_user tu ON th.id=tu.thread_id AND tu.user_id={$user_id}
