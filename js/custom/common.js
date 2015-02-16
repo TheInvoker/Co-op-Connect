@@ -3,19 +3,6 @@ var GLOBAL_DATA = {
 	server_link : '/Co-op-Connect/script/config/sqlhandler.php'    // main server link
 };
 
-
-
-
-function handleResponse(jsonData, handler) {
-	var response = jsonData['response'];
-
-	if (jsonData['code'] == 200) {
-		handler(response);
-	} else {
-		alert(response);
-	}
-}
-
 function toast(msg) {
 	$("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h3>"+msg+"</h3></div>").css({ 
 		display: "block",
@@ -63,4 +50,41 @@ function dateHandler(elements, putCurrentDate, changefunction) {
 			changefunction();
 		});
 	}
+}
+
+
+function handleResponse(jsonData, handler) {
+	var response = jsonData['response'];
+
+	if (jsonData['code'] == 200) {
+		handler(response);
+	} else {
+		alert(response);
+	}
+}
+
+function runAJAX(formData, object, func) {
+
+	if (formData==null) {
+		formData = object;
+	} else {
+		for (var property in object) {
+			if (object.hasOwnProperty(property)) {
+				formData.append(property, object[property]);
+			}
+		}
+	}
+	
+	$.ajax({
+		type: 'POST',
+		url: GLOBAL_DATA.server_link,
+		data: formData,
+		dataType: 'json',
+		success: function(jsonData) {
+			handleResponse(jsonData, func);
+		},
+		error: function(data,status,xhr) {
+			alert('Error Occured!');
+		}
+	});
 }

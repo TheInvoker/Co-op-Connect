@@ -85,24 +85,14 @@ var MESSAGE_MODULE = {
 	},
 	
 	gotoMessage : function(thread_id) {
-		var formData = 'page=message/getmessages&id=' + thread_id;
-		
-		$.ajax({
-			type: 'POST',
-			url: GLOBAL_DATA.server_link,
-			data: formData,
-			dataType: 'json',
-			success: function(jsonData) {
-				handleResponse(jsonData, function(response) {
-					$.mobile.changePage("#message-page", { 
-						transition: "slide"
-					});
-					
-				});
-			},
-			error: function(data,status,xhr) {
-				alert('Error Occured!');
-			}
+
+		runAJAX(null, {
+			page : 'message/getmessages',
+			id : thread_id
+		}, function(response) {
+			$.mobile.changePage("#message-page", { 
+				transition: "slide"
+			});
 		});
 	}
 };
