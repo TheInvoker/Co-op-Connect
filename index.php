@@ -466,7 +466,12 @@
 			</div>
 
 			<div data-role="main" class="ui-content">
-
+				<div id="message-list">
+				</div>
+				<form id="message-form">
+					<input name="message" type="text" maxlength="255" required/>
+					<input type="submit" value="Send">
+				</form>
 			</div>
 		</div> 
 		

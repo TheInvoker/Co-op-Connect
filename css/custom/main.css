@@ -44,3 +44,23 @@
 	margin-right:10px;
 	font-size:13px;
 }
+
+.message {
+	border-radius:10px;
+	padding:10px;
+	color:black;
+}
+
+.message-left {
+	background-color:#1BC7FF;
+	margin-right:20%;
+}
+
+.message-right {
+    margin-left:20%;
+	background-color:#DAD700;
+}
+
+.message-details {
+	font-size:13px;
+}

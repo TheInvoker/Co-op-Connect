@@ -1,59 +1,9 @@
-SELECT u.id, u.first_name, u.last_name, u.avatar_filename, r.name AS role_name, d.name AS department_name, count(p.id) AS num_placements
-				  FROM user u
-				  JOIN department d ON u.department_id=d.id AND d.name IN ('Arts & Science','IDS','Management')
-				  JOIN role r ON u.role_id=r.id AND d.name IN ('Admin','Student')
-				  JOIN placement p ON u.id=p.user_id AND p.city IN ('Mississauga','Toronto') AND p.country IN ('Canada') AND p.topic IN ('d','Web Developer') AND p.organization IN ('d','Osler')
-				  WHERE (u.active=1 AND p.active=1) AND (    (INSTR(u.first_name,'r')>0 OR INSTR('r',u.first_name)>0) OR (INSTR(u.last_name,'r')>0 OR INSTR('r',u.last_name)>0) OR (INSTR(u.email_address,'r')>0 OR INSTR('r',u.email_address)>0) OR (INSTR(u.phone_number,'r')>0 OR INSTR('r',u.phone_number)>0) OR (INSTR(d.name,'r')>0 OR INSTR('r',d.name)>0) OR (INSTR(r.name,'r')>0 OR INSTR('r',r.name)>0))
-				  GROUP BY u.id
-				  ORDER BY u.last_name
+A
 
 
 ----------------------------------------------------
 
-SELECT u.id, u.first_name, u.last_name, u.avatar_filename, r.name AS role_name, d.name AS department_name, count(p.id) AS num_placements
-				  FROM user u
-				  JOIN department d ON u.department_id=d.id AND d.name IN ('Arts & Science','IDS','Management')
-				  JOIN role r ON u.role_id=r.id AND r.name IN ('Admin','Student')
-				  JOIN placement p ON u.id=p.user_id AND p.city IN ('Mississauga','Toronto') AND p.country IN ('Canada') AND p.topic IN ('d','Web Developer') AND p.organization IN ('d','Osler')
-				  WHERE (u.active=1 AND p.active=1) AND (    (INSTR(u.first_name,'r')>0 OR INSTR('r',u.first_name)>0) OR (INSTR(u.last_name,'r')>0 OR INSTR('r',u.last_name)>0) OR (INSTR(u.email_address,'r')>0 OR INSTR('r',u.email_address)>0) OR (INSTR(u.phone_number,'r')>0 OR INSTR('r',u.phone_number)>0) OR (INSTR(d.name,'r')>0 OR INSTR('r',d.name)>0) OR (INSTR(r.name,'r')>0 OR INSTR('r',r.name)>0))
-				  GROUP BY u.id
-				  ORDER BY u.last_name
-
-
-----------------------------------------------------
-
-SELECT u.id, u.first_name, u.last_name, u.avatar_filename, r.name AS role_name, d.name AS department_name, count(p.id) AS num_placements
-				  FROM user u
-				  JOIN department d ON u.department_id=d.id AND d.name IN ('Arts & Science','IDS','Management')
-				  JOIN role r ON u.role_id=r.id AND r.name IN ('Admin','Student')
-				  JOIN placement p ON u.id=p.user_id AND p.city IN ('Mississauga','Toronto') AND p.country IN ('Canada') AND p.topic IN ('d','Web Developer') AND p.organization IN ('d','Osler')
-				  WHERE (u.active=1 AND p.active=1) AND (    (INSTR(u.first_name,'r')>0 OR INSTR('r',u.first_name)>0) OR (INSTR(u.last_name,'r')>0 OR INSTR('r',u.last_name)>0) OR (INSTR(u.email_address,'r')>0 OR INSTR('r',u.email_address)>0) OR (INSTR(u.phone_number,'r')>0 OR INSTR('r',u.phone_number)>0) OR (INSTR(d.name,'r')>0 OR INSTR('r',d.name)>0) OR (INSTR(r.name,'r')>0 OR INSTR('r',r.name)>0))
-				  GROUP BY u.id
-				  ORDER BY u.last_name
-
-
-----------------------------------------------------
-
-SELECT u.id, u.first_name, u.last_name, u.avatar_filename, r.name AS role_name, d.name AS department_name, count(p.id) AS num_placements
-				  FROM user u
-				  JOIN department d ON u.department_id=d.id AND d.name IN ('Arts & Science','IDS','Management')
-				  JOIN role r ON u.role_id=r.id AND r.name IN ('Admin','Student')
-				  JOIN placement p ON u.id=p.user_id AND p.city IN ('Mississauga','Toronto') AND p.country IN ('Canada') AND p.topic IN ('d','Web Developer') AND p.organization IN ('d','Osler')
-				  WHERE (u.active=1 AND p.active=1) AND (    (INSTR(u.first_name,'r')>0 OR INSTR('r',u.first_name)>0) OR (INSTR(u.last_name,'r')>0 OR INSTR('r',u.last_name)>0) OR (INSTR(u.email_address,'r')>0 OR INSTR('r',u.email_address)>0) OR (INSTR(u.phone_number,'r')>0 OR INSTR('r',u.phone_number)>0) OR (INSTR(d.name,'r')>0 OR INSTR('r',d.name)>0) OR (INSTR(r.name,'r')>0 OR INSTR('r',r.name)>0))
-				  GROUP BY u.id
-				  ORDER BY u.last_name
-
-
-----------------------------------------------------
-
-SELECT u.id, u.first_name, u.last_name, u.avatar_filename, r.name AS role_name, d.name AS department_name, count(p.id) AS num_placements
-				  FROM user u
-				  JOIN department d ON u.department_id=d.id AND d.name IN ('Arts & Science','IDS','Management')
-				  JOIN role r ON u.role_id=r.id AND r.name IN ('Admin','Student')
-				  JOIN placement p ON u.id=p.user_id AND p.city IN ('Mississauga','Toronto') AND p.country IN ('Canada') AND p.topic IN ('d','Web Developer') AND p.organization IN ('d','Osler')
-				  WHERE (u.active=1 AND p.active=1) AND (    (INSTR(u.first_name,'r')>0 OR INSTR('r',u.first_name)>0) OR (INSTR(u.last_name,'r')>0 OR INSTR('r',u.last_name)>0) OR (INSTR(u.email_address,'r')>0 OR INSTR('r',u.email_address)>0) OR (INSTR(u.phone_number,'r')>0 OR INSTR('r',u.phone_number)>0) OR (INSTR(d.name,'r')>0 OR INSTR('r',d.name)>0) OR (INSTR(r.name,'r')>0 OR INSTR('r',r.name)>0))
-				  GROUP BY u.id
-				  ORDER BY u.last_name
+B
 
 
 ----------------------------------------------------

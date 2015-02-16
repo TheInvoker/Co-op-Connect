@@ -97,10 +97,49 @@ var MESSAGE_MODULE = {
 			});
 			
 			MESSAGE_MODULE.displayMessages(response);
+			
+			MESSAGE_MODULE.handleSend(thread_id);
 		});
 	},
 	
 	displayMessages : function(response) {
+		var user = GLOBAL_DATA.user;
 		
+		var list = $("#message-list");
+		list.empty();
+		
+		var acc = '';
+		for(var i=0; i<response.length; i+=1) {
+			var obj = response[i];
+			
+			acc += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-left' : 'message-right') + '">';
+			acc += '<div>' + obj['message'] + '</div>';
+			acc += '<div class="message-details">' + obj['first_name'] + ' ' + obj['last_name'] + '</div>';
+			acc += '<div class="message-details">' + obj['date_sent'] + '</div>';
+			acc += '</div>';
+		}
+		
+		list.html(acc);
+	},
+	
+	handleSend : function(thread_id) {
+		var user = GLOBAL_DATA.user;
+		
+		$("#message-form").unbind('submit').submit(function() {
+		
+			var field = $(this).find("input[type=text]");
+			var text = field.val();
+		
+			runAJAX(null, {
+				page : 'message/setmessage',
+				id : user['id'],
+				thread_id : thread_id,
+				message : text
+			}, function(response) {
+				field.val("");
+			});
+			
+			return false;
+		});
 	}
 };
