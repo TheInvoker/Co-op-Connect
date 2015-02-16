@@ -32,6 +32,7 @@
 
 .mywrap {
 	white-space:normal;
+	word-wrap: break-word;
 }
 
 .new_item {
@@ -49,18 +50,22 @@
 	border-radius:10px;
 	padding:10px;
 	color:black;
+	margin-bottom:10px;
+	text-shadow:none;
+	word-wrap: break-word;
 }
 
 .message-left {
-	background-color:#1BC7FF;
 	margin-right:20%;
+	background-color:#90e6ff;
 }
 
 .message-right {
     margin-left:20%;
-	background-color:#DAD700;
+	background-color:#e8e177;
 }
 
 .message-details {
-	font-size:13px;
+	font-size:10px;
+	text-align:right;
 }

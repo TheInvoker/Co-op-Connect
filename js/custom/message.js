@@ -87,7 +87,7 @@ var MESSAGE_MODULE = {
 	gotoMessage : function(thread_id) {
 		var user = GLOBAL_DATA.user;
 		
-		runAJAX(null, {
+		runAJAXSerial('', {
 			page : 'message/getmessages',
 			thread_id : thread_id,
 			id : user['id']
@@ -96,17 +96,21 @@ var MESSAGE_MODULE = {
 				transition: "slide"
 			});
 			
+			var list = $("#message-list");
+			list.empty();
+			
 			MESSAGE_MODULE.displayMessages(response);
 			
 			MESSAGE_MODULE.handleSend(thread_id);
+			
+			$(document).unbind("pageshow").on("pageshow","#message-page",function(){
+				MESSAGE_MODULE.scrollBot();
+			});
 		});
 	},
 	
 	displayMessages : function(response) {
 		var user = GLOBAL_DATA.user;
-		
-		var list = $("#message-list");
-		list.empty();
 		
 		var acc = '';
 		for(var i=0; i<response.length; i+=1) {
@@ -114,12 +118,19 @@ var MESSAGE_MODULE = {
 			
 			acc += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-left' : 'message-right') + '">';
 			acc += '<div>' + obj['message'] + '</div>';
-			acc += '<div class="message-details">' + obj['first_name'] + ' ' + obj['last_name'] + '</div>';
+			if (obj['user_id']!=user['id']) {
+				acc += '<div class="message-details">' + obj['first_name'] + ' ' + obj['last_name'] + '</div>';
+			}
 			acc += '<div class="message-details">' + obj['date_sent'] + '</div>';
 			acc += '</div>';
 		}
 		
-		list.html(acc);
+		MESSAGE_MODULE.addMessage(acc);
+	},
+	
+	addMessage : function(html) {
+		var list = $("#message-list");
+		list.append(html);
 	},
 	
 	handleSend : function(thread_id) {
@@ -128,18 +139,38 @@ var MESSAGE_MODULE = {
 		$("#message-form").unbind('submit').submit(function() {
 		
 			var field = $(this).find("input[type=text]");
-			var text = field.val();
+
+			var formData = $(this).serialize();
 		
-			runAJAX(null, {
+			runAJAXSerial(formData, {
 				page : 'message/setmessage',
 				id : user['id'],
-				thread_id : thread_id,
-				message : text
+				thread_id : thread_id
 			}, function(response) {
+				var user = GLOBAL_DATA.user;
+				
+				var obj = {
+					user_id : user['id'],
+					message : field.val(),
+					date_sent : getDate() + ' ' + getTime(),
+					first_name : null,
+					last_name : null
+				};
+				
 				field.val("");
+				
+				MESSAGE_MODULE.displayMessages([obj]);
+				
+				MESSAGE_MODULE.scrollBot();
 			});
 			
 			return false;
 		});
+	},
+	
+	scrollBot : function() {
+		$('html, body').animate({
+			scrollTop:$(document).height()
+		}, 'slow');
 	}
 };

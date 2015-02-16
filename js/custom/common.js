@@ -36,6 +36,12 @@ function getDate() {
 	return today;
 }
 
+function getTime() {
+	var currentdate = new Date(); 
+	var datetime = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+	return datetime;
+}
+
 function dateHandler(elements, putCurrentDate, changefunction) {
 	var today = getDate();
 	
@@ -53,28 +59,31 @@ function dateHandler(elements, putCurrentDate, changefunction) {
 }
 
 
-function handleResponse(jsonData, handler) {
-	var response = jsonData['response'];
 
-	if (jsonData['code'] == 200) {
-		handler(response);
-	} else {
-		alert(response);
-	}
-}
 
-function runAJAX(formData, object, func) {
-
-	if (formData==null) {
-		formData = object;
-	} else {
-		for (var property in object) {
-			if (object.hasOwnProperty(property)) {
-				formData.append(property, object[property]);
-			}
+function runAJAXHTML5(formData, object, func) {
+	for (var property in object) {
+		if (object.hasOwnProperty(property)) {
+			formData.append(property, object[property]);
 		}
 	}
 	
+	runAJAX(formData, func);
+}
+
+function runAJAXSerial(formData, object, func) {
+	var serialized = $.param(object);
+	
+	if (formData == '') {
+		formData = serialized;
+	} else {
+		formData += '&' + serialized
+	}
+	
+	runAJAX(formData, func);
+}
+
+function runAJAX(formData, func) {
 	$.ajax({
 		type: 'POST',
 		url: GLOBAL_DATA.server_link,
@@ -87,4 +96,14 @@ function runAJAX(formData, object, func) {
 			alert('Error Occured!');
 		}
 	});
+}
+
+function handleResponse(jsonData, handler) {
+	var response = jsonData['response'];
+
+	if (jsonData['code'] == 200) {
+		handler(response);
+	} else {
+		alert(response);
+	}
 }
