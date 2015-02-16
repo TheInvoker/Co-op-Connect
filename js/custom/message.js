@@ -85,10 +85,12 @@ var MESSAGE_MODULE = {
 	},
 	
 	gotoMessage : function(thread_id) {
-
+		var user = GLOBAL_DATA.user;
+		
 		runAJAX(null, {
 			page : 'message/getmessages',
-			id : thread_id
+			thread_id : thread_id,
+			id : user['id']
 		}, function(response) {
 			$.mobile.changePage("#message-page", { 
 				transition: "slide"
