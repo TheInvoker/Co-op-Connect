@@ -10,6 +10,8 @@ var LOGIN_MODULE = {
 	},
 	
 	initApp : function() {
+		setUpLogout();
+		
 		$(document).ready(function() {
 			LOGIN_MODULE.login();
 		});

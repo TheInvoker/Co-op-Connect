@@ -4,6 +4,7 @@ var MENU_MODULE = {
 	serviceFrequency : 1000 * 60 * 3,
 	
 	initMenu : function() {
+		
 		MENU_MODULE.setUserButton();
 		MENU_MODULE.setPlacementButton();
 		MENU_MODULE.setSearchButton();
@@ -68,6 +69,7 @@ var MENU_MODULE = {
 	
 	getCount : function() {
 		var user = GLOBAL_DATA.user;
+		
 		var formData = 'page=user/checkcount&id=' + user['id'];
 		
 		$.ajax({

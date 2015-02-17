@@ -3,6 +3,18 @@ var GLOBAL_DATA = {
 	server_link : '/Co-op-Connect/script/config/sqlhandler.php'    // main server link
 };
 
+function setUpLogout() {
+	$(window).unbind("navigate").on("navigate", function (event, data) {
+		var direction = data.state.direction;
+		var id = data.state.hash;
+		if (direction == 'back' && id == '') {
+			//GLOBAL_DATA.user = null;
+		} else if (direction == 'forward' && id == '#menu-page' && GLOBAL_DATA.user == null) {
+			//history.back(); // <- doesn't work
+		}
+	});
+}
+
 function toast(msg) {
 	$("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h3>"+msg+"</h3></div>").css({ 
 		display: "block",

@@ -131,7 +131,7 @@ var MESSAGE_MODULE = {
 			var obj = response[i];
 			
 			acc += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-left' : 'message-right') + '">';
-			acc += '<div>' + obj['message'] + '</div>';
+			acc += '<div>' + Autolinker.link(obj['message']) + '</div>';
 			if (obj['user_id']!=user['id']) {
 				acc += '<div class="message-details">' + obj['first_name'] + ' ' + obj['last_name'] + '</div>';
 			}
