@@ -1,6 +1,8 @@
 var MESSAGE_MODULE = {
 	
 	page : 0,
+	serviceChecker : null,
+	serviceFrequency : 1000 * 60 * 3,
 	
 	setMessageThreads : function() {
 		var user = GLOBAL_DATA.user;
@@ -115,41 +117,21 @@ var MESSAGE_MODULE = {
 			
 			MESSAGE_MODULE.handleGetMore(thread_id);
 			
+					
+			// configure page show/end
 			$(document).unbind("pageshow").on("pageshow","#message-page",function(){
+				
 				MESSAGE_MODULE.scrollBot();
+				
+				MESSAGE_MODULE.serviceChecker = setInterval(function(){ 
+					MESSAGE_MODULE.getNewMessages(thread_id);
+				}, MESSAGE_MODULE.serviceFrequency);
+			});
+
+			$(document).unbind("pagebeforehide").on("pagebeforehide","#message-page",function(){
+				clearInterval(MESSAGE_MODULE.serviceChecker);
 			});
 		});
-	},
-	
-	displayMessages : function(response, onBottom) {
-		var user = GLOBAL_DATA.user;
-		
-		var acc = '';
-		for(var i=0; i<response.length; i+=1) {
-			var obj = response[i];
-			
-			var acc_temp = "";
-			acc_temp += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-left' : 'message-right') + '">';
-			acc_temp += '<div>' + Autolinker.link(obj['message']) + '</div>';
-			if (obj['user_id']!=user['id']) {
-				acc_temp += '<div class="message-details">' + obj['first_name'] + ' ' + obj['last_name'] + '</div>';
-			}
-			acc_temp += '<div class="message-details">' + obj['date_sent'] + '</div>';
-			acc_temp += '</div>';
-			
-			acc = acc_temp + acc;
-		}
-		
-		MESSAGE_MODULE.addMessage(acc, onBottom);
-	},
-	
-	addMessage : function(html, onBottom) {
-		var list = $("#message-list");
-		if (onBottom) {
-			list.append(html);
-		} else {
-			list.prepend(html);
-		}
 	},
 	
 	handleSend : function(thread_id) {
@@ -179,8 +161,6 @@ var MESSAGE_MODULE = {
 				field.val("").focus();
 				
 				MESSAGE_MODULE.displayMessages([obj], true);
-				
-				MESSAGE_MODULE.scrollBot();
 			});
 			
 			return false;
@@ -208,6 +188,51 @@ var MESSAGE_MODULE = {
 		});
 	},
 	
+	getNewMessages : function(thread_id) {
+		var user = GLOBAL_DATA.user;
+		
+		runAJAXSerial('', {
+			page : 'message/getnewmessages',
+			thread_id : thread_id,
+			id : user['id']
+		}, function(response) {
+			if (response.length > 0) {
+				MESSAGE_MODULE.displayMessages(response, true);
+			}
+		});
+	},
+	
+	displayMessages : function(response, onBottom) {
+		var user = GLOBAL_DATA.user;
+		
+		var acc = '';
+		for(var i=0; i<response.length; i+=1) {
+			var obj = response[i];
+			
+			var acc_temp = "";
+			acc_temp += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-left' : 'message-right') + '">';
+			acc_temp += '<div>' + Autolinker.link(obj['message']) + '</div>';
+			if (obj['user_id']!=user['id']) {
+				acc_temp += '<div class="message-details">' + obj['first_name'] + ' ' + obj['last_name'] + '</div>';
+			}
+			acc_temp += '<div class="message-details">' + obj['date_sent'] + '</div>';
+			acc_temp += '</div>';
+			
+			acc = acc_temp + acc;
+		}
+		
+		MESSAGE_MODULE.addMessage(acc, onBottom);
+	},
+	
+	addMessage : function(html, onBottom) {
+		var list = $("#message-list");
+		if (onBottom) {
+			list.append(html);
+			MESSAGE_MODULE.scrollBot();
+		} else {
+			list.prepend(html);
+		}
+	},
 	
 	scrollBot : function() {
 		$('html, body').animate({
