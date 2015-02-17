@@ -1,5 +1,7 @@
 var MESSAGE_MODULE = {
 	
+	page : 0,
+	
 	setMessageThreads : function() {
 		var user = GLOBAL_DATA.user;
 		var formData = 'page=message/getthreads&id=' + user['id'];
@@ -84,14 +86,24 @@ var MESSAGE_MODULE = {
 		});
 	},
 	
+	
+	// ---------------------------------------------
+	
+	
 	gotoMessage : function(thread_id) {
 		var user = GLOBAL_DATA.user;
+		MESSAGE_MODULE.page = 0;
 		
 		runAJAXSerial('', {
 			page : 'message/getmessages',
 			thread_id : thread_id,
-			id : user['id']
+			id : user['id'],
+			pageindex : MESSAGE_MODULE.page
 		}, function(response) {
+			
+			response.reverse(); 
+			MESSAGE_MODULE.page += 1;
+			
 			$.mobile.changePage("#message-page", { 
 				transition: "slide"
 			});
@@ -99,9 +111,11 @@ var MESSAGE_MODULE = {
 			var list = $("#message-list");
 			list.empty();
 			
-			MESSAGE_MODULE.displayMessages(response);
+			MESSAGE_MODULE.displayMessages(response, true);
 			
 			MESSAGE_MODULE.handleSend(thread_id);
+			
+			MESSAGE_MODULE.handleGetMore(thread_id);
 			
 			$(document).unbind("pageshow").on("pageshow","#message-page",function(){
 				MESSAGE_MODULE.scrollBot();
@@ -109,7 +123,7 @@ var MESSAGE_MODULE = {
 		});
 	},
 	
-	displayMessages : function(response) {
+	displayMessages : function(response, onBottom) {
 		var user = GLOBAL_DATA.user;
 		
 		var acc = '';
@@ -125,12 +139,16 @@ var MESSAGE_MODULE = {
 			acc += '</div>';
 		}
 		
-		MESSAGE_MODULE.addMessage(acc);
+		MESSAGE_MODULE.addMessage(acc, onBottom);
 	},
 	
-	addMessage : function(html) {
+	addMessage : function(html, onBottom) {
 		var list = $("#message-list");
-		list.append(html);
+		if (onBottom) {
+			list.append(html);
+		} else {
+			list.prepend(html);
+		}
 	},
 	
 	handleSend : function(thread_id) {
@@ -159,7 +177,7 @@ var MESSAGE_MODULE = {
 				
 				field.val("").focus();
 				
-				MESSAGE_MODULE.displayMessages([obj]);
+				MESSAGE_MODULE.displayMessages([obj], true);
 				
 				MESSAGE_MODULE.scrollBot();
 			});
@@ -167,6 +185,29 @@ var MESSAGE_MODULE = {
 			return false;
 		});
 	},
+	
+	handleGetMore : function(thread_id) {
+		var user = GLOBAL_DATA.user;
+		
+		$("#more-message-button").unbind('click').click(function() {
+			runAJAXSerial('', {
+				page : 'message/getmessages',
+				thread_id : thread_id,
+				id : user['id'],
+				pageindex : MESSAGE_MODULE.page
+			}, function(response) {
+				if (response.length > 0) {
+					response.reverse(); 
+					MESSAGE_MODULE.page += 1;
+					
+					MESSAGE_MODULE.displayMessages(response, false);
+				} else {
+					alert("No more messages.");
+				}
+			});
+		});
+	},
+	
 	
 	scrollBot : function() {
 		$('html, body').animate({

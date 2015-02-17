@@ -466,8 +466,11 @@
 			</div>
 
 			<div data-role="main" class="ui-content">
+				<a id="more-message-button" href="#" data-role="button" data-icon="arrow-d" data-iconpos="left">Show More</a> 
+				
 				<div id="message-list">
 				</div>
+				
 				<form id="message-form">
 					<input name="message" type="text" maxlength="255" required/>
 					<input type="submit" value="Send">
