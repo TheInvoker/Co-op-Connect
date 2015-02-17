@@ -100,8 +100,6 @@ var MESSAGE_MODULE = {
 			id : user['id'],
 			pageindex : MESSAGE_MODULE.page
 		}, function(response) {
-			
-			response.reverse(); 
 			MESSAGE_MODULE.page += 1;
 			
 			$.mobile.changePage("#message-page", { 
@@ -130,13 +128,16 @@ var MESSAGE_MODULE = {
 		for(var i=0; i<response.length; i+=1) {
 			var obj = response[i];
 			
-			acc += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-left' : 'message-right') + '">';
-			acc += '<div>' + Autolinker.link(obj['message']) + '</div>';
+			var acc_temp = "";
+			acc_temp += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-left' : 'message-right') + '">';
+			acc_temp += '<div>' + Autolinker.link(obj['message']) + '</div>';
 			if (obj['user_id']!=user['id']) {
-				acc += '<div class="message-details">' + obj['first_name'] + ' ' + obj['last_name'] + '</div>';
+				acc_temp += '<div class="message-details">' + obj['first_name'] + ' ' + obj['last_name'] + '</div>';
 			}
-			acc += '<div class="message-details">' + obj['date_sent'] + '</div>';
-			acc += '</div>';
+			acc_temp += '<div class="message-details">' + obj['date_sent'] + '</div>';
+			acc_temp += '</div>';
+			
+			acc = acc_temp + acc;
 		}
 		
 		MESSAGE_MODULE.addMessage(acc, onBottom);
@@ -197,7 +198,6 @@ var MESSAGE_MODULE = {
 				pageindex : MESSAGE_MODULE.page
 			}, function(response) {
 				if (response.length > 0) {
-					response.reverse(); 
 					MESSAGE_MODULE.page += 1;
 					
 					MESSAGE_MODULE.displayMessages(response, false);
