@@ -4,7 +4,6 @@ var MENU_MODULE = {
 	serviceFrequency : 1000 * 60 * 3,
 	
 	initMenu : function() {
-		
 		MENU_MODULE.setUserButton();
 		MENU_MODULE.setPlacementButton();
 		MENU_MODULE.setSearchButton();

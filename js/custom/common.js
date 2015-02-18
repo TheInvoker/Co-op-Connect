@@ -20,14 +20,6 @@ function setPageShowHide() {
 			MESSAGE_MODULE.serviceChecker = setInterval(function(){ 
 				MESSAGE_MODULE.getNewMessages(MESSAGE_MODULE.thread_id);
 			}, MESSAGE_MODULE.serviceFrequency);
-		} else if (id == "menu-page") {
-			MENU_MODULE.getCount();
-			
-			MENU_MODULE.serviceChecker = setInterval(function(){ 
-				MENU_MODULE.getCount();
-			}, MENU_MODULE.serviceFrequency);
-		} else if (id == "checklist-page") {
-			
 		}
 	});
 	
@@ -35,9 +27,16 @@ function setPageShowHide() {
 	$(document).unbind("pagecontainerhide").on( "pagecontainerhide", function( event, ui ) {
 		var id = ui.prevPage.prop("id");
 		
-		if (id == "login-page" && GLOBAL_DATA.user == null) {
-			history.back();
-			history.back();
+		if (id == "login-page") {
+            if (GLOBAL_DATA.user == null) {
+				history.back();
+			} else {
+				MENU_MODULE.getCount();
+				
+				MENU_MODULE.serviceChecker = setInterval(function(){ 
+					MENU_MODULE.getCount();
+				}, MENU_MODULE.serviceFrequency);
+			}
 		} else if (id == "thread-page") {
 			clearInterval(MESSAGE_MODULE.threadChecker);
 		} else if (id == "message-page") {
