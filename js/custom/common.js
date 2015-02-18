@@ -3,7 +3,7 @@ var GLOBAL_DATA = {
 	server_link : '/Co-op-Connect/script/config/sqlhandler.php'    // main server link
 };
 
-function setUpLogout() {
+function setPageShowHide() {
 	// configure page show
 	$(document).unbind("pagecontainershow").on( "pagecontainershow", function( event, ui ) {
 		var id = ui.toPage.prop("id");
@@ -16,7 +16,7 @@ function setUpLogout() {
 			}, MESSAGE_MODULE.serviceFrequency);
 		} else if (id == "message-page") {
 			MESSAGE_MODULE.scrollBot();
-			
+
 			MESSAGE_MODULE.serviceChecker = setInterval(function(){ 
 				MESSAGE_MODULE.getNewMessages(MESSAGE_MODULE.thread_id);
 			}, MESSAGE_MODULE.serviceFrequency);
@@ -46,6 +46,27 @@ function setUpLogout() {
 			clearInterval(MENU_MODULE.serviceChecker);
 		} else if (id == "checklist-page") {
 			PLACEMENT_MODULE.getPlacements(PLACEMENT_MODULE.user_id);
+		}
+	});
+}
+
+function setAPageShowHide() {
+	// configure page show
+	$(document).unbind("pagecontainershow").on( "pagecontainershow", function( event, ui ) {
+		var id = ui.toPage.prop("id");
+		
+		if (id == "login-page") {
+			GLOBAL_DATA.user = null;
+		}
+	});
+	
+	// configure page end
+	$(document).unbind("pagecontainerhide").on( "pagecontainerhide", function( event, ui ) {
+		var id = ui.prevPage.prop("id");
+		
+		if (id == "login-page" && GLOBAL_DATA.user == null) {
+			history.back();
+			history.back();
 		}
 	});
 }

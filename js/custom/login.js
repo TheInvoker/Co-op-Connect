@@ -10,7 +10,7 @@ var LOGIN_MODULE = {
 	},
 	
 	initApp : function() {
-		setUpLogout();
+		setPageShowHide();
 
 		$(document).ready(function() {
 			LOGIN_MODULE.login();
