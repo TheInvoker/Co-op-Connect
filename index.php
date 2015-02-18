@@ -501,7 +501,7 @@
 			<div data-role="main" class="ui-content">
 				<section>
 					<header>
-						<h1>Co-op Connect</h1>v1.0.0
+						<h1>UTSC Co-op Connect</h1>v1.0.0
 					</header>
 				</section>
 				
@@ -516,7 +516,7 @@
 				
 				<section>
 					<header>
-						<h4>BackStory:</h4>
+						<h4>Background Story:</h4>
 					</header>
 					<p>
 						This app was originally developed for the Android O.S. for the <a href="http://blog.utsc.utoronto.ca/appstar" target="_blank">AppStar</a> contest at <a href="http://blog.utsc.utoronto.ca/thehub" target="_blank">TheHub</a> in 2013 for the <a href="http://www.utsc.utoronto.ca/admissions/programs/international-development-studies" target="_blank">IDS</a> department in UTSC. This app won first place in the education category. To see details, click <a href="http://blog.utsc.utoronto.ca/thehub/2013/10/13/appstar-2013-1st-prize-education-goes-to-ids-connect" target="_blank">here</a> and <a href="http://ose.utsc.utoronto.ca/ose/story.php?id=5422" target="_blank">here</a>. In early 2015, it was ported to a web app, optimized for mobile devices and generalized for all co-op departments in UTSC.

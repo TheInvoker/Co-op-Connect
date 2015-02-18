@@ -4,13 +4,19 @@ var GLOBAL_DATA = {
 };
 
 function setPageShowHide() {
+	
 	// configure page show
 	$(document).unbind("pagecontainershow").on( "pagecontainershow", function( event, ui ) {
 		var id = ui.toPage.prop("id");
+		var prev_id = ui.prevPage.prop("id");
 		
 		if (id == "login-page") {
 			GLOBAL_DATA.user = null;
 		} else if (id == "thread-page") {
+			if (prev_id == "message-page") {
+				MESSAGE_MODULE.setMessageThreads();
+			}
+			
 			MESSAGE_MODULE.threadChecker = setInterval(function(){ 
 				MESSAGE_MODULE.setMessageThreads();
 			}, MESSAGE_MODULE.serviceFrequency);
@@ -23,7 +29,7 @@ function setPageShowHide() {
 		}
 	});
 	
-	// configure page end
+	// configure page hide
 	$(document).unbind("pagecontainerhide").on( "pagecontainerhide", function( event, ui ) {
 		var id = ui.prevPage.prop("id");
 		var to_id = ui.toPage.prop("id");
