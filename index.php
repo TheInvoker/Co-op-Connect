@@ -35,10 +35,17 @@
 	<body>
 
 		<div id="login-page" data-role="page" data-theme="b">
+		
+			<div data-role="panel" id="login-panel" data-display="push">
+				<ul data-role="listview">
+					<li><a id="register-button" href="#" class="ui-btn ui-icon-arrow-u ui-btn-icon-left">Register</a></li>
+					<li><a id="forgot-button" href="#" class="ui-btn ui-icon-info ui-btn-icon-left">Forgot Password</a></li>
+				</ul>
+			</div>
+		
 			<div data-role="header">
-				<a id="register-button" href="#" data-icon="arrow-u">Register</a>
-				<h1>Co-op Connect</h1>
-				<a id="forgot-button" href="#" data-icon="info">Forgot Password</a>
+				<a href="#login-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
+				<h1>UTSC Co-op Connect</h1>
 			</div>
 
 			<div data-role="main" class="ui-content">
@@ -278,9 +285,19 @@
 
 
 		<div id="search-page" data-role="page" data-theme="b">
+		
+			<div data-role="panel" id="search-panel" data-display="push">
+				<ul data-role="listview">
+					<li><a id="search-clear-all" href="#" class="ui-btn ui-icon-minus ui-btn-icon-left">Select None</a></li>
+					<li><a id="search-select-all" href="#" class="ui-btn ui-icon-plus ui-btn-icon-left">Select All</a></li>
+					<li><a id="search-message-all" href="#" class="ui-btn ui-icon-comment ui-btn-icon-left">Message</a></li>
+				</ul>
+			</div>
+		
 			<div data-role="header">
+				<a href="#search-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 				<h1>Search</h1>
-				<a id="search-setting-button" href="#" data-icon="gear" class="ui-btn-right">Settings</a>
+				<a id="search-setting-button" href="#" data-icon="gear">Settings</a>
 			</div>
 
 			<div data-role="main" class="ui-content">
@@ -291,10 +308,6 @@
 					<input type="submit" value="Search" data-mini="true">
 				</form>
 
-				<a id="search-clear-all" href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
-				<a id="search-select-all" href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
-				<a id="search-message-all" href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-comment ui-btn-icon-left">Message</a>
-				
 				<table data-role="table" id="search-table" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Columns to display..." data-column-popup-theme="b">
 					<thead>
 						<tr class="ui-bar-d">

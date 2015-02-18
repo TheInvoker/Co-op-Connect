@@ -12,7 +12,7 @@
 
 		<div id="login-page" data-role="page" data-theme="a">
 			<div data-role="header">
-				<h1>Co-op Connect Admin</h1>
+				<h1>UTSC Co-op Connect Admin</h1>
 			</div>
 			
 			<div data-role="main" class="ui-content">
