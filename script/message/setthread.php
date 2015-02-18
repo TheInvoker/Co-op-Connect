@@ -25,10 +25,10 @@
 			mysqli_query($sqlConnection, $query);
 			$thread_id = mysqli_insert_id($sqlConnection);
 			
-			$query = "INSERT INTO thread_user (thread_id,user_id,last_read_date) VALUES ({$thread_id},{$user_id},NOW())";
-			mysqli_query($sqlConnection, $query);
-			
-			$query = "INSERT INTO thread_user (thread_id,user_id,last_read_date) VALUES ({$thread_id},{$target_id},NOW())";
+			$query = "INSERT INTO thread_user (thread_id,user_id,last_read_date)
+			          SELECT {$thread_id},{$user_id},NOW()
+					  UNION
+					  SELECT {$thread_id},{$target_id},NOW()";
 			mysqli_query($sqlConnection, $query);
 			
 		} else {
