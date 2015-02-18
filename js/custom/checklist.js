@@ -21,6 +21,10 @@ var CHECKLIST_MODULE = {
 					
 					// attach click handlers
 					CHECKLIST_MODULE.attachHandlers(obj, response);
+					
+					$("#done-checklist-button").unbind('click').click(function() {
+						history.back();
+					});
 				});
 			},
 			error: function(data,status,xhr) {

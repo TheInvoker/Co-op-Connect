@@ -36,10 +36,16 @@
 
 		<div id="login-page" data-role="page" data-theme="b">
 			<div data-role="header">
+				<a id="register-button" href="#" data-icon="arrow-u">Register</a>
 				<h1>UTSC Co-op Connect</h1>
+				<a id="forgot-button" href="#" data-icon="info">Forgot Password</a>
 			</div>
 
 			<div data-role="main" class="ui-content">
+				<center>
+					<img class="logo-image-home" src="./images/site/coopconnect.png" alt="Co-op Connect logo" title="Co-op Connect logo"/>
+				</center>
+				
 				<form id="login-form">
 					<label for="email">Email Address:</label>
 					<input name="email" type="email" maxlength="255" value="ryan.dsouza@hotmail.ca" required>
@@ -47,11 +53,6 @@
 					<input name="password" type="password" autocomplete="off" maxlength="255" value="test" required>
 					<input type="submit" value="Login">
 				</form>
-
-				<div align="center">
-					<a id="register-button" href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-arrow-u ui-btn-icon-left">Register</a>
-					<a id="forgot-button" href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-arrow-d ui-btn-icon-left">Forgot Password</a>
-				</div>
 			</div>
 		</div>
 
@@ -120,6 +121,7 @@
 		<div id="profile-page" data-role="page" data-theme="b">
 			<div data-role="header">
 				<h1>Profile</h1>
+				<a id="profile-edit-button" href="#" data-icon="edit" class="ui-btn-right">Edit</a>
 			</div>
 
 			<div data-role="main" class="ui-content">
@@ -139,8 +141,6 @@
 				<p id="profile-status"></p>
 				<p id="profile-biotext"></p>
 				<p id="profile-info"></p>
-
-				<a id="profile-edit-button" href="#" data-role="button" data-icon="edit" data-iconpos="left">Edit</a>
 			</div>
 		</div>
 		<div id="profile-edit-page" data-role="page" data-theme="b">
@@ -201,14 +201,13 @@
 		<div id="placement-page" data-role="page" data-theme="b">
 			<div data-role="header">
 				<h1>Placements</h1>
+				<a id="add-placement-button" href="#" data-icon="plus" class="ui-btn-right">Add</a>
 			</div>
 
 			<div data-role="main" class="ui-content">
 				<ul id="placement-list" data-role="listview" data-filter="true" data-filter-placeholder="filter" data-inset="true">
 
 				</ul>
-
-				<a id="add-placement-button" href="#" data-role="button" data-icon="plus" data-iconpos="left">Add</a>
 			</div>
 
 			<div id="placementMenu" data-role="popup" data-theme="b">
@@ -267,6 +266,7 @@
 		<div id="checklist-page" data-role="page" data-theme="b">
 			<div data-role="header">
 				<h1>Checklist</h1>
+				<a id="done-checklist-button" href="#" data-icon="check" class="ui-btn-right">Done</a>
 			</div>
 
 			<div data-role="main" class="ui-content">
@@ -280,6 +280,7 @@
 		<div id="search-page" data-role="page" data-theme="b">
 			<div data-role="header">
 				<h1>Search</h1>
+				<a id="search-setting-button" href="#" data-icon="gear" class="ui-btn-right">Settings</a>
 			</div>
 
 			<div data-role="main" class="ui-content">
@@ -287,19 +288,10 @@
 
 					<input name="search" type="search" maxlength="255" data-mini="true">
 
-					<table width="100%">
-						<tr>
-							<td width="50%">
-								<a id="search-setting-button" href="#" data-role="button" data-icon="gear" data-iconpos="left" data-mini="true">Settings</a>
-							</td>
-							<td width="50%">
-								<input type="submit" value="Search" data-mini="true">
-							</td>
-						</tr>
-					</table>
+					<input type="submit" value="Search" data-mini="true">
 				</form>
 
-				<a id="search-clear-all" href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Clear</a>
+				<a id="search-clear-all" href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 				<a id="search-select-all" href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
 				<a id="search-message-all" href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-comment ui-btn-icon-left">Message</a>
 				
@@ -322,6 +314,7 @@
 		<div id="search-settings-page" data-role="page" data-theme="b">
 			<div data-role="header">
 				<h1>Settings</h1>
+				<a id="done-search-settings-button" href="#" data-icon="check" class="ui-btn-right">Done</a>
 			</div>
 
 			<div data-role="main" class="ui-content">
@@ -339,7 +332,7 @@
 
 					<fieldset id="search_department_cb" data-role="controlgroup" data-mini="true">
 						<legend>Co-op Department:</legend>
-						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Clear</a>
+						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 						<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
 
 						<?php
@@ -353,7 +346,7 @@
 
 					<fieldset id="search_role_cb" data-role="controlgroup" data-mini="true">
 						<legend>Role:</legend>
-						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Clear</a>
+						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 						<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
 
 						<?php
@@ -369,7 +362,7 @@
 
 					<fieldset id="search_city_cb" data-role="controlgroup" data-mini="true">
 						<legend>City:</legend>
-						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Clear</a>
+						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 						<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
 
 						<?php
@@ -383,7 +376,7 @@
 
 					<fieldset id="search_country_cb" data-role="controlgroup" data-mini="true">
 						<legend>Country:</legend>
-						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Clear</a>
+						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 						<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
 
 						<?php
@@ -397,7 +390,7 @@
 
 					<fieldset id="search_topic_cb" data-role="controlgroup" data-mini="true">
 						<legend>Role:</legend>
-						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Clear</a>
+						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 						<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
 
 						<?php
@@ -411,7 +404,7 @@
 
 					<fieldset id="search_company_cb" data-role="controlgroup" data-mini="true">
 						<legend>Company:</legend>
-						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Clear</a>
+						<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 						<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
 
 						<?php
@@ -469,11 +462,12 @@
 		</div>
 		<div id="message-page" data-role="page" data-theme="b">
 			<div data-role="header">
+				<a id="more-message-button" href="#" data-icon="arrow-d" class="ui-btn-right">Show More</a>
 				<h1>Messages</h1>
 			</div>
 
 			<div data-role="main" class="ui-content">
-				<a id="more-message-button" href="#" data-role="button" data-icon="arrow-d" data-iconpos="left">Show More</a>
+				
 
 				<div id="message-list">
 				</div>

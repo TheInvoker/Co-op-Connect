@@ -2,7 +2,7 @@ var REGISTER_MODULE = {
 	
 	register : function() {
 		$.mobile.changePage( "#register-page", { 
-			transition: "slide"
+			transition: "slideup"
 		});	
 		
 		$("#register-form").unbind('submit').submit(function() {

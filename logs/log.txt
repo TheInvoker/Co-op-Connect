@@ -1,33 +1,9 @@
-A
 
-
-----------------------------------------------------
-
-B
 
 
 ----------------------------------------------------
 
-SELECT th.id, tm.message, tm.date_sent, tm.date_sent>tu.last_read_date AS new
-		          FROM thread th
-				  JOIN thread_user tu ON th.id=tu.thread_id AND tu.user_id=1
-				  LEFT JOIN thread_message tm ON th.id=tm.thread_id
-	              LEFT JOIN (SELECT thread_id, MAX(date_sent) date_sent
-				   FROM thread_message
-				   GROUP BY thread_id) q ON tm.thread_id = q.thread_id AND tm.date_sent = q.date_sent
-				  ORDER BY tm.date_sent DESC
-
-
-----------------------------------------------------
-
-SELECT th.id, tm.message, tm.date_sent, tm.date_sent>tu.last_read_date AS new
-		          FROM thread th
-				  JOIN thread_user tu ON th.id=tu.thread_id AND tu.user_id=1
-				  LEFT JOIN thread_message tm ON th.id=tm.thread_id
-	              LEFT JOIN (SELECT thread_id, MAX(date_sent) date_sent
-				   FROM thread_message
-				   GROUP BY thread_id) q ON tm.thread_id = q.thread_id AND tm.date_sent = q.date_sent
-				  ORDER BY tm.date_sent DESC
+1
 
 
 ----------------------------------------------------

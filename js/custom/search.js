@@ -74,6 +74,9 @@ var SEARCH_MODULE = {
 			$(".set-text-today").unbind('click').click(function() {
 				$(this).prev().prev().find("input").val(getDate());
 			});
+			$("#done-search-settings-button").unbind('click').click(function() {
+				history.back();
+			});
 			
 			var elements = $("#search-settings-form").find("input[type=date]");
 			dateHandler(elements, false, function() {});
