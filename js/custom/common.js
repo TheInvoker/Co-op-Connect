@@ -66,7 +66,6 @@ function setAPageShowHide() {
 		
 		if (id == "login-page" && GLOBAL_DATA.user == null) {
 			history.back();
-			history.back();
 		}
 	});
 }
