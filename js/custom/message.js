@@ -1,6 +1,7 @@
 var MESSAGE_MODULE = {
 	
 	page : 0,
+	threadChecker : null,
 	serviceChecker : null,
 	serviceFrequency : 1000 * 60 * 3,
 	
@@ -24,6 +25,17 @@ var MESSAGE_MODULE = {
 					
 					// handle clicks
 					MESSAGE_MODULE.clickHandler(response);
+					
+					// configure page show/end
+					$(document).unbind("pageshow").on("pageshow","#thread-page",function(){
+						MESSAGE_MODULE.threadChecker = setInterval(function(){ 
+							MESSAGE_MODULE.setMessageThreads();
+						}, MESSAGE_MODULE.serviceFrequency);
+					});
+
+					$(document).unbind("pagebeforehide").on("pagebeforehide","#thread-page",function(){
+						clearInterval(MESSAGE_MODULE.threadChecker);
+					});
 				});
 			},
 			error: function(data,status,xhr) {
