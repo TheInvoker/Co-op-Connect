@@ -3,6 +3,7 @@
 	if (isset($_POST['id'])) {
 
 		$user_id = $_POST['id'];
+		$nameLim = 10;
 	
 		$query = "SELECT th.id, tm.message, tm.date_sent, tm.date_sent>tu.last_read_date AS new
 		          FROM thread th
@@ -30,12 +31,14 @@
 					  FROM thread th
 					  JOIN thread_user tu ON tu.thread_id=th.id AND tu.user_id!={$user_id}
 					  JOIN user u ON tu.user_id=u.id
-					  WHERE th.id={$thread_id}";
+					  WHERE th.id={$thread_id}
+					  ORDER BY u.last_name";
 			$recordset2 = mysqli_query($sqlConnection, $query);	
 			$num_records2 = mysqli_num_rows($recordset2);
+			$exceeded = max(0, $num_records2 - $nameLim);
 
 			$tempList = array();
-			for ($j = 0; $j < $num_records2; $j++) {
+			for ($j = 0; $j < min($nameLim, $num_records2); $j++) {
 				$row2 = mysqli_fetch_assoc($recordset2);
 				
 				$filename = $row2['avatar_filename'];
@@ -57,7 +60,8 @@
 				'message' => $row['message'],
 				'date_sent' => $row['date_sent'],
 				'new' => $row['new'],
-				'member_names' => $tempList
+				'member_names' => $tempList,
+				'extra' => $exceeded
 			);
 			
 			array_push($successMessage, $tempObject);

@@ -85,6 +85,10 @@ var MESSAGE_MODULE = {
 			var thisname = nameObj['first_name'] + ' ' + nameObj['last_name'];
 			picList += '<span class="thread-image"><div><img title="' + thisname + '" alt="' + thisname + '" src="' + nameObj['picURL'] + '" class="small-image"/></div><div>' + thisname + '</div></span>';
 		}
+		
+		if (obj['extra'] > 0) {
+			picList += " (" + obj['extra'] + " more...)";
+		}
 
 		if (obj['message'] != null) {
 			str += '<tr title="Message"><td valign="top"><span class="ui-icon-comment ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + Autolinker.link(obj['message']) + '</td></tr>';

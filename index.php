@@ -285,7 +285,7 @@
 			<div data-role="main" class="ui-content">
 				<form id="search-form">
 
-					<input name="search" type="search" maxlength="255" data-mini="true" required>
+					<input name="search" type="search" maxlength="255" data-mini="true">
 
 					<table width="100%">
 						<tr>
