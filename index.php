@@ -312,6 +312,7 @@
 					<thead>
 						<tr class="ui-bar-d">
 							<th data-priority="1">Select</th>
+							<th data-priority="2">#</th>
 							<th data-priority="4">Avatar</th>
 							<th data-priority="1">Name</th>
 							<th data-priority="2">Role</th>

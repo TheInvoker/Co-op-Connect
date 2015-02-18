@@ -92,6 +92,7 @@ var SEARCH_MODULE = {
 			
 			acc += "<tr class=\"search-person\" data-id=\"" + obj['id'] + "\">";
 			acc += "<th><div class='custom-radio' title='Click to toggle selection'></div></th>";
+			acc += "<td>" + (i+1) + "</td>";
 			acc += "<td><img class=\"small-image\" src=\"" + obj['picURL'] + "\"/></td>";
 			acc += "<td>" + obj['firstname'] + " " + obj['lastname'] + "</td>";
 			acc += "<td>" + obj['role_name'] + "</td>";
