@@ -86,8 +86,6 @@ var SEARCH_MODULE = {
 		var acc = "";
 		for(var i=0;i<response.length; i+=1) {
 			var obj = response[i];
-			var cg_id = "search_user_cg_" + i;
-			var cb_id = "search_user_cb_" + i;
 			
 			acc += "<tr class=\"search-person\" data-id=\"" + obj['id'] + "\">";
 			acc += "<th><div class='custom-radio' title='Click to toggle selection'></div></th>";
