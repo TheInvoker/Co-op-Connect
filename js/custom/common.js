@@ -4,13 +4,28 @@ var GLOBAL_DATA = {
 };
 
 function setUpLogout() {
-	$(window).unbind("navigate").on("navigate", function (event, data) {
-		var direction = data.state.direction;
-		var id = data.state.hash;
-		if (direction == 'back' && id == '') {
-			//GLOBAL_DATA.user = null;
-		} else if (direction == 'forward' && id == '#menu-page' && GLOBAL_DATA.user == null) {
-			//history.back(); // <- doesn't work
+	// configure page show
+	$(document).unbind("pagecontainershow").on( "pagecontainershow", function( event, ui ) {
+		var id = ui.toPage.prop("id");
+		
+		if (id == "login-page") {
+			GLOBAL_DATA.user = null;
+		} else if (id == "thread-page") {
+			MESSAGE_MODULE.threadChecker = setInterval(function(){ 
+				MESSAGE_MODULE.setMessageThreads();
+			}, MESSAGE_MODULE.serviceFrequency);
+		}
+	});
+	
+	// configure page end
+	$(document).unbind("pagecontainerhide").on( "pagecontainerhide", function( event, ui ) {
+		var id = ui.prevPage.prop("id");
+		
+		if (id == "login-page" && GLOBAL_DATA.user == null) {
+			history.back();
+			history.back();
+		} else if (id == "thread-page") {
+			clearInterval(MESSAGE_MODULE.threadChecker);
 		}
 	});
 }
