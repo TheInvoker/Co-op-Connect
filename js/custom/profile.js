@@ -26,6 +26,8 @@ var PROFILE_MODULE = {
 	},
 	
 	displayProfile : function(response, user_id) {
+		var user = GLOBAL_DATA.user;
+		
 		$("#profile-fullname").html(response['firstname'] + ' ' + response['lastname']);
 		$("#profile-avatar-image").attr("src", response['picURL']);
 
@@ -35,9 +37,15 @@ var PROFILE_MODULE = {
 		$("#profile-email").attr("href", "mailto:" + response['email']);
 		$("#profile-phone").attr("href", "tel:+" + response['phone']);
 		$("#profile-site").html(Autolinker.link(response['website'])).find("a").html("Website");
-		$("#profile-message").unbind('click').click(function() {
-			
-		});
+		
+		if (user['id'] == user_id) {
+			$("#profile-message").hide();
+		} else {
+			$("#profile-message").show().unbind('click').click(function() {
+				PROFILE_MODULE.createThread(user_id);
+			});
+		}
+		
 		$("#profile-placements").unbind('click').click(function() {
 			PLACEMENT_MODULE.getPlacements(user_id);
 		});
@@ -45,6 +53,19 @@ var PROFILE_MODULE = {
 		var info = "I am a " + response['role_name'] + " from the " + response['department_name'] + " co-op department who joined in " + response['datejoined'] + ".";
 		info += " My account is currently " + (response['active'] ? "Active" : "Inactive") + ".";
 		$("#profile-info").html(info);
+	},
+	
+	createThread : function(user_id) {
+		var user = GLOBAL_DATA.user;
+		
+		runAJAXSerial('', {
+			page : 'message/setthread',
+			target_id : user_id,
+			user_id : user['id']
+		}, function(response) {
+			var thread_id = response['id'];
+			MESSAGE_MODULE.gotoMessage(thread_id);
+		});
 	},
 
 	editProfileHandler : function(response, user_id) {
