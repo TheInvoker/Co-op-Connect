@@ -46,6 +46,25 @@ var MESSAGE_MODULE = {
 		
 		list.append(myListContent).listview().trigger('create');
 		list.listview('refresh');
+		
+		$(".add-member-button").click(function() {
+			var thread_id = $(this).attr("data-thread-id");
+			var email = prompt("Please enter email adress of member to add:", "");
+			
+			if (email != null) {
+				email = email.trim();
+				
+				runAJAXSerial('', {
+					page : 'message/addmember',
+					thread_id : thread_id,
+					email : email
+				}, function(response) {
+					MESSAGE_MODULE.gotoMessage(thread_id);
+				});
+			}
+			
+			return false;
+		});
 	},
 	
 	checkNew : function(obj) {
@@ -72,7 +91,8 @@ var MESSAGE_MODULE = {
 			str += '<tr title="Date Sent"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['date_sent'] + '</td></tr>';
 		}
 		
-		str += '<tr title="Recipants"><td valign="top"><span class="ui-icon-user ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + picList + '</td></tr>';
+		str += '<tr title="Recipants"><td><span class="ui-icon-user ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + picList + '</td></tr>';
+		str += '<tr title="Add Member"><td><span class="ui-icon-plus ui-btn-icon-left myicon"/></td><td valign="top"><a class="add-member-button" href="#" data-role="button" data-icon="plus" data-iconpos="left" data-mini="true" data-thread-id="' + obj['id'] + '">Add Member</a></td></tr>';
 
 		str += '</table></a>';
 		return str;
