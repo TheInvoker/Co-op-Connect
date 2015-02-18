@@ -13,6 +13,7 @@
 				       FROM thread_message
 				       GROUP BY thread_id
 				  ) q ON tm.thread_id = q.thread_id AND tm.date_sent = q.date_sent
+				  GROUP BY th.id
 				  ORDER BY tm.date_sent DESC";  
 				  
 		$recordset = mysqli_query($sqlConnection, $query);	

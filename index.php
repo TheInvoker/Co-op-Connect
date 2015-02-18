@@ -28,6 +28,7 @@
 		<script src="js/custom/search.js"></script>
 		<script src="js/custom/resource.js"></script>
 		<script src="js/custom/message.js"></script>
+		<script src="js/custom/about.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="css/mobipick.css">
 	</head>
@@ -101,10 +102,11 @@
 					Messages
 					<span id="message-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
 				</a> 
-				<a id="resource-button" href="#" data-role="button" data-icon="info" data-iconpos="left">
+				<a id="resource-button" href="#" data-role="button" data-icon="alert" data-iconpos="left">
 					Resources
 					<span id="resource-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
-				</a> 
+				</a>
+				<a id="about-button" href="#" data-role="button" data-icon="info" data-iconpos="left">About</a> 
 			</div>
 		</div> 
 		
@@ -488,6 +490,16 @@
 				<ul id="resource-list" data-role="listview" data-filter="true" data-filter-placeholder="filter" data-inset="true">
 
 				</ul>
+			</div>
+		</div> 
+		
+		<div id="about-page" data-role="page" data-theme="b">
+			<div data-role="header">
+				<h1>About</h1>
+			</div>
+
+			<div data-role="main" class="ui-content">
+				
 			</div>
 		</div> 
 		

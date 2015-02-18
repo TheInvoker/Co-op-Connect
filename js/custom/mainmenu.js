@@ -11,6 +11,7 @@ var MENU_MODULE = {
 		MENU_MODULE.setMapButton();
 		MENU_MODULE.setMessageButton();
 		MENU_MODULE.setResourceButton();
+		MENU_MODULE.setAboutButton();
 		
 		MENU_MODULE.handleCount();
 	},
@@ -50,6 +51,12 @@ var MENU_MODULE = {
 	setResourceButton : function() {
 		$("#resource-button").unbind('click').click(function() {
 			RESOURCE_MODULE.setResource();
+		});
+	},
+	
+	setAboutButton : function() {
+		$("#about-button").unbind('click').click(function() {
+			ABOUT_MODULE.setAbout();
 		});
 	},
 	
