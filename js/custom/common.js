@@ -14,6 +14,20 @@ function setUpLogout() {
 			MESSAGE_MODULE.threadChecker = setInterval(function(){ 
 				MESSAGE_MODULE.setMessageThreads();
 			}, MESSAGE_MODULE.serviceFrequency);
+		} else if (id == "message-page") {
+			MESSAGE_MODULE.scrollBot();
+			
+			MESSAGE_MODULE.serviceChecker = setInterval(function(){ 
+				MESSAGE_MODULE.getNewMessages(MESSAGE_MODULE.thread_id);
+			}, MESSAGE_MODULE.serviceFrequency);
+		} else if (id == "menu-page") {
+			MENU_MODULE.getCount();
+			
+			MENU_MODULE.serviceChecker = setInterval(function(){ 
+				MENU_MODULE.getCount();
+			}, MENU_MODULE.serviceFrequency);
+		} else if (id == "checklist-page") {
+			
 		}
 	});
 	
@@ -26,6 +40,12 @@ function setUpLogout() {
 			history.back();
 		} else if (id == "thread-page") {
 			clearInterval(MESSAGE_MODULE.threadChecker);
+		} else if (id == "message-page") {
+			clearInterval(MESSAGE_MODULE.serviceChecker);
+		} else if (id == "menu-page") {
+			clearInterval(MENU_MODULE.serviceChecker);
+		} else if (id == "checklist-page") {
+			PLACEMENT_MODULE.getPlacements(PLACEMENT_MODULE.user_id);
 		}
 	});
 }

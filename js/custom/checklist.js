@@ -27,8 +27,6 @@ var CHECKLIST_MODULE = {
 				alert('Error Occured!');
 			}
 		});
-		
-		this.pageEndHandler(user_id);
 	},
 	
 	displayChecklist : function(response) {
@@ -58,12 +56,6 @@ var CHECKLIST_MODULE = {
 			} else {
 				CHECKLIST_MODULE.setChecklistState($(this), obj['id'], response[index], '0');
 			}
-		});
-	},
-	
-	pageEndHandler : function(user_id) {
-		$(document).unbind("pagebeforehide").on("pagebeforehide","#checklist-page",function(){
-			PLACEMENT_MODULE.getPlacements(user_id);
 		});
 	},
 

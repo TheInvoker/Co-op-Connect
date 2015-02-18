@@ -1,6 +1,7 @@
 var PLACEMENT_MODULE = {
 	
 	placement : null,
+	user_id : null,
 	
 	getPlacements : function(user_id) {
 		var user = GLOBAL_DATA.user;
@@ -15,10 +16,14 @@ var PLACEMENT_MODULE = {
 			dataType: 'json',
 			success: function(jsonData) {
 				handleResponse(jsonData, function(response) {
+					
+					// record the user id in context
+					PLACEMENT_MODULE.user_id = user_id;
+					
 					$.mobile.changePage("#placement-page", { 
 						transition: "slide"
 					});
-					
+
 					// add data to listview
 					PLACEMENT_MODULE.displayPlacements(me, response);
 					

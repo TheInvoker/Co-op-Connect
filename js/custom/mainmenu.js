@@ -12,8 +12,6 @@ var MENU_MODULE = {
 		MENU_MODULE.setMessageButton();
 		MENU_MODULE.setResourceButton();
 		MENU_MODULE.setAboutButton();
-		
-		MENU_MODULE.handleCount();
 	},
 	
 	setUserButton : function() {
@@ -57,20 +55,6 @@ var MENU_MODULE = {
 	setAboutButton : function() {
 		$("#about-button").unbind('click').click(function() {
 			ABOUT_MODULE.setAbout();
-		});
-	},
-	
-	handleCount : function() {
-		$(document).unbind("pageshow").on("pageshow","#menu-page",function(){
-			MENU_MODULE.getCount();
-			
-			MENU_MODULE.serviceChecker = setInterval(function(){ 
-				MENU_MODULE.getCount();
-			}, MENU_MODULE.serviceFrequency);
-		});
-		
-		$(document).unbind("pagebeforehide").on("pagebeforehide","#menu-page",function(){
-			clearInterval(MENU_MODULE.serviceChecker);
 		});
 	},
 	

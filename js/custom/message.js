@@ -4,6 +4,7 @@ var MESSAGE_MODULE = {
 	threadChecker : null,
 	serviceChecker : null,
 	serviceFrequency : 1000 * 60 * 3,
+	thread_id : null,
 	
 	setMessageThreads : function() {
 		var user = GLOBAL_DATA.user;
@@ -105,6 +106,8 @@ var MESSAGE_MODULE = {
 		}, function(response) {
 			MESSAGE_MODULE.page += 1;
 			
+			MESSAGE_MODULE.thread_id = thread_id;
+			
 			$.mobile.changePage("#message-page", { 
 				transition: "slide"
 			});
@@ -117,21 +120,6 @@ var MESSAGE_MODULE = {
 			MESSAGE_MODULE.handleSend(thread_id);
 			
 			MESSAGE_MODULE.handleGetMore(thread_id);
-			
-					
-			// configure page show/end
-			$(document).unbind("pageshow").on("pageshow","#message-page",function(){
-				
-				MESSAGE_MODULE.scrollBot();
-				
-				MESSAGE_MODULE.serviceChecker = setInterval(function(){ 
-					MESSAGE_MODULE.getNewMessages(thread_id);
-				}, MESSAGE_MODULE.serviceFrequency);
-			});
-
-			$(document).unbind("pagebeforehide").on("pagebeforehide","#message-page",function(){
-				clearInterval(MESSAGE_MODULE.serviceChecker);
-			});
 		});
 	},
 	
