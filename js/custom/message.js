@@ -47,7 +47,7 @@ var MESSAGE_MODULE = {
 		list.append(myListContent).listview().trigger('create');
 		list.listview('refresh');
 		
-		$(".add-member-button").click(function() {
+		$(".add-member-button").unbind('click').click(function() {
 			var thread_id = $(this).attr("data-thread-id");
 			var email = prompt("Please enter email adress of member to add:", "");
 			

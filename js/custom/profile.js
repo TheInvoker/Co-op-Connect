@@ -60,7 +60,7 @@ var PROFILE_MODULE = {
 		
 		runAJAXSerial('', {
 			page : 'message/setthread',
-			target_id : user_id,
+			target_ids : user_id,
 			user_id : user['id']
 		}, function(response) {
 			var thread_id = response['id'];

@@ -299,9 +299,14 @@
 					</table>
 				</form>
 
+				<a id="search-clear-all" href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Clear</a>
+				<a id="search-select-all" href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
+				<a id="search-message-all" href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-comment ui-btn-icon-left">Message</a>
+				
 				<table data-role="table" id="search-table" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Columns to display..." data-column-popup-theme="b">
 					<thead>
 						<tr class="ui-bar-d">
+							<th data-priority="1">Select</th>
 							<th data-priority="4">Avatar</th>
 							<th data-priority="1">Name</th>
 							<th data-priority="2">Role</th>

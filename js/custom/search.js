@@ -86,8 +86,12 @@ var SEARCH_MODULE = {
 		var acc = "";
 		for(var i=0;i<response.length; i+=1) {
 			var obj = response[i];
+			var cg_id = "search_user_cg_" + i;
+			var cb_id = "search_user_cb_" + i;
+			
 			acc += "<tr class=\"search-person\" data-id=\"" + obj['id'] + "\">";
-			acc += "<th><img class=\"small-image\" src=\"" + obj['picURL'] + "\"/></th>";
+			acc += "<th><div class='custom-radio' title='Click to toggle selection'></div></th>";
+			acc += "<td><img class=\"small-image\" src=\"" + obj['picURL'] + "\"/></td>";
 			acc += "<td>" + obj['firstname'] + " " + obj['lastname'] + "</td>";
 			acc += "<td>" + obj['role_name'] + "</td>";
 			acc += "<td>" + obj['department_name'] + "</td>";
@@ -96,10 +100,47 @@ var SEARCH_MODULE = {
 		}
 		
 		body.html(acc);
-		$("#search-table").find(".search-person").click(function() {
+
+		$("#search-table").table("refresh");
+		$("#search-table").find(".search-person").unbind('click').click(function() {
 			var id = $(this).attr("data-id");
 			PROFILE_MODULE.getProfile(id);
 		});
-		$("#search-table").table("refresh");
+		
+		var checkBoxes = $("#search-table").find(".custom-radio");
+		
+		checkBoxes.unbind('click').click(function() {
+			$(this).toggleClass("custom-radio-on");
+			return false;
+		});
+		$("#search-clear-all").unbind('click').click(function() {
+			checkBoxes.removeClass("custom-radio-on");
+		});
+		$("#search-select-all").unbind('click').click(function() {
+			checkBoxes.addClass("custom-radio-on");
+		});
+		$("#search-message-all").unbind('click').click(function() {
+			var idList = [];
+			
+			for(var i=0; i<checkBoxes.length; i+=1) {
+				var obj = $(checkBoxes[i]);
+				
+				if (obj.hasClass("custom-radio-on")) {
+					var id = obj.parent().parent().attr("data-id");
+					idList.push(id);
+				}
+			}
+			
+			var strList = idList.join(","); 
+			var user = GLOBAL_DATA.user;
+			
+			runAJAXSerial('', {
+				page : 'message/setthread',
+				target_ids : strList,
+				user_id : user['id']
+			}, function(response) {
+				MESSAGE_MODULE.gotoMessage(thread_id);
+			});
+		});
 	}
 };
