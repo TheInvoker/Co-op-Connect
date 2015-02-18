@@ -137,6 +137,7 @@ var SEARCH_MODULE = {
 				target_ids : strList,
 				user_id : user['id']
 			}, function(response) {
+				var thread_id = response['id'];
 				MESSAGE_MODULE.gotoMessage(thread_id);
 			});
 		});
