@@ -17,11 +17,7 @@ var REGISTER_MODULE = {
 				dataType: 'json',
 				success: function(jsonData) {
 					handleResponse(jsonData, function(response) {
-						$.mobile.changePage( "", { 
-							transition: "slide",
-							changeHash: false,
-							reverse: true
-						});	
+						history.back();
 					});
 				},
 				error: function(data,status,xhr) {
