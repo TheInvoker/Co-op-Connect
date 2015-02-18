@@ -206,6 +206,16 @@
 
 
 		<div id="placement-page" data-role="page" data-theme="b">
+		
+			<div data-role="panel" id="placement-panel" data-display="push">
+				<ul data-role="listview">
+					<li><a id="placement-edit-button" href="#" class="ui-btn ui-icon-edit ui-btn-icon-left">Edit</a></li>
+					<li><a id="placement-checklist-button" href="#" class="ui-btn ui-icon-bullets ui-btn-icon-left">Checklist</a></li>
+					<li><a id="placement-map-button" href="#" class="ui-btn ui-icon-location ui-btn-icon-left">View On Map</a></li>
+					<li><a id="placement-delete-button" href="#" class="ui-btn ui-icon-delete ui-btn-icon-left">Delete</a></li>
+				</ul>
+			</div>
+		
 			<div data-role="header">
 				<h1>Placements</h1>
 				<a id="add-placement-button" href="#" data-icon="plus" class="ui-btn-right">Add</a>
@@ -214,16 +224,6 @@
 			<div data-role="main" class="ui-content">
 				<ul id="placement-list" data-role="listview" data-filter="true" data-filter-placeholder="filter" data-inset="true">
 
-				</ul>
-			</div>
-
-			<div id="placementMenu" data-role="popup" data-theme="b">
-				<ul data-role="listview" data-inset="true" style="min-width:210px;">
-					<li data-role="list-divider">Menu</li>
-					<li><a href="#" class="ui-btn ui-icon-edit ui-btn-icon-left">Edit</a></li>
-					<li><a href="#" class="ui-btn ui-icon-bullets ui-btn-icon-left">Checklist</a></li>
-					<li><a href="#" class="ui-btn ui-icon-location ui-btn-icon-left">View On Map</a></li>
-					<li><a href="#" class="ui-btn ui-icon-delete ui-btn-icon-left">Delete</a></li>
 				</ul>
 			</div>
 		</div>

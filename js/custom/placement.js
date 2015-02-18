@@ -58,9 +58,7 @@ var PLACEMENT_MODULE = {
 	
 	menuHandler : function(me, response, user_id) {
 		
-		var list = $("#placement-list");
-		var items = list.find('a[data-rel=popup]');
-		var options = $("#placementMenu").find("li");
+		var items = $("#placement-list > li > a");
 		
 		// when clicked, store the obj reference
 		items.unbind('click').click(function() {
@@ -69,15 +67,15 @@ var PLACEMENT_MODULE = {
 		});
 
 		// set up menu handler
-		var editButton = options.eq(1);
-		var checklistButton = options.eq(2);
-		var mapButton = options.eq(3);
-		var deleteButton = options.eq(4);
+		var editButton = $("#placement-edit-button");
+		var checklistButton = $("#placement-checklist-button");
+		var mapButton = $("#placement-map-button");
+		var deleteButton = $("#placement-delete-button");
 		
 		if (me) {
-			this.editPlacement(editButton, user_id);
-			this.checklistPlacement(checklistButton, user_id);
-			this.deletePlacement(deleteButton, user_id);
+			PLACEMENT_MODULE.editPlacement(editButton, user_id);
+			PLACEMENT_MODULE.checklistPlacement(checklistButton, user_id);
+			PLACEMENT_MODULE.deletePlacement(deleteButton, user_id);
 		} else {
 			editButton.hide();
 			checklistButton.hide();
@@ -159,7 +157,7 @@ var PLACEMENT_MODULE = {
 	},
 
 	formatLocation : function(obj, me) {
-		var str = '<a href="#placementMenu" data-rel="popup" data-transition="slideup">';
+		var str = '<a href="#placement-panel">';
 		str += '<table>';
 		str += '<tr title="Address"><td valign="top"><span class="ui-icon-location ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['address'] + ', ' + obj['city'] + ', ' + obj['country'] + '</td></tr>';
 		str += '<tr title="Role"><td valign="top"><span class="ui-icon-star ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['topic'] + '</td></tr>';
