@@ -26,9 +26,10 @@ function setPageShowHide() {
 	// configure page end
 	$(document).unbind("pagecontainerhide").on( "pagecontainerhide", function( event, ui ) {
 		var id = ui.prevPage.prop("id");
+		var to_id = ui.toPage.prop("id");
 		
-		if (id == "login-page") {
-            if (GLOBAL_DATA.user == null) {
+		if (id == "login-page" && to_id != "register-page") {
+			if (GLOBAL_DATA.user == null) {
 				history.back();
 			} else {
 				MENU_MODULE.getCount();
