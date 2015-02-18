@@ -14,8 +14,12 @@
 			<div data-role="header">
 				<h1>UTSC Co-op Connect Admin</h1>
 			</div>
-
+			
 			<div data-role="main" class="ui-content">
+				<center>
+					<img class="logo-image-home" src="./images/site/coopconnect.png" alt="Co-op Connect logo" title="Co-op Connect logo"/>
+				</center>
+			
 				<form id="login-form">
 					<label for="email">Email Address:</label>
 					<input name="email" type="email" maxlength="255" value="ryan.dsouza@hotmail.ca" required>
