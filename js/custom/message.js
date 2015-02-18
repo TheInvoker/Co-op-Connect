@@ -96,7 +96,7 @@ var MESSAGE_MODULE = {
 		}
 		
 		str += '<tr title="Recipants"><td><span class="ui-icon-user ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + picList + '</td></tr>';
-		str += '<tr title="Add Member"><td colspan="2"><a class="add-member-button" href="#" data-role="button" data-icon="plus" data-iconpos="left" data-mini="true" data-thread-id="' + obj['id'] + '">Add Member</a></td></tr>';
+		str += '<tr title="Add Member"><td colspan="2"><a href="#" class="add-member-button ui-btn ui-shadow ui-icon-plus ui-btn-icon-notext" data-thread-id="' + obj['id'] + '"></a></td></tr>';
 
 		str += '</table></a>';
 		return str;
