@@ -37,7 +37,7 @@
 		<div id="login-page" data-role="page" data-theme="b">
 			<div data-role="header">
 				<a id="register-button" href="#" data-icon="arrow-u">Register</a>
-				<h1>UTSC Co-op Connect</h1>
+				<h1>Co-op Connect</h1>
 				<a id="forgot-button" href="#" data-icon="info">Forgot Password</a>
 			</div>
 
