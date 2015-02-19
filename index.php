@@ -133,8 +133,23 @@
 
 			<div data-role="main" class="ui-content">
 				<h2 id="profile-fullname"></h2>
-				<img src="" id="profile-avatar-image" class="avatar-image"/>
-
+				<table>
+					<tr>
+						<td><img src="" id="profile-avatar-image" class="avatar-image"/></td>
+						<td valign="top"><div id="profile-status" class="bubble"></div></td>
+					</tr>
+				</table>
+				
+				<p id="profile-biotext"></p>
+				
+				<h3>Details:</h3>
+				
+				<table>
+					<tr><td>Role: </td><td id="profile-role"></td></tr>
+					<tr><td>Department: </td><td id="profile-department"></td></tr>
+					<tr><td>Member Since: </td><td id="profile-datejoined"></td></tr>
+				</table>
+				
 				<div class="ui-field-contain">
 					<fieldset data-role="controlgroup" data-type="horizontal">
 						<a id="profile-email" class="ui-shadow ui-btn ui-corner-all ui-icon-mail ui-btn-icon-left">Email</a>
@@ -144,10 +159,6 @@
 						<a id="profile-placements" class="ui-shadow ui-btn ui-corner-all ui-icon-shop ui-btn-icon-left">Placements</a>
 					</fieldset>
 				</div>
-
-				<p id="profile-status"></p>
-				<p id="profile-biotext"></p>
-				<p id="profile-info"></p>
 			</div>
 		</div>
 		<div id="profile-edit-page" data-role="page" data-theme="b">

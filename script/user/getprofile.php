@@ -4,7 +4,7 @@
 	
 		$targetID = $_POST['id']; 
 
-		$query = "SELECT u.*, d.name AS department_name, r.name AS role_name
+		$query = "SELECT u.*, d.name AS department_name, d.alt_color AS d_color, r.name AS role_name, r.color AS r_color
 				  FROM user u
 				  JOIN department d ON d.id = u.department_id
 				  JOIN role r ON r.id = u.role_id
@@ -29,9 +29,10 @@
 				'status' => $row['status_text'],
 				'biotext' => $row['bio_text'],
 				'role_name' => $row['role_name'],
+				'r_color' => $row['r_color'],
 				'datejoined' => $row['date_joined'],
-				'active' => $row['active'],
 				'department_name' => $row['department_name'],
+				'd_color' => $row['d_color'],
 				'picURL' => $picURL
 			);
 		} else {

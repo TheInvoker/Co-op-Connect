@@ -88,3 +88,35 @@
 .add-member-button {
 	margin-left:5px;
 }
+
+
+
+
+
+.bubble {
+    position: relative;
+	word-wrap: break-word;
+    min-height: 38px;
+    background: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 10px;
+	color:black;
+	margin-left:20px;
+	padding:10px;
+	text-shadow:none;
+}
+
+.bubble:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: -15px;
+    border-style: solid;
+    border-width: 15px 15px 15px 0;
+    border-color: transparent #ffffff;
+    display: block;
+    width: 0;
+    z-index: 1;
+}
+

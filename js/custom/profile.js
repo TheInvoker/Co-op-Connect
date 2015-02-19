@@ -31,6 +31,17 @@ var PROFILE_MODULE = {
 		$("#profile-fullname").html(response['firstname'] + ' ' + response['lastname']);
 		$("#profile-avatar-image").attr("src", response['picURL']=='' ? 'images/site/person.png' : response['picURL']);
 
+		if (response['status']) {
+			$("#profile-status").show().html(Autolinker.link(response['status']));
+		} else {
+			$("#profile-status").hide();
+		}
+		$("#profile-biotext").html(Autolinker.link(response['biotext']));
+		
+		$("#profile-role").html("<span style='color:" + response['r_color'] + ";'>" + response['role_name'] + "</span>");
+		$("#profile-department").html("<span style='color:" + response['d_color'] + ";'>" + response['department_name'] + "</span>");
+		$("#profile-datejoined").html(response['datejoined']);
+		
 		$("#profile-email").attr("href", "mailto:" + response['email']);
 		$("#profile-phone").attr("href", "tel:+" + response['phone']);
 		$("#profile-site").attr("href", $(Autolinker.link(response['website'])).attr("href"));
@@ -44,13 +55,6 @@ var PROFILE_MODULE = {
 				PROFILE_MODULE.createThread(user_id);
 			});
 		}
-		
-		$("#profile-status").html(Autolinker.link(response['status']));
-		$("#profile-biotext").html(Autolinker.link(response['biotext']));
-		
-		var info = "I am a " + response['role_name'] + " from the " + response['department_name'] + " co-op department who joined in " + response['datejoined'] + ".";
-		info += " My account is currently " + (response['active'] ? "Active" : "Inactive") + ".";
-		$("#profile-info").html(info);
 	},
 	
 	createThread : function(user_id) {
