@@ -49,30 +49,33 @@
 		}
 		
 		
-		$query = "SELECT u.id, u.first_name, u.last_name, u.avatar_filename, r.name AS role_name, d.name AS department_name, count(p.id) AS num_placements
+		$query = "SELECT u.id, u.first_name, u.last_name, u.avatar_filename, r.name AS role_name, r.color AS r_color, d.name AS department_name, d.alt_color AS d_color, count(p.id) AS num_placements
 				  FROM user u
 				  JOIN department d ON u.department_id=d.id" . ($departmentListSQL=="()" ? "" : " AND d.name IN {$departmentListSQL}") . "
 				  JOIN role r ON u.role_id=r.id" . ($roleListSQL=="()" ? "" : " AND r.name IN {$roleListSQL}") . "
-				  JOIN placement p ON u.id=p.user_id" . ($cityListSQL=="()" ? "" : " AND p.city IN {$cityListSQL}")
-				                                      . ($countryListSQL=="()" ? "" : " AND p.country IN {$countryListSQL}")
-													  . ($topicListSQL=="()" ? "" : " AND p.topic IN {$topicListSQL}")
-													  . ($companyListSQL=="()" ? "" : " AND p.organization IN {$companyListSQL}") . "
+				  LEFT JOIN placement p ON u.id=p.user_id AND p.active=1" . ($cityListSQL=="()" ? "" : " AND p.city IN {$cityListSQL}")
+				                                                          . ($countryListSQL=="()" ? "" : " AND p.country IN {$countryListSQL}")
+													                      . ($topicListSQL=="()" ? "" : " AND p.topic IN {$topicListSQL}")
+													                      . ($companyListSQL=="()" ? "" : " AND p.organization IN {$companyListSQL}") . "
 				  WHERE (u.active=1" . ($firstname=="" ? "" : " AND (INSTR(u.first_name,'{$firstname}')>0 OR INSTR('{$firstname}',u.first_name)>0)")
 				                     . ($lastname=="" ? "" : " AND (INSTR(u.last_name,'{$lastname}')>0 OR INSTR('{$lastname}',u.last_name)>0)")
 				                     . ($email=="" ? "" : " AND (INSTR(u.email_address,'{$email}')>0 OR INSTR('{$email}',u.email_address)>0)")
-									 . $datePred
-									 . " AND p.active=1) AND (" . ($search=="" ? "1" : "")
-                                     . ($search=="" ? "" : "    (INSTR(u.first_name,'{$search}')>0 OR INSTR('{$search}',u.first_name)>0)")
-				                     . ($search=="" ? "" : " OR (INSTR(u.last_name,'{$search}')>0 OR INSTR('{$search}',u.last_name)>0)")
-				                     . ($search=="" ? "" : " OR (INSTR(u.email_address,'{$search}')>0 OR INSTR('{$search}',u.email_address)>0)")
-									 . ($search=="" ? "" : " OR (INSTR(u.phone_number,'{$search}')>0 OR INSTR('{$search}',u.phone_number)>0)")
-				                     . ($search=="" ? "" : " OR (INSTR(d.name,'{$search}')>0 OR INSTR('{$search}',d.name)>0)")
-									 . ($search=="" ? "" : " OR (INSTR(r.name,'{$search}')>0 OR INSTR('{$search}',r.name)>0)")
-									 . ")
-				  GROUP BY u.id
-				  ORDER BY u.last_name";
-				  
-				  
+									 . $datePred 
+									 . ") ";
+		if ($search) {
+			$query = $query . " AND (";
+            $query = $query . "(INSTR(u.first_name,'{$search}')>0 OR INSTR('{$search}',u.first_name)>0)";
+			$query = $query . " OR (INSTR(u.last_name,'{$search}')>0 OR INSTR('{$search}',u.last_name)>0)";
+			$query = $query . " OR (INSTR(u.email_address,'{$search}')>0 OR INSTR('{$search}',u.email_address)>0)";
+			$query = $query . " OR (INSTR(u.phone_number,'{$search}')>0 OR INSTR('{$search}',u.phone_number)>0)";
+			$query = $query . " OR (INSTR(d.name,'{$search}')>0 OR INSTR('{$search}',d.name)>0)";
+			$query = $query . " OR (INSTR(r.name,'{$search}')>0 OR INSTR('{$search}',r.name)>0)";
+			$query = $query . ") ";
+		}
+		
+		$query = $query . "GROUP BY u.id ";
+		$query = $query . "ORDER BY u.last_name";
+
 		$recordset = mysqli_query($sqlConnection, $query);	
 		$num_records = mysqli_num_rows($recordset);
 
@@ -93,7 +96,9 @@
 				'firstname' => $row['first_name'], 
 				'lastname' => $row['last_name'],
 				'role_name' => $row['role_name'],
+				'r_color' => $row['r_color'],
 				'department_name' => $row['department_name'],
+				'd_color' => $row['d_color'],
 				'num_placements' => $row['num_placements'],
 				'picURL' => $picURL
 			);
