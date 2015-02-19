@@ -131,7 +131,9 @@ function dateHandler(elements, putCurrentDate, changefunction) {
 	}
 }
 
-
+function getColorCodeTag(text, color) {
+	return "<span style='color:" + color + ";'>" + text + "</span>";
+}
 
 
 function runAJAXHTML5(formData, object, func) {

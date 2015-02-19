@@ -38,8 +38,8 @@ var PROFILE_MODULE = {
 		}
 		$("#profile-biotext").html(Autolinker.link(response['biotext']));
 		
-		$("#profile-role").html("<span style='color:" + response['r_color'] + ";'>" + response['role_name'] + "</span>");
-		$("#profile-department").html("<span style='color:" + response['d_color'] + ";'>" + response['department_name'] + "</span>");
+		$("#profile-role").html(getColorCodeTag(response['role_name'], response['r_color']));
+		$("#profile-department").html(getColorCodeTag(response['department_name'], response['d_color']));
 		$("#profile-datejoined").html(response['datejoined']);
 		
 		$("#profile-email").attr("href", "mailto:" + response['email']);

@@ -95,8 +95,8 @@ var SEARCH_MODULE = {
 			acc += "<td>" + (i+1) + "</td>";
 			acc += "<td><img class=\"small-image\" src=\"" + (obj['picURL']=='' ? 'images/site/person.png' : obj['picURL']) + "\"/></td>";
 			acc += "<td>" + obj['firstname'] + " " + obj['lastname'] + "</td>";
-			acc += "<td><span style='color:" + obj['r_color'] + ";'>" +  obj['role_name'] + "</span></td>";
-			acc += "<td><span style='color:" + obj['d_color'] + ";'>" + obj['department_name'] + "</span></td>";
+			acc += "<td>" + getColorCodeTag(obj['role_name'], obj['r_color']) + "</td>";
+			acc += "<td>" + getColorCodeTag(obj['department_name'], obj['d_color']) + "</td>";
 			acc += "<td>" + obj['num_placements'] + "</td>";
 			acc += "</tr>";
 		}
