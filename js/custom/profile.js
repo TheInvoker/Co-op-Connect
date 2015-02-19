@@ -29,15 +29,14 @@ var PROFILE_MODULE = {
 		var user = GLOBAL_DATA.user;
 		
 		$("#profile-fullname").html(response['firstname'] + ' ' + response['lastname']);
-		$("#profile-avatar-image").attr("src", response['picURL']);
+		$("#profile-avatar-image").attr("src", response['picURL']=='' ? 'images/site/person.png' : response['picURL']);
 
-		$("#profile-status").html(Autolinker.link(response['status']));
-		$("#profile-biotext").html(Autolinker.link(response['biotext']));
-		
 		$("#profile-email").attr("href", "mailto:" + response['email']);
 		$("#profile-phone").attr("href", "tel:+" + response['phone']);
-		$("#profile-site").html(Autolinker.link(response['website'])).find("a").html("Website");
-		
+		$("#profile-site").attr("href", $(Autolinker.link(response['website'])).attr("href"));
+		$("#profile-placements").unbind('click').click(function() {
+			PLACEMENT_MODULE.getPlacements(user_id);
+		});
 		if (user['id'] == user_id) {
 			$("#profile-message").hide();
 		} else {
@@ -46,9 +45,8 @@ var PROFILE_MODULE = {
 			});
 		}
 		
-		$("#profile-placements").unbind('click').click(function() {
-			PLACEMENT_MODULE.getPlacements(user_id);
-		});
+		$("#profile-status").html(Autolinker.link(response['status']));
+		$("#profile-biotext").html(Autolinker.link(response['biotext']));
 		
 		var info = "I am a " + response['role_name'] + " from the " + response['department_name'] + " co-op department who joined in " + response['datejoined'] + ".";
 		info += " My account is currently " + (response['active'] ? "Active" : "Inactive") + ".";

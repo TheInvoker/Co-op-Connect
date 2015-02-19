@@ -139,7 +139,7 @@
 					<fieldset data-role="controlgroup" data-type="horizontal">
 						<a id="profile-email" class="ui-shadow ui-btn ui-corner-all ui-icon-mail ui-btn-icon-left">Email</a>
 						<a id="profile-phone" class="ui-shadow ui-btn ui-corner-all ui-icon-phone ui-btn-icon-left">Phone</a>
-						<a id="profile-site" class="ui-shadow ui-btn ui-corner-all ui-icon-info ui-btn-icon-left">Website</a>
+						<a id="profile-site" class="ui-shadow ui-btn ui-corner-all ui-icon-info ui-btn-icon-left" target="_blank">Website</a>
 						<a id="profile-message" class="ui-shadow ui-btn ui-corner-all ui-icon-comment ui-btn-icon-left">Message</a>
 						<a id="profile-placements" class="ui-shadow ui-btn ui-corner-all ui-icon-shop ui-btn-icon-left">Placements</a>
 					</fieldset>
