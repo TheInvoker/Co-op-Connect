@@ -74,7 +74,7 @@
 		}
 		
 		$query = $query . "GROUP BY u.id ";
-		$query = $query . "ORDER BY u.last_name";
+		$query = $query . "ORDER BY u.last_name ASC, num_placements DESC";
 
 		$recordset = mysqli_query($sqlConnection, $query);	
 		$num_records = mysqli_num_rows($recordset);
