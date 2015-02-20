@@ -14,10 +14,6 @@
 		<!-- Include the geolocation autocomplete library -->
 		<script src="js/jquery.geocomplete.min.js"></script>
 
-		<script src="js/xdate.js"></script>
-		<script src="js/xdate.i18n.js"></script>
-		<script src="js/mobipick.js"></script>
-
 		<script src="js/custom/login.js"></script>
 		<script src="js/custom/mainmenu.js"></script>
 		<script src="js/custom/map.js"></script>
@@ -30,7 +26,8 @@
 		<script src="js/custom/message.js"></script>
 		<script src="js/custom/about.js"></script>
 
-		<link rel="stylesheet" type="text/css" href="css/mobipick.css">
+		<link rel="stylesheet" type="text/css" href="css/default.css">
+		<link rel="stylesheet" type="text/css" href="css/default.date.css">
 	</head>
 	<body>
 
@@ -443,13 +440,9 @@
 
 					<label for="date_start">Start Date:</label>
 					<input name="date_start" type="date"/>
-					<a href="#" class="clear-text-date ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Clear</a>
-					<a href="#" class="set-text-today ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Today</a>
 
 					<label for="date_end">End Date:</label>
 					<input name="date_end" type="date"/>
-					<a href="#" class="clear-text-date ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Clear</a>
-					<a href="#" class="set-text-today ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Today</a>
 
 					<input name="active" type="hidden" maxlength="255" value="1">
 				</form>
@@ -558,21 +551,24 @@
 				
 				<section>
 					<header>
-						<h4>Credits:</h4>
+						<h4>Plugins:</h4>
 					</header>
 					<ol>
 						<li><a href="http://jquery.com" target="_blank">jQuery</a></li>
 						<li><a href="http://jquerymobile.com" target="_blank">jQuery Mobile</a></li>
-						<li><a href="https://github.com/gregjacobs/Autolinker.js" target="_blank">Autolinker.js</a></li>
+						<li><a href="https://github.com/gregjacobs/Autolinker.js" target="_blank">Autolinker</a></li>
 						<li><a href="https://developers.google.com/maps/documentation/javascript" target="_blank">Google Maps</a></li>
 						<li><a href="http://ubilabs.github.io/geocomplete" target="_blank">Geocomplete</a></li>
 						<li><a href="https://code.google.com/p/jquery-ui-map" target="_blank">jquery-ui-map</a></li>
 						<li><a href="https://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries" target="_blank">google-maps-utility-library-v3</a></li>
-						<li><a href="http://mobipick.sustainablepace.net" target="_blank">Mobi Pick</a></li>
+						<li><a href="http://amsul.ca/pickadate.js" target="_blank">pickadate</a></li>
 					</ol>
 				</section>
 			</div>
 		</div>
 
+		<script src="js/picker.js"></script>
+		<script src="js/picker.date.js"></script>
+		
 	</body>
 </html>

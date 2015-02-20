@@ -116,7 +116,7 @@ function getTime() {
 	return datetime;
 }
 
-function dateHandler(elements, putCurrentDate, changefunction) {
+function dateHandler(elements, putCurrentDate, changefunction, showClearButton) {
 	var today = getDate();
 	
 	for(var i=0; i<elements.length; i+=1) {
@@ -126,8 +126,12 @@ function dateHandler(elements, putCurrentDate, changefunction) {
 			picker.val(today);
 		}
 
-		picker.mobipick().unbind('change').on("change", function() {
-			changefunction();
+		picker.pickadate({
+			format: 'yyyy-mm-dd',
+			clear: showClearButton ? 'Clear' : '',
+			onSet: function(context) {
+				changefunction();
+			}
 		});
 	}
 }

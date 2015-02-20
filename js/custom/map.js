@@ -48,7 +48,7 @@ var MAP_MODULE = {
 			$(this).prop('init', true);
 			
 			var elements = $("#map-filter-form").find("input[type=date]");
-			dateHandler(elements, true, this.getLocations);
+			dateHandler(elements, true, this.getLocations, true);
 			
 			if ( navigator.geolocation ) {
 

@@ -176,7 +176,7 @@ var PLACEMENT_MODULE = {
 	
 	setDateFields : function(setCurrentDate) {
 		var elements = $("#placement-edit-form").find("input[type=date]");
-		dateHandler(elements, setCurrentDate, function() {});
+		dateHandler(elements, setCurrentDate, function() {}, false);
 	},
 	
 	setPlacementForEdit : function(obj, user_id) {

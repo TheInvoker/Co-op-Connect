@@ -68,18 +68,12 @@ var SEARCH_MODULE = {
 			$(".selectall-cb-button").unbind('click').click(function() {
 				$(this).parent().find("input").prop("checked", true).checkboxradio( "refresh" );
 			});
-			$(".clear-text-date").unbind('click').click(function() {
-				$(this).prev().find("input").val("");
-			});
-			$(".set-text-today").unbind('click').click(function() {
-				$(this).prev().prev().find("input").val(getDate());
-			});
 			$("#done-search-settings-button").unbind('click').click(function() {
 				history.back();
 			});
 			
 			var elements = $("#search-settings-form").find("input[type=date]");
-			dateHandler(elements, false, function() {});
+			dateHandler(elements, false, function() {}, true);
 		});
 	},
 	

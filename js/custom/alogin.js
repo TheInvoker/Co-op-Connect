@@ -33,7 +33,7 @@ var LOGIN_MODULE = {
 						GLOBAL_DATA.user = response;
 						
 						$.mobile.changePage( "#menu-page", { 
-							transition: "slide"
+							transition: "flip"
 						});
 
 						MENU_MODULE.initMenu();					

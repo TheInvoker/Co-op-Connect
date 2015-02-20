@@ -5,7 +5,10 @@
 		$thread_id = mysqli_real_escape_string($sqlConnection, $_POST['thread_id']);
 		$email = mysqli_real_escape_string($sqlConnection, $_POST['email']);
 		
-		
+		// get 3 things
+		// 1. id of user, null if not there
+		// 2. 1 if user in thread, else 0
+		// 3. number of people in thread
 		$query = "SELECT
 					 (SELECT id 
 					  FROM user 
@@ -22,17 +25,15 @@
 		$row = mysqli_fetch_assoc($recordset);
 		
 		if ($row['id'] == null) {
-			
 			$errorMessage = "Email address does not exist.";
-			
 		} else if ($row['inThread'] == 1) {
-			
 			$errorMessage = "User is already in this thread.";
-			
 		} else {
+			
 			$target_id = $row['id'];
 			$member_count = $row['memberCount'];
 		
+		    // check if there is a thread with the people in the selected thread plus the person you want to add
 			$query = "SELECT th.id
 					  FROM (
 						 SELECT th.id
@@ -47,15 +48,16 @@
 			$recordset = mysqli_query($sqlConnection, $query);	
 			$num_records = mysqli_num_rows($recordset);
 			
-	
 			if ($num_records == 0) {
-	
-				if ($member_count == 2) {
 				
+				if ($member_count == 2) {
+					
+					// create a new thread
 					$query = "INSERT INTO thread (date_created) VALUES (NOW())";
 					mysqli_query($sqlConnection, $query);
 					$new_thread_id = mysqli_insert_id($sqlConnection);
 					
+					// add people from selected thread plus the new person
 					$query = "INSERT IGNORE
 							  INTO thread_user (thread_id,user_id,last_read_date)
 							  SELECT {$new_thread_id},{$target_id},NOW()
@@ -65,14 +67,15 @@
 					mysqli_query($sqlConnection, $query);
 					
 					$thread_id = $new_thread_id;
-					
 				} else {
 					
+					// add user to thread
 					$query = "INSERT INTO thread_user (thread_id,user_id,last_read_date) VALUES ({$thread_id},{$target_id},'0000-00-00 00:00:00')";
 					mysqli_query($sqlConnection, $query);
-					
 				}
 			} else {
+				
+				// get the thread id of the existing thread
 				$row = mysqli_fetch_assoc($recordset);
 				$thread_id = $row['id'];
 			}
@@ -81,7 +84,6 @@
 		$successMessage = array(
 			'id' => $thread_id
 		);
-		
 	} else {
 		$errorMessage = "Did not recieve all of the data.";
 	}
