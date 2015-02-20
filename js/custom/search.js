@@ -93,7 +93,7 @@ var SEARCH_MODULE = {
 			acc += "<tr class=\"search-person\" data-id=\"" + obj['id'] + "\">";
 			acc += "<th><div class='custom-radio' title='Click to toggle selection'></div></th>";
 			acc += "<td>" + (i+1) + "</td>";
-			acc += "<td><img class=\"small-image\" src=\"" + (obj['picURL']=='' ? 'images/site/person.png' : obj['picURL']) + "\"/></td>";
+			acc += "<td><img class=\"small-image\" src=\"" + (obj['picURL']=='' ? GLOBAL_DATA.def_image_link : obj['picURL']) + "\"/></td>";
 			acc += "<td>" + obj['firstname'] + " " + obj['lastname'] + "</td>";
 			acc += "<td>" + getColorCodeTag(obj['role_name'], obj['r_color']) + "</td>";
 			acc += "<td>" + getColorCodeTag(obj['department_name'], obj['d_color']) + "</td>";

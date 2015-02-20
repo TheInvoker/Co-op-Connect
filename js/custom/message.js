@@ -41,7 +41,7 @@ var MESSAGE_MODULE = {
 		var myListContent = "";
 		for(var i=0; i<response.length; i+=1) {
 			var obj = response[i];
-			myListContent += '<li' + MESSAGE_MODULE.checkNew(obj) + '>' + MESSAGE_MODULE.formatThread(obj) + '</li>';
+			myListContent += '<li>' + MESSAGE_MODULE.formatThread(obj) + '</li>';
 		}
 		
 		list.append(myListContent).listview().trigger('create');
@@ -59,7 +59,8 @@ var MESSAGE_MODULE = {
 					thread_id : thread_id,
 					email : email
 				}, function(response) {
-					MESSAGE_MODULE.gotoMessage(thread_id);
+					var new_thread_id = response['id'];
+					MESSAGE_MODULE.gotoMessage(new_thread_id);
 				});
 			}
 			
@@ -75,28 +76,23 @@ var MESSAGE_MODULE = {
 	},
 	
 	formatThread : function(obj) {
-		var str = '<a href="#"><table>';
+		var str = '<a href="#"' + MESSAGE_MODULE.checkNew(obj) + '><table>';
 		
-		var nameList = obj['member_names'];
-
 		var picList = '';
+		var nameList = obj['member_names'];
 		for(var i=0; i<nameList.length; i+=1) {
 			var nameObj = nameList[i];
 			var thisname = nameObj['first_name'] + ' ' + nameObj['last_name'];
-			picList += '<span class="thread-image"><div><img title="' + thisname + '" alt="' + thisname + '" src="' + nameObj['picURL'] + '" class="small-image"/></div><div>' + thisname + '</div></span>';
-		}
-		
-		if (obj['extra'] > 0) {
-			picList += " (" + obj['extra'] + " more...)";
+			picList += '<span class="thread-image"><div><img title="' + thisname + '" alt="' + thisname + '" src="' + (nameObj['picURL']=='' ? GLOBAL_DATA.def_image_link : nameObj['picURL']) + '" class="small-image"/></div><div>' + thisname + '</div></span>';
 		}
 
-		if (obj['message'] != null) {
-			str += '<tr title="Message"><td valign="top"><span class="ui-icon-comment ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + Autolinker.link(obj['message']) + '</td></tr>';
-			str += '<tr title="Date Sent"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['date_sent'] + '</td></tr>';
-		}
+		str += '<tr title="Message"><td valign="top"><span class="ui-icon-comment ui-btn-icon-left myicon"/></td><td colspan="3" valign="top" class="mywrap">' + Autolinker.link(obj['message']) + '</td></tr>';
+		str += '<tr title="Date Sent"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td colspan="3" valign="top" class="mywrap">' + obj['date_sent'] + '</td></tr>';
 		
-		str += '<tr title="Recipants"><td><span class="ui-icon-user ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + picList + '</td></tr>';
-		str += '<tr title="Add Member"><td colspan="2"><a href="#" class="add-member-button ui-btn ui-shadow ui-icon-plus ui-btn-icon-notext" data-thread-id="' + obj['id'] + '"></a></td></tr>';
+		str += '<tr title="Recipants"><td><span class="ui-icon-user ui-btn-icon-left myicon"/></td>';
+		str += '<td valign="top" class="mywrap">' + picList + '</td>';
+		str += '<td>' + (obj['extra'] > 0 ? " + " + obj['extra'] : '') + '</td>';
+		str += '<td><a href="#" title="Add Member" class="add-member-button ui-btn ui-shadow ui-icon-plus ui-btn-icon-notext" data-thread-id="' + obj['id'] + '"></a></td></tr>';
 
 		str += '</table></a>';
 		return str;

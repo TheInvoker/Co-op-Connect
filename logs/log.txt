@@ -1,19 +1,12 @@
-SELECT u.id, u.first_name, u.last_name, u.avatar_filename, r.name AS role_name, d.name AS department_name, count(p.id) AS num_placements
-				  FROM user u
-				  JOIN department d ON u.department_id=d.id
-				  JOIN role r ON u.role_id=r.id
-				  LEFT JOIN placement p ON u.id=p.user_id AND p.active=1
-				  WHERE (u.active=1)GROUP BY u.id ORDER BY u.last_name
 
 
-----------------------------------------------------
-
-SELECT u.id, u.first_name, u.last_name, u.avatar_filename, r.name AS role_name, d.name AS department_name, count(p.id) AS num_placements
-				  FROM user u
-				  JOIN department d ON u.department_id=d.id
-				  JOIN role r ON u.role_id=r.id
-				  LEFT JOIN placement p ON u.id=p.user_id AND p.active=1
-				  WHERE (u.active=1) GROUP BY u.id ORDER BY u.last_name
+INSERT IGNORE
+INTO thread_user (thread_id,user_id,last_read_date)
+SELECT 12,user_id,NOW()
+FROM thread_user
+WHERE thread_id=10
+UNION
+SELECT 12,3,NOW()
 
 
 ----------------------------------------------------

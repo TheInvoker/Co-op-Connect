@@ -1,6 +1,7 @@
 var GLOBAL_DATA = {
-	user : null,                                                   // basic user object for who ever is logged in now
-	server_link : '/Co-op-Connect/script/config/sqlhandler.php'    // main server link
+	user : null,                                                    // basic user object for who ever is logged in now
+	server_link : '/Co-op-Connect/script/config/sqlhandler.php',    // main server link
+	def_image_link : 'images/site/person.png' 
 };
 
 function setPageShowHide() {

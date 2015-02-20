@@ -29,7 +29,7 @@ var PROFILE_MODULE = {
 		var user = GLOBAL_DATA.user;
 		
 		$("#profile-fullname").html(response['firstname'] + ' ' + response['lastname']);
-		$("#profile-avatar-image").attr("src", response['picURL']=='' ? 'images/site/person.png' : response['picURL']);
+		$("#profile-avatar-image").attr("src", response['picURL']=='' ? GLOBAL_DATA.def_image_link : response['picURL']);
 
 		if (response['status']) {
 			$("#profile-status").show().html(Autolinker.link(response['status']));

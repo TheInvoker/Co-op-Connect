@@ -21,11 +21,12 @@
 								 FROM thread th
 								 JOIN thread_user tu ON th.id=tu.thread_id
 								 GROUP BY th.id
-								 HAVING count(tu.id)={$total_member_count}
+								 HAVING count(tu.user_id)={$total_member_count}
 							  ) th
 							  JOIN thread_user tu ON th.id=tu.thread_id AND (tu.user_id={$user_id} OR tu.user_id IN ({$target_ids}))
 							  GROUP BY th.id
-							  HAVING count(tu.id)={$total_member_count}";
+							  HAVING count(tu.user_id)={$total_member_count}";
+
 					$recordset = mysqli_query($sqlConnection, $query);	
 					$num_records = mysqli_num_rows($recordset);
 					
