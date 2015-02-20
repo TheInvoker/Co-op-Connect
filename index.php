@@ -94,24 +94,34 @@
 
 
 		<div id="menu-page" data-role="page" data-theme="b">
+		
+			<div data-role="panel" id="menu-panel" data-display="push">
+				<ul data-role="listview">
+					<li><a id="profile-button" href="#" class="ui-btn ui-icon-user ui-btn-icon-left">My Profile</a></li>
+					<li><a id="placement-button" href="#" class="ui-btn ui-icon-shop ui-btn-icon-left">My Placements</a></li>
+					<li><a id="search-button" href="#" class="ui-btn ui-icon-search ui-btn-icon-left">Search</a></li>
+					<li><a id="map-button" href="#" class="ui-btn ui-icon-location ui-btn-icon-left">Map</a></li>
+					<li><a id="message-button" href="#" class="ui-btn ui-icon-comment ui-btn-icon-left">
+						Messages
+						<span id="message-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
+						</a>
+					</li>
+					<li><a id="resource-button" href="#" class="ui-btn ui-icon-alert ui-btn-icon-left">
+						Resources
+						<span id="resource-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
+						</a>
+					</li>
+					<li><a id="about-button" href="#" class="ui-btn ui-icon-info ui-btn-icon-left">About</a></li>
+				</ul>
+			</div>
+		
 			<div data-role="header">
+				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 				<h1>Main Menu</h1>
 			</div>
 
 			<div data-role="main" class="ui-content">
-				<a id="profile-button" href="#" data-role="button" data-icon="user" data-iconpos="left">My Profile</a>
-				<a id="placement-button" href="#" data-role="button" data-icon="shop" data-iconpos="left">My Placements</a>
-				<a id="search-button" href="#" data-role="button" data-icon="search" data-iconpos="left">Search</a>
-				<a id="map-button" href="#" data-role="button" data-icon="location" data-iconpos="left">Map</a>
-				<a id="message-button" href="#" data-role="button" data-icon="comment" data-iconpos="left">
-					Messages
-					<span id="message-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
-				</a>
-				<a id="resource-button" href="#" data-role="button" data-icon="alert" data-iconpos="left">
-					Resources
-					<span id="resource-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
-				</a>
-				<a id="about-button" href="#" data-role="button" data-icon="info" data-iconpos="left">About</a>
+
 			</div>
 		</div>
 

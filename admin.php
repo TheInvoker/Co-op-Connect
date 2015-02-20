@@ -32,14 +32,22 @@
 		
 		
 		<div id="menu-page" data-role="page" data-theme="a">
+		
+			<div data-role="panel" id="menu-panel" data-display="push">
+				<ul data-role="listview">
+					<li><a id="manage-users-button" href="#" class="ui-btn ui-icon-user ui-btn-icon-left">Manage Users</a></li>
+					<li><a id="manage-resources-button" href="#" class="ui-btn ui-icon-info ui-btn-icon-left">Manage Resources</a></li>
+					<li><a id="manage-tasks-button" href="#" class="ui-btn ui-icon-bullets ui-btn-icon-left">Manage Tasks</a></li>
+				</ul>
+			</div>
+		
 			<div data-role="header">
+				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 				<h1>Admin Main Menu</h1>
 			</div>
 
 			<div data-role="main" class="ui-content">
-				<a id="manage-users-button" href="#" data-role="button" data-icon="user" data-iconpos="left">Manage Users</a> 
-				<a id="manage-resources-button" href="#" data-role="button" data-icon="info" data-iconpos="left">Manage Resources</a> 
-				<a id="manage-tasks-button" href="#" data-role="button" data-icon="bullets" data-iconpos="left">Manage Tasks</a> 
+
 			</div>
 		</div> 
 		
