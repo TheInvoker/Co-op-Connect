@@ -43,7 +43,7 @@
 		
 			<div data-role="header">
 				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-				<h1>Admin Main Menu</h1>
+				<h1>Admin Home</h1>
 			</div>
 
 			<div data-role="main" class="ui-content">

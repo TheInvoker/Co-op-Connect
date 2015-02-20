@@ -26,6 +26,10 @@
 		<script src="js/custom/message.js"></script>
 		<script src="js/custom/about.js"></script>
 
+		<script src="js/jquery.gridster.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/gridster.custom.css">
+		<link rel="stylesheet" type="text/css" href="css/jquery.gridster.min.css">
 		<link rel="stylesheet" type="text/css" href="css/default.css">
 		<link rel="stylesheet" type="text/css" href="css/default.date.css">
 	</head>
@@ -117,11 +121,10 @@
 		
 			<div data-role="header">
 				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-				<h1>Main Menu</h1>
+				<h1>Home</h1>
 			</div>
 
 			<div data-role="main" class="ui-content">
-
 			</div>
 		</div>
 

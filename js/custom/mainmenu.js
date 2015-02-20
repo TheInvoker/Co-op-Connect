@@ -2,8 +2,13 @@ var MENU_MODULE = {
 	
 	serviceChecker : null,
 	serviceFrequency : 1000 * 60 * 3,
+	grid : null,
 	
 	initMenu : function() {
+		$.mobile.changePage( "#menu-page", { 
+			transition: "flip"
+		});
+		
 		MENU_MODULE.setUserButton();
 		MENU_MODULE.setPlacementButton();
 		MENU_MODULE.setSearchButton();
@@ -11,6 +16,8 @@ var MENU_MODULE = {
 		MENU_MODULE.setMessageButton();
 		MENU_MODULE.setResourceButton();
 		MENU_MODULE.setAboutButton();
+
+		MENU_MODULE.setGrid();
 	},
 	
 	setUserButton : function() {
@@ -54,6 +61,53 @@ var MENU_MODULE = {
 	setAboutButton : function() {
 		$("#about-button").unbind('click').click(function() {
 			ABOUT_MODULE.setAbout();
+		});
+	},
+	
+	setGrid : function() {
+		if (MENU_MODULE.grid != null) {
+			MENU_MODULE.grid.destroy();
+			MENU_MODULE.grid = null;
+		}
+		
+		$("#menu-page div.ui-content").empty().html('<div class="gridster"><ul></ul></div>');
+		
+		var browserWidth = $( window ).width();
+		
+		var c = 1;
+		var r = 10;
+		var m = 5;
+		var w = 100;
+		var s = 2;
+		
+		while ((c+s-1)*w + 2*m*c + 80 <= browserWidth) {
+			c += 1;
+		}
+		c = Math.max(c-1, 1);
+		
+		var str = "";
+		var grid = $(".gridster ul");
+		
+		for(var x=1; x<=c; x+=1) {
+			for(var y=1; y<=r; y+=1) {
+				str += '<li data-row="' + y + '" data-col="' + x + '" data-sizex="1" data-sizey="1"></li>';
+			}
+		}
+		grid.html(str);
+		
+        var gridster = grid.gridster({
+			widget_base_dimensions: [w, w],
+			widget_margins: [m, m],
+			helper: 'clone'
+        }).data('gridster').disable();
+		
+		MENU_MODULE.grid = gridster,
+
+        // resize widgets on hover
+        gridster.$el.on('mouseenter', '> li', function() {
+			gridster.resize_widget($(this), s, s);
+		}).on('mouseleave', '> li', function() {
+			gridster.resize_widget($(this), 1, 1);
 		});
 	},
 	

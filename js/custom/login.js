@@ -35,10 +35,6 @@ var LOGIN_MODULE = {
 				success: function(jsonData) {
 					handleResponse(jsonData, function(response) {
 						GLOBAL_DATA.user = response;
-						
-						$.mobile.changePage( "#menu-page", { 
-							transition: "flip"
-						});
 
 						MENU_MODULE.initMenu();					
 					});

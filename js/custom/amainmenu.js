@@ -1,6 +1,11 @@
 var MENU_MODULE = {
 	
 	initMenu : function() {
+		$.mobile.changePage( "#menu-page", { 
+			transition: "flip"
+		});
+
+		
 		MENU_MODULE.setUserButton();
 		MENU_MODULE.setResourceButton();
 		MENU_MODULE.setTaskButton();
