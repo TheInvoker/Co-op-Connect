@@ -45,6 +45,7 @@
 				$picURL = FormatImageURL($row2['id'], $filename);
 				
 				$tempObject = array(
+					'id' => $row2['id'],
 					'first_name' => $row2['first_name'],
 					'last_name' => $row2['last_name'],
 					'picURL' => $picURL

@@ -66,6 +66,12 @@ var MESSAGE_MODULE = {
 			
 			return false;
 		});
+		
+		$(".thread-image").unbind('click').click(function() {
+			var user_id = $(this).attr("data-id");
+			PROFILE_MODULE.getProfile(user_id);
+			return false;
+		});
 	},
 	
 	checkNew : function(obj) {
@@ -83,7 +89,7 @@ var MESSAGE_MODULE = {
 		for(var i=0; i<nameList.length; i+=1) {
 			var nameObj = nameList[i];
 			var thisname = nameObj['first_name'] + ' ' + nameObj['last_name'];
-			picList += '<span class="thread-image"><div><img title="' + thisname + '" alt="' + thisname + '" src="' + (nameObj['picURL']=='' ? GLOBAL_DATA.def_image_link : nameObj['picURL']) + '" class="small-image"/></div><div>' + thisname + '</div></span>';
+			picList += '<span class="thread-image" data-id="' + nameObj['id'] + '"><div><img title="' + thisname + '" alt="' + thisname + '" src="' + (nameObj['picURL']=='' ? GLOBAL_DATA.def_image_link : nameObj['picURL']) + '" class="small-image"/></div><div>' + thisname + '</div></span>';
 		}
 
 		str += '<tr title="Message"><td valign="top"><span class="ui-icon-comment ui-btn-icon-left myicon"/></td><td colspan="3" valign="top" class="mywrap">' + Autolinker.link(obj['message']) + '</td></tr>';
