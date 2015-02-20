@@ -11,9 +11,7 @@ function setPageShowHide() {
 		var id = ui.toPage.prop("id");
 		var prev_id = ui.prevPage.prop("id");
 		
-		if (id == "login-page") {
-			GLOBAL_DATA.user = null;
-		} else if (id == "thread-page") {
+		if (id == "thread-page") {
 			if (prev_id == "message-page") {
 				MESSAGE_MODULE.setMessageThreads();
 			}
@@ -36,15 +34,11 @@ function setPageShowHide() {
 		var to_id = ui.toPage.prop("id");
 		
 		if (id == "login-page" && to_id != "register-page") {
-			if (GLOBAL_DATA.user == null) {
-				history.back();
-			} else {
+			MENU_MODULE.getCount();
+			
+			MENU_MODULE.serviceChecker = setInterval(function(){ 
 				MENU_MODULE.getCount();
-				
-				MENU_MODULE.serviceChecker = setInterval(function(){ 
-					MENU_MODULE.getCount();
-				}, MENU_MODULE.serviceFrequency);
-			}
+			}, MENU_MODULE.serviceFrequency);
 		} else if (id == "thread-page") {
 			clearInterval(MESSAGE_MODULE.threadChecker);
 		} else if (id == "message-page") {
