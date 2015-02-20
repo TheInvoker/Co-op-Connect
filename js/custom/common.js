@@ -25,6 +25,12 @@ function setPageShowHide() {
 			MESSAGE_MODULE.serviceChecker = setInterval(function(){ 
 				MESSAGE_MODULE.getNewMessages(MESSAGE_MODULE.thread_id);
 			}, MESSAGE_MODULE.serviceFrequency);
+		} else if (id == "menu-page") {
+			MENU_MODULE.getCount();
+			
+			MENU_MODULE.serviceChecker = setInterval(function(){ 
+				MENU_MODULE.getCount();
+			}, MENU_MODULE.serviceFrequency);
 		}
 	});
 	
@@ -33,13 +39,7 @@ function setPageShowHide() {
 		var id = ui.prevPage.prop("id");
 		var to_id = ui.toPage.prop("id");
 		
-		if (id == "login-page" && to_id != "register-page") {
-			MENU_MODULE.getCount();
-			
-			MENU_MODULE.serviceChecker = setInterval(function(){ 
-				MENU_MODULE.getCount();
-			}, MENU_MODULE.serviceFrequency);
-		} else if (id == "thread-page") {
+		if (id == "thread-page") {
 			clearInterval(MESSAGE_MODULE.threadChecker);
 		} else if (id == "message-page") {
 			clearInterval(MESSAGE_MODULE.serviceChecker);
