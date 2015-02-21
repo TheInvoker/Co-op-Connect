@@ -1,13 +1,13 @@
 var MENU_MODULE = {
 	
-	serviceChecker : null,
-	serviceFrequency : 1000 * 60 * 3,
+	// PUBLIC
 	
 	initMenu : function() {
-		$.mobile.changePage( "#menu-page", { 
+		$.mobile.changePage( MENU_MODULE.context, { 
 			transition: "flip"
 		});
-		
+
+		MENU_MODULE.setHomeButton();
 		MENU_MODULE.setUserButton();
 		MENU_MODULE.setPlacementButton();
 		MENU_MODULE.setSearchButton();
@@ -17,6 +17,30 @@ var MENU_MODULE = {
 		MENU_MODULE.setAboutButton();
 
 		MENU_MODULE.setGrid();
+	},
+	
+	initAuto : function() {
+		MENU_MODULE.getCount();
+		
+		MENU_MODULE.serviceChecker = setInterval(function(){ 
+			MENU_MODULE.getCount();
+		}, MENU_MODULE.serviceFrequency);
+	},
+	
+	stopAuto : function() {
+		clearInterval(MENU_MODULE.serviceChecker);
+	},
+	
+	// PRIVATE
+	
+	context : "#menu-page",
+	serviceChecker : null,
+	serviceFrequency : 1000 * 60 * 3,
+	
+	setHomeButton : function() {
+		$("#home-button").unbind('click').click(function() {
+			MENU_MODULE.initMenu();
+		});
 	},
 	
 	setUserButton : function() {
@@ -80,23 +104,13 @@ var MENU_MODULE = {
 	getCount : function() {
 		var user = GLOBAL_DATA.user;
 		
-		var formData = 'page=user/checkcount&id=' + user['id'];
-		
-		$.ajax({
-			type: 'POST',
-			url: GLOBAL_DATA.server_link,
-			data: formData,
-			dataType: 'json',
-			success: function(jsonData) {
-				handleResponse(jsonData, function(response) {
-					var rCount = response['new_news'];
-					var mCount = response['new_messages'];
-					MENU_MODULE.setButtonCount(mCount, rCount); 
-				});
-			},
-			error: function(data,status,xhr) {
-
-			}
+		runAJAXSerial('', {
+			page : 'user/checkcount',
+			id : user['id']
+		}, function(response) {
+			var rCount = response['new_news'];
+			var mCount = response['new_messages'];
+			MENU_MODULE.setButtonCount(mCount, rCount); 
 		});
 	},
 	

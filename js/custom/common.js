@@ -26,11 +26,7 @@ function setPageShowHide() {
 				MESSAGE_MODULE.getNewMessages(MESSAGE_MODULE.thread_id);
 			}, MESSAGE_MODULE.serviceFrequency);
 		} else if (id == "menu-page") {
-			MENU_MODULE.getCount();
-			
-			MENU_MODULE.serviceChecker = setInterval(function(){ 
-				MENU_MODULE.getCount();
-			}, MENU_MODULE.serviceFrequency);
+			MENU_MODULE.initAuto();
 		}
 	});
 	
@@ -44,7 +40,7 @@ function setPageShowHide() {
 		} else if (id == "message-page") {
 			clearInterval(MESSAGE_MODULE.serviceChecker);
 		} else if (id == "menu-page") {
-			clearInterval(MENU_MODULE.serviceChecker);
+			MENU_MODULE.stopAuto();
 		} else if (id == "checklist-page") {
 			PLACEMENT_MODULE.getPlacements(PLACEMENT_MODULE.user_id);
 		}

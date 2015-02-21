@@ -7,9 +7,21 @@
 		
 		<script src="js/custom/alogin.js"></script>
 		<script src="js/custom/amainmenu.js"></script>
+		
+		<?php
+			include "snippet/panel_fix.php";
+		?>
 	</head>
 	<body>
 
+		<div data-role="panel" id="menu-panel" data-display="push" data-theme="a">
+			<ul data-role="listview">
+				<li><a id="manage-users-button" href="#" class="ui-btn ui-icon-user ui-btn-icon-left">Manage Users</a></li>
+				<li><a id="manage-resources-button" href="#" class="ui-btn ui-icon-info ui-btn-icon-left">Manage Resources</a></li>
+				<li><a id="manage-tasks-button" href="#" class="ui-btn ui-icon-bullets ui-btn-icon-left">Manage Tasks</a></li>
+			</ul>
+		</div>
+	
 		<div id="login-page" data-role="page" data-theme="a">
 			<div data-role="header">
 				<h1>UTSC Co-op Connect Admin</h1>
@@ -32,15 +44,6 @@
 		
 		
 		<div id="menu-page" data-role="page" data-theme="a">
-		
-			<div data-role="panel" id="menu-panel" data-display="push">
-				<ul data-role="listview">
-					<li><a id="manage-users-button" href="#" class="ui-btn ui-icon-user ui-btn-icon-left">Manage Users</a></li>
-					<li><a id="manage-resources-button" href="#" class="ui-btn ui-icon-info ui-btn-icon-left">Manage Resources</a></li>
-					<li><a id="manage-tasks-button" href="#" class="ui-btn ui-icon-bullets ui-btn-icon-left">Manage Tasks</a></li>
-				</ul>
-			</div>
-		
 			<div data-role="header">
 				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 				<h1>Admin Home</h1>

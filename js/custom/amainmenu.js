@@ -5,7 +5,6 @@ var MENU_MODULE = {
 			transition: "flip"
 		});
 
-		
 		MENU_MODULE.setUserButton();
 		MENU_MODULE.setResourceButton();
 		MENU_MODULE.setTaskButton();
