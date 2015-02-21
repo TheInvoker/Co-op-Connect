@@ -11,7 +11,6 @@
 				  JOIN department d ON d.id = u.department_id
 				  WHERE p.active=1 AND ('{$date_start}' <= p.date_finished AND '{$date_end}' >= p.date_started)";
 
-		logQuery($query);
 		$recordset = mysqli_query($sqlConnection, $query);	
 		$num_records = mysqli_num_rows($recordset);
 		
