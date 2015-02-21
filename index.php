@@ -310,6 +310,7 @@
 					<li><a id="search-clear-all" href="#" class="ui-btn ui-icon-minus ui-btn-icon-left">Select None</a></li>
 					<li><a id="search-select-all" href="#" class="ui-btn ui-icon-plus ui-btn-icon-left">Select All</a></li>
 					<li><a id="search-message-all" href="#" class="ui-btn ui-icon-comment ui-btn-icon-left">Message</a></li>
+					<li><a id="search-email-all" href="#" class="ui-btn ui-icon-mail ui-btn-icon-left">Email</a></li>
 				</ul>
 			</div>
 		
@@ -465,19 +466,34 @@
 
 
 		<div id="map-page" data-role="page" data-theme="b">
+			<div data-role="header">
+				<h1>Map</h1>
+				<a id="map-setting-button" href="#" data-icon="gear" class="ui-btn-right">Settings</a>
+			</div>
+		
 			<div role="main" class="ui-content" id="map_canvas">
 				<!-- map loads here... -->
 			</div>
-
-			<form id="map-filter-form" style="padding:10px;">
-				<label for="date_start">Start Date:</label>
-				<input name="date_start" type="date" required/>
-				<label for="date_end">End Date:</label>
-				<input name="date_end" type="date" required/>
-				<input type="submit" value="Update">
-			</form>
 		</div>
-
+		<div id="map-settings-page" data-role="page" data-theme="b">
+			<div data-role="header">
+				<h1>Settings</h1>
+			</div>
+		
+			<div data-role="main" class="ui-content">
+				<form id="map-filter-form" style="padding:10px;">
+					<label for="date_start">Start Date:</label>
+					<input name="date_start" type="date" required/>
+					<label for="date_end">End Date:</label>
+					<input name="date_end" type="date" required/>
+					<input type="submit" value="Update">
+				</form>
+			</div>
+		</div>
+		
+		
+		
+		
 		<div id="thread-page" data-role="page" data-theme="b">
 			<div data-role="header">
 				<h1>Threads</h1>
@@ -496,8 +512,6 @@
 			</div>
 
 			<div data-role="main" class="ui-content">
-				
-
 				<div id="message-list">
 				</div>
 

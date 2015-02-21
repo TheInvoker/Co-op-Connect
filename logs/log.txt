@@ -11,3 +11,57 @@ SELECT 12,3,NOW()
 
 ----------------------------------------------------
 
+SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
+				  FROM user u
+				  JOIN placement p ON p.user_id=u.id
+				  JOIN department d ON d.id = u.department_id
+				  WHERE p.active=1 AND ('2015-02-21' <= p.date_finished AND '2015-02-21' >= p.date_started)
+
+
+----------------------------------------------------
+
+SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
+				  FROM user u
+				  JOIN placement p ON p.user_id=u.id
+				  JOIN department d ON d.id = u.department_id
+				  WHERE p.active=1 AND ('2015-02-21' <= p.date_finished AND '2015-02-21' >= p.date_started)
+
+
+----------------------------------------------------
+
+SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
+				  FROM user u
+				  JOIN placement p ON p.user_id=u.id
+				  JOIN department d ON d.id = u.department_id
+				  WHERE p.active=1 AND ('2015-02-21' <= p.date_finished AND '2015-02-21' >= p.date_started)
+
+
+----------------------------------------------------
+
+SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
+				  FROM user u
+				  JOIN placement p ON p.user_id=u.id
+				  JOIN department d ON d.id = u.department_id
+				  WHERE p.active=1 AND ('2015-02-21' <= p.date_finished AND '2015-02-21' >= p.date_started)
+
+
+----------------------------------------------------
+
+SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
+				  FROM user u
+				  JOIN placement p ON p.user_id=u.id
+				  JOIN department d ON d.id = u.department_id
+				  WHERE p.active=1 AND ('2015-02-21' <= p.date_finished AND '2015-02-21' >= p.date_started)
+
+
+----------------------------------------------------
+
+SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
+				  FROM user u
+				  JOIN placement p ON p.user_id=u.id
+				  JOIN department d ON d.id = u.department_id
+				  WHERE p.active=1 AND ('2014-07-01' <= p.date_finished AND '2015-02-21' >= p.date_started)
+
+
+----------------------------------------------------
+

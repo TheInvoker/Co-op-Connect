@@ -5,7 +5,11 @@ var MAP_MODULE = {
 	showMap : function() {
 		this.showMapPage();
 
-		$("#map-filter-form").show();
+		$("#map-setting-button").show().unbind('click').click(function() {
+			$.mobile.changePage("#map-settings-page", { 
+				transition: "slide"
+			});
+		});
 		
 		if ($('#map_canvas').prop('init')) {
 			
@@ -21,7 +25,7 @@ var MAP_MODULE = {
 	showPoint : function(obj) {
 		this.showMapPage();
 		
-		$("#map-filter-form").hide();
+		$("#map-setting-button").hide();
 		
 		if ($('#map_canvas').prop('init')) {
 			
@@ -92,24 +96,15 @@ var MAP_MODULE = {
 		$("#map-filter-form").unbind('submit').submit(function() {
 			
 			var formData = $(this).serialize();
-			formData += '&page=placement/getmapplacements';
-			
-			$.ajax({
-				type: 'POST',
-				url: GLOBAL_DATA.server_link,
-				data: formData,
-				dataType: 'json',
-				success: function(jsonData) {
-					handleResponse(jsonData, function(response) {
-						MAP_MODULE.showOnMap(response);
-					});
-				},
-				error: function(data,status,xhr) {
-					alert('Error occurred when getting placements.');
-				}
+
+			runAJAXSerial(formData, {
+				page : 'placement/getmapplacements'
+			}, function(response) {
+				MAP_MODULE.showOnMap(response);
+				history.back();
 			});
 			
-			return true;
+			return false;
 		});
 	},
 

@@ -84,7 +84,7 @@ var SEARCH_MODULE = {
 		for(var i=0;i<response.length; i+=1) {
 			var obj = response[i];
 			
-			acc += "<tr class=\"search-person\" data-id=\"" + obj['id'] + "\">";
+			acc += "<tr class=\"search-person\" data-id=\"" + obj['id'] + "\" data-email=\"" + obj['email'] + "\">";
 			acc += "<th><div class='custom-radio' title='Click to toggle selection'></div></th>";
 			acc += "<td>" + (i+1) + "</td>";
 			acc += "<td><img class=\"small-image\" src=\"" + (obj['picURL']=='' ? GLOBAL_DATA.def_image_link : obj['picURL']) + "\"/></td>";
@@ -138,6 +138,22 @@ var SEARCH_MODULE = {
 				var thread_id = response['id'];
 				MESSAGE_MODULE.gotoMessage(thread_id);
 			});
+		});
+		$("#search-email-all").unbind('click').click(function() {
+			var emailList = [];
+			
+			for(var i=0; i<checkBoxes.length; i+=1) {
+				var obj = $(checkBoxes[i]);
+				
+				if (obj.hasClass("custom-radio-on")) {
+					var email = obj.parent().parent().attr("data-email");
+					emailList.push(email);
+				}
+			}
+			
+			var strList = emailList.join(","); 
+			
+			window.location.href = "mailto:?bcc=" + strList;
 		});
 	}
 };

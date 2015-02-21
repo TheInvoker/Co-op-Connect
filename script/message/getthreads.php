@@ -27,18 +27,28 @@
 			$thread_id = $row['id'];
 			
 			//////////////////
-			$query = "SELECT u.id, u.first_name, u.last_name, u.avatar_filename
+			$query = "SELECT count(*) AS count
 					  FROM thread th
 					  JOIN thread_user tu ON tu.thread_id=th.id AND tu.user_id!={$user_id}
 					  JOIN user u ON tu.user_id=u.id
 					  WHERE th.id={$thread_id}
 					  ORDER BY u.last_name";
 			$recordset2 = mysqli_query($sqlConnection, $query);	
+			$row2 = mysqli_fetch_assoc($recordset2);
+			$total = $row2['count'];
+			
+			$query = "SELECT u.id, u.first_name, u.last_name, u.avatar_filename
+					  FROM thread th
+					  JOIN thread_user tu ON tu.thread_id=th.id AND tu.user_id!={$user_id}
+					  JOIN user u ON tu.user_id=u.id
+					  WHERE th.id={$thread_id}
+					  ORDER BY u.last_name
+					  LIMIT {$nameLim}";
+			$recordset2 = mysqli_query($sqlConnection, $query);	
 			$num_records2 = mysqli_num_rows($recordset2);
-			$exceeded = max(0, $num_records2 - $nameLim);
-
+			
 			$tempList = array();
-			for ($j = 0; $j < min($nameLim, $num_records2); $j++) {
+			for ($j = 0; $j < $num_records2; $j++) {
 				$row2 = mysqli_fetch_assoc($recordset2);
 				
 				$filename = $row2['avatar_filename'];
@@ -62,7 +72,7 @@
 				'date_sent' => $row['date_sent'],
 				'new' => $row['new'],
 				'member_names' => $tempList,
-				'extra' => $exceeded
+				'extra' => max(0, $total - $nameLim)
 			);
 			
 			array_push($successMessage, $tempObject);

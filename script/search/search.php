@@ -49,7 +49,7 @@
 		}
 		
 		
-		$query = "SELECT u.id, u.first_name, u.last_name, u.avatar_filename, r.name AS role_name, r.color AS r_color, d.name AS department_name, d.alt_color AS d_color, count(p.id) AS num_placements
+		$query = "SELECT u.id, u.first_name, u.last_name, u.email_address, u.avatar_filename, r.name AS role_name, r.color AS r_color, d.name AS department_name, d.alt_color AS d_color, count(p.id) AS num_placements
 				  FROM user u
 				  JOIN department d ON u.department_id=d.id" . ($departmentListSQL=="()" ? "" : " AND d.name IN {$departmentListSQL}") . "
 				  JOIN role r ON u.role_id=r.id" . ($roleListSQL=="()" ? "" : " AND r.name IN {$roleListSQL}") . "
@@ -95,6 +95,7 @@
 				'id' => $id, 
 				'firstname' => $row['first_name'], 
 				'lastname' => $row['last_name'],
+				'email' => $row['email_address'],
 				'role_name' => $row['role_name'],
 				'r_color' => $row['r_color'],
 				'department_name' => $row['department_name'],
