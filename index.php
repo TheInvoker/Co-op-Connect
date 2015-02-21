@@ -26,10 +26,6 @@
 		<script src="js/custom/message.js"></script>
 		<script src="js/custom/about.js"></script>
 
-		<script src="js/jquery.gridster.min.js"></script>
-		
-		<link rel="stylesheet" type="text/css" href="css/gridster.custom.css">
-		<link rel="stylesheet" type="text/css" href="css/jquery.gridster.min.css">
 		<link rel="stylesheet" type="text/css" href="css/default.css">
 		<link rel="stylesheet" type="text/css" href="css/default.date.css">
 	</head>
@@ -125,6 +121,8 @@
 			</div>
 
 			<div data-role="main" class="ui-content">
+				<div class="mygrid">
+				</div>
 			</div>
 		</div>
 

@@ -120,3 +120,22 @@
     z-index: 1;
 }
 
+
+
+div.mygrid {
+	width:100%;
+}
+.grid-item{
+  width: 100px;
+  height: 100px;
+  background: black;
+  transition: all 300ms ease;
+  margin:5px;
+  float:left;
+	cursor: pointer; 
+	cursor: hand; 
+}
+.grid-item:hover{
+  width: 129px;
+  height: 129px;
+}
