@@ -114,27 +114,13 @@ var PROFILE_MODULE = {
 			
 			// this html5 way supports attaching images 
 			var formData = new FormData(this);
-			formData.append('id', user['id']);
-			formData.append('page','user/setprofile');
 
-			
-			$.ajax({
-				type: 'POST',
-				url: GLOBAL_DATA.server_link,
-				data: formData,
-				dataType: 'json',
-				contentType: false,       // The content type used when sending data to the server.
-				cache: false,             // To unable request pages to be cached
-				processData:false,        // To send DOMDocument or non processed data file it is set to false
-				success: function(jsonData) {
-					handleResponse(jsonData, function(response) {
-						history.back();
-						PROFILE_MODULE.getProfile(user_id);
-					});
-				},
-				error: function(data,status,xhr) {
-					alert('Error Occured!');
-				}
+			runAJAXHTML5(formData, {
+				id : user['id'],
+				page : 'user/setprofile'
+			}, function(response) {
+				history.back();
+				PROFILE_MODULE.getProfile(user_id);
 			});
 
 			return false;

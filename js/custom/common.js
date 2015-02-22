@@ -142,7 +142,7 @@ function runAJAXHTML5(formData, object, func) {
 		}
 	}
 	
-	runAJAX(formData, func);
+	runAJAX(formData, func, true);
 }
 
 function runAJAXSerial(formData, object, func) {
@@ -154,11 +154,11 @@ function runAJAXSerial(formData, object, func) {
 		formData += '&' + serialized
 	}
 	
-	runAJAX(formData, func);
+	runAJAX(formData, func, false);
 }
 
-function runAJAX(formData, func) {
-	$.ajax({
+function runAJAX(formData, func, hasImage) {
+	var obj = {
 		type: 'POST',
 		url: GLOBAL_DATA.server_link,
 		data: formData,
@@ -169,7 +169,15 @@ function runAJAX(formData, func) {
 		error: function(data,status,xhr) {
 			alert('Error Occured!');
 		}
-	});
+	};
+	
+	if (hasImage) {
+		obj['contentType'] = false;      // The content type used when sending data to the server.
+		obj['cache'] = false;            // To unable request pages to be cached
+		obj['processData'] = false;      // To send DOMDocument or non processed data file it is set to false
+	} 
+	
+	$.ajax(obj);
 }
 
 function handleResponse(jsonData, handler) {
