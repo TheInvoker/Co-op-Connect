@@ -5,11 +5,22 @@
 		$date_start = $_POST['date_start']; 
 		$date_end = $_POST['date_end']; 
 		
+		
+		if ($date_start=="" && $date_end=="") {
+			$datePred = "";
+		} else if ($date_start=="") {
+			$datePred = " AND ('{$date_end}' >= p.date_started)";
+		} else if ($date_end=="") {
+			$datePred = " AND ('{$date_start}' <= p.date_finished)";
+		} else {
+			$datePred = " AND ('{$date_start}' <= p.date_finished AND '{$date_end}' >= p.date_started)";
+		}
+		
 		$query = "SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
 				  FROM user u
 				  JOIN placement p ON p.user_id=u.id
 				  JOIN department d ON d.id = u.department_id
-				  WHERE p.active=1 AND ('{$date_start}' <= p.date_finished AND '{$date_end}' >= p.date_started)";
+				  WHERE p.active=1{$datePred}";
 
 		$recordset = mysqli_query($sqlConnection, $query);	
 		$num_records = mysqli_num_rows($recordset);
