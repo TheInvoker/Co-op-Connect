@@ -1,27 +1,17 @@
 var PROFILE_MODULE = {
 	
 	getProfile : function(user_id) {
-
-		var formData = 'page=user/getprofile&id=' + user_id;
-		
-		$.ajax({
-			type: 'POST',
-			url: GLOBAL_DATA.server_link,
-			data: formData,
-			dataType: 'json',
-			success: function(jsonData) {
-				handleResponse(jsonData, function(response) {
-					$.mobile.changePage("#profile-page", { 
-						transition: "slide"
-					});
-					
-					PROFILE_MODULE.displayProfile(response, user_id);
-					PROFILE_MODULE.editProfileHandler(response, user_id);
-				});
-			},
-			error: function(data,status,xhr) {
-				alert('Error Occured!');
-			}
+		runAJAXSerial('', {
+			page : 'user/getprofile',
+			id : user_id
+		}, function(response) {
+			$.mobile.changePage("#profile-page", { 
+				transition: "slide"
+			});
+			
+			PROFILE_MODULE.displayProfile(response, user_id);
+			
+			PROFILE_MODULE.editProfileHandler(response, user_id);
 		});
 	},
 	
