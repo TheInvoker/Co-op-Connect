@@ -72,6 +72,8 @@ var MAP_MODULE = {
 			} else {
 				MAP_MODULE.loadDefLocation();
 			}
+			
+			$('#map_canvas').gmap('addControl', 'map-setting-button', google.maps.ControlPosition.RIGHT_TOP);
 		});
 	},
 	

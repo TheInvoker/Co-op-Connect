@@ -137,3 +137,9 @@
   width: 129px;
   height: 129px;
 }
+
+.mapControl {
+	background-color:transparent !important;
+	border-width:0px;
+	margin-right:7px;
+}

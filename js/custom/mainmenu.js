@@ -97,7 +97,7 @@ var MENU_MODULE = {
 	},
 	
 	setCount : function(id, count) {
-		if (mCount > 0) {
+		if (count > 0) {
 			$("#" + id).show().text(count);
 		} else {
 			$("#" + id).hide();

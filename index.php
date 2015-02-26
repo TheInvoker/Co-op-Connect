@@ -470,14 +470,11 @@
 
 
 		<div id="map-page" data-role="page" data-theme="b">
-			<div data-role="header">
-				<h1>Map</h1>
-				<a id="map-setting-button" href="#" data-icon="gear" class="ui-btn-right">Settings</a>
-			</div>
-		
 			<div role="main" class="ui-content" id="map_canvas">
 				<!-- map loads here... -->
 			</div>
+			
+			<a id="map-setting-button" href="#" class="ui-btn ui-shadow ui-icon-gear ui-btn-icon-notext mapControl"></a>
 		</div>
 		<div id="map-settings-page" data-role="page" data-theme="b">
 			<div data-role="header">

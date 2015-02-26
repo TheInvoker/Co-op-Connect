@@ -80,7 +80,6 @@ var PLACEMENT_MODULE = {
 		items.unbind('click').click(function() {
 			var index = items.index(this);
 			PLACEMENT_MODULE.placement = response[index];
-			return false;
 		});
 
 		// set up menu handler
