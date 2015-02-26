@@ -27,6 +27,8 @@ function setPageShowHide() {
 			MESSAGE_MODULE.startAuto();
 		} else if (id == "menu-page") {
 			MENU_MODULE.startAuto();
+		} else if (id == "placement-page" && prev_id == "checklist-page") {
+			PLACEMENT_MODULE.reload();
 		}
 	});
 	
@@ -41,8 +43,6 @@ function setPageShowHide() {
 			MESSAGE_MODULE.stopAuto();
 		} else if (id == "menu-page") {
 			MENU_MODULE.stopAuto();
-		} else if (id == "checklist-page") {
-			PLACEMENT_MODULE.reload();
 		}
 	});
 }
@@ -195,7 +195,7 @@ function runAJAX(formData, sfunc, efunc, hasImage) {
 		error: function(data,status,xhr) {
 			efunc(data,status,xhr);
 
-			alert('Error Occured!');
+			alert('An error occured when connecting to the server.');
 		}
 	};
 	

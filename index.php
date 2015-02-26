@@ -18,6 +18,7 @@
 		<script src="js/custom/mainmenu.js"></script>
 		<script src="js/custom/map.js"></script>
 		<script src="js/custom/profile.js"></script>
+		<script src="js/custom/profile_edit.js"></script>
 		<script src="js/custom/register.js"></script>
 		<script src="js/custom/placement.js"></script>
 		<script src="js/custom/checklist.js"></script>
