@@ -21,6 +21,7 @@
 		<script src="js/custom/profile_edit.js"></script>
 		<script src="js/custom/register.js"></script>
 		<script src="js/custom/placement.js"></script>
+		<script src="js/custom/placement_edit.js"></script>
 		<script src="js/custom/checklist.js"></script>
 		<script src="js/custom/search.js"></script>
 		<script src="js/custom/resource.js"></script>
