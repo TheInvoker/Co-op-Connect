@@ -1,7 +1,7 @@
 var SEARCH_MODULE = {
 	
-	page : 0,
-	
+	// PUBLIC
+
 	initSearch : function() {
 		$.mobile.changePage("#search-page", { 
 			transition: "slide"
@@ -16,9 +16,13 @@ var SEARCH_MODULE = {
 		SEARCH_MODULE.settingsHandler();
 	},
 	
+	// PRIVATE
+
+	page : 0,
+
 	clearPage : function() {
-		$("#search-table > tbody").empty();
 		$("#search-form").find("input").eq(0).val("");
+		$("#search-table > tbody").empty();
 	},
 	
 	resetForm : function() {
@@ -35,21 +39,15 @@ var SEARCH_MODULE = {
 			
 			var formData = $("#search-settings-form").serialize();
 			formData += "&" + $(this).serialize();
-			formData += '&page=search/search';
 
-			$.ajax({
-				type: 'POST',
-				url: GLOBAL_DATA.server_link,
-				data: formData,
-				dataType: 'json',
-				success: function(jsonData) {
-					handleResponse(jsonData, function(response) {
-						SEARCH_MODULE.showResults(response);
-					});
-				},
-				error: function(data,status,xhr) {
-					alert('Error Occured!');
-				}
+			runAJAXSerial(formData, {
+				page : 'search/search'
+			}, function(response) {
+				SEARCH_MODULE.showResults(response);
+				SEARCH_MODULE.handleViewPerson();
+				SEARCH_MODULE.handleCheckBoxControls();
+			}, function(data,status,xhr) {
+
 			});
 			
 			return false;
@@ -62,17 +60,17 @@ var SEARCH_MODULE = {
 				transition: "slide"
 			});
 			
-			$(".clear-cb-button").unbind('click').click(function() {
+			$("#search-settings-page").find(".clear-cb-button").unbind('click').click(function() {
 				$(this).parent().find("input").prop("checked", false).checkboxradio( "refresh" );
 			});
-			$(".selectall-cb-button").unbind('click').click(function() {
+			$("#search-settings-page").find(".selectall-cb-button").unbind('click').click(function() {
 				$(this).parent().find("input").prop("checked", true).checkboxradio( "refresh" );
 			});
-			$("#done-search-settings-button").unbind('click').click(function() {
+			$("#search-settings-page").find("#done-search-settings-button").unbind('click').click(function() {
 				history.back();
 			});
 			
-			var elements = $("#search-settings-form").find("input[type=date]");
+			var elements = $("#search-settings-page").find("#search-settings-form").find("input[type=date]");
 			dateHandler(elements, false, function() {}, true);
 		});
 	},
@@ -98,11 +96,16 @@ var SEARCH_MODULE = {
 		body.html(acc);
 
 		$("#search-table").table("refresh");
+	},
+
+	handleViewPerson : function() {
 		$("#search-table").find(".search-person").unbind('click').click(function() {
 			var id = $(this).attr("data-id");
 			PROFILE_MODULE.getProfile(id);
 		});
-		
+	},
+
+	handleCheckBoxControls : function() {
 		var checkBoxes = $("#search-table").find(".custom-radio");
 		
 		checkBoxes.unbind('click').click(function() {
@@ -116,18 +119,9 @@ var SEARCH_MODULE = {
 			checkBoxes.addClass("custom-radio-on");
 		});
 		$("#search-message-all").unbind('click').click(function() {
-			var idList = [];
-			
-			for(var i=0; i<checkBoxes.length; i+=1) {
-				var obj = $(checkBoxes[i]);
-				
-				if (obj.hasClass("custom-radio-on")) {
-					var id = obj.parent().parent().attr("data-id");
-					idList.push(id);
-				}
-			}
-			
-			var strList = idList.join(","); 
+			var idList = getDataList(checkBoxes, "data-id");
+			var strList = idList.join(",");
+			 
 			var user = GLOBAL_DATA.user;
 			
 			runAJAXSerial('', {
@@ -137,23 +131,28 @@ var SEARCH_MODULE = {
 			}, function(response) {
 				var thread_id = response['id'];
 				MESSAGE_MODULE.gotoMessage(thread_id);
+			}, function(data,status,xhr) {
+				
 			});
 		});
 		$("#search-email-all").unbind('click').click(function() {
-			var emailList = [];
-			
-			for(var i=0; i<checkBoxes.length; i+=1) {
-				var obj = $(checkBoxes[i]);
-				
-				if (obj.hasClass("custom-radio-on")) {
-					var email = obj.parent().parent().attr("data-email");
-					emailList.push(email);
-				}
-			}
-			
+			var emailList = getDataList(checkBoxes, "data-email");
 			var strList = emailList.join(","); 
 			
 			window.location.href = "mailto:?bcc=" + strList;
 		});
+	},
+
+	getDataList : function(checkBoxes, attr) {
+		var list = [];
+		
+		for(var i=0; i<checkBoxes.length; i+=1) {
+			var obj = $(checkBoxes[i]);
+			
+			if (obj.hasClass("custom-radio-on")) {
+				var data = obj.parent().parent().attr(attr);
+				list.push(data);
+			}
+		}
 	}
 };

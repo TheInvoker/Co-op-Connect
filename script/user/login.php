@@ -6,7 +6,7 @@
 		$pass = mysqli_real_escape_string($sqlConnection, $_POST['password']); 
 		$admin = $_POST['ad']; 
 		
-		$query = "SELECT u.id, u.active
+		$query = "SELECT u.id, u.active, u.department_id
 				  FROM user u
 				  JOIN role r ON r.id = u.role_id
 				  WHERE u.email_address = '{$email}' AND u.password = '{$pass}'" . ($admin=="1" ? " AND r.name='Admin'" : "");
@@ -23,7 +23,8 @@
 				$errorMessage = "Your account is currently not activated.";
 			} else {
 				$successMessage = array(
-					'id' => $row['id']
+					'id' => $row['id'],
+					'department_id' => $row['department_id']
 				);
 			}
 		} else {

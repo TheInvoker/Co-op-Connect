@@ -1,64 +1,61 @@
 var CHECKLIST_MODULE = {
 	
+	// PUBLIC
+
 	getChecklist : function(user_id, obj) {
 		
 		var user = GLOBAL_DATA.user;
-		var formData = 'page=checklist/getchecklist&id=' + obj['id'] + '&user_id=' + user['id'];
-		
-		$.ajax({
-			type: 'POST',
-			url: GLOBAL_DATA.server_link,
-			data: formData,
-			dataType: 'json',
-			success: function(jsonData) {
-				handleResponse(jsonData, function(response) {
-					$.mobile.changePage("#checklist-page", { 
-						transition: "slide"
-					});
-					
-					// add checklist items
-					CHECKLIST_MODULE.displayChecklist(response);
-					
-					// attach click handlers
-					CHECKLIST_MODULE.attachHandlers(obj, response);
-					
-					$("#done-checklist-button").unbind('click').click(function() {
-						history.back();
-					});
-				});
-			},
-			error: function(data,status,xhr) {
-				alert('Error Occured!');
-			}
+
+		runAJAXSerial("", {
+			id : obj['id'],
+			page : "checklist/getchecklist",
+			user_id : user['id'],
+			department_id : user['department_id']
+		}, function(response) {
+			$.mobile.changePage("#checklist-page", { 
+				transition: "slide"
+			});
+			
+			// add checklist items
+			CHECKLIST_MODULE.displayChecklist(obj['id'], response);
+			
+			// attach click handlers
+			CHECKLIST_MODULE.attachHandlers();
+			
+			$("#done-checklist-button").unbind('click').click(function() {
+				history.back();
+			});
+		}, function(data,status,xhr) {
+			
 		});
 	},
 	
-	displayChecklist : function(response) {
+	// PRIVATE
+
+	displayChecklist : function(pid, response) {
 		var field = $("#checklistCB");
 		field.empty();
 		
 		var myListContent = "";
 		for(var i=0; i<response.length; i+=1) {
-			var obj2 = response[i];
+			var obj = response[i];
 			var tagid = 'checklist-' + i;
 			
-			myListContent += '<input name="' + tagid + '" id="' + tagid + '" ' + (obj2['checked']=='0' ? '' : 'checked=""') + ' type="checkbox">';
-			myListContent += '<label for="' + tagid + '">' + this.formatChecklist(obj2) + '</label>';
+			myListContent += '<input name="' + tagid + '" id="' + tagid + '" ' + (obj['checked']=='0' ? '' : 'checked=""') + ' type="checkbox" data-pid="' + pid + '" data-tid="' + obj['task_id'] + '">';
+			myListContent += '<label for="' + tagid + '">' + CHECKLIST_MODULE.formatChecklist(obj) + '</label>';
 		}
 		
 		field.append(myListContent).trigger("create");
 	},
 	
-	attachHandlers : function(obj, response) {
-		var items = $("#checklistCB").find("input[type='checkbox']");
+	attachHandlers : function() {
+		var checkboxes = $("#checklistCB").find("input[type='checkbox']");
 		
-		items.unbind('change').change(function() {
-			var index = items.index(this);
-			
+		checkboxes.unbind('change').change(function() {
 			if ($(this).is(":checked")) {
-				CHECKLIST_MODULE.setChecklistState($(this), obj['id'], response[index], '1');
+				CHECKLIST_MODULE.setChecklistState($(this), 1);
 			} else {
-				CHECKLIST_MODULE.setChecklistState($(this), obj['id'], response[index], '0');
+				CHECKLIST_MODULE.setChecklistState($(this), 0);
 			}
 		});
 	},
@@ -71,25 +68,19 @@ var CHECKLIST_MODULE = {
 		return str;
 	},
 
-	setChecklistState : function(me, pid, obj, state) {
-		var formData = 'page=checklist/setchecklist&taskid=' + obj['task_id'] + '&placementid=' + pid + '&state=' + state;
-		
-		$.ajax({
-			type: 'POST',
-			url: GLOBAL_DATA.server_link,
-			data: formData,
-			dataType: 'json',
-			success: function(jsonData) {
-				handleResponse(jsonData, function(response) {
-					toast("Saved!");
-				});
-			},
-			error: function(data,status,xhr) {
-				me.prop("checked", state!='1');
-				me.checkboxradio("refresh");
-				
-				alert('Error Occured!');
-			}
+	setChecklistState : function(me, state) {
+		runAJAXSerial("", {
+			state : state,
+			page : "checklist/setchecklist",
+			taskid : me.attr("data-tid"),
+			placementid : me.attr("data-pid")
+		}, function(response) {
+			handleResponse(jsonData, function(response) {
+				toast("Saved!");
+			});
+		}, function(data,status,xhr) {
+			me.prop("checked", !state);
+			me.checkboxradio("refresh");
 		});
 	}
 };

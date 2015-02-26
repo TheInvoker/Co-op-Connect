@@ -23,8 +23,10 @@
 		<script src="js/custom/checklist.js"></script>
 		<script src="js/custom/search.js"></script>
 		<script src="js/custom/resource.js"></script>
+		<script src="js/custom/thread.js"></script>
 		<script src="js/custom/message.js"></script>
 		<script src="js/custom/about.js"></script>
+		<script src="js/custom/grid.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="css/default.css">
 		<link rel="stylesheet" type="text/css" href="css/default.date.css">
@@ -121,7 +123,7 @@
 			</div>
 
 			<div data-role="main" class="ui-content">
-				<div class="mygrid">
+				<div id="newsgrid">
 				</div>
 			</div>
 		</div>
@@ -481,11 +483,11 @@
 			</div>
 		
 			<div data-role="main" class="ui-content">
-				<form id="map-filter-form" style="padding:10px;">
-					<label for="date_start">Start Date:</label>
-					<input name="date_start" type="date" required/>
-					<label for="date_end">End Date:</label>
-					<input name="date_end" type="date" required/>
+				<form id="map-filter-form">
+					<label for="map_date_start">Start Date:</label>
+					<input name="map_date_start" type="date"/>
+					<label for="map_date_end">End Date:</label>
+					<input name="map_date_end" type="date"/>
 					<input type="submit" value="Update">
 				</form>
 			</div>

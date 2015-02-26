@@ -1,9 +1,9 @@
 <?php
 
-	if (isset($_POST['date_start']) && isset($_POST['date_end'])) {
+	if (isset($_POST['map_date_start']) && isset($_POST['map_date_end'])) {
 
-		$date_start = $_POST['date_start']; 
-		$date_end = $_POST['date_end']; 
+		$date_start = $_POST['map_date_start']; 
+		$date_end = $_POST['map_date_end']; 
 		
 		
 		if ($date_start=="" && $date_end=="") {

@@ -4,6 +4,10 @@ var GLOBAL_DATA = {
 	def_image_link : 'images/site/person.png' 
 };
 
+
+
+// PAGE SHOW/HIDE EVENTS
+
 function setPageShowHide() {
 	
 	// configure page show
@@ -13,24 +17,16 @@ function setPageShowHide() {
 		
 		if (id == "thread-page") {
 			if (prev_id == "message-page") {
-				MESSAGE_MODULE.setMessageThreads();
+				THREAD_MODULE.setMessageThreads();
 			}
-			
-			MESSAGE_MODULE.threadChecker = setInterval(function(){ 
-				MESSAGE_MODULE.setMessageThreads();
-			}, MESSAGE_MODULE.serviceFrequency);
+
+			THREAD_MODULE.startAuto();
 		} else if (id == "message-page") {
 			MESSAGE_MODULE.scrollBot();
 
-			MESSAGE_MODULE.serviceChecker = setInterval(function(){ 
-				MESSAGE_MODULE.getNewMessages(MESSAGE_MODULE.thread_id);
-			}, MESSAGE_MODULE.serviceFrequency);
+			MESSAGE_MODULE.startAuto();
 		} else if (id == "menu-page") {
-			MENU_MODULE.getCount();
-			
-			MENU_MODULE.serviceChecker = setInterval(function(){ 
-				MENU_MODULE.getCount();
-			}, MENU_MODULE.serviceFrequency);
+			MENU_MODULE.startAuto();
 		}
 	});
 	
@@ -40,13 +36,13 @@ function setPageShowHide() {
 		var to_id = ui.toPage.prop("id");
 		
 		if (id == "thread-page") {
-			clearInterval(MESSAGE_MODULE.threadChecker);
+			THREAD_MODULE.stopAuto();
 		} else if (id == "message-page") {
-			clearInterval(MESSAGE_MODULE.serviceChecker);
+			MESSAGE_MODULE.stopAuto();
 		} else if (id == "menu-page") {
-			clearInterval(MENU_MODULE.serviceChecker);
+			MENU_MODULE.stopAuto();
 		} else if (id == "checklist-page") {
-			PLACEMENT_MODULE.getPlacements(PLACEMENT_MODULE.user_id);
+			PLACEMENT_MODULE.reload();
 		}
 	});
 }
@@ -56,8 +52,8 @@ function setAPageShowHide() {
 	$(document).unbind("pagecontainershow").on( "pagecontainershow", function( event, ui ) {
 		var id = ui.toPage.prop("id");
 		
-		if (id == "login-page") {
-			GLOBAL_DATA.user = null;
+		if (id == "menu-page") {
+			MENU_MODULE.startAuto();
 		}
 	});
 	
@@ -65,11 +61,16 @@ function setAPageShowHide() {
 	$(document).unbind("pagecontainerhide").on( "pagecontainerhide", function( event, ui ) {
 		var id = ui.prevPage.prop("id");
 		
-		if (id == "login-page" && GLOBAL_DATA.user == null) {
-			history.back();
+		if (id == "menu-page") {
+			MENU_MODULE.stopAuto();
 		}
 	});
 }
+
+
+
+
+// MISC CODE
 
 function toast(msg) {
 	$("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h3>"+msg+"</h3></div>").css({ 
@@ -85,6 +86,24 @@ function toast(msg) {
 		$(this).remove();
 	});
 }
+
+function getColorCodeTag(text, color) {
+	return "<span style='color:" + color + ";'>" + text + "</span>";
+}
+
+function goHomePage() {
+	var i = document.location.href.indexOf("#");
+	if (i != -1) {
+		document.location.href = document.location.href.substring(0, i);
+		return true;
+	}
+	return false;
+}
+
+
+
+
+// DATE/TIME CODE
 
 function getDate() {
 	var today = new Date();
@@ -130,22 +149,23 @@ function dateHandler(elements, putCurrentDate, changefunction, showClearButton) 
 	}
 }
 
-function getColorCodeTag(text, color) {
-	return "<span style='color:" + color + ";'>" + text + "</span>";
-}
 
 
-function runAJAXHTML5(formData, object, func) {
+
+
+// AJAX CODE
+
+function runAJAXHTML5(formData, object, sfunc, efunc) {
 	for (var property in object) {
 		if (object.hasOwnProperty(property)) {
 			formData.append(property, object[property]);
 		}
 	}
 	
-	runAJAX(formData, func, true);
+	runAJAX(formData, sfunc, efunc, true);
 }
 
-function runAJAXSerial(formData, object, func) {
+function runAJAXSerial(formData, object, sfunc, efunc) {
 	var serialized = $.param(object);
 	
 	if (formData == '') {
@@ -154,19 +174,27 @@ function runAJAXSerial(formData, object, func) {
 		formData += '&' + serialized
 	}
 	
-	runAJAX(formData, func, false);
+	runAJAX(formData, sfunc, efunc, false);
 }
 
-function runAJAX(formData, func, hasImage) {
+function runAJAX(formData, sfunc, efunc, hasImage) {
 	var obj = {
 		type: 'POST',
 		url: GLOBAL_DATA.server_link,
 		data: formData,
 		dataType: 'json',
 		success: function(jsonData) {
-			handleResponse(jsonData, func);
+			var response = jsonData['response'];
+
+			if (jsonData['code'] == 200) {
+				sfunc(response);
+			} else {
+				alert(response);
+			}
 		},
 		error: function(data,status,xhr) {
+			efunc(data,status,xhr);
+
 			alert('Error Occured!');
 		}
 	};
@@ -178,14 +206,4 @@ function runAJAX(formData, func, hasImage) {
 	} 
 	
 	$.ajax(obj);
-}
-
-function handleResponse(jsonData, handler) {
-	var response = jsonData['response'];
-
-	if (jsonData['code'] == 200) {
-		handler(response);
-	} else {
-		alert(response);
-	}
 }

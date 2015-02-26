@@ -1,30 +1,27 @@
 var RESOURCE_MODULE = {
 	
+	// PUBLIC
+
 	setResource : function() {
 		
 		var user = GLOBAL_DATA.user;
-		var formData = 'page=resource/getresources&id=' + user['id'];
-		
-		$.ajax({
-			type: 'POST',
-			url: GLOBAL_DATA.server_link,
-			data: formData,
-			dataType: 'json',
-			success: function(jsonData) {
-				handleResponse(jsonData, function(response) {
-					$.mobile.changePage("#resource-page", { 
-						transition: "slide"
-					});
-					
-					// add resource items
-					RESOURCE_MODULE.displayResource(response);
-				});
-			},
-			error: function(data,status,xhr) {
-				alert('Error Occured!');
-			}
+
+		runAJAXSerial('', {
+			page : 'resource/getresources',
+			id : user['id']
+		}, function(response) {
+			$.mobile.changePage("#resource-page", { 
+				transition: "slide"
+			});
+			
+			// add resource items
+			RESOURCE_MODULE.displayResource(response);
+		}, function(data,status,xhr) {
+			
 		});
 	},
+
+	// PRIVATE
 	
 	displayResource : function(response) {
 		var list = $("#resource-list");

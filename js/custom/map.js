@@ -1,49 +1,35 @@
 var MAP_MODULE = {
 	
-	map : null,
+	// PUBLIC
 	
 	showMap : function() {
-		this.showMapPage();
+		MAP_MODULE.showMapPage();
 
-		$("#map-setting-button").show().unbind('click').click(function() {
-			$.mobile.changePage("#map-settings-page", { 
-				transition: "slide"
-			});
-		});
+		MAP_MODULE.handleSettingsButton(true);
 		
 		if ($('#map_canvas').prop('init')) {
-			
-			this.getLocations();
-			
+			MAP_MODULE.getLocations();
 		} else {
-			
-			this.initMap();
-			
+			MAP_MODULE.initMap();
 		}
 	},
 
 	showPoint : function(obj) {
-		this.showMapPage();
+		MAP_MODULE.showMapPage();
 		
-		$("#map-setting-button").hide();
+		MAP_MODULE.handleSettingsButton(false);
 		
 		if ($('#map_canvas').prop('init')) {
-			
-			this.displayPointOnMap(obj);
-			
+			MAP_MODULE.displayPointOnMap(obj);
 		} else {
-			
-			$('#map_canvas').gmap().bind('init', function(ev, map) {
-				
-				MAP_MODULE.map = map;
-				$(this).prop('init', true);
-				
-				this.displayPointOnMap(obj);
-			});
+			MAP_MODULE.initPointMap();
 		}
 	},
 
-	
+	// PRIVATE
+
+	map : null,
+
 	initMap : function() {
 		
 		$('#map_canvas').gmap().bind('init', function(ev, map) {
@@ -52,7 +38,7 @@ var MAP_MODULE = {
 			$(this).prop('init', true);
 			
 			var elements = $("#map-filter-form").find("input[type=date]");
-			dateHandler(elements, true, this.getLocations, true);
+			dateHandler(elements, true, MAP_MODULE.getLocations, true);
 			
 			if ( navigator.geolocation ) {
 
@@ -84,12 +70,20 @@ var MAP_MODULE = {
 					timeout: 6000
 				});
 			} else {
-				this.loadDefLocation();
+				MAP_MODULE.loadDefLocation();
 			}
 		});
 	},
 	
-	
+	initPointMap : function() {
+		$('#map_canvas').gmap().bind('init', function(ev, map) {
+
+			MAP_MODULE.map = map;
+			$(this).prop('init', true);
+					
+			MAP_MODULE.displayPointOnMap(obj);
+		});
+	},
 	
 	getLocations : function() {
 		
@@ -102,6 +96,8 @@ var MAP_MODULE = {
 			}, function(response) {
 				MAP_MODULE.showOnMap(response);
 				history.back();
+			}, function(data,status,xhr) {
+				
 			});
 			
 			return false;
@@ -110,11 +106,11 @@ var MAP_MODULE = {
 
 	displayPointOnMap : function(obj) {
 		$('#map_canvas').gmap("option", "center", new google.maps.LatLng(obj['latitude'], obj['longitude']));
-		this.showOnMap([obj]);
+		MAP_MODULE.showOnMap([obj]);
 	},
 
 	showOnMap : function(locations) {
-		var map = this.map;
+		var map = MAP_MODULE.map;
 		
 		// clear markers
 		$('#map_canvas').gmap('clear', 'markers');
@@ -123,9 +119,10 @@ var MAP_MODULE = {
 		for (var i=0; i<locations.length; i+=1) {
 			
 			var loc = locations[i];
+
 			var pos = {
 				'position': new google.maps.LatLng(loc['latitude'], loc['longitude']), 
-				'bounds': true,
+				'bounds': false,
 				'icon': 'http://maps.google.com/mapfiles/ms/icons/' + loc['color'] + '-dot.png'
 			};
 			
@@ -141,14 +138,26 @@ var MAP_MODULE = {
 		$('#map_canvas').gmap('set', 'MarkerClusterer', new MarkerClusterer(map, $('#map_canvas').gmap('get', 'markers')));
 	},
 
+	loadDefLocation : function() {
+		var defLoc = new google.maps.LatLng(43.784712, -79.185998); // UTSC default location
+		$('#map_canvas').gmap("option", "center", defLoc);
+	},
+
+	handleSettingsButton : function(state) {
+		if (state) {
+			$("#map-setting-button").show().unbind('click').click(function() {
+				$.mobile.changePage("#map-settings-page", { 
+					transition: "slide"
+				});
+			});
+		} else {
+			$("#map-setting-button").hide();
+		}
+	},
+
 	showMapPage : function() {
 		$.mobile.changePage("#map-page", { 
 			transition: "slide"
 		});
-	},
-
-	loadDefLocation : function() {
-		var defLoc = new google.maps.LatLng(43.784712, -79.185998); // UTSC default location
-		$('#map_canvas').gmap("option", "center", defLoc);
 	}
 };

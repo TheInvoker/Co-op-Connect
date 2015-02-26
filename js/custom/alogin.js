@@ -1,14 +1,15 @@
 var LOGIN_MODULE = {
 	
+	// PUBLIC
+
 	appLoad : function () {
-		var i = document.location.href.indexOf("#");
-		if (i != -1) {
-			document.location.href = document.location.href.substring(0, i);
-		} else {
+		if (!goHomePage()) {
 			this.initApp();
 		}
 	},
 	
+	// PRIVATE
+
 	initApp : function() {
 		setAPageShowHide();
 		
@@ -21,23 +22,16 @@ var LOGIN_MODULE = {
 		$("#login-form").unbind('submit').submit(function() {
 			
 			var formData = $(this).serialize();
-			formData += '&ad=1&page=user/login';
-			
-			$.ajax({
-				type: 'POST',
-				url: GLOBAL_DATA.server_link,
-				data: formData,
-				dataType: 'json',
-				success: function(jsonData) {
-					handleResponse(jsonData, function(response) {
-						GLOBAL_DATA.user = response;
-						
-						MENU_MODULE.initMenu();					
-					});
-				},
-				error: function(data,status,xhr) {
-					alert('Error Occured!');
-				}
+
+			runAJAXSerial(formData, {
+				ad : 1,
+				page : "user/login"
+			}, function(response) {
+				GLOBAL_DATA.user = response;
+
+				MENU_MODULE.initMenu();	
+			}, function(data,status,xhr) {
+				
 			});
 
 			return false;

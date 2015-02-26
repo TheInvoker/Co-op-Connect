@@ -1,7 +1,6 @@
 var MENU_MODULE = {
 	
-	serviceChecker : null,
-	serviceFrequency : 1000 * 60 * 3,
+	// PUBLIC
 	
 	initMenu : function() {
 		$.mobile.changePage( "#menu-page", { 
@@ -16,9 +15,26 @@ var MENU_MODULE = {
 		MENU_MODULE.setResourceButton();
 		MENU_MODULE.setAboutButton();
 
-		MENU_MODULE.setGrid();
+		GRID_MODULE.setGrid();
 	},
 	
+	startAuto : function() {
+		MENU_MODULE.getCount();
+		
+		MENU_MODULE.serviceChecker = setInterval(function(){ 
+			MENU_MODULE.getCount();
+		}, MENU_MODULE.serviceFrequency);
+	},
+
+	stopAuto : function() {
+		clearInterval(MENU_MODULE.serviceChecker);
+	},
+
+	// PRIVATE
+
+	serviceChecker : null,
+	serviceFrequency : 1000 * 60 * 3,
+
 	setUserButton : function() {
 		$("#profile-button").unbind('click').click(function() {
 			var user = GLOBAL_DATA.user;
@@ -47,7 +63,7 @@ var MENU_MODULE = {
 	
 	setMessageButton : function() {
 		$("#message-button").unbind('click').click(function() {
-			MESSAGE_MODULE.setMessageThreads();
+			THREAD_MODULE.setMessageThreads();
 		});
 	},
 	
@@ -63,54 +79,28 @@ var MENU_MODULE = {
 		});
 	},
 	
-	setGrid : function() {
-		var grid = $(".mygrid");
-		grid.empty();
-		
-		var items = 100;
-		
-		var str = "";
-		for (var i=0; i<items; i+=1) {
-			str += "<div class='grid-item'></div>";
-		}
-	
-		grid.html(str);
-	},
-	
 	getCount : function() {
 		var user = GLOBAL_DATA.user;
 		
-		var formData = 'page=user/checkcount&id=' + user['id'];
-		
-		$.ajax({
-			type: 'POST',
-			url: GLOBAL_DATA.server_link,
-			data: formData,
-			dataType: 'json',
-			success: function(jsonData) {
-				handleResponse(jsonData, function(response) {
-					var rCount = response['new_news'];
-					var mCount = response['new_messages'];
-					MENU_MODULE.setButtonCount(mCount, rCount); 
-				});
-			},
-			error: function(data,status,xhr) {
-
-			}
+		runAJAXSerial("", {
+			id : user['id'],
+			page : "user/checkcount"
+		}, function(response) {
+			var mCount = response['new_messages'];
+			var rCount = response['new_news'];
+			
+			MENU_MODULE.setCount("message-number", mCount); 
+			MENU_MODULE.setCount("resource-number", rCount); 
+		}, function(data,status,xhr) {
+			
 		});
 	},
 	
-	setButtonCount : function(mCount, rCount) {
+	setCount : function(id, count) {
 		if (mCount > 0) {
-			$("#message-number").show().text(mCount);
+			$("#" + id).show().text(count);
 		} else {
-			$("#message-number").hide();
-		}
-		
-		if (rCount > 0) {
-			$("#resource-number").show().text(rCount);
-		} else {
-			$("#resource-number").hide();
+			$("#" + id).hide();
 		}
 	}
 };

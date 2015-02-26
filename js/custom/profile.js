@@ -1,5 +1,7 @@
 var PROFILE_MODULE = {
 	
+	// PUBLIC
+
 	getProfile : function(user_id) {
 		runAJAXSerial('', {
 			page : 'user/getprofile',
@@ -12,9 +14,13 @@ var PROFILE_MODULE = {
 			PROFILE_MODULE.displayProfile(response, user_id);
 			
 			PROFILE_MODULE.editProfileHandler(response, user_id);
+		}, function(data,status,xhr) {
+			
 		});
 	},
 	
+	// PRIVATE
+
 	displayProfile : function(response, user_id) {
 		var user = GLOBAL_DATA.user;
 		
@@ -57,6 +63,8 @@ var PROFILE_MODULE = {
 		}, function(response) {
 			var thread_id = response['id'];
 			MESSAGE_MODULE.gotoMessage(thread_id);
+		}, function(data,status,xhr) {
+			
 		});
 	},
 
@@ -69,7 +77,7 @@ var PROFILE_MODULE = {
 					transition: "slide"
 				});
 				
-				PROFILE_MODULE.setProfileForEdit(response, user_id);
+				PROFILE_MODULE.setProfileForEdit(response);
 				PROFILE_MODULE.profileSubmit(user, user_id);
 			});
 		} else {
@@ -78,7 +86,7 @@ var PROFILE_MODULE = {
 	},
 	
 	
-	setProfileForEdit : function(user, user_id) {
+	setProfileForEdit : function(user) {
 		var input = $("#profile-edit-form").find("input[name=file]");
 		if (input.val()) { 
 			input.val('');
@@ -111,6 +119,8 @@ var PROFILE_MODULE = {
 			}, function(response) {
 				history.back();
 				PROFILE_MODULE.getProfile(user_id);
+			}, function(data,status,xhr) {
+				
 			});
 
 			return false;

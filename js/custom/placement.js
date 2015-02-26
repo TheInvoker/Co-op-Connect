@@ -1,45 +1,45 @@
 var PLACEMENT_MODULE = {
 	
-	placement : null,
-	user_id : null,
+	// PUBLIC
 	
 	getPlacements : function(user_id) {
 		var user = GLOBAL_DATA.user;
 		var me = user_id == user['id'];
 		
-		var formData = 'page=placement/getplacements&id=' + user['id'] + '&targetid=' + user_id;
-		
-		$.ajax({
-			type: 'POST',
-			url: GLOBAL_DATA.server_link,
-			data: formData,
-			dataType: 'json',
-			success: function(jsonData) {
-				handleResponse(jsonData, function(response) {
-					
-					// record the user id in context
-					PLACEMENT_MODULE.user_id = user_id;
-					
-					$.mobile.changePage("#placement-page", { 
-						transition: "slide"
-					});
+		runAJAXSerial('', {
+			page : 'placement/getplacements',
+			targetid : user_id,
+			id : user['id']
+		}, function(response) {
+			// record the user id in context
+			PLACEMENT_MODULE.user_id = user_id;
+			
+			$.mobile.changePage("#placement-page", { 
+				transition: "slide"
+			});
 
-					// add data to listview
-					PLACEMENT_MODULE.displayPlacements(me, response);
-					
-					// attach click handler on items
-					PLACEMENT_MODULE.menuHandler(me, response, user_id);
-					
-					// handle new placement
-					PLACEMENT_MODULE.newPlacement(me, user_id);
-				});
-			},
-			error: function(data,status,xhr) {
-				alert('Error Occured!');
-			}
+			// add data to listview
+			PLACEMENT_MODULE.displayPlacements(me, response);
+			
+			// attach click handler on items
+			PLACEMENT_MODULE.menuHandler(me, response);
+			
+			// handle new placement
+			PLACEMENT_MODULE.newPlacement(me);
+		}, function(data,status,xhr) {
+
 		});
 	},
+
+	reload : function() {
+		PLACEMENT_MODULE.getPlacements(PLACEMENT_MODULE.user_id);
+	},
+
+	// PRIVATE
 	
+	placement : null,
+	user_id : null,
+
 	displayPlacements : function(me, response) {
 		var list = $("#placement-list");
 		list.empty();
@@ -54,108 +54,6 @@ var PLACEMENT_MODULE = {
 		list.listview('refresh');
 	},
 	
-	
-	
-	menuHandler : function(me, response, user_id) {
-		
-		var items = $("#placement-list > li > a");
-		
-		// when clicked, store the obj reference
-		items.unbind('click').click(function() {
-			var index = items.index(this);
-			PLACEMENT_MODULE.placement = response[index];
-		});
-
-		// set up menu handler
-		var editButton = $("#placement-edit-button");
-		var checklistButton = $("#placement-checklist-button");
-		var mapButton = $("#placement-map-button");
-		var deleteButton = $("#placement-delete-button");
-		
-		if (me) {
-			PLACEMENT_MODULE.editPlacement(editButton, user_id);
-			PLACEMENT_MODULE.checklistPlacement(checklistButton, user_id);
-			PLACEMENT_MODULE.deletePlacement(deleteButton, user_id);
-		} else {
-			editButton.hide();
-			checklistButton.hide();
-			deleteButton.hide();
-		}
-		
-		mapButton.unbind('click').click(function() { 
-			var obj = PLACEMENT_MODULE.placement;
-			MAP_MODULE.showPoint(obj);
-		});
-	},
-	
-	editPlacement : function(button, user_id) {
-		button.show().unbind('click').click(function() { 
-			$.mobile.changePage("#placement-edit-page", { 
-				transition: "slide"
-			});
-			
-			var obj = PLACEMENT_MODULE.placement;
-
-			PLACEMENT_MODULE.setDateFields(false);
-			PLACEMENT_MODULE.setPlacementForEdit(obj, user_id);
-			PLACEMENT_MODULE.placementSubmit(obj, user_id);
-		});
-	},
-	
-	checklistPlacement : function(button, user_id) {
-		button.show().unbind('click').click(function() { 
-			var obj = PLACEMENT_MODULE.placement;
-			CHECKLIST_MODULE.getChecklist(user_id, obj);
-		});
-	},
-	
-	deletePlacement : function(button, user_id) {
-		button.show().unbind('click').click(function() {
-			var obj = PLACEMENT_MODULE.placement;
-
-			if (confirm("Are you sure you want to delete this placement?")) {
-				var	formData = 'page=placement/deleteplacements&id=' + obj['id'];
-
-				$.ajax({
-					type: 'POST',
-					url: GLOBAL_DATA.server_link,
-					data: formData,
-					dataType: 'json',
-					success: function(jsonData) {
-						handleResponse(jsonData, function(response) {
-							$('#placementMenu').popup('close');
-							
-							PLACEMENT_MODULE.getPlacements(user_id);
-						});
-					},
-					error: function(data,status,xhr) {
-						alert('Error Occured!');
-					}
-				});
-			}
-		});
-	},
-	
-	
-	
-	newPlacement : function(me, user_id) {
-		var button = $("#add-placement-button");
-		
-		if (me) {
-			button.show().unbind('click').click(function() {
-				$.mobile.changePage("#placement-edit-page", { 
-					transition: "slide"
-				});
-				
-				PLACEMENT_MODULE.setPlacementForEdit(null, user_id);
-				PLACEMENT_MODULE.setDateFields(true);
-				PLACEMENT_MODULE.placementSubmit(null, user_id);
-			});
-		} else {
-			button.hide();
-		}
-	},
-
 	formatLocation : function(obj, me) {
 		var str = '<a href="#placement-panel">';
 		str += '<table>';
@@ -173,13 +71,110 @@ var PLACEMENT_MODULE = {
 		
 		return str;
 	},
-	
-	setDateFields : function(setCurrentDate) {
-		var elements = $("#placement-edit-form").find("input[type=date]");
-		dateHandler(elements, setCurrentDate, function() {}, false);
+
+
+	menuHandler : function(me, response) {
+		
+		var items = $("#placement-list > li > a");
+		
+		// when clicked, store the obj reference
+		items.unbind('click').click(function() {
+			var index = items.index(this);
+			PLACEMENT_MODULE.placement = response[index];
+			return false;
+		});
+
+		// set up menu handler
+		var editButton = $("#placement-edit-button");
+		var checklistButton = $("#placement-checklist-button");
+		var mapButton = $("#placement-map-button");
+		var deleteButton = $("#placement-delete-button");
+		
+		if (me) {
+			PLACEMENT_MODULE.editPlacement(editButton);
+			PLACEMENT_MODULE.checklistPlacement(checklistButton);
+			PLACEMENT_MODULE.deletePlacement(deleteButton);
+		} else {
+			editButton.hide();
+			checklistButton.hide();
+			deleteButton.hide();
+		}
+		
+		PLACEMENT_MODULE.mapPlacement(mapButton);
 	},
 	
-	setPlacementForEdit : function(obj, user_id) {
+	editPlacement : function(button) {
+		button.show().unbind('click').click(function() { 
+			$.mobile.changePage("#placement-edit-page", { 
+				transition: "slide"
+			});
+			
+			var obj = PLACEMENT_MODULE.placement;
+
+			PLACEMENT_MODULE.setDateFields(false);
+			PLACEMENT_MODULE.setPlacementForEdit(obj);
+			PLACEMENT_MODULE.placementSubmit(obj);
+		});
+	},
+	
+	checklistPlacement : function(button) {
+		button.show().unbind('click').click(function() { 
+			var obj = PLACEMENT_MODULE.placement;
+
+			CHECKLIST_MODULE.getChecklist(PLACEMENT_MODULE.user_id, obj);
+		});
+	},
+	
+	mapPlacement : function(button) {
+		button.unbind('click').click(function() { 
+			var obj = PLACEMENT_MODULE.placement;
+
+			MAP_MODULE.showPoint(obj);
+		});
+	},
+
+	deletePlacement : function(button) {
+		button.show().unbind('click').click(function() {
+			var obj = PLACEMENT_MODULE.placement;
+
+			if (confirm("Are you sure you want to delete this placement?")) {
+				runAJAXSerial('', {
+					page : 'placement/deleteplacements',
+					id : obj['id']
+				}, function(response) {
+					$('#placementMenu').popup('close');
+					
+					PLACEMENT_MODULE.reload();
+				}, function(data,status,xhr) {
+
+				});
+			}
+		});
+	},
+	
+
+
+	newPlacement : function(me) {
+		var button = $("#add-placement-button");
+		
+		if (me) {
+			button.show().unbind('click').click(function() {
+				$.mobile.changePage("#placement-edit-page", { 
+					transition: "slide"
+				});
+				
+				PLACEMENT_MODULE.setPlacementForEdit(null);
+				PLACEMENT_MODULE.setDateFields(true);
+				PLACEMENT_MODULE.placementSubmit(null);
+
+				return false;
+			});
+		} else {
+			button.hide();
+		}
+	},
+
+	setPlacementForEdit : function(obj) {
 		$("#placement-edit-form").find("input[name=address]").val(obj==null ? '' : obj['address'] + ', ' + obj['city'] + ', ' + obj['country']).geocomplete({ 
 			details: "#placement-edit-form" 
 		});
@@ -200,32 +195,33 @@ var PLACEMENT_MODULE = {
 		swt.slider('refresh');
 	},
 	
-	placementSubmit : function(obj, user_id) {
+	setDateFields : function(setCurrentDate) {
+		var elements = $("#placement-edit-form").find("input[type=date]");
+		dateHandler(elements, setCurrentDate, function() {}, false);
+	},
+
+	placementSubmit : function(obj) {
 		$("#placement-edit-form").unbind('submit').submit(function() {
-			
-			var formData = $(this).serialize();
-			
-			if (obj == null) {
-				var user = GLOBAL_DATA.user;
-				formData += '&page=placement/addplacements&user_id=' + user['id'];
+
+			var user = GLOBAL_DATA.user;
+
+			if (obj == null) {	
+				var obj = {
+					page : "placement/addplacements",
+					user_id : user['id']
+				};
 			} else {
-				formData += '&page=placement/setplacements&id=' + obj['id'];
+				var obj = {
+					page : "placement/setplacements",
+					id : obj['id']
+				};
 			}
 			
-			$.ajax({
-				type: 'POST',
-				url: GLOBAL_DATA.server_link,
-				data: formData,
-				dataType: 'json',
-				success: function(jsonData) {
-					handleResponse(jsonData, function(response) {
-						history.back();
-						PLACEMENT_MODULE.getPlacements(user_id);
-					});
-				},
-				error: function(data,status,xhr) {
-					alert('Error Occured!');
-				}
+			runAJAXSerial($(this).serialize(), obj, function(response) {
+				history.back();
+				PLACEMENT_MODULE.getPlacements(user['id']);
+			}, function(data,status,xhr) {
+
 			});
 
 			return false;
