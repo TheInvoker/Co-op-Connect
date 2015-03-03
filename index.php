@@ -17,6 +17,7 @@
 		<script src="js/custom/login.js"></script>
 		<script src="js/custom/mainmenu.js"></script>
 		<script src="js/custom/map.js"></script>
+		<script src="js/custom/map_edit.js"></script>
 		<script src="js/custom/profile.js"></script>
 		<script src="js/custom/profile_edit.js"></script>
 		<script src="js/custom/register.js"></script>
@@ -24,6 +25,7 @@
 		<script src="js/custom/placement_edit.js"></script>
 		<script src="js/custom/checklist.js"></script>
 		<script src="js/custom/search.js"></script>
+		<script src="js/custom/search_edit.js"></script>
 		<script src="js/custom/resource.js"></script>
 		<script src="js/custom/thread.js"></script>
 		<script src="js/custom/message.js"></script>

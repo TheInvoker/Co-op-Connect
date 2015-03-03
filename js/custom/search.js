@@ -8,12 +8,10 @@ var SEARCH_MODULE = {
 		});
 		
 		SEARCH_MODULE.clearPage();
-		
-		SEARCH_MODULE.resetForm();
+
+		SEARCH_MODULE.settingsHandler();
 		
 		SEARCH_MODULE.searchHandler();
-		
-		SEARCH_MODULE.settingsHandler();
 	},
 	
 	// PRIVATE
@@ -25,20 +23,17 @@ var SEARCH_MODULE = {
 		$("#search-table > tbody").empty();
 	},
 	
-	resetForm : function() {
-		$("#search-settings-form").find("input[type=text],input[type=date]").val("");
-		
-		try {
-			$("#search-settings-form").find("input[type=checkbox]").prop("checked", true).checkboxradio( "refresh" );
-		} catch(err) {}
+	settingsHandler : function() {
+		$("#search-setting-button").unbind('click').click(function() {
+			SEARCH_SETTINGS_MODULE.initSettings();
+		});
 	},
 	
 	searchHandler : function() {
 		
 		$("#search-form").unbind('submit').submit(function() {
 			
-			var formData = $("#search-settings-form").serialize();
-			formData += "&" + $(this).serialize();
+			var formData = SEARCH_SETTINGS_MODULE.getFormData() + "&" + $(this).serialize();
 
 			runAJAXSerial(formData, {
 				page : 'search/search'
@@ -51,27 +46,6 @@ var SEARCH_MODULE = {
 			});
 			
 			return false;
-		});
-	},
-	
-	settingsHandler : function() {
-		$("#search-setting-button").unbind('click').click(function() {
-			$.mobile.changePage("#search-settings-page", { 
-				transition: "slide"
-			});
-			
-			$("#search-settings-page").find(".clear-cb-button").unbind('click').click(function() {
-				$(this).parent().find("input").prop("checked", false).checkboxradio( "refresh" );
-			});
-			$("#search-settings-page").find(".selectall-cb-button").unbind('click').click(function() {
-				$(this).parent().find("input").prop("checked", true).checkboxradio( "refresh" );
-			});
-			$("#search-settings-page").find("#done-search-settings-button").unbind('click').click(function() {
-				history.back();
-			});
-			
-			var elements = $("#search-settings-page").find("#search-settings-form").find("input[type=date]");
-			dateHandler(elements, false, function() {}, true);
 		});
 	},
 	
@@ -119,7 +93,7 @@ var SEARCH_MODULE = {
 			checkBoxes.addClass("custom-radio-on");
 		});
 		$("#search-message-all").unbind('click').click(function() {
-			var idList = getDataList(checkBoxes, "data-id");
+			var idList = SEARCH_MODULE.getDataList(checkBoxes, "data-id");
 			var strList = idList.join(",");
 			 
 			var user = GLOBAL_DATA.user;
@@ -136,7 +110,7 @@ var SEARCH_MODULE = {
 			});
 		});
 		$("#search-email-all").unbind('click').click(function() {
-			var emailList = getDataList(checkBoxes, "data-email");
+			var emailList = SEARCH_MODULE.getDataList(checkBoxes, "data-email");
 			var strList = emailList.join(","); 
 			
 			window.location.href = "mailto:?bcc=" + strList;
@@ -154,5 +128,7 @@ var SEARCH_MODULE = {
 				list.push(data);
 			}
 		}
+		
+		return list;
 	}
 };

@@ -7,9 +7,7 @@ var MAP_MODULE = {
 
 		MAP_MODULE.handleSettingsButton(true);
 		
-		if ($('#map_canvas').prop('init')) {
-			MAP_MODULE.getLocations();
-		} else {
+		if (!$('#map_canvas').prop('init')) {
 			MAP_MODULE.initMap();
 		}
 	},
@@ -36,9 +34,6 @@ var MAP_MODULE = {
 			
 			MAP_MODULE.map = map;
 			$(this).prop('init', true);
-			
-			var elements = $("#map-filter-form").find("input[type=date]");
-			dateHandler(elements, true, MAP_MODULE.getLocations, true);
 			
 			if ( navigator.geolocation ) {
 
@@ -86,25 +81,6 @@ var MAP_MODULE = {
 			MAP_MODULE.displayPointOnMap(obj);
 		});
 	},
-	
-	getLocations : function() {
-		
-		$("#map-filter-form").unbind('submit').submit(function() {
-			
-			var formData = $(this).serialize();
-
-			runAJAXSerial(formData, {
-				page : 'placement/getmapplacements'
-			}, function(response) {
-				MAP_MODULE.showOnMap(response);
-				history.back();
-			}, function(data,status,xhr) {
-				
-			});
-			
-			return false;
-		});
-	},
 
 	displayPointOnMap : function(obj) {
 		$('#map_canvas').gmap("option", "center", new google.maps.LatLng(obj['latitude'], obj['longitude']));
@@ -148,9 +124,7 @@ var MAP_MODULE = {
 	handleSettingsButton : function(state) {
 		if (state) {
 			$("#map-setting-button").show().unbind('click').click(function() {
-				$.mobile.changePage("#map-settings-page", { 
-					transition: "slide"
-				});
+				MAP_SETTINGS_MODULE.initSettings();
 			});
 		} else {
 			$("#map-setting-button").hide();

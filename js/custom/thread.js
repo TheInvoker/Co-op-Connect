@@ -9,19 +9,17 @@ var THREAD_MODULE = {
 			page : 'message/getthreads',
 			id : user['id']
 		}, function(response) {
-			handleResponse(jsonData, function(response) {
-				$.mobile.changePage("#thread-page", { 
-					transition: "slide"
-				});
-				
-				// add thread items
-				THREAD_MODULE.displayThreads(response);
-				
-				// handle clicks
-				THREAD_MODULE.handleAddMember();
-				THREAD_MODULE.handleProfileClick();
-				THREAD_MODULE.clickHandler(response);
+			$.mobile.changePage("#thread-page", { 
+				transition: "slide"
 			});
+			
+			// add thread items
+			THREAD_MODULE.displayThreads(response);
+			
+			// handle clicks
+			THREAD_MODULE.handleAddMember();
+			THREAD_MODULE.handleProfileClick();
+			THREAD_MODULE.clickHandler(response);
 		}, function(data,status,xhr) {
 
 		});

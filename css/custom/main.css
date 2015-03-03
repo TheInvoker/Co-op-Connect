@@ -89,10 +89,6 @@
 	margin-left:5px;
 }
 
-
-
-
-
 .bubble {
     position: relative;
 	word-wrap: break-word;
@@ -120,23 +116,26 @@
     z-index: 1;
 }
 
-
-
-
 .grid-item{
-  width: 100px;
-  height: 100px;
-  background: black;
-  transition: all 300ms ease;
-  margin:5px;
-  float:left;
+	width: 100px;
+	height: 100px;
+	background: black;
+	transition: all 600ms ease;
+	margin:5px;
+	float:left;
 	cursor: pointer; 
 	cursor: hand; 
 }
+
+
 .grid-item:hover{
+  /*
   width: 129px;
   height: 129px;
+  */
+  box-shadow: 0px 0px 10px #fff;
 }
+
 
 .mapControl {
 	background-color:transparent !important;

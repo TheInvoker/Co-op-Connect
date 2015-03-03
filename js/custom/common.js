@@ -29,6 +29,10 @@ function setPageShowHide() {
 			MENU_MODULE.startAuto();
 		} else if (id == "placement-page" && prev_id == "checklist-page") {
 			PLACEMENT_MODULE.reload();
+		} else if (id == "search-page" && prev_id != "search-settings-page") {
+			SEARCH_SETTINGS_MODULE.resetForm();
+		} else if (id == "register-page") {
+			REGISTER_MODULE.resetForm();
 		}
 	});
 	

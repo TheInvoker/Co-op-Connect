@@ -30,19 +30,27 @@ var PLACEMENT_EDIT_MODULE = {
 			details: "#placement-edit-form" 
 		});
 
-		$("#placement-edit-form").find("input[name=lat]").val(obj==null ? '' : obj['latitude']);
-		$("#placement-edit-form").find("input[name=lng]").val(obj==null ? '' : obj['longitude']);
-		$("#placement-edit-form").find("input[name=name]").val(obj==null ? '' : obj['address']);
-		$("#placement-edit-form").find("input[name=locality]").val(obj==null ? '' : obj['city']);
-		$("#placement-edit-form").find("input[name=country]").val(obj==null ? '' : obj['country']);
-		
-		$("#placement-edit-form").find("input[name=role]").val(obj==null ? '' : obj['topic']);
-		$("#placement-edit-form").find("input[name=company]").val(obj==null ? '' : obj['organization']);
-		$("#placement-edit-form").find("input[name=date_start]").val(obj==null ? '' : obj['date_started']);
-		$("#placement-edit-form").find("input[name=date_end]").val(obj==null ? '' : obj['date_finished']);
-
 		var swt = $("#placement-edit-form").find("select[name=active]");
-		swt.val(obj == null || obj['active']=='1' ? '1' : '0');
+		
+		if (obj) {
+			$("#placement-edit-form").find("input[name=lat]").val(obj['latitude']);
+			$("#placement-edit-form").find("input[name=lng]").val(obj['longitude']);
+			$("#placement-edit-form").find("input[name=name]").val(obj['address']);
+			$("#placement-edit-form").find("input[name=locality]").val(obj['city']);
+			$("#placement-edit-form").find("input[name=country]").val(obj['country']);
+			
+			$("#placement-edit-form").find("input[name=role]").val(obj['topic']);
+			$("#placement-edit-form").find("input[name=company]").val(obj['organization']);
+			$("#placement-edit-form").find("input[name=date_start]").val(obj['date_started']);
+			$("#placement-edit-form").find("input[name=date_end]").val(obj['date_finished']);
+			
+			swt.val(obj['active']);
+		} else {
+			$("#placement-edit-form").find("input").val("");
+			
+			swt.val('1');
+		}
+		
 		swt.slider('refresh');
 	},
 	

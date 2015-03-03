@@ -19,6 +19,10 @@ var REGISTER_MODULE = {
 
 			return false;
 		});
+	},
+	
+	resetForm : function() {
+		$("#register-form").find("input").val("");
 	}
 
 	// PRIVATE
