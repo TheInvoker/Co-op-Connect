@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 	<head>
+	
+		<script src="js/custom/reset.js"></script>
+		
 		<?php
 			include "snippet/head.php";
 		?>
@@ -62,6 +65,24 @@
 					<label for="password">Password:</label>
 					<input name="password" type="password" autocomplete="off" maxlength="255" value="test" required>
 					<input type="submit" value="Login">
+				</form>
+			</div>
+		</div>
+		
+		
+		<div id="reset-page" data-role="page" data-theme="b">
+	
+			<div data-role="header">
+				<h1>Password Reset</h1>
+			</div>
+
+			<div data-role="main" class="ui-content">
+				<form id="reset-form">
+					<label for="password">New Password:</label>
+					<input name="password" type="password" maxlength="255" value="" required>
+					<label for="password2">Confirm New Password:</label>
+					<input name="password2" type="password" maxlength="255" value="" required>
+					<input type="submit" value="Reset">
 				</form>
 			</div>
 		</div>
@@ -528,6 +549,7 @@
 
 		<div id="resource-page" data-role="page" data-theme="b">
 			<div data-role="header">
+				<a id="more-resource-button" href="#" data-icon="arrow-d" class="ui-btn-right">Show More</a>
 				<h1>Resources</h1>
 			</div>
 

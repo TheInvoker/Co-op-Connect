@@ -1,66 +1,14 @@
-
-
-INSERT IGNORE
-INTO thread_user (thread_id,user_id,last_read_date)
-SELECT 12,user_id,NOW()
-FROM thread_user
-WHERE thread_id=10
-UNION
-SELECT 12,3,NOW()
+7UeeoIIrwD8Q3G84RXOM
 
 
 ----------------------------------------------------
 
-SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
-				  FROM user u
-				  JOIN placement p ON p.user_id=u.id
-				  JOIN department d ON d.id = u.department_id
-				  WHERE p.active=1 AND ('2015-02-21' <= p.date_finished AND '2015-02-21' >= p.date_started)
+Click the below link to reset your password. If you did not request this, then ignore this email.<br/><br/><a href='http://localhost:81/Co-op-Connect/script/config/../../index.php#reset-page?token=If6vbQhcGiD4B6ueSxOp&id=1'>RESET PASSWORD</a>
 
 
 ----------------------------------------------------
 
-SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
-				  FROM user u
-				  JOIN placement p ON p.user_id=u.id
-				  JOIN department d ON d.id = u.department_id
-				  WHERE p.active=1 AND ('2015-02-21' <= p.date_finished AND '2015-02-21' >= p.date_started)
-
-
-----------------------------------------------------
-
-SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
-				  FROM user u
-				  JOIN placement p ON p.user_id=u.id
-				  JOIN department d ON d.id = u.department_id
-				  WHERE p.active=1 AND ('2015-02-21' <= p.date_finished AND '2015-02-21' >= p.date_started)
-
-
-----------------------------------------------------
-
-SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
-				  FROM user u
-				  JOIN placement p ON p.user_id=u.id
-				  JOIN department d ON d.id = u.department_id
-				  WHERE p.active=1 AND ('2015-02-21' <= p.date_finished AND '2015-02-21' >= p.date_started)
-
-
-----------------------------------------------------
-
-SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
-				  FROM user u
-				  JOIN placement p ON p.user_id=u.id
-				  JOIN department d ON d.id = u.department_id
-				  WHERE p.active=1 AND ('2015-02-21' <= p.date_finished AND '2015-02-21' >= p.date_started)
-
-
-----------------------------------------------------
-
-SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.topic, p.latitude, p.longitude, d.name AS department_name, d.color
-				  FROM user u
-				  JOIN placement p ON p.user_id=u.id
-				  JOIN department d ON d.id = u.department_id
-				  WHERE p.active=1 AND ('2014-07-01' <= p.date_finished AND '2015-02-21' >= p.date_started)
+Click the below link to reset your password. If you did not request this, then ignore this email.<br/><br/><a href='http://localhost:81/Co-op-Connect/script/config/../../index.php#reset-page?token=Knk6DsYq0810ffqX2uYi&id=1'>RESET PASSWORD</a>
 
 
 ----------------------------------------------------

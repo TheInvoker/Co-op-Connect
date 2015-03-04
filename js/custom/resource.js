@@ -8,14 +8,23 @@ var RESOURCE_MODULE = {
 
 		runAJAXSerial('', {
 			page : 'resource/getresources',
-			id : user['id']
+			id : user['id'],
+			pageindex : RESOURCE_MODULE.page
 		}, function(response) {
+			RESOURCE_MODULE.page += 1;
+			
 			$.mobile.changePage("#resource-page", { 
 				transition: "slide"
 			});
 			
+			// clear
+			RESOURCE_MODULE.emptyScreen();
+			
 			// add resource items
 			RESOURCE_MODULE.displayResource(response);
+			
+			// handle show more
+			RESOURCE_MODULE.handleShowMore();
 		}, function(data,status,xhr) {
 			
 		});
@@ -23,9 +32,15 @@ var RESOURCE_MODULE = {
 
 	// PRIVATE
 	
-	displayResource : function(response) {
+	page : 0,
+	
+	emptyScreen : function() {
 		var list = $("#resource-list");
 		list.empty();
+	},
+	
+	displayResource : function(response) {
+		var list = $("#resource-list");
 		
 		var myListContent = "";
 		for(var i=0; i<response.length; i+=1) {
@@ -50,5 +65,29 @@ var RESOURCE_MODULE = {
 		str += '<tr title="Last Updated"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['date_modified'] + '</td></tr>';
 		str += '</table>';
 		return str;
+	},
+	
+	handleShowMore : function() {
+		$("#more-resource-button").unbind('click').click(function() {
+			
+			var user = GLOBAL_DATA.user;
+			
+			runAJAXSerial('', {
+				page : 'resource/getresources',
+				id : user['id'],
+				pageindex : RESOURCE_MODULE.page
+			}, function(response) {
+				RESOURCE_MODULE.page += 1;
+
+				if (response.length > 0) {
+					// add resource items
+					RESOURCE_MODULE.displayResource(response);
+				} else {
+					alert("No more resources.");
+				}
+			}, function(data,status,xhr) {
+				
+			});
+		});
 	}
 };

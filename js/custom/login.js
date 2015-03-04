@@ -25,9 +25,7 @@ var LOGIN_MODULE = {
 	login : function() {
 		$("#login-form").unbind('submit').submit(function() {
 			
-			var formData = $(this).serialize();
-
-			runAJAXSerial(formData, {
+			runAJAXSerial($(this).serialize(), {
 				ad : 0,
 				page : "user/login"
 			}, function(response) {
@@ -59,9 +57,7 @@ var LOGIN_MODULE = {
 					email : email,
 					page : "user/forgot"
 				}, function(response) {
-					handleResponse(jsonData, function(response) {
-						alert('Password Sent!');
-					});
+					alert('A confirmation email has been sent to you.');
 				}, function(data,status,xhr) {
 					
 				});

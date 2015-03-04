@@ -97,7 +97,11 @@ function getColorCodeTag(text, color) {
 
 function goHomePage() {
 	var i = document.location.href.indexOf("#");
-	if (i != -1) {
+	if (document.location.href.indexOf("#reset-page") != -1) {
+		$(document).ready(function() {
+			RESET_MODULE.initReset();
+		});
+	} else if (i != -1) {
 		document.location.href = document.location.href.substring(0, i);
 		return true;
 	}
@@ -105,6 +109,20 @@ function goHomePage() {
 }
 
 
+function getUrlParameter(sParam) {
+    var sPageURL = window.location.href;
+	sPageURL = sPageURL.substr(sPageURL.indexOf("?")+1, sPageURL.length-1);
+	
+	var sURLVariables = sPageURL.split('&');
+	for (var i = 0; i < sURLVariables.length; i++) 
+	{
+		var sParameterName = sURLVariables[i].split('=');
+		if (sParameterName[0] == sParam) 
+		{
+			return sParameterName[1];
+		}
+	}
+}          
 
 
 // DATE/TIME CODE
