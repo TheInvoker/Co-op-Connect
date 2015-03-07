@@ -9,7 +9,7 @@ var THREAD_MODULE = {
 			page : 'message/getthreads',
 			id : user['id']
 		}, function(response) {
-			$.mobile.changePage("#thread-page", { 
+			$.mobile.changePage(THREAD_MODULE.context, { 
 				transition: "slide"
 			});
 			
@@ -39,9 +39,10 @@ var THREAD_MODULE = {
 
 	serviceChecker : null,
 	serviceFrequency : 1000 * 60 * 3,
+	context : "#thread-page",
 
 	displayThreads : function(response) {
-		var list = $("#thread-list");
+		var list = $(THREAD_MODULE.context).find("#thread-list");
 		list.empty();
 		
 		var myListContent = "";
@@ -85,7 +86,7 @@ var THREAD_MODULE = {
 	},
 
 	handleAddMember : function() {
-		$("#thread-list").find(".add-member-button").unbind('click').click(function() {
+		$(THREAD_MODULE.context).find("#thread-list").find(".add-member-button").unbind('click').click(function() {
 			var thread_id = $(this).attr("data-thread-id");
 			var email = prompt("Please enter email adress of member to add:", "");
 			
@@ -109,14 +110,14 @@ var THREAD_MODULE = {
 	},	
 
 	handleProfileClick : function() {
-		$("#thread-list").find(".thread-image").unbind('click').click(function() {
+		$(THREAD_MODULE.context).find("#thread-list").find(".thread-image").unbind('click').click(function() {
 			PROFILE_MODULE.getProfile($(this).attr("data-id"));
 			return false;
 		});
 	},
 	
 	clickHandler : function(response) {
-		$("#thread-list > li > a").unbind('click').click(function() {
+		$(THREAD_MODULE.context).find("#thread-list > li > a").unbind('click').click(function() {
 			MESSAGE_MODULE.gotoMessage($(this).attr("data-thread-id"));
 			return false;
 		});

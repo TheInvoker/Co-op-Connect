@@ -71,6 +71,29 @@ function setAPageShowHide() {
 	});
 }
 
+function goHomePage() {
+	var i = document.location.href.indexOf("#");
+	if (document.location.href.indexOf("#reset-page") != -1) {
+		$(document).ready(function() {
+			RESET_MODULE.initReset();
+		});
+	} else if (i != -1) {
+		document.location.href = document.location.href.substring(0, i);
+		return true;
+	}
+	return false;
+}
+
+function configureShakeToGoBack() {
+	var myShakeEvent = new Shake({
+	    threshold: 10, // optional shake strength threshold
+	    timeout: 1000 // optional, determines the frequency of event generation
+	});	
+	myShakeEvent.start();
+	window.addEventListener('shake', function() {
+		history.back();
+	}, false);
+}
 
 
 
@@ -94,20 +117,6 @@ function toast(msg) {
 function getColorCodeTag(text, color) {
 	return "<span style='color:" + color + ";'>" + text + "</span>";
 }
-
-function goHomePage() {
-	var i = document.location.href.indexOf("#");
-	if (document.location.href.indexOf("#reset-page") != -1) {
-		$(document).ready(function() {
-			RESET_MODULE.initReset();
-		});
-	} else if (i != -1) {
-		document.location.href = document.location.href.substring(0, i);
-		return true;
-	}
-	return false;
-}
-
 
 function getUrlParameter(sParam) {
     var sPageURL = window.location.href;
@@ -205,12 +214,14 @@ function runAJAX(formData, sfunc, efunc, hasImage) {
 		url: GLOBAL_DATA.server_link,
 		data: formData,
 		dataType: 'json',
-		success: function(jsonData) {
+		success: function(jsonData,status,xhr) {
 			var response = jsonData['response'];
 
 			if (jsonData['code'] == 200) {
 				sfunc(response);
 			} else {
+				efunc(jsonData,status,xhr);
+
 				alert(response);
 			}
 		},

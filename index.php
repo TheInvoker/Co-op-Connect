@@ -16,6 +16,8 @@
 		<script src="js/markerclusterer_packed.js"></script>
 		<!-- Include the geolocation autocomplete library -->
 		<script src="js/jquery.geocomplete.min.js"></script>
+		<!-- Include shake.js -->
+		<script src="js/shake.js"></script>
 
 		<script src="js/custom/login.js"></script>
 		<script src="js/custom/mainmenu.js"></script>
@@ -612,6 +614,7 @@
 						<li><a href="https://code.google.com/p/jquery-ui-map" target="_blank">jquery-ui-map</a></li>
 						<li><a href="https://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries" target="_blank">google-maps-utility-library-v3</a></li>
 						<li><a href="http://amsul.ca/pickadate.js" target="_blank">pickadate</a></li>
+						<li><a href="https://github.com/alexgibson/shake.js" target="_blank">shake</a></li>
 					</ol>
 				</section>
 			</div>

@@ -13,7 +13,7 @@ var RESOURCE_MODULE = {
 		}, function(response) {
 			RESOURCE_MODULE.page += 1;
 			
-			$.mobile.changePage("#resource-page", { 
+			$.mobile.changePage(RESOURCE_MODULE.context, { 
 				transition: "slide"
 			});
 			
@@ -33,14 +33,15 @@ var RESOURCE_MODULE = {
 	// PRIVATE
 	
 	page : 0,
+	context : "#resource-page",
 	
 	emptyScreen : function() {
-		var list = $("#resource-list");
+		var list = $(RESOURCE_MODULE.context).find("#resource-list");
 		list.empty();
 	},
 	
 	displayResource : function(response) {
-		var list = $("#resource-list");
+		var list = $(RESOURCE_MODULE.context).find("#resource-list");
 		
 		var myListContent = "";
 		for(var i=0; i<response.length; i+=1) {
@@ -68,7 +69,7 @@ var RESOURCE_MODULE = {
 	},
 	
 	handleShowMore : function() {
-		$("#more-resource-button").unbind('click').click(function() {
+		$(RESOURCE_MODULE.context).find("#more-resource-button").unbind('click').click(function() {
 			
 			var user = GLOBAL_DATA.user;
 			

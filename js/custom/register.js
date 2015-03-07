@@ -3,11 +3,11 @@ var REGISTER_MODULE = {
 	// PUBLIC
 
 	register : function() {
-		$.mobile.changePage( "#register-page", { 
+		$.mobile.changePage( REGISTER_MODULE.context, { 
 			transition: "slideup"
 		});	
 		
-		$("#register-form").unbind('submit').submit(function() {
+		$(REGISTER_MODULE.context).find("#register-form").unbind('submit').submit(function() {
 			
 			runAJAXSerial($(this).serialize(), {
 				page : 'user/register'
@@ -22,8 +22,10 @@ var REGISTER_MODULE = {
 	},
 	
 	resetForm : function() {
-		$("#register-form").find("input").val("");
-	}
+		$(REGISTER_MODULE.context).find("#register-form").find("input").val("");
+	},
 
 	// PRIVATE
+
+	context : "#register-page"
 };

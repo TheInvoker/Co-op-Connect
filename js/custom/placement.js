@@ -14,18 +14,22 @@ var PLACEMENT_MODULE = {
 			// record the user id in context
 			PLACEMENT_MODULE.user_id = user_id;
 			
-			$.mobile.changePage("#placement-page", { 
+			$.mobile.changePage(PLACEMENT_MODULE.context, { 
 				transition: "slide"
 			});
 
 			// add data to listview
 			PLACEMENT_MODULE.displayPlacements(me, response);
 			
+			// handle clicks
+			PLACEMENT_MODULE.clickHandler(response);
+			
 			// attach click handler on items
 			PLACEMENT_MODULE.menuHandler(me, response);
 			
 			// handle new placement
 			PLACEMENT_MODULE.newPlacement(me);
+
 		}, function(data,status,xhr) {
 
 		});
@@ -37,11 +41,17 @@ var PLACEMENT_MODULE = {
 
 	// PRIVATE
 	
+	context : "#placement-page",
 	placement : null,
 	user_id : null,
 
+	init : (function() { 
+		$(document).ready(function() {
+		});
+	})(),
+
 	displayPlacements : function(me, response) {
-		var list = $("#placement-list");
+		var list = $(PLACEMENT_MODULE.context).find("#placement-list");
 		list.empty();
 		
 		var myListContent = "";
@@ -72,21 +82,23 @@ var PLACEMENT_MODULE = {
 		return str;
 	},
 
-	menuHandler : function(me, response) {
-		
-		var items = $("#placement-list > li > a");
+	clickHandler : function(response) {
+		var items = $(PLACEMENT_MODULE.context).find("#placement-list > li > a");
 		
 		// when clicked, store the obj reference
 		items.unbind('click').click(function() {
 			var index = items.index(this);
 			PLACEMENT_MODULE.placement = response[index];
 		});
+	},
+
+	menuHandler : function(me, response) {
 
 		// set up menu handler
-		var editButton = $("#placement-edit-button");
-		var checklistButton = $("#placement-checklist-button");
-		var mapButton = $("#placement-map-button");
-		var deleteButton = $("#placement-delete-button");
+		var editButton = $(PLACEMENT_MODULE.context).find("#placement-edit-button");
+		var checklistButton = $(PLACEMENT_MODULE.context).find("#placement-checklist-button");
+		var mapButton = $(PLACEMENT_MODULE.context).find("#placement-map-button");
+		var deleteButton = $(PLACEMENT_MODULE.context).find("#placement-delete-button");
 		
 		if (me) {
 			PLACEMENT_MODULE.editPlacement(editButton);
@@ -127,6 +139,7 @@ var PLACEMENT_MODULE = {
 
 	deletePlacement : function(button) {
 		button.show().unbind('click').click(function() {
+
 			var obj = PLACEMENT_MODULE.placement;
 
 			if (confirm("Are you sure you want to delete this placement?")) {
@@ -134,8 +147,7 @@ var PLACEMENT_MODULE = {
 					page : 'placement/deleteplacements',
 					id : obj['id']
 				}, function(response) {
-					$('#placementMenu').popup('close');
-					
+					$(PLACEMENT_MODULE.context).find('#placement-panel').panel('close');
 					PLACEMENT_MODULE.reload();
 				}, function(data,status,xhr) {
 
@@ -145,13 +157,11 @@ var PLACEMENT_MODULE = {
 	},
 	
 	newPlacement : function(me) {
-		var button = $("#add-placement-button");
+		var button = $(PLACEMENT_MODULE.context).find("#add-placement-button");
 		
 		if (me) {
 			button.show().unbind('click').click(function() {
 				PLACEMENT_EDIT_MODULE.newPlacement();
-
-				return false;
 			});
 		} else {
 			button.hide();

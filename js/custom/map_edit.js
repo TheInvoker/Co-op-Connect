@@ -3,7 +3,7 @@ var MAP_SETTINGS_MODULE = {
 	// PUBLIC
 	
 	initSettings : function() {
-		$.mobile.changePage("#map-settings-page", { 
+		$.mobile.changePage(MAP_SETTINGS_MODULE.context, { 
 			transition: "slide"
 		});
 		
@@ -13,15 +13,17 @@ var MAP_SETTINGS_MODULE = {
 	},
 	
 	// PRIVATE
+
+	context : "#map-settings-page",
 	
 	initDate : function() {
-		var elements = $("#map-filter-form").find("input[type=date]");
+		var elements = $(MAP_SETTINGS_MODULE.context).find("#map-filter-form").find("input[type=date]");
 		dateHandler(elements, true, MAP_MODULE.getLocations, true);
 	},
 	
 	getLocations : function() {
 		
-		$("#map-filter-form").unbind('submit').submit(function() {
+		$(MAP_SETTINGS_MODULE.context).find("#map-filter-form").unbind('submit').submit(function() {
 			
 			var formData = $(this).serialize();
 

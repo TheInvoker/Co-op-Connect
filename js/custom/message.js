@@ -16,7 +16,7 @@ var MESSAGE_MODULE = {
 			MESSAGE_MODULE.page += 1;
 			MESSAGE_MODULE.thread_id = thread_id;
 			
-			$.mobile.changePage("#message-page", { 
+			$.mobile.changePage(MESSAGE_MODULE.context, { 
 				transition: "slide"
 			});
 			
@@ -52,9 +52,10 @@ var MESSAGE_MODULE = {
 	thread_id : null,
 	serviceChecker : null,
 	serviceFrequency : 1000 * 60 * 3,
+	context : "#message-page",
 	
 	clearScreen : function() {
-		$("#message-list").empty();
+		$(MESSAGE_MODULE.context).find("#message-list").empty();
 	},
 
 	displayMessages : function(response, onBottom) {
@@ -65,7 +66,7 @@ var MESSAGE_MODULE = {
 			var obj = response[i];
 			
 			var acc_temp = "";
-			acc_temp += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-left' : 'message-right') + '">';
+			acc_temp += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-right' : 'message-left') + '">';
 			acc_temp += '<div>' + Autolinker.link(obj['message']) + '</div>';
 			if (obj['user_id']!=user['id']) {
 				acc_temp += '<div class="message-details">' + obj['first_name'] + ' ' + obj['last_name'] + '</div>';
@@ -80,7 +81,7 @@ var MESSAGE_MODULE = {
 	},
 
 	addMessage : function(html, onBottom) {
-		var list = $("#message-list");
+		var list = $(MESSAGE_MODULE.context).find("#message-list");
 		if (onBottom) {
 			list.append(html);
 			MESSAGE_MODULE.scrollBot();
@@ -92,7 +93,7 @@ var MESSAGE_MODULE = {
 	handleSend : function(thread_id) {
 		var user = GLOBAL_DATA.user;
 		
-		$("#message-form").unbind('submit').submit(function() {
+		$(MESSAGE_MODULE.context).find("#message-form").unbind('submit').submit(function() {
 		
 			var field = $(this).find("input[type=text]");
 		
@@ -106,9 +107,7 @@ var MESSAGE_MODULE = {
 				var obj = {
 					user_id : user['id'],
 					message : field.val(),
-					date_sent : getDate() + ' ' + getTime(),
-					first_name : null,
-					last_name : null
+					date_sent : getDate() + ' ' + getTime()
 				};
 				
 				field.val("").focus();
@@ -125,7 +124,7 @@ var MESSAGE_MODULE = {
 	handleGetMore : function(thread_id) {
 		var user = GLOBAL_DATA.user;
 		
-		$("#more-message-button").unbind('click').click(function() {
+		$(MESSAGE_MODULE.context).find("#more-message-button").unbind('click').click(function() {
 			runAJAXSerial('', {
 				page : 'message/getmessages',
 				thread_id : thread_id,

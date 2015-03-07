@@ -3,7 +3,7 @@ var PROFILE_EDIT_MODULE = {
 	// PUBLIC
 
 	editProfileHandler : function(response, user_id) {
-		$.mobile.changePage("#profile-edit-page", { 
+		$.mobile.changePage(PROFILE_EDIT_MODULE.context, { 
 			transition: "slide"
 		});
 		
@@ -13,29 +13,30 @@ var PROFILE_EDIT_MODULE = {
 	
 	// PRIVATE
 	
+	context : "#profile-edit-page",
+
 	setProfileForEdit : function(user) {
-		var input = $("#profile-edit-form").find("input[name=file]");
-		if (input.val()) { 
-			input.val('');
-		}
+		var input = $(PROFILE_EDIT_MODULE.context).find("#profile-edit-form").find("input[name=file]");
 		
-		$("#profile-edit-form").find("input[name=firstname]").val(user['firstname']);
-		$("#profile-edit-form").find("input[name=lastname]").val(user['lastname']);
-		$("#profile-edit-form").find("input[name=email]").val(user['email']);
-		$("#profile-edit-form").find("input[name=phone]").val(user['phone']);
-		$("#profile-edit-form").find("input[name=website]").val(user['website']);
-		$("#profile-edit-form").find("textarea[name=status]").html(user['status']);
-		$("#profile-edit-form").find("textarea[name=biotext]").html(user['biotext']);
+		input.val('');
 		
-		var all = $("#profile_edit_department_rb").find("input");
-		var e = $("#profile_edit_department_rb").find("input[value='"+user['department_name']+"']");	
+		$(PROFILE_EDIT_MODULE.context).find("#profile-edit-form").find("input[name=firstname]").val(user['firstname']);
+		$(PROFILE_EDIT_MODULE.context).find("#profile-edit-form").find("input[name=lastname]").val(user['lastname']);
+		$(PROFILE_EDIT_MODULE.context).find("#profile-edit-form").find("input[name=email]").val(user['email']);
+		$(PROFILE_EDIT_MODULE.context).find("#profile-edit-form").find("input[name=phone]").val(user['phone']);
+		$(PROFILE_EDIT_MODULE.context).find("#profile-edit-form").find("input[name=website]").val(user['website']);
+		$(PROFILE_EDIT_MODULE.context).find("#profile-edit-form").find("textarea[name=status]").html(user['status']);
+		$(PROFILE_EDIT_MODULE.context).find("#profile-edit-form").find("textarea[name=biotext]").html(user['biotext']);
+		
+		var all = $(PROFILE_EDIT_MODULE.context).find("#profile_edit_department_rb").find("input");
+		var e = $(PROFILE_EDIT_MODULE.context).find("#profile_edit_department_rb").find("input[value='"+user['department_name']+"']");	
 		all.prop("checked", false);
 		e.prop("checked", true);
 		all.checkboxradio( "refresh" );
 	},
 	
 	profileSubmit : function(user_id) {
-		$("#profile-edit-form").unbind('submit').submit(function() {
+		$(PROFILE_EDIT_MODULE.context).find("#profile-edit-form").unbind('submit').submit(function() {
 			
 			// this html5 way supports attaching images 
 			var formData = new FormData(this);

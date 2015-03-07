@@ -2,28 +2,29 @@ var LOGIN_MODULE = {
 	
 	// PUBLIC
 
-	appLoad : function () {
-		if (!goHomePage()) {
-			this.initApp();
-		}
-	},
-	
 	// PRIVATE
 	
+	context : "#login-page",
+
+	init : (function() { 
+		if (!goHomePage()) {
+			$(document).ready(function() {
+				LOGIN_MODULE.initApp();
+			});
+		}
+	})(),
+
 	initApp : function() {
 		setPageShowHide();
+		configureShakeToGoBack();
 
-		$(document).ready(function() {
-			LOGIN_MODULE.login();
-			
-			LOGIN_MODULE.register();
-			
-			LOGIN_MODULE.forgot();
-		});
+		LOGIN_MODULE.login();
+		LOGIN_MODULE.register();
+		LOGIN_MODULE.forgot();
 	},
 	
 	login : function() {
-		$("#login-form").unbind('submit').submit(function() {
+		$(LOGIN_MODULE.context).find("#login-form").submit(function() {
 			
 			runAJAXSerial($(this).serialize(), {
 				ad : 0,
@@ -41,13 +42,13 @@ var LOGIN_MODULE = {
 	},
 	
 	register : function() {
-		$("#register-button").unbind('click').click(function(){
+		$(LOGIN_MODULE.context).find("#register-button").click(function(){
 			REGISTER_MODULE.register();
 		});
 	},
 	
 	forgot : function() {
-		$("#forgot-button").unbind('click').click(function(){
+		$(LOGIN_MODULE.context).find("#forgot-button").click(function(){
 			var email = prompt("Please enter your email adress:", "");
 			
 			if (email != null) {
@@ -65,5 +66,3 @@ var LOGIN_MODULE = {
 		});
 	}
 };
-
-LOGIN_MODULE.appLoad();

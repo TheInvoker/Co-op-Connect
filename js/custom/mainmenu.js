@@ -3,17 +3,9 @@ var MENU_MODULE = {
 	// PUBLIC
 	
 	initMenu : function() {
-		$.mobile.changePage( "#menu-page", { 
+		$.mobile.changePage( MENU_MODULE.context, { 
 			transition: "flip"
 		});
-		
-		MENU_MODULE.setUserButton();
-		MENU_MODULE.setPlacementButton();
-		MENU_MODULE.setSearchButton();
-		MENU_MODULE.setMapButton();
-		MENU_MODULE.setMessageButton();
-		MENU_MODULE.setResourceButton();
-		MENU_MODULE.setAboutButton();
 
 		GRID_MODULE.setGrid();
 	},
@@ -32,49 +24,62 @@ var MENU_MODULE = {
 
 	// PRIVATE
 
+	context : "#menu-page",
 	serviceChecker : null,
 	serviceFrequency : 1000 * 60 * 3,
 
+	init : (function() { 
+		$(document).ready(function() {
+			MENU_MODULE.setUserButton();
+			MENU_MODULE.setPlacementButton();
+			MENU_MODULE.setSearchButton();
+			MENU_MODULE.setMapButton();
+			MENU_MODULE.setMessageButton();
+			MENU_MODULE.setResourceButton();
+			MENU_MODULE.setAboutButton();
+		});
+	})(),
+
 	setUserButton : function() {
-		$("#profile-button").unbind('click').click(function() {
+		$(MENU_MODULE.context).find("#profile-button").click(function() {
 			var user = GLOBAL_DATA.user;
 			PROFILE_MODULE.getProfile(user['id']);
 		});
 	},
 
 	setPlacementButton : function() {
-		$("#placement-button").unbind('click').click(function() {
+		$(MENU_MODULE.context).find("#placement-button").click(function() {
 			var user = GLOBAL_DATA.user;
 			PLACEMENT_MODULE.getPlacements(user['id']);
 		});
 	},
 	
 	setSearchButton : function() {
-		$("#search-button").unbind('click').click(function() {
+		$(MENU_MODULE.context).find("#search-button").click(function() {
 			SEARCH_MODULE.initSearch();
 		});
 	},
 	
 	setMapButton : function() {
-		$("#map-button").unbind('click').click(function() {
+		$(MENU_MODULE.context).find("#map-button").click(function() {
 			MAP_MODULE.showMap();
 		});
 	},
 	
 	setMessageButton : function() {
-		$("#message-button").unbind('click').click(function() {
+		$(MENU_MODULE.context).find("#message-button").click(function() {
 			THREAD_MODULE.setMessageThreads();
 		});
 	},
 	
 	setResourceButton : function() {
-		$("#resource-button").unbind('click').click(function() {
+		$(MENU_MODULE.context).find("#resource-button").click(function() {
 			RESOURCE_MODULE.setResource();
 		});
 	},
 	
 	setAboutButton : function() {
-		$("#about-button").unbind('click').click(function() {
+		$(MENU_MODULE.context).find("#about-button").click(function() {
 			ABOUT_MODULE.setAbout();
 		});
 	},
@@ -89,8 +94,8 @@ var MENU_MODULE = {
 			var mCount = response['new_messages'];
 			var rCount = response['new_news'];
 			
-			MENU_MODULE.setCount("message-number", mCount); 
-			MENU_MODULE.setCount("resource-number", rCount); 
+			MENU_MODULE.setCount("#message-number", mCount); 
+			MENU_MODULE.setCount("#resource-number", rCount); 
 		}, function(data,status,xhr) {
 			
 		});
@@ -98,9 +103,9 @@ var MENU_MODULE = {
 	
 	setCount : function(id, count) {
 		if (count > 0) {
-			$("#" + id).show().text(count);
+			$(MENU_MODULE.context).find(id).show().text(count);
 		} else {
-			$("#" + id).hide();
+			$(MENU_MODULE.context).find(id).hide();
 		}
 	}
 };

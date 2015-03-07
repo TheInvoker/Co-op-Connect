@@ -2,24 +2,27 @@ var LOGIN_MODULE = {
 	
 	// PUBLIC
 
-	appLoad : function () {
-		if (!goHomePage()) {
-			this.initApp();
-		}
-	},
-	
 	// PRIVATE
+
+	context : "#login-page",
+
+	init : (function() { 
+		if (!goHomePage()) {
+			$(document).ready(function() {
+				LOGIN_MODULE.initApp();
+			});
+		}
+	})(),
 
 	initApp : function() {
 		setAPageShowHide();
-		
-		$(document).ready(function() {
-			LOGIN_MODULE.login();
-		});
+		configureShakeToGoBack();
+
+		LOGIN_MODULE.login();
 	},
 	
 	login : function() {
-		$("#login-form").unbind('submit').submit(function() {
+		$(LOGIN_MODULE.context).find("#login-form").submit(function() {
 			
 			var formData = $(this).serialize();
 
@@ -38,5 +41,3 @@ var LOGIN_MODULE = {
 		});
 	}
 };
-
-LOGIN_MODULE.appLoad();

@@ -3,13 +3,9 @@ var MENU_MODULE = {
 	// PUBLIC
 
 	initMenu : function() {
-		$.mobile.changePage( "#menu-page", { 
+		$.mobile.changePage( MENU_MODULE.context, { 
 			transition: "flip"
 		});
-
-		MENU_MODULE.setUserButton();
-		MENU_MODULE.setResourceButton();
-		MENU_MODULE.setTaskButton();
 	},
 
 	startAuto : function() {
@@ -23,23 +19,32 @@ var MENU_MODULE = {
 
 	// PRIVATE
 
+	context : "#menu-page",
 	serviceChecker : null,
 	serviceFrequency : 1000 * 60 * 3,
 	
+	init : (function() { 
+		$(document).ready(function() {
+			MENU_MODULE.setUserButton();
+			MENU_MODULE.setResourceButton();
+			MENU_MODULE.setTaskButton();
+		});
+	})(),
+
 	setUserButton : function() {
-		$("#manage-users-button").unbind('click').click(function() {
+		$(MENU_MODULE.context).find("#manage-users-button").click(function() {
 			alert(1);
 		});
 	},
 	
 	setResourceButton : function() {
-		$("#manage-resources-button").unbind('click').click(function() {
+		$(MENU_MODULE.context).find("#manage-resources-button").click(function() {
 			alert(2);
 		});
 	},
 	
 	setTaskButton : function() {
-		$("#manage-tasks-button").unbind('click').click(function() {
+		$(MENU_MODULE.context).find("#manage-tasks-button").click(function() {
 			alert(3);
 		});
 	}

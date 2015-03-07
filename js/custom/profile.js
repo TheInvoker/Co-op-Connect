@@ -7,7 +7,7 @@ var PROFILE_MODULE = {
 			page : 'user/getprofile',
 			id : user_id
 		}, function(response) {
-			$.mobile.changePage("#profile-page", { 
+			$.mobile.changePage(PROFILE_MODULE.context, { 
 				transition: "slide"
 			});
 			
@@ -21,33 +21,35 @@ var PROFILE_MODULE = {
 	
 	// PRIVATE
 
+	context : "#profile-page",
+
 	displayProfile : function(response, user_id) {
 		var user = GLOBAL_DATA.user;
 		
-		$("#profile-fullname").html(response['firstname'] + ' ' + response['lastname']);
-		$("#profile-avatar-image").attr("src", response['picURL']=='' ? GLOBAL_DATA.def_image_link : response['picURL']);
+		$(PROFILE_MODULE.context).find("#profile-fullname").html(response['firstname'] + ' ' + response['lastname']);
+		$(PROFILE_MODULE.context).find("#profile-avatar-image").attr("src", response['picURL']=='' ? GLOBAL_DATA.def_image_link : response['picURL']);
 
 		if (response['status']) {
-			$("#profile-status").show().html(Autolinker.link(response['status']));
+			$(PROFILE_MODULE.context).find("#profile-status").show().html(Autolinker.link(response['status']));
 		} else {
-			$("#profile-status").hide();
+			$(PROFILE_MODULE.context).find("#profile-status").hide();
 		}
-		$("#profile-biotext").html(Autolinker.link(response['biotext']));
+		$(PROFILE_MODULE.context).find("#profile-biotext").html(Autolinker.link(response['biotext']));
 		
-		$("#profile-role").html(getColorCodeTag(response['role_name'], response['r_color']));
-		$("#profile-department").html(getColorCodeTag(response['department_name'], response['d_color']));
-		$("#profile-datejoined").html(response['datejoined']);
+		$(PROFILE_MODULE.context).find("#profile-role").html(getColorCodeTag(response['role_name'], response['r_color']));
+		$(PROFILE_MODULE.context).find("#profile-department").html(getColorCodeTag(response['department_name'], response['d_color']));
+		$(PROFILE_MODULE.context).find("#profile-datejoined").html(response['datejoined']);
 		
-		$("#profile-email").attr("href", "mailto:" + response['email']);
-		$("#profile-phone").attr("href", "tel:+" + response['phone']);
-		$("#profile-site").attr("href", $(Autolinker.link(response['website'])).attr("href"));
-		$("#profile-placements").unbind('click').click(function() {
+		$(PROFILE_MODULE.context).find("#profile-email").attr("href", "mailto:" + response['email']);
+		$(PROFILE_MODULE.context).find("#profile-phone").attr("href", "tel:+" + response['phone']);
+		$(PROFILE_MODULE.context).find("#profile-site").attr("href", $(Autolinker.link(response['website'])).attr("href"));
+		$(PROFILE_MODULE.context).find("#profile-placements").unbind('click').click(function() {
 			PLACEMENT_MODULE.getPlacements(user_id);
 		});
 		if (user['id'] == user_id) {
-			$("#profile-message").hide();
+			$(PROFILE_MODULE.context).find("#profile-message").hide();
 		} else {
-			$("#profile-message").show().unbind('click').click(function() {
+			$(PROFILE_MODULE.context).find("#profile-message").show().unbind('click').click(function() {
 				PROFILE_MODULE.createThread(user_id);
 			});
 		}
@@ -72,11 +74,11 @@ var PROFILE_MODULE = {
 		var user = GLOBAL_DATA.user;
 		
 		if (user_id == user['id']) {
-			$("#profile-edit-button").show().unbind('click').click(function() {
+			$(PROFILE_MODULE.context).find("#profile-edit-button").show().unbind('click').click(function() {
 				PROFILE_EDIT_MODULE.editProfileHandler(response, user_id);
 			});
 		} else {
-			$("#profile-edit-button").hide();
+			$(PROFILE_MODULE.context).find("#profile-edit-button").hide();
 		}
 	}
 };

@@ -3,9 +3,7 @@ var PLACEMENT_EDIT_MODULE = {
 	// PUBLIC
 
 	newPlacement : function() {
-		$.mobile.changePage("#placement-edit-page", { 
-			transition: "slide"
-		});
+		PLACEMENT_EDIT_MODULE.switchPage();
 		
 		PLACEMENT_EDIT_MODULE.setFormFields(null);
 		PLACEMENT_EDIT_MODULE.setDateFields(true);
@@ -13,58 +11,68 @@ var PLACEMENT_EDIT_MODULE = {
 	},
 
 	setPlacementForEdit : function(obj) {
-		$.mobile.changePage("#placement-edit-page", { 
-			transition: "slide"
-		});
+		PLACEMENT_EDIT_MODULE.switchPage();
 		
-
 		PLACEMENT_EDIT_MODULE.setFormFields(obj);
 		PLACEMENT_EDIT_MODULE.setDateFields(false);
-		PLACEMENT_EDIT_MODULE.placementSubmit(obj);
+		PLACEMENT_EDIT_MODULE.placementSubmit(obj['id']);
 	},
 	
 	// PRIVATE
 	
-	setFormFields : function(obj) {
-		$("#placement-edit-form").find("input[name=address]").val(obj==null ? '' : obj['address'] + ', ' + obj['city'] + ', ' + obj['country']).geocomplete({ 
-			details: "#placement-edit-form" 
-		});
+	context : "#placement-edit-page",
 
-		var swt = $("#placement-edit-form").find("select[name=active]");
-		
+	switchPage : function() {
+		$.mobile.changePage(PLACEMENT_EDIT_MODULE.context, { 
+			transition: "slide"
+		});
+	},
+
+	setFormFields : function(obj) {
+
+		var swt = $(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("select[name=active]");
+		var addr = $(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=address]");
+
 		if (obj) {
-			$("#placement-edit-form").find("input[name=lat]").val(obj['latitude']);
-			$("#placement-edit-form").find("input[name=lng]").val(obj['longitude']);
-			$("#placement-edit-form").find("input[name=name]").val(obj['address']);
-			$("#placement-edit-form").find("input[name=locality]").val(obj['city']);
-			$("#placement-edit-form").find("input[name=country]").val(obj['country']);
+			addr.val(obj['address'] + ', ' + obj['city'] + ', ' + obj['country']);
+
+			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=lat]").val(obj['latitude']);
+			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=lng]").val(obj['longitude']);
+			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=name]").val(obj['address']);
+			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=locality]").val(obj['city']);
+			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=country]").val(obj['country']);
 			
-			$("#placement-edit-form").find("input[name=role]").val(obj['topic']);
-			$("#placement-edit-form").find("input[name=company]").val(obj['organization']);
-			$("#placement-edit-form").find("input[name=date_start]").val(obj['date_started']);
-			$("#placement-edit-form").find("input[name=date_end]").val(obj['date_finished']);
+			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=role]").val(obj['topic']);
+			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=company]").val(obj['organization']);
+			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=date_start]").val(obj['date_started']);
+			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=date_end]").val(obj['date_finished']);
 			
 			swt.val(obj['active']);
 		} else {
-			$("#placement-edit-form").find("input").val("");
+			
+			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input").val("");
 			
 			swt.val('1');
 		}
 		
+		addr.geocomplete({ 
+			details: "#placement-edit-form" 
+		});
+
 		swt.slider('refresh');
 	},
 	
 	setDateFields : function(setCurrentDate) {
-		var elements = $("#placement-edit-form").find("input[type=date]");
+		var elements = $(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[type=date]");
 		dateHandler(elements, setCurrentDate, function() {}, false);
 	},
 
-	placementSubmit : function(obj) {
-		$("#placement-edit-form").unbind('submit').submit(function() {
+	placementSubmit : function(pid) {
+		$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").unbind('submit').submit(function() {
 
 			var user = GLOBAL_DATA.user;
 
-			if (obj == null) {	
+			if (pid == null) {	
 				var obj = {
 					page : "placement/addplacements",
 					user_id : user['id']
@@ -72,7 +80,7 @@ var PLACEMENT_EDIT_MODULE = {
 			} else {
 				var obj = {
 					page : "placement/setplacements",
-					id : obj['id']
+					id : pid
 				};
 			}
 			

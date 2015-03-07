@@ -4,7 +4,7 @@ var RESET_MODULE = {
 	
 	initReset : function() {
 
-		$("#reset-form").unbind('submit').submit(function() {
+		$(RESET_MODULE.context).find("#reset-form").unbind('submit').submit(function() {
 			
 			var token = getUrlParameter('token');
 			var id = getUrlParameter('id');
@@ -21,8 +21,9 @@ var RESET_MODULE = {
 				
 			return false;
 		});
-	}
+	},
 	
 	// PRIVATE
 	
+	context : "#reset-page"
 };
