@@ -1,69 +1,58 @@
-var THREAD_MODULE = {
+var THREAD_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var serviceChecker = null;
+	var serviceFrequency = 1000 * 60 * 3;
+	var context = "#thread-page";
 
-	setMessageThreads : function() {
+	this.setMessageThreads = function() {
 		var user = GLOBAL_DATA.user;
 
 		runAJAXSerial('', {
 			page : 'message/getthreads',
 			id : user['id']
 		}, function(response) {
-			$.mobile.changePage(THREAD_MODULE.context, { 
+			$.mobile.changePage(context, { 
 				transition: "slide"
 			});
 			
 			// add thread items
-			THREAD_MODULE.displayThreads(response);
+			displayThreads(response);
 			
 			// handle clicks
-			THREAD_MODULE.handleAddMember();
-			THREAD_MODULE.handleProfileClick();
-			THREAD_MODULE.clickHandler(response);
+			handleAddMember();
+			handleProfileClick();
+			clickHandler(response);
 		}, function(data,status,xhr) {
 
 		});
-	},
+	};
 
-	startAuto : function() {
-		THREAD_MODULE.threadChecker = setInterval(function(){ 
-			THREAD_MODULE.setMessageThreads();
-		}, THREAD_MODULE.serviceFrequency);
-	},
+	this.startAuto = function() {
+		threadChecker = setInterval(function(){ 
+			setMessageThreads();
+		}, serviceFrequency);
+	};
 
-	stopAuto : function() {
-		clearInterval(THREAD_MODULE.serviceChecker);
-	},
+	this.stopAuto = function() {
+		clearInterval(serviceChecker);
+	};
 
-	// PRIVATE
-
-	serviceChecker : null,
-	serviceFrequency : 1000 * 60 * 3,
-	context : "#thread-page",
-
-	displayThreads : function(response) {
-		var list = $(THREAD_MODULE.context).find("#thread-list");
+	var displayThreads = function(response) {
+		var list = $(context).find("#thread-list");
 		list.empty();
 		
 		var myListContent = "";
 		for(var i=0; i<response.length; i+=1) {
 			var obj = response[i];
-			myListContent += '<li>' + THREAD_MODULE.formatThread(obj) + '</li>';
+			myListContent += '<li>' + formatThread(obj) + '</li>';
 		}
 		
 		list.append(myListContent).listview().trigger('create');
 		list.listview('refresh');
-	},
-
-	checkNew : function(obj) {
-		if (obj['new']=='1') {
-			return ' class="new_item"'; 
-		}
-		return '';
-	},
+	};
 	
-	formatThread : function(obj) {
-		var str = '<a href="#"' + THREAD_MODULE.checkNew(obj) + ' data-thread-id="' + obj['id'] + '"><table>';
+	var formatThread = function(obj) {
+		var str = '<a href="#"' + checkNew(obj) + ' data-thread-id="' + obj['id'] + '"><table>';
 		
 		var picList = '';
 		var nameList = obj['member_names'];
@@ -83,10 +72,17 @@ var THREAD_MODULE = {
 
 		str += '</table></a>';
 		return str;
-	},
+	};
 
-	handleAddMember : function() {
-		$(THREAD_MODULE.context).find("#thread-list").find(".add-member-button").unbind('click').click(function() {
+	var checkNew = function(obj) {
+		if (obj['new']=='1') {
+			return ' class="new_item"'; 
+		}
+		return '';
+	};
+
+	var handleAddMember = function() {
+		$(context).find("#thread-list").find(".add-member-button").click(function() {
 			var thread_id = $(this).attr("data-thread-id");
 			var email = prompt("Please enter email adress of member to add:", "");
 			
@@ -99,7 +95,7 @@ var THREAD_MODULE = {
 					email : email
 				}, function(response) {
 					var new_thread_id = response['id'];
-					THREAD_MODULE.gotoMessage(new_thread_id);
+					gotoMessage(new_thread_id);
 				}, function(data,status,xhr) {
 
 				});
@@ -107,19 +103,20 @@ var THREAD_MODULE = {
 			
 			return false;
 		});
-	},	
+	};
 
-	handleProfileClick : function() {
-		$(THREAD_MODULE.context).find("#thread-list").find(".thread-image").unbind('click').click(function() {
+	var handleProfileClick = function() {
+		$(context).find("#thread-list").find(".thread-image").click(function() {
 			PROFILE_MODULE.getProfile($(this).attr("data-id"));
 			return false;
 		});
-	},
+	};
 	
-	clickHandler : function(response) {
-		$(THREAD_MODULE.context).find("#thread-list > li > a").unbind('click').click(function() {
+	var clickHandler = function(response) {
+		$(context).find("#thread-list > li > a").click(function() {
 			MESSAGE_MODULE.gotoMessage($(this).attr("data-thread-id"));
-			return false;
 		});
-	}
+	};
 };
+
+var THREAD_MODULE = new THREAD_MODULE_OBJ();

@@ -1,56 +1,52 @@
-var PLACEMENT_EDIT_MODULE = {
+var PLACEMENT_EDIT_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var context = "#placement-edit-page";
 
-	newPlacement : function() {
-		PLACEMENT_EDIT_MODULE.switchPage();
+	this.newPlacement = function() {
+		switchPage();
 		
-		PLACEMENT_EDIT_MODULE.setFormFields(null);
-		PLACEMENT_EDIT_MODULE.setDateFields(true);
-		PLACEMENT_EDIT_MODULE.placementSubmit(null);
-	},
+		setFormFields(null);
+		setDateFields(true);
+		placementSubmit(null);
+	};
 
-	setPlacementForEdit : function(obj) {
-		PLACEMENT_EDIT_MODULE.switchPage();
+	this.setPlacementForEdit = function(obj) {
+		switchPage();
 		
-		PLACEMENT_EDIT_MODULE.setFormFields(obj);
-		PLACEMENT_EDIT_MODULE.setDateFields(false);
-		PLACEMENT_EDIT_MODULE.placementSubmit(obj['id']);
-	},
+		setFormFields(obj);
+		setDateFields(false);
+		placementSubmit(obj['id']);
+	};
 	
-	// PRIVATE
-	
-	context : "#placement-edit-page",
-
-	switchPage : function() {
-		$.mobile.changePage(PLACEMENT_EDIT_MODULE.context, { 
+	var switchPage = function() {
+		$.mobile.changePage(context, { 
 			transition: "slide"
 		});
-	},
+	};
 
-	setFormFields : function(obj) {
+	var setFormFields = function(obj) {
 
-		var swt = $(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("select[name=active]");
-		var addr = $(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=address]");
+		var swt = $(context).find("#placement-edit-form").find("select[name=active]");
+		var addr = $(context).find("#placement-edit-form").find("input[name=address]");
 
 		if (obj) {
 			addr.val(obj['address'] + ', ' + obj['city'] + ', ' + obj['country']);
 
-			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=lat]").val(obj['latitude']);
-			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=lng]").val(obj['longitude']);
-			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=name]").val(obj['address']);
-			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=locality]").val(obj['city']);
-			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=country]").val(obj['country']);
+			$(context).find("#placement-edit-form").find("input[name=lat]").val(obj['latitude']);
+			$(context).find("#placement-edit-form").find("input[name=lng]").val(obj['longitude']);
+			$(context).find("#placement-edit-form").find("input[name=name]").val(obj['address']);
+			$(context).find("#placement-edit-form").find("input[name=locality]").val(obj['city']);
+			$(context).find("#placement-edit-form").find("input[name=country]").val(obj['country']);
 			
-			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=role]").val(obj['topic']);
-			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=company]").val(obj['organization']);
-			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=date_start]").val(obj['date_started']);
-			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[name=date_end]").val(obj['date_finished']);
+			$(context).find("#placement-edit-form").find("input[name=role]").val(obj['topic']);
+			$(context).find("#placement-edit-form").find("input[name=company]").val(obj['organization']);
+			$(context).find("#placement-edit-form").find("input[name=date_start]").val(obj['date_started']);
+			$(context).find("#placement-edit-form").find("input[name=date_end]").val(obj['date_finished']);
 			
 			swt.val(obj['active']);
 		} else {
 			
-			$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input").val("");
+			$(context).find("#placement-edit-form").find("input").val("");
 			
 			swt.val('1');
 		}
@@ -60,15 +56,15 @@ var PLACEMENT_EDIT_MODULE = {
 		});
 
 		swt.slider('refresh');
-	},
+	};
 	
-	setDateFields : function(setCurrentDate) {
-		var elements = $(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").find("input[type=date]");
+	var setDateFields = function(setCurrentDate) {
+		var elements = $(context).find("#placement-edit-form").find("input[type=date]");
 		dateHandler(elements, setCurrentDate, function() {}, false);
-	},
+	};
 
-	placementSubmit : function(pid) {
-		$(PLACEMENT_EDIT_MODULE.context).find("#placement-edit-form").unbind('submit').submit(function() {
+	var placementSubmit = function(pid) {
+		$(context).find("#placement-edit-form").unbind('submit').submit(function() {
 
 			var user = GLOBAL_DATA.user;
 
@@ -93,5 +89,7 @@ var PLACEMENT_EDIT_MODULE = {
 
 			return false;
 		});
-	}
+	};
 };
+
+var PLACEMENT_EDIT_MODULE = new PLACEMENT_EDIT_MODULE_OBJ();

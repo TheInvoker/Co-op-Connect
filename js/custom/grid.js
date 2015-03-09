@@ -1,9 +1,9 @@
-var GRID_MODULE = {
+var GRID_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var context = "#menu-page";
 	
-	setGrid : function() {
-		var grid = $(GRID_MODULE.context).find("#newsgrid");
+	this.setGrid = function() {
+		var grid = $(context).find("#newsgrid");
 		grid.empty();
 		
 		var items = 100;
@@ -14,10 +14,7 @@ var GRID_MODULE = {
 		}
 	
 		grid.html(str);
-	},
-
-	// PRIVATE
-
-	context : "#menu-page"
-
+	};
 };
+
+var GRID_MODULE = new GRID_MODULE_OBJ();

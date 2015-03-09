@@ -1,90 +1,84 @@
-var MENU_MODULE = {
+var MENU_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var context = "#menu-page";
+	var serviceChecker = null;
+	var serviceFrequency = 1000 * 60 * 3;
 	
-	initMenu : function() {
-		$.mobile.changePage( MENU_MODULE.context, { 
+	this.initMenu = function() {
+		$.mobile.changePage( context, { 
 			transition: "flip"
 		});
 
 		GRID_MODULE.setGrid();
-	},
+	};
 	
-	startAuto : function() {
-		MENU_MODULE.getCount();
+	this.startAuto = function() {
+		getCount();
 		
-		MENU_MODULE.serviceChecker = setInterval(function(){ 
-			MENU_MODULE.getCount();
-		}, MENU_MODULE.serviceFrequency);
-	},
+		serviceChecker = setInterval(function(){ 
+			getCount();
+		}, serviceFrequency);
+	};
 
-	stopAuto : function() {
-		clearInterval(MENU_MODULE.serviceChecker);
-	},
+	this.stopAuto = function() {
+		clearInterval(serviceChecker);
+	};
 
-	// PRIVATE
+	$(document).ready(function() {
+		setUserButton();
+		setPlacementButton();
+		setSearchButton();
+		setMapButton();
+		setMessageButton();
+		setResourceButton();
+		setAboutButton();
+	});
 
-	context : "#menu-page",
-	serviceChecker : null,
-	serviceFrequency : 1000 * 60 * 3,
-
-	init : (function() { 
-		$(document).ready(function() {
-			MENU_MODULE.setUserButton();
-			MENU_MODULE.setPlacementButton();
-			MENU_MODULE.setSearchButton();
-			MENU_MODULE.setMapButton();
-			MENU_MODULE.setMessageButton();
-			MENU_MODULE.setResourceButton();
-			MENU_MODULE.setAboutButton();
-		});
-	})(),
-
-	setUserButton : function() {
-		$(MENU_MODULE.context).find("#profile-button").click(function() {
+	var setUserButton = function() {
+		$(context).find("#profile-button").click(function() {
 			var user = GLOBAL_DATA.user;
 			PROFILE_MODULE.getProfile(user['id']);
 		});
-	},
+	};
 
-	setPlacementButton : function() {
-		$(MENU_MODULE.context).find("#placement-button").click(function() {
+	var setPlacementButton = function() {
+		$(context).find("#placement-button").click(function() {
 			var user = GLOBAL_DATA.user;
 			PLACEMENT_MODULE.getPlacements(user['id']);
 		});
-	},
+	};
 	
-	setSearchButton : function() {
-		$(MENU_MODULE.context).find("#search-button").click(function() {
+	var setSearchButton = function() {
+		$(context).find("#search-button").click(function() {
 			SEARCH_MODULE.initSearch();
 		});
-	},
+	};
 	
-	setMapButton : function() {
-		$(MENU_MODULE.context).find("#map-button").click(function() {
+	var setMapButton = function() {
+		$(context).find("#map-button").click(function() {
 			MAP_MODULE.showMap();
 		});
-	},
+	};
 	
-	setMessageButton : function() {
-		$(MENU_MODULE.context).find("#message-button").click(function() {
+	var setMessageButton = function() {
+		$(context).find("#message-button").click(function() {
 			THREAD_MODULE.setMessageThreads();
 		});
-	},
+	};
 	
-	setResourceButton : function() {
-		$(MENU_MODULE.context).find("#resource-button").click(function() {
+	var setResourceButton = function() {
+		$(context).find("#resource-button").click(function() {
 			RESOURCE_MODULE.setResource();
 		});
-	},
+	};
 	
-	setAboutButton : function() {
-		$(MENU_MODULE.context).find("#about-button").click(function() {
+	var setAboutButton = function() {
+		$(context).find("#about-button").click(function() {
 			ABOUT_MODULE.setAbout();
 		});
-	},
+	};
 	
-	getCount : function() {
+	var getCount = function() {
 		var user = GLOBAL_DATA.user;
 		
 		runAJAXSerial("", {
@@ -94,18 +88,20 @@ var MENU_MODULE = {
 			var mCount = response['new_messages'];
 			var rCount = response['new_news'];
 			
-			MENU_MODULE.setCount("#message-number", mCount); 
-			MENU_MODULE.setCount("#resource-number", rCount); 
+			setCount("#message-number", mCount); 
+			setCount("#resource-number", rCount); 
 		}, function(data,status,xhr) {
 			
 		});
-	},
+	};
 	
-	setCount : function(id, count) {
+	var setCount = function(id, count) {
 		if (count > 0) {
-			$(MENU_MODULE.context).find(id).show().text(count);
+			$(context).find(id).show().text(count);
 		} else {
-			$(MENU_MODULE.context).find(id).hide();
+			$(context).find(id).hide();
 		}
-	}
+	};
 };
+
+var MENU_MODULE = new MENU_MODULE_OBJ();

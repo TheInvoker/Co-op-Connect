@@ -1,29 +1,29 @@
-var MAP_SETTINGS_MODULE = {
+var MAP_SETTINGS_MODULE_OBJ = function() {
 	
-	// PUBLIC
-	
-	initSettings : function() {
-		$.mobile.changePage(MAP_SETTINGS_MODULE.context, { 
+	var context = "#map-settings-page";
+
+	this.initSettings = function() {
+		$.mobile.changePage(context, { 
 			transition: "slide"
 		});
 		
-		MAP_SETTINGS_MODULE.getLocations();
+		getLocations();
 		
-		MAP_SETTINGS_MODULE.initDate();
-	},
-	
-	// PRIVATE
+		initDate();
+	};
 
-	context : "#map-settings-page",
+	this.getLocations = function() {
+		$(context).find("#map-filter-form").submit();
+	};
 	
-	initDate : function() {
-		var elements = $(MAP_SETTINGS_MODULE.context).find("#map-filter-form").find("input[type=date]");
+	var initDate = function() {
+		var elements = $(context).find("#map-filter-form").find("input[type=date]");
 		dateHandler(elements, true, MAP_MODULE.getLocations, true);
-	},
+	};
 	
-	getLocations : function() {
+	var getLocations = function() {
 		
-		$(MAP_SETTINGS_MODULE.context).find("#map-filter-form").unbind('submit').submit(function() {
+		$(context).find("#map-filter-form").unbind('submit').submit(function() {
 			
 			var formData = $(this).serialize();
 
@@ -38,5 +38,7 @@ var MAP_SETTINGS_MODULE = {
 			
 			return false;
 		});
-	}
+	};
 };
+
+var MAP_SETTINGS_MODULE = new MAP_SETTINGS_MODULE_OBJ();

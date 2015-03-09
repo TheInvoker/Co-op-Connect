@@ -1,51 +1,47 @@
-var MENU_MODULE = {
+var MENU_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var context = "#menu-page";
+	var serviceChecker = null;
+	var serviceFrequency = 1000 * 60 * 3;
 
-	initMenu : function() {
-		$.mobile.changePage( MENU_MODULE.context, { 
+	this.initMenu = function() {
+		$.mobile.changePage( context, { 
 			transition: "flip"
 		});
-	},
+	};
 
-	startAuto : function() {
-		MENU_MODULE.serviceChecker = setInterval(function(){ 
-		}, MENU_MODULE.serviceFrequency);
-	},
+	this.startAuto = function() {
+		serviceChecker = setInterval(function(){ 
+		}, serviceFrequency);
+	};
 
-	stopAuto : function() {
-		clearInterval(MENU_MODULE.serviceChecker);
-	},
-
-	// PRIVATE
-
-	context : "#menu-page",
-	serviceChecker : null,
-	serviceFrequency : 1000 * 60 * 3,
+	this.stopAuto = function() {
+		clearInterval(serviceChecker);
+	};
 	
-	init : (function() { 
-		$(document).ready(function() {
-			MENU_MODULE.setUserButton();
-			MENU_MODULE.setResourceButton();
-			MENU_MODULE.setTaskButton();
-		});
-	})(),
+	$(document).ready(function() {
+		setUserButton();
+		setResourceButton();
+		setTaskButton();
+	});
 
-	setUserButton : function() {
-		$(MENU_MODULE.context).find("#manage-users-button").click(function() {
+	var setUserButton = function() {
+		$(context).find("#manage-users-button").click(function() {
 			alert(1);
 		});
-	},
+	};
 	
-	setResourceButton : function() {
-		$(MENU_MODULE.context).find("#manage-resources-button").click(function() {
+	var setResourceButton = function() {
+		$(context).find("#manage-resources-button").click(function() {
 			alert(2);
 		});
-	},
+	};
 	
-	setTaskButton : function() {
-		$(MENU_MODULE.context).find("#manage-tasks-button").click(function() {
+	var setTaskButton = function() {
+		$(context).find("#manage-tasks-button").click(function() {
 			alert(3);
 		});
-	}
+	};
 };
+
+var MENU_MODULE = new MENU_MODULE_OBJ();

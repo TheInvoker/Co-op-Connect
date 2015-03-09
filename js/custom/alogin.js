@@ -1,28 +1,13 @@
-var LOGIN_MODULE = {
+var LOGIN_MODULE_OBJ = function() {
+
+	var context = "#login-page";
+
+	this.initApp = function() {
+		login();
+	};
 	
-	// PUBLIC
-
-	// PRIVATE
-
-	context : "#login-page",
-
-	init : (function() { 
-		if (!goHomePage()) {
-			$(document).ready(function() {
-				LOGIN_MODULE.initApp();
-			});
-		}
-	})(),
-
-	initApp : function() {
-		setAPageShowHide();
-		configureShakeToGoBack();
-
-		LOGIN_MODULE.login();
-	},
-	
-	login : function() {
-		$(LOGIN_MODULE.context).find("#login-form").submit(function() {
+	var login = function() {
+		$(context).find("#login-form").submit(function() {
 			
 			var formData = $(this).serialize();
 
@@ -39,5 +24,7 @@ var LOGIN_MODULE = {
 
 			return false;
 		});
-	}
+	};
 };
+
+var LOGIN_MODULE = new LOGIN_MODULE_OBJ();

@@ -1,57 +1,53 @@
-var SEARCH_MODULE = {
+var SEARCH_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var page = 0;
+	var context = "#search-page";
 
-	initSearch : function() {
-		$.mobile.changePage(SEARCH_MODULE.context, { 
+	this.initSearch = function() {
+		$.mobile.changePage(context, { 
 			transition: "slide"
 		});
 		
-		SEARCH_MODULE.clearPage();
+		clearPage();
 
-		SEARCH_MODULE.settingsHandler();
+		settingsHandler();
 		
-		SEARCH_MODULE.searchHandler();
-	},
+		searchHandler();
+	};
 	
-	// PRIVATE
-
-	page : 0,
-	context : "#search-page",
-
-	clearPage : function() {
-		$(SEARCH_MODULE.context).find("#search-form").find("input").eq(0).val("");
-		$(SEARCH_MODULE.context).find("#search-table > tbody").empty();
-	},
+	var clearPage = function() {
+		$(context).find("#search-form").find("input").eq(0).val("");
+		$(context).find("#search-table > tbody").empty();
+	};
 	
-	settingsHandler : function() {
-		$(SEARCH_MODULE.context).find("#search-setting-button").unbind('click').click(function() {
+	var settingsHandler = function() {
+		$(context).find("#search-setting-button").unbind('click').click(function() {
 			SEARCH_SETTINGS_MODULE.initSettings();
 		});
-	},
+	};
 	
-	searchHandler : function() {
+	var searchHandler = function() {
 		
-		$(SEARCH_MODULE.context).find("#search-form").unbind('submit').submit(function() {
+		$(context).find("#search-form").unbind('submit').submit(function() {
 			
 			var formData = SEARCH_SETTINGS_MODULE.getFormData() + "&" + $(this).serialize();
 
 			runAJAXSerial(formData, {
 				page : 'search/search'
 			}, function(response) {
-				SEARCH_MODULE.showResults(response);
-				SEARCH_MODULE.handleViewPerson();
-				SEARCH_MODULE.handleCheckBoxControls();
+				showResults(response);
+				handleViewPerson();
+				handleCheckBoxControls();
 			}, function(data,status,xhr) {
 
 			});
 			
 			return false;
 		});
-	},
+	};
 	
-	showResults : function(response) {
-		var body = $(SEARCH_MODULE.context).find("#search-table > tbody");
+	var showResults = function(response) {
+		var body = $(context).find("#search-table > tbody");
 		
 		var acc = "";
 		for(var i=0;i<response.length; i+=1) {
@@ -70,31 +66,31 @@ var SEARCH_MODULE = {
 		
 		body.html(acc);
 
-		$(SEARCH_MODULE.context).find("#search-table").table("refresh");
-	},
+		$(context).find("#search-table").table("refresh");
+	};
 
-	handleViewPerson : function() {
-		$(SEARCH_MODULE.context).find("#search-table").find(".search-person").unbind('click').click(function() {
+	var handleViewPerson = function() {
+		$(context).find("#search-table").find(".search-person").unbind('click').click(function() {
 			var id = $(this).attr("data-id");
 			PROFILE_MODULE.getProfile(id);
 		});
-	},
+	};
 
-	handleCheckBoxControls : function() {
-		var checkBoxes = $(SEARCH_MODULE.context).find("#search-table").find(".custom-radio");
+	var handleCheckBoxControls = function() {
+		var checkBoxes = $(context).find("#search-table").find(".custom-radio");
 		
 		checkBoxes.unbind('click').click(function() {
 			$(this).toggleClass("custom-radio-on");
 			return false;
 		});
-		$(SEARCH_MODULE.context).find("#search-clear-all").unbind('click').click(function() {
+		$(context).find("#search-clear-all").unbind('click').click(function() {
 			checkBoxes.removeClass("custom-radio-on");
 		});
-		$(SEARCH_MODULE.context).find("#search-select-all").unbind('click').click(function() {
+		$(context).find("#search-select-all").unbind('click').click(function() {
 			checkBoxes.addClass("custom-radio-on");
 		});
-		$(SEARCH_MODULE.context).find("#search-message-all").unbind('click').click(function() {
-			var idList = SEARCH_MODULE.getDataList(checkBoxes, "data-id");
+		$(context).find("#search-message-all").unbind('click').click(function() {
+			var idList = getDataList(checkBoxes, "data-id");
 			var strList = idList.join(",");
 			 
 			var user = GLOBAL_DATA.user;
@@ -110,15 +106,15 @@ var SEARCH_MODULE = {
 				
 			});
 		});
-		$(SEARCH_MODULE.context).find("#search-email-all").unbind('click').click(function() {
-			var emailList = SEARCH_MODULE.getDataList(checkBoxes, "data-email");
+		$(context).find("#search-email-all").unbind('click').click(function() {
+			var emailList = getDataList(checkBoxes, "data-email");
 			var strList = emailList.join(","); 
 			
 			window.location.href = "mailto:?bcc=" + strList;
 		});
-	},
+	};
 
-	getDataList : function(checkBoxes, attr) {
+	var getDataList = function(checkBoxes, attr) {
 		var list = [];
 		
 		for(var i=0; i<checkBoxes.length; i+=1) {
@@ -131,5 +127,7 @@ var SEARCH_MODULE = {
 		}
 		
 		return list;
-	}
+	};
 };
+
+var SEARCH_MODULE = new SEARCH_MODULE_OBJ();

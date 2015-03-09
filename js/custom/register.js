@@ -1,13 +1,13 @@
-var REGISTER_MODULE = {
+var REGISTER_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var context = "#register-page";
 
-	register : function() {
-		$.mobile.changePage( REGISTER_MODULE.context, { 
+	this.register = function() {
+		$.mobile.changePage( context, { 
 			transition: "slideup"
 		});	
 		
-		$(REGISTER_MODULE.context).find("#register-form").unbind('submit').submit(function() {
+		$(context).find("#register-form").unbind('submit').submit(function() {
 			
 			runAJAXSerial($(this).serialize(), {
 				page : 'user/register'
@@ -19,13 +19,11 @@ var REGISTER_MODULE = {
 
 			return false;
 		});
-	},
+	};
 	
-	resetForm : function() {
-		$(REGISTER_MODULE.context).find("#register-form").find("input").val("");
-	},
-
-	// PRIVATE
-
-	context : "#register-page"
+	this.resetForm = function() {
+		$(context).find("#register-form").find("input").val("");
+	};
 };
+
+var REGISTER_MODULE = new REGISTER_MODULE_OBJ();

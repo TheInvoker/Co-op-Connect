@@ -1,64 +1,69 @@
-var MESSAGE_MODULE = {
+var MESSAGE_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var page = 0;
+	var thread_id = null;
+	var serviceChecker = null;
+	var serviceFrequency = 1000 * 60 * 3;
+	var context = "#message-page";
+	var thisOBJ = this;
+	
+	this.gotoMessage = function(thread_id) {
 
-	gotoMessage : function(thread_id) {
+		page = 0;
 		var user = GLOBAL_DATA.user;
-		MESSAGE_MODULE.page = 0;
 		
 		runAJAXSerial('', {
 			page : 'message/getmessages',
 			thread_id : thread_id,
 			id : user['id'],
-			pageindex : MESSAGE_MODULE.page
+			pageindex : page
 		}, function(response) {
-			// update global vars
-			MESSAGE_MODULE.page += 1;
-			MESSAGE_MODULE.thread_id = thread_id;
 			
-			$.mobile.changePage(MESSAGE_MODULE.context, { 
+			// update global vars
+			page += 1;
+			thread_id = thread_id;
+			
+			$.mobile.changePage(context, { 
 				transition: "slide"
 			});
 			
 			// clear screen
-			MESSAGE_MODULE.clearScreen();
+			clearScreen();
 			
 			// display messages
-			MESSAGE_MODULE.displayMessages(response, true);
+			displayMessages(response, true);
 			
 			// handle sending messages
-			MESSAGE_MODULE.handleSend(thread_id);
+			handleSend(thread_id);
 			
 			// handle getting more messages
-			MESSAGE_MODULE.handleGetMore(thread_id);
+			handleGetMore(thread_id);
 		}, function(data,status,xhr) {
 
 		});
-	},
+	};
 
-	startAuto : function() {
-		MESSAGE_MODULE.serviceChecker = setInterval(function(){ 
-			MESSAGE_MODULE.getNewMessages(MESSAGE_MODULE.thread_id);
-		}, MESSAGE_MODULE.serviceFrequency);
-	},
+	this.startAuto = function() {
+		serviceChecker = setInterval(function(){ 
+			getNewMessages(thread_id);
+		}, serviceFrequency);
+	};
 
-	stopAuto : function() {
-		clearInterval(MESSAGE_MODULE.serviceChecker);
-	},
+	this.stopAuto = function() {
+		clearInterval(serviceChecker);
+	};
 
-	// PRIVATE
+	this.scrollBot = function() {
+		$('html, body').animate({
+			scrollTop:$(document).height()
+		}, 'slow');
+	};
 
-	page : 0,
-	thread_id : null,
-	serviceChecker : null,
-	serviceFrequency : 1000 * 60 * 3,
-	context : "#message-page",
-	
-	clearScreen : function() {
-		$(MESSAGE_MODULE.context).find("#message-list").empty();
-	},
+	var clearScreen = function() {
+		$(context).find("#message-list").empty();
+	};
 
-	displayMessages : function(response, onBottom) {
+	var displayMessages = function(response, onBottom) {
 		var user = GLOBAL_DATA.user;
 		
 		var acc = '';
@@ -77,23 +82,23 @@ var MESSAGE_MODULE = {
 			acc = acc_temp + acc;
 		}
 		
-		MESSAGE_MODULE.addMessage(acc, onBottom);
-	},
+		addMessage(acc, onBottom);
+	};
 
-	addMessage : function(html, onBottom) {
-		var list = $(MESSAGE_MODULE.context).find("#message-list");
+	var addMessage = function(html, onBottom) {
+		var list = $(context).find("#message-list");
 		if (onBottom) {
 			list.append(html);
-			MESSAGE_MODULE.scrollBot();
+			thisOBJ.scrollBot();
 		} else {
 			list.prepend(html);
 		}
-	},
+	};
 
-	handleSend : function(thread_id) {
+	var handleSend = function(thread_id) {
 		var user = GLOBAL_DATA.user;
 		
-		$(MESSAGE_MODULE.context).find("#message-form").unbind('submit').submit(function() {
+		$(context).find("#message-form").unbind('submit').submit(function() {
 		
 			var field = $(this).find("input[type=text]");
 		
@@ -112,29 +117,29 @@ var MESSAGE_MODULE = {
 				
 				field.val("").focus();
 				
-				MESSAGE_MODULE.displayMessages([obj], true);
+				displayMessages([obj], true);
 			}, function(data,status,xhr) {
 				
 			});
 			
 			return false;
 		});
-	},
+	};
 	
-	handleGetMore : function(thread_id) {
+	var handleGetMore = function(thread_id) {
 		var user = GLOBAL_DATA.user;
 		
-		$(MESSAGE_MODULE.context).find("#more-message-button").unbind('click').click(function() {
+		$(context).find("#more-message-button").unbind('click').click(function() {
 			runAJAXSerial('', {
 				page : 'message/getmessages',
 				thread_id : thread_id,
 				id : user['id'],
-				pageindex : MESSAGE_MODULE.page
+				pageindex : page
 			}, function(response) {
 				if (response.length > 0) {
-					MESSAGE_MODULE.page += 1;
+					page += 1;
 					
-					MESSAGE_MODULE.displayMessages(response, false);
+					displayMessages(response, false);
 				} else {
 					alert("No more messages.");
 				}
@@ -144,9 +149,9 @@ var MESSAGE_MODULE = {
 
 			return false;
 		});
-	},
+	};
 	
-	getNewMessages : function(thread_id) {
+	var getNewMessages = function(thread_id) {
 		var user = GLOBAL_DATA.user;
 		
 		runAJAXSerial('', {
@@ -155,16 +160,12 @@ var MESSAGE_MODULE = {
 			id : user['id']
 		}, function(response) {
 			if (response.length > 0) {
-				MESSAGE_MODULE.displayMessages(response, true);
+				displayMessages(response, true);
 			}
 		}, function(data,status,xhr) {
 			
 		});
-	},
-	
-	scrollBot : function() {
-		$('html, body').animate({
-			scrollTop:$(document).height()
-		}, 'slow');
-	}
+	};
 };
+
+var MESSAGE_MODULE = new MESSAGE_MODULE_OBJ();

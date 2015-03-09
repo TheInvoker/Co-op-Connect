@@ -1,70 +1,61 @@
-var PLACEMENT_MODULE = {
+var PLACEMENT_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var context = "#placement-page";
+	var placement = null;
+	var user_id = null;
 	
-	getPlacements : function(user_id) {
+	this.getPlacements = function(uid) {
 		var user = GLOBAL_DATA.user;
-		var me = user_id == user['id'];
+		var me = uid == user['id'];
 		
 		runAJAXSerial('', {
 			page : 'placement/getplacements',
-			targetid : user_id,
+			targetid : uid,
 			id : user['id']
 		}, function(response) {
 			// record the user id in context
-			PLACEMENT_MODULE.user_id = user_id;
+			user_id = uid;
 			
-			$.mobile.changePage(PLACEMENT_MODULE.context, { 
+			$.mobile.changePage(context, { 
 				transition: "slide"
 			});
 
 			// add data to listview
-			PLACEMENT_MODULE.displayPlacements(me, response);
+			displayPlacements(me, response);
 			
 			// handle clicks
-			PLACEMENT_MODULE.clickHandler(response);
+			clickHandler(response);
 			
 			// attach click handler on items
-			PLACEMENT_MODULE.menuHandler(me, response);
+			menuHandler(me, response);
 			
 			// handle new placement
-			PLACEMENT_MODULE.newPlacement(me);
+			newPlacement(me);
 
 		}, function(data,status,xhr) {
 
 		});
-	},
+	};
 
-	reload : function() {
-		PLACEMENT_MODULE.getPlacements(PLACEMENT_MODULE.user_id);
-	},
+	this.reload = function() {
+		this.getPlacements(user_id);
+	};
 
-	// PRIVATE
-	
-	context : "#placement-page",
-	placement : null,
-	user_id : null,
-
-	init : (function() { 
-		$(document).ready(function() {
-		});
-	})(),
-
-	displayPlacements : function(me, response) {
-		var list = $(PLACEMENT_MODULE.context).find("#placement-list");
+	var displayPlacements = function(me, response) {
+		var list = $(context).find("#placement-list");
 		list.empty();
 		
 		var myListContent = "";
 		for(var i=0; i<response.length; i+=1) {
 			var obj = response[i];
-			myListContent += '<li>' + PLACEMENT_MODULE.formatLocation(obj, me) + '</li>';
+			myListContent += '<li>' + formatLocation(obj, me) + '</li>';
 		}
 		
 		list.append(myListContent).listview().trigger('create');
 		list.listview('refresh');
-	},
+	};
 	
-	formatLocation : function(obj, me) {
+	var formatLocation = function(obj, me) {
 		var str = '<a href="#placement-panel">';
 		str += '<table>';
 		str += '<tr title="Address"><td valign="top"><span class="ui-icon-location ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['address'] + ', ' + obj['city'] + ', ' + obj['country'] + '</td></tr>';
@@ -80,84 +71,84 @@ var PLACEMENT_MODULE = {
 		str += '</a>';
 		
 		return str;
-	},
+	};
 
-	clickHandler : function(response) {
-		var items = $(PLACEMENT_MODULE.context).find("#placement-list > li > a");
+	var clickHandler = function(response) {
+		var items = $(context).find("#placement-list > li > a");
 		
 		// when clicked, store the obj reference
 		items.unbind('click').click(function() {
 			var index = items.index(this);
-			PLACEMENT_MODULE.placement = response[index];
+			placement = response[index];
 		});
-	},
+	};
 
-	menuHandler : function(me, response) {
+	var menuHandler = function(me, response) {
 
 		// set up menu handler
-		var editButton = $(PLACEMENT_MODULE.context).find("#placement-edit-button");
-		var checklistButton = $(PLACEMENT_MODULE.context).find("#placement-checklist-button");
-		var mapButton = $(PLACEMENT_MODULE.context).find("#placement-map-button");
-		var deleteButton = $(PLACEMENT_MODULE.context).find("#placement-delete-button");
+		var editButton = $(context).find("#placement-edit-button");
+		var checklistButton = $(context).find("#placement-checklist-button");
+		var mapButton = $(context).find("#placement-map-button");
+		var deleteButton = $(context).find("#placement-delete-button");
 		
 		if (me) {
-			PLACEMENT_MODULE.editPlacement(editButton);
-			PLACEMENT_MODULE.checklistPlacement(checklistButton);
-			PLACEMENT_MODULE.deletePlacement(deleteButton);
+			editPlacement(editButton);
+			checklistPlacement(checklistButton);
+			deletePlacement(deleteButton);
 		} else {
 			editButton.hide();
 			checklistButton.hide();
 			deleteButton.hide();
 		}
 		
-		PLACEMENT_MODULE.mapPlacement(mapButton);
-	},
+		mapPlacement(mapButton);
+	};
 	
-	editPlacement : function(button) {
+	var editPlacement = function(button) {
 		button.show().unbind('click').click(function() { 			
-			var obj = PLACEMENT_MODULE.placement;
+			var obj = placement;
 
 			PLACEMENT_EDIT_MODULE.setPlacementForEdit(obj);
 		});
-	},
+	};
 	
-	checklistPlacement : function(button) {
+	var checklistPlacement = function(button) {
 		button.show().unbind('click').click(function() { 
-			var obj = PLACEMENT_MODULE.placement;
+			var obj = placement;
 
-			CHECKLIST_MODULE.getChecklist(PLACEMENT_MODULE.user_id, obj);
+			CHECKLIST_MODULE.getChecklist(user_id, obj);
 		});
-	},
+	};
 	
-	mapPlacement : function(button) {
+	var mapPlacement = function(button) {
 		button.unbind('click').click(function() { 
-			var obj = PLACEMENT_MODULE.placement;
+			var obj = placement;
 
 			MAP_MODULE.showPoint(obj);
 		});
-	},
+	};
 
-	deletePlacement : function(button) {
+	var deletePlacement = function(button) {
 		button.show().unbind('click').click(function() {
 
-			var obj = PLACEMENT_MODULE.placement;
+			var obj = placement;
 
 			if (confirm("Are you sure you want to delete this placement?")) {
 				runAJAXSerial('', {
 					page : 'placement/deleteplacements',
 					id : obj['id']
 				}, function(response) {
-					$(PLACEMENT_MODULE.context).find('#placement-panel').panel('close');
-					PLACEMENT_MODULE.reload();
+					$(context).find('#placement-panel').panel('close');
+					reload();
 				}, function(data,status,xhr) {
 
 				});
 			}
 		});
-	},
+	};
 	
-	newPlacement : function(me) {
-		var button = $(PLACEMENT_MODULE.context).find("#add-placement-button");
+	var newPlacement = function(me) {
+		var button = $(context).find("#add-placement-button");
 		
 		if (me) {
 			button.show().unbind('click').click(function() {
@@ -166,5 +157,7 @@ var PLACEMENT_MODULE = {
 		} else {
 			button.hide();
 		}
-	}
+	};
 };
+
+var PLACEMENT_MODULE = new PLACEMENT_MODULE_OBJ();

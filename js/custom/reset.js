@@ -1,10 +1,10 @@
-var RESET_MODULE = {
+var RESET_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var context = "#reset-page";
 	
-	initReset : function() {
+	this.initReset = function() {
 
-		$(RESET_MODULE.context).find("#reset-form").unbind('submit').submit(function() {
+		$(context).find("#reset-form").unbind('submit').submit(function() {
 			
 			var token = getUrlParameter('token');
 			var id = getUrlParameter('id');
@@ -21,9 +21,7 @@ var RESET_MODULE = {
 				
 			return false;
 		});
-	},
-	
-	// PRIVATE
-	
-	context : "#reset-page"
+	};
 };
+
+var RESET_MODULE = new RESET_MODULE_OBJ();

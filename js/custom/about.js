@@ -1,19 +1,12 @@
-var ABOUT_MODULE = {
+var ABOUT_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var context = "#about-page";
 
-	setAbout : function() {
-		$.mobile.changePage(ABOUT_MODULE.context, { 
+	this.setAbout = function() {
+		$.mobile.changePage(context, { 
 			transition: "slide"
 		});
-	},
-
-	// PRIVATE
-
-	context : "#about-page",
-
-	init : (function() { 
-		$(document).ready(function() {
-		});
-	})()
+	};
 };
+
+var ABOUT_MODULE = new ABOUT_MODULE_OBJ();

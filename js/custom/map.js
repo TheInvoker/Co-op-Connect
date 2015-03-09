@@ -1,55 +1,51 @@
-var MAP_MODULE = {
+var MAP_MODULE_OBJ = function() {
 	
-	// PUBLIC
+	var map = null;
+	var context = "#map-page";
 	
-	showMap : function() {
-		MAP_MODULE.showMapPage();
+	this.showMap = function() {
+		showMapPage();
 
-		MAP_MODULE.handleSettingsButton(true);
+		handleSettingsButton(true);
 		
-		if (!$(MAP_MODULE.context).find('#map_canvas').prop('init')) {
-			MAP_MODULE.initMap();
+		if (!$(context).find('#map_canvas').prop('init')) {
+			initMap();
 		}
-	},
+	};
 
-	showPoint : function(obj) {
-		MAP_MODULE.showMapPage();
+	this.showPoint = function(obj) {
+		showMapPage();
 		
-		MAP_MODULE.handleSettingsButton(false);
+		handleSettingsButton(false);
 		
-		if ($(MAP_MODULE.context).find('#map_canvas').prop('init')) {
-			MAP_MODULE.displayPointOnMap(obj);
+		if ($(context).find('#map_canvas').prop('init')) {
+			displayPointOnMap(obj);
 		} else {
-			MAP_MODULE.initPointMap(obj);
+			initPointMap(obj);
 		}
-	},
+	};
 
-	// PRIVATE
-
-	map : null,
-	context : "#map-page",
-
-	init : (function() { 
-		$(document).ready(function() {
-		});
-	})(),
-
-	initMap : function() {
+	var initMap = function() {
 		
-		$(MAP_MODULE.context).find('#map_canvas').gmap().bind('init', function(ev, map) {
+		$(context).find('#map_canvas').gmap().bind('init', function(ev, map) {
 			
-			MAP_MODULE.map = map;
+			map = map;
 			$(this).prop('init', true);
 			
 			if ( navigator.geolocation ) {
 
 				// Find the users current position.  Cache the location for 5 minutes, timeout after 6 seconds
 				navigator.geolocation.getCurrentPosition(function (pos) {
-					$(MAP_MODULE.context).find('#map_canvas').gmap("option", "center", new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-					MAP_MODULE.getLocations();
+
+					$(context).find('#map_canvas').gmap("option", "center", new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+					
+					MAP_SETTINGS_MODULE_OBJ.getLocations();
+
 				}, function (error) {
-					MAP_MODULE.loadDefLocation();
-					MAP_MODULE.getLocations();
+
+					loadDefLocation();
+					
+					MAP_SETTINGS_MODULE_OBJ.getLocations();
 					
 					switch(error.code) {
 						case error.PERMISSION_DENIED:
@@ -64,6 +60,8 @@ var MAP_MODULE = {
 						case error.UNKNOWN_ERROR:
 							alert("Could not get your location. An unknown error occurred.");
 							break;
+					    default:
+					        alert("Could not get your location. An unknown error occurred.");
 					}
 				}, {
 					maximumAge: 500000, 
@@ -71,33 +69,33 @@ var MAP_MODULE = {
 					timeout: 6000
 				});
 			} else {
-				MAP_MODULE.loadDefLocation();
+				loadDefLocation();
 			}
 			
-			$(MAP_MODULE.context).find('#map_canvas').gmap('addControl', 'map-setting-button', google.maps.ControlPosition.RIGHT_TOP);
+			$(context).find('#map_canvas').gmap('addControl', 'map-setting-button', google.maps.ControlPosition.RIGHT_TOP);
 		});
-	},
+	};
 	
-	initPointMap : function(obj) {
-		$(MAP_MODULE.context).find('#map_canvas').gmap().bind('init', function(ev, map) {
+	var initPointMap = function(obj) {
+		$(context).find('#map_canvas').gmap().bind('init', function(ev, map) {
 
-			MAP_MODULE.map = map;
+			map = map;
 			$(this).prop('init', true);
 					
-			MAP_MODULE.displayPointOnMap(obj);
+			displayPointOnMap(obj);
 		});
-	},
+	};
 
-	displayPointOnMap : function(obj) {
-		$(MAP_MODULE.context).find('#map_canvas').gmap("option", "center", new google.maps.LatLng(obj['latitude'], obj['longitude']));
-		MAP_MODULE.showOnMap([obj]);
-	},
+	var displayPointOnMap = function(obj) {
+		$(context).find('#map_canvas').gmap("option", "center", new google.maps.LatLng(obj['latitude'], obj['longitude']));
+		showOnMap([obj]);
+	};
 
-	showOnMap : function(locations) {
-		var map = MAP_MODULE.map;
+	var showOnMap = function(locations) {
+		var map = map;
 		
 		// clear markers
-		$(MAP_MODULE.context).find('#map_canvas').gmap('clear', 'markers');
+		$(context).find('#map_canvas').gmap('clear', 'markers');
 		
 		// add new markers
 		for (var i=0; i<locations.length; i+=1) {
@@ -110,36 +108,38 @@ var MAP_MODULE = {
 				'icon': 'http://maps.google.com/mapfiles/ms/icons/' + loc['color'] + '-dot.png'
 			};
 			
-			$(MAP_MODULE.context).find('#map_canvas').gmap('addMarker', pos).click(function() {
-				$(MAP_MODULE.context).find('#map_canvas').gmap('openInfoWindow', {'content': loc['address']}, this);
+			$(context).find('#map_canvas').gmap('addMarker', pos).click(function() {
+				$(context).find('#map_canvas').gmap('openInfoWindow', {'content': loc['address']}, this);
 			});
 		}
 		
 		// set zoom
-		$(MAP_MODULE.context).find('#map_canvas').gmap('option', 'zoom', 10);
+		$(context).find('#map_canvas').gmap('option', 'zoom', 10);
 		
 		// cluster markers
-		$(MAP_MODULE.context).find('#map_canvas').gmap('set', 'MarkerClusterer', new MarkerClusterer(map, $(MAP_MODULE.context).find('#map_canvas').gmap('get', 'markers')));
-	},
+		$(context).find('#map_canvas').gmap('set', 'MarkerClusterer', new MarkerClusterer(map, $(context).find('#map_canvas').gmap('get', 'markers')));
+	};
 
-	loadDefLocation : function() {
+	var loadDefLocation = function() {
 		var defLoc = new google.maps.LatLng(43.784712, -79.185998); // UTSC default location
-		$(MAP_MODULE.context).find('#map_canvas').gmap("option", "center", defLoc);
-	},
+		$(context).find('#map_canvas').gmap("option", "center", defLoc);
+	};
 
-	handleSettingsButton : function(state) {
+	var handleSettingsButton = function(state) {
 		if (state) {
-			$(MAP_MODULE.context).find("#map-setting-button").show().unbind('click').click(function() {
+			$(context).find("#map-setting-button").show().unbind('click').click(function() {
 				MAP_SETTINGS_MODULE.initSettings();
 			});
 		} else {
-			$(MAP_MODULE.context).find("#map-setting-button").hide();
+			$(context).find("#map-setting-button").hide();
 		}
-	},
+	};
 
-	showMapPage : function() {
-		$.mobile.changePage(MAP_MODULE.context, { 
+	var showMapPage = function() {
+		$.mobile.changePage(context, { 
 			transition: "slide"
 		});
-	}
+	};
 };
+
+var MAP_MODULE = new MAP_MODULE_OBJ();
