@@ -1,7 +1,7 @@
 var GLOBAL_DATA = {
-	user : null,                                                    // basic user object for who ever is logged in now
-	server_link : '/Co-op-Connect/script/config/sqlhandler.php',    // main server link
-	def_image_link : 'images/site/person.png' 
+    user : null,                                                    // basic user object for who ever is logged in now
+    server_link : '/Co-op-Connect/script/config/sqlhandler.php',    // main server link
+    def_image_link : 'images/site/person.png' 
 };
 
 
@@ -16,36 +16,36 @@ var GLOBAL_DATA = {
 // MISC CODE
 
 function toast(msg) {
-	$("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h3>"+msg+"</h3></div>").css({ 
-		display: "block",
-		//opacity: 0.90,
-		"background-color": "#1E1E1E",
-		position: "fixed",
-		padding: "7px",
-		"text-align": "center",
-		width: "270px",
-		left: ($(window).width() - 284)/2,
-		top: $(window).height()/2 
-	}).appendTo( $.mobile.pageContainer ).delay( 1500 ).fadeOut( 400, function(){
-		$(this).remove();
-	});
+    $("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h3>"+msg+"</h3></div>").css({ 
+        display: "block",
+        //opacity: 0.90,
+        "background-color": "#1E1E1E",
+        position: "fixed",
+        padding: "7px",
+        "text-align": "center",
+        width: "270px",
+        left: ($(window).width() - 284)/2,
+        top: $(window).height()/2 
+    }).appendTo( $.mobile.pageContainer ).delay( 1500 ).fadeOut( 400, function(){
+        $(this).remove();
+    });
 }
 
 function getColorCodeTag(text, color) {
-	return "<span style='color:" + color + ";'>" + text + "</span>";
+    return "<span style='color:" + color + ";'>" + text + "</span>";
 }
 
 function getUrlParameter(sParam) {
     var sPageURL = window.location.href;
-	sPageURL = sPageURL.substr(sPageURL.indexOf("?")+1, sPageURL.length-1);
-	
-	var sURLVariables = sPageURL.split('&');
-	for (var i = 0; i < sURLVariables.length; i++) {
-		var sParameterName = sURLVariables[i].split('=');
-		if (sParameterName[0] == sParam) {
-			return sParameterName[1];
-		}
-	}
+    sPageURL = sPageURL.substr(sPageURL.indexOf("?")+1, sPageURL.length-1);
+    
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) {
+            return sParameterName[1];
+        }
+    }
 }
 
 
@@ -54,47 +54,47 @@ function getUrlParameter(sParam) {
 // DATE/TIME CODE
 
 function getDate() {
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
-	var yyyy = today.getFullYear();
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
 
-	if(dd<10) {
-		dd='0'+dd
-	} 
+    if(dd<10) {
+        dd='0'+dd
+    } 
 
-	if(mm<10) {
-		mm='0'+mm
-	} 
+    if(mm<10) {
+        mm='0'+mm
+    } 
 
-	today = yyyy+"-"+mm+"-"+dd;
-	return today;
+    today = yyyy+"-"+mm+"-"+dd;
+    return today;
 }
 
 function getTime() {
-	var currentdate = new Date(); 
-	var datetime = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
-	return datetime;
+    var currentdate = new Date(); 
+    var datetime = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+    return datetime;
 }
 
 function dateHandler(elements, putCurrentDate, changefunction, showClearButton) {
-	var today = getDate();
-	
-	for(var i=0; i<elements.length; i+=1) {
-		var picker = $(elements[i]);
-		
-		if (putCurrentDate) {
-			picker.val(today);
-		}
+    var today = getDate();
+    
+    for(var i=0; i<elements.length; i+=1) {
+        var picker = $(elements[i]);
+        
+        if (putCurrentDate) {
+            picker.val(today);
+        }
 
-		picker.pickadate({
-			format: 'yyyy-mm-dd',
-			clear: showClearButton ? 'Clear' : '',
-			onSet: function(context) {
-				changefunction();
-			}
-		});
-	}
+        picker.pickadate({
+            format: 'yyyy-mm-dd',
+            clear: showClearButton ? 'Clear' : '',
+            onSet: function(context) {
+                changefunction();
+            }
+        });
+    }
 }
 
 
@@ -104,58 +104,58 @@ function dateHandler(elements, putCurrentDate, changefunction, showClearButton) 
 // AJAX CODE
 
 function runAJAXHTML5(formData, object, sfunc, efunc) {
-	for (var property in object) {
-		if (object.hasOwnProperty(property)) {
-			formData.append(property, object[property]);
-		}
-	}
-	
-	runAJAX(formData, sfunc, efunc, true);
+    for (var property in object) {
+        if (object.hasOwnProperty(property)) {
+            formData.append(property, object[property]);
+        }
+    }
+    
+    runAJAX(formData, sfunc, efunc, true);
 }
 
 function runAJAXSerial(formData, object, sfunc, efunc) {
-	var serialized = $.param(object);
-	
-	if (formData == '') {
-		formData = serialized;
-	} else {
-		formData += '&' + serialized
-	}
-	
-	runAJAX(formData, sfunc, efunc, false);
+    var serialized = $.param(object);
+    
+    if (formData == '') {
+        formData = serialized;
+    } else {
+        formData += '&' + serialized
+    }
+    
+    runAJAX(formData, sfunc, efunc, false);
 }
 
 function runAJAX(formData, sfunc, efunc, hasImage) {
-	var obj = {
-		type: 'POST',
-		url: GLOBAL_DATA.server_link,
-		data: formData,
-		dataType: 'json',
-		success: function(jsonData,status,xhr) {
-			var response = jsonData['response'];
+    var obj = {
+        type: 'POST',
+        url: GLOBAL_DATA.server_link,
+        data: formData,
+        dataType: 'json',
+        success: function(jsonData,status,xhr) {
+            var response = jsonData['response'];
 
-			if (jsonData['code'] == 200) {
-				sfunc(response);
-			} else {
-				efunc(jsonData,status,xhr);
+            if (jsonData['code'] == 200) {
+                sfunc(response);
+            } else {
+                efunc(jsonData,status,xhr);
 
-				alert(response);
-			}
-		},
-		error: function(data,status,xhr) {
-			efunc(data,status,xhr);
+                alert(response);
+            }
+        },
+        error: function(data,status,xhr) {
+            efunc(data,status,xhr);
 
-			alert('An error occured when connecting to the server.');
-		}
-	};
-	
-	if (hasImage) {
-		obj['contentType'] = false;      // The content type used when sending data to the server.
-		obj['cache'] = false;            // To unable request pages to be cached
-		obj['processData'] = false;      // To send DOMDocument or non processed data file it is set to false
-	} 
-	
-	$.ajax(obj);
+            alert('An error occured when connecting to the server.');
+        }
+    };
+    
+    if (hasImage) {
+        obj['contentType'] = false;      // The content type used when sending data to the server.
+        obj['cache'] = false;            // To unable request pages to be cached
+        obj['processData'] = false;      // To send DOMDocument or non processed data file it is set to false
+    } 
+    
+    $.ajax(obj);
 }
 
 
@@ -170,81 +170,81 @@ function runAJAX(formData, sfunc, efunc, hasImage) {
 
 // starter code
 (function() {
-	if (!goHomePage()) {
-		$(document).ready(function() {
-			setPageShowHide();
-			configureShakeToGoBack();
+    if (!goHomePage()) {
+        $(document).ready(function() {
+            setPageShowHide();
+            configureShakeToGoBack();
 
-			LOGIN_MODULE.initApp();
-		});
-	}
+            LOGIN_MODULE.initApp();
+        });
+    }
 })();
 
 function goHomePage() {
-	var i = document.location.href.indexOf("#");
-	if (document.location.href.indexOf("#reset-page") != -1) {
-		$(document).ready(function() {
-			RESET_MODULE.initReset();
-		});
-		return true;
-	} else if (i != -1) {
-		document.location.href = document.location.href.substring(0, i);
-		return true;
-	}
-	return false;
+    var i = document.location.href.indexOf("#");
+    if (document.location.href.indexOf("#reset-page") != -1) {
+        $(document).ready(function() {
+            RESET_MODULE.initReset();
+        });
+        return true;
+    } else if (i != -1) {
+        document.location.href = document.location.href.substring(0, i);
+        return true;
+    }
+    return false;
 }
 
 function setPageShowHide() {
-	
-	// configure page show
-	$(document).unbind("pagecontainershow").on( "pagecontainershow", function( event, ui ) {
-		var id = ui.toPage.prop("id");
-		var prev_id = ui.prevPage.prop("id");
-		
-		if (id == "thread-page") {
-			if (prev_id == "message-page") {
-				THREAD_MODULE.setMessageThreads();
-			}
+    
+    // configure page show
+    $(document).unbind("pagecontainershow").on( "pagecontainershow", function( event, ui ) {
+        var id = ui.toPage.prop("id");
+        var prev_id = ui.prevPage.prop("id");
+        
+        if (id == "thread-page") {
+            if (prev_id == "message-page") {
+                THREAD_MODULE.setMessageThreads();
+            }
 
-			THREAD_MODULE.startAuto();
-		} else if (id == "message-page") {
-			MESSAGE_MODULE.scrollBot();
+            THREAD_MODULE.startAuto();
+        } else if (id == "message-page") {
+            MESSAGE_MODULE.scrollBot();
 
-			MESSAGE_MODULE.startAuto();
-		} else if (id == "menu-page") {
-			MENU_MODULE.startAuto();
-		} else if (id == "placement-page" && prev_id == "checklist-page") {
-			PLACEMENT_MODULE.reload();
-		} else if (id == "search-page" && prev_id != "search-settings-page") {
-			SEARCH_SETTINGS_MODULE.resetForm();
-		} else if (id == "register-page") {
-			REGISTER_MODULE.resetForm();
-		}
-	});
-	
-	// configure page hide
-	$(document).unbind("pagecontainerhide").on( "pagecontainerhide", function( event, ui ) {
-		var id = ui.prevPage.prop("id");
-		var to_id = ui.toPage.prop("id");
-		
-		if (id == "thread-page") {
-			THREAD_MODULE.stopAuto();
-		} else if (id == "message-page") {
-			MESSAGE_MODULE.stopAuto();
-		} else if (id == "menu-page") {
-			MENU_MODULE.stopAuto();
-		}
-	});
+            MESSAGE_MODULE.startAuto();
+        } else if (id == "menu-page") {
+            MENU_MODULE.startAuto();
+        } else if (id == "placement-page" && prev_id == "checklist-page") {
+            PLACEMENT_MODULE.reload();
+        } else if (id == "search-page" && prev_id != "search-settings-page") {
+            SEARCH_SETTINGS_MODULE.resetForm();
+        } else if (id == "register-page") {
+            REGISTER_MODULE.resetForm();
+        }
+    });
+    
+    // configure page hide
+    $(document).unbind("pagecontainerhide").on( "pagecontainerhide", function( event, ui ) {
+        var id = ui.prevPage.prop("id");
+        var to_id = ui.toPage.prop("id");
+        
+        if (id == "thread-page") {
+            THREAD_MODULE.stopAuto();
+        } else if (id == "message-page") {
+            MESSAGE_MODULE.stopAuto();
+        } else if (id == "menu-page") {
+            MENU_MODULE.stopAuto();
+        }
+    });
 }
 
 
 function configureShakeToGoBack() {
-	var myShakeEvent = new Shake({
-	    threshold: 10, // optional shake strength threshold
-	    timeout: 1000 // optional, determines the frequency of event generation
-	});	
-	myShakeEvent.start();
-	window.addEventListener('shake', function() {
-		history.back();
-	}, false);
+    var myShakeEvent = new Shake({
+        threshold: 10, // optional shake strength threshold
+        timeout: 1000 // optional, determines the frequency of event generation
+    });    
+    myShakeEvent.start();
+    window.addEventListener('shake', function() {
+        history.back();
+    }, false);
 }
