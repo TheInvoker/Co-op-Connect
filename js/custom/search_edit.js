@@ -1,7 +1,14 @@
 var SEARCH_SETTINGS_MODULE_OBJ = function() {
     
     var context = "#search-settings-page";
-    
+	
+	$(document).ready(function() {
+		// configure back button
+		$(context).find("#done-search-settings-button").click(function() {
+			history.back();
+		});
+	});
+		
     this.initSettings = function() {
         $.mobile.changePage(context, { 
             transition: "slide"
@@ -13,10 +20,7 @@ var SEARCH_SETTINGS_MODULE_OBJ = function() {
         $(context).find(".selectall-cb-button").unbind('click').click(function() {
             $(this).parent().find("input").prop("checked", true).checkboxradio( "refresh" );
         });
-        $(context).find("#done-search-settings-button").unbind('click').click(function() {
-            history.back();
-        });
-        
+
         var elements = $(context).find("#search-settings-form").find("input[type=date]");
         dateHandler(elements, false, function() {}, true);
     };
@@ -26,7 +30,9 @@ var SEARCH_SETTINGS_MODULE_OBJ = function() {
         
         try {
             $(context).find("#search-settings-form").find("input[type=checkbox]").prop("checked", true).checkboxradio( "refresh" );
-        } catch(err) {}
+        } catch(err) {
+			
+		}
     };
     
     this.getFormData = function() {

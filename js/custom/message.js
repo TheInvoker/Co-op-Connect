@@ -5,7 +5,6 @@ var MESSAGE_MODULE_OBJ = function() {
     var serviceChecker = null;
     var serviceFrequency = 1000 * 60 * 3;
     var context = "#message-page";
-    var thisOBJ = this;
     
     this.gotoMessage = function(thread_id) {
 
@@ -38,6 +37,9 @@ var MESSAGE_MODULE_OBJ = function() {
             
             // handle getting more messages
             handleGetMore(thread_id);
+			
+			// scroll bot
+			scrollBot();
         }, function(data,status,xhr) {
 
         });
@@ -53,7 +55,7 @@ var MESSAGE_MODULE_OBJ = function() {
         clearInterval(serviceChecker);
     };
 
-    this.scrollBot = function() {
+    var scrollBot = function() {
         $('html, body').animate({
             scrollTop:$(document).height()
         }, 'slow');
@@ -89,7 +91,7 @@ var MESSAGE_MODULE_OBJ = function() {
         var list = $(context).find("#message-list");
         if (onBottom) {
             list.append(html);
-            thisOBJ.scrollBot();
+            scrollBot();
         } else {
             list.prepend(html);
         }

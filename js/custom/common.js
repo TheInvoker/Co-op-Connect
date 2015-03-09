@@ -208,8 +208,6 @@ function setPageShowHide() {
 
             THREAD_MODULE.startAuto();
         } else if (id == "message-page") {
-            MESSAGE_MODULE.scrollBot();
-
             MESSAGE_MODULE.startAuto();
         } else if (id == "menu-page") {
             MENU_MODULE.startAuto();

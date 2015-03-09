@@ -1,6 +1,13 @@
 var CHECKLIST_MODULE_OBJ = function () {
 
     var context = "#checklist-page";
+	
+	$(document).ready(function() {
+		// configure back button
+		$(context).find("#done-checklist-button").click(function() {
+			history.back();
+		});
+	});
 
     this.getChecklist = function(user_id, obj) {
 
@@ -21,10 +28,7 @@ var CHECKLIST_MODULE_OBJ = function () {
 
             // attach click handlers
             attachHandlers();
-
-            $(context).find("#done-checklist-button").unbind('click').click(function() {
-                history.back();
-            });
+			
         }, function(data,status,xhr) {
 
         });
