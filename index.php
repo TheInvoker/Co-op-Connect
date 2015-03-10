@@ -2,8 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 	<head>
 	
-		<script src="js/custom/reset.js"></script>
-		
 		<?php
 			include "snippet/head.php";
 		?>
@@ -16,9 +14,8 @@
 		<script src="js/markerclusterer_packed.js"></script>
 		<!-- Include the geolocation autocomplete library -->
 		<script src="js/jquery.geocomplete.min.js"></script>
-		<!-- Include shake.js -->
-		<script src="js/shake.js"></script>
 
+		<script src="js/custom/start.js"></script>
 		<script src="js/custom/login.js"></script>
 		<script src="js/custom/mainmenu.js"></script>
 		<script src="js/custom/map.js"></script>
@@ -72,22 +69,7 @@
 		</div>
 		
 		
-		<div id="reset-page" data-role="page" data-theme="b">
-	
-			<div data-role="header">
-				<h1>Password Reset</h1>
-			</div>
 
-			<div data-role="main" class="ui-content">
-				<form id="reset-form">
-					<label for="password">New Password:</label>
-					<input name="password" type="password" maxlength="255" value="" required>
-					<label for="password2">Confirm New Password:</label>
-					<input name="password2" type="password" maxlength="255" value="" required>
-					<input type="submit" value="Reset">
-				</form>
-			</div>
-		</div>
 
 
 		<div id="register-page" data-role="page" data-theme="b">

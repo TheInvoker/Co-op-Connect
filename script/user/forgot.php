@@ -20,7 +20,7 @@
 					  WHERE id = {$id}";
 			mysqli_query($sqlConnection, $query);
 			
-			$link = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . "/../../index.php#reset-page?token={$token}&id={$id}";
+			$link = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . "/../../reset.php?token={$token}&id={$id}";
 			$message = "Click the below link to reset your password. If you did not request this, then ignore this email.<br/><br/><a href='{$link}'>RESET PASSWORD</a>";
 			//logQuery($message);
 			

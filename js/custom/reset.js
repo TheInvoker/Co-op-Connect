@@ -2,7 +2,7 @@ var RESET_MODULE_OBJ = function() {
     
     var context = "#reset-page";
     
-    this.initReset = function() {
+    $(document).ready(function() {
 
         $(context).find("#reset-form").unbind('submit').submit(function() {
             
@@ -21,7 +21,7 @@ var RESET_MODULE_OBJ = function() {
                 
             return false;
         });
-    };
+    });
 };
 
 var RESET_MODULE = new RESET_MODULE_OBJ();

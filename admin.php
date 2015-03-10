@@ -5,6 +5,7 @@
 			include "snippet/head.php";
 		?>
 		
+		<script src="js/custom/start.js"></script>
 		<script src="js/custom/alogin.js"></script>
 		<script src="js/custom/amainmenu.js"></script>
 	</head>
