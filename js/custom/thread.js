@@ -27,7 +27,11 @@ var THREAD_MODULE_OBJ = function() {
         });
     };
 
-    this.startAuto = function() {
+    this.startAuto = function(wentBack) {
+		if (wentBack) {
+			setMessageThreads();
+		}
+		
         threadChecker = setInterval(function(){ 
             setMessageThreads();
         }, serviceFrequency);

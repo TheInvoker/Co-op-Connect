@@ -24,11 +24,7 @@ function setPageShowHide() {
         var prev_id = ui.prevPage.prop("id");
         
         if (id == "thread-page") {
-            if (prev_id == "message-page") {
-                THREAD_MODULE.setMessageThreads();
-            }
-
-            THREAD_MODULE.startAuto();
+            THREAD_MODULE.startAuto(prev_id == "message-page");
         } else if (id == "message-page") {
             MESSAGE_MODULE.startAuto();
         } else if (id == "menu-page") {

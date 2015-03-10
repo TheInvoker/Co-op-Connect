@@ -16,7 +16,7 @@ var GLOBAL_DATA = {
 // MISC CODE
 
 function toast(msg) {
-    $("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h3>"+msg+"</h3></div>").css({ 
+    $("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h3>" + msg + "</h3></div>").css({ 
         display: "block",
         "background-color": "#1E1E1E",
         position: "fixed",
