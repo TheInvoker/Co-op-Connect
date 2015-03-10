@@ -10,9 +10,11 @@ var RESOURCE_MODULE_OBJ = function() {
         runAJAXSerial('', {
             page : 'resource/getresources',
             id : user['id'],
-            pageindex : page
+            pageindex : 0
         }, function(response) {
-            page += 1;
+			
+			// update global vars
+            page = 1;
             
             $.mobile.changePage(context, { 
                 transition: "slide"

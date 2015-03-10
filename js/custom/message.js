@@ -8,18 +8,17 @@ var MESSAGE_MODULE_OBJ = function() {
     
     this.gotoMessage = function(thread_id) {
 
-        page = 0;
         var user = GLOBAL_DATA.user;
         
         runAJAXSerial('', {
             page : 'message/getmessages',
             thread_id : thread_id,
             id : user['id'],
-            pageindex : page
+            pageindex : 0
         }, function(response) {
             
             // update global vars
-            page += 1;
+            page = 1;
             thread_id = thread_id;
             
             $.mobile.changePage(context, { 

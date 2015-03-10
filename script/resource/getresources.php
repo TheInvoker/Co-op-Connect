@@ -14,7 +14,7 @@
 				  WHERE r.active=1
 				  ORDER BY r.date_modified DESC
 				  LIMIT {$offset}, {$lim}";
-				  
+		  
 		$recordset = mysqli_query($sqlConnection, $query);	
 		$num_records = mysqli_num_rows($recordset);
 		

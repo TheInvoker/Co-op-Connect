@@ -1,14 +1,11 @@
-7UeeoIIrwD8Q3G84RXOM
-
-
-----------------------------------------------------
-
-Click the below link to reset your password. If you did not request this, then ignore this email.<br/><br/><a href='http://localhost:81/Co-op-Connect/script/config/../../index.php#reset-page?token=If6vbQhcGiD4B6ueSxOp&id=1'>RESET PASSWORD</a>
-
-
-----------------------------------------------------
-
-Click the below link to reset your password. If you did not request this, then ignore this email.<br/><br/><a href='http://localhost:81/Co-op-Connect/script/config/../../index.php#reset-page?token=Knk6DsYq0810ffqX2uYi&id=1'>RESET PASSWORD</a>
+SELECT r.*, r.date_modified>u.resource_checked_date AS new
+		          FROM resource r
+				  JOIN user u ON u.id=1
+				  JOIN department d on u.department_id=d.id
+				  JOIN resource_department rd ON r.id = rd.resource_id AND rd.department_id = u.department_id
+				  WHERE r.active=1
+				  ORDER BY r.date_modified DESC
+				  LIMIT 20, 5
 
 
 ----------------------------------------------------

@@ -9,8 +9,9 @@
 }
 
 .countBubl {
-	background:#D16E00;
+	background-color:#D16E00 !important;
 	border-radius:2em;
+	border:1px solid white !important;
 }
 
 .avatar-image {
