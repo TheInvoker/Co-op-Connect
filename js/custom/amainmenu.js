@@ -4,6 +4,8 @@ var MENU_MODULE_OBJ = function() {
     var serviceChecker = null;
     var serviceFrequency = 1000 * 60 * 3;
 
+	swipePanel(context, "#menu-panel");
+	
     this.initMenu = function() {
         $.mobile.changePage( context, { 
             transition: "flip"

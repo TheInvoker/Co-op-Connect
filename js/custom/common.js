@@ -49,7 +49,6 @@ function getUrlParameter(sParam) {
 
 
 
-
 // DATE/TIME CODE
 
 function getDate() {

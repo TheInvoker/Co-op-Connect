@@ -3,6 +3,8 @@ var SEARCH_MODULE_OBJ = function() {
     var page = 0;
     var context = "#search-page";
 
+	swipePanel(context, "#search-panel");
+	
     this.initSearch = function() {
         $.mobile.changePage(context, { 
             transition: "slide"

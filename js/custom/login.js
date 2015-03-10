@@ -1,7 +1,9 @@
 var LOGIN_MODULE_OBJ = function() {
     
     var context = "#login-page";
-
+	
+	swipePanel(context, "#login-panel");
+	
     this.initApp = function() {
         login();
         register();
