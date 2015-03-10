@@ -70,10 +70,10 @@ var MESSAGE_MODULE_OBJ = function() {
         var acc = '';
         for(var i=0; i<response.length; i+=1) {
             var obj = response[i];
-            
+
             var acc_temp = "";
             acc_temp += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-right' : 'message-left') + '">';
-            acc_temp += '<div>' + Autolinker.link(obj['message']) + '</div>';
+            acc_temp += '<div>' + Autolinker.link(escapeHTML(obj['message'])) + '</div>';
             if (obj['user_id']!=user['id']) {
                 acc_temp += '<div class="message-details">' + obj['first_name'] + ' ' + obj['last_name'] + '</div>';
             }

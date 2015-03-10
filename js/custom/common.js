@@ -47,6 +47,9 @@ function getUrlParameter(sParam) {
     }
 }
 
+function escapeHTML(str) {
+	return $("<p/>").text(str).html();
+}
 
 
 // DATE/TIME CODE

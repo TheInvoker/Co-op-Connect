@@ -26,11 +26,11 @@ var PROFILE_MODULE_OBJ = function() {
         $(context).find("#profile-avatar-image").attr("src", response['picURL']=='' ? GLOBAL_DATA.def_image_link : response['picURL']);
 
         if (response['status']) {
-            $(context).find("#profile-status").show().html(Autolinker.link(response['status']));
+            $(context).find("#profile-status").show().html(Autolinker.link(escapeHTML(response['status'])));
         } else {
             $(context).find("#profile-status").hide();
         }
-        $(context).find("#profile-biotext").html(Autolinker.link(response['biotext']));
+        $(context).find("#profile-biotext").html(Autolinker.link(escapeHTML(response['biotext'])));
         
         $(context).find("#profile-role").html(getColorCodeTag(response['role_name'], response['r_color']));
         $(context).find("#profile-department").html(getColorCodeTag(response['department_name'], response['d_color']));
@@ -38,7 +38,7 @@ var PROFILE_MODULE_OBJ = function() {
         
         $(context).find("#profile-email").attr("href", "mailto:" + response['email']);
         $(context).find("#profile-phone").attr("href", "tel:+" + response['phone']);
-        $(context).find("#profile-site").attr("href", $(Autolinker.link(response['website'])).attr("href"));
+        $(context).find("#profile-site").attr("href", $(Autolinker.link(escapeHTML(response['website']))).attr("href"));
         $(context).find("#profile-placements").unbind('click').click(function() {
             PLACEMENT_MODULE.getPlacements(user_id);
         });
