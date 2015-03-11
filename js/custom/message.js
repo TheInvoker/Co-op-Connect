@@ -115,6 +115,8 @@ var MESSAGE_MODULE_OBJ = function() {
                     message : field.val(),
                     date_sent : getDate() + ' ' + getTime()
                 };
+				
+				cleanResponse(obj);
                 
                 field.val("").focus();
                 
