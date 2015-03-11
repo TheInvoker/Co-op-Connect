@@ -47,10 +47,6 @@ function getUrlParameter(sParam) {
     }
 }
 
-function escapeHTML(str) {
-	return $("<p/>").text(str).html();
-}
-
 
 // DATE/TIME CODE
 
@@ -136,6 +132,7 @@ function runAJAX(formData, sfunc, efunc, hasImage) {
             var response = jsonData['response'];
 
             if (jsonData['code'] == 200) {
+				cleanResponse(response);
                 sfunc(response);
             } else {
                 efunc(jsonData,status,xhr);
@@ -157,4 +154,26 @@ function runAJAX(formData, sfunc, efunc, hasImage) {
     } 
     
     $.ajax(obj);
+}
+
+function cleanResponse(response) {
+	if (Object.prototype.toString.call( response ) === '[object Array]') {
+		var i = 0, l = response.length;
+		for (i=0; i<l; i+=1) {
+			response[i] = cleanResponse(response[i]);
+		}
+	} else if (Object.prototype.toString.call( response ) === '[object Object]') {
+		for (var property in response) {
+			if (response.hasOwnProperty(property)) {
+				response[property] = cleanResponse(response[property]);
+			}
+		}
+	} else {
+		response = escapeHTML(response);
+	}
+	return response;
+}
+
+function escapeHTML(str) {
+	return $("<p/>").text(str).html();
 }

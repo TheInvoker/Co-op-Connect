@@ -52,8 +52,8 @@ var CHECKLIST_MODULE_OBJ = function () {
 
     var formatChecklist = function(obj) {
         var str = '<table>';
-        str += '<tr title="Name"><td valign="top"><span class="ui-icon-arrow-r ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + escapeHTML(obj['name']) + '</td></tr>';
-        str += '<tr title="Description"><td valign="top"><span class="ui-icon-info ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + Autolinker.link(escapeHTML(obj['description'])) + '</td></tr>';
+        str += '<tr title="Name"><td valign="top"><span class="ui-icon-arrow-r ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['name'] + '</td></tr>';
+        str += '<tr title="Description"><td valign="top"><span class="ui-icon-info ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + Autolinker.link(obj['description']) + '</td></tr>';
         str += '</table>';
         return str;
     };
