@@ -4,6 +4,14 @@ var THREAD_MODULE_OBJ = function() {
         serviceFrequency = 1000 * 60 * 3,
         context = "#thread-page";
 
+    registerShowEvent(context, function(prev_id) {
+        startAuto(prev_id == MESSAGE_MODULE.getContext());
+    });
+
+    registerHideEvent(context, function(to_id) {
+        stopAuto();
+    });
+
     this.setMessageThreads = function() {
         var user = GLOBAL_DATA.user;
 
@@ -33,7 +41,7 @@ var THREAD_MODULE_OBJ = function() {
         });
     };
 
-    this.startAuto = function(wentBack) {
+    var startAuto = function(wentBack) {
 		if (wentBack) {
 			THREAD_MODULE.setMessageThreads();
 		}
@@ -43,7 +51,7 @@ var THREAD_MODULE_OBJ = function() {
         }, serviceFrequency);
     };
 
-    this.stopAuto = function() {
+    var stopAuto = function() {
         clearInterval(serviceChecker);
     };
 

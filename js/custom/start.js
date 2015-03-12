@@ -20,34 +20,31 @@ function setPageShowHide() {
     
     // configure page show
     $(document).unbind("pagecontainershow").on( "pagecontainershow", function( event, ui ) {
-        var id = ui.toPage.prop("id"), prev_id = ui.prevPage.prop("id");
+        var id = "#"+ui.toPage.prop("id"), prev_id = "#"+ui.prevPage.prop("id");
         
-        if (id == "thread-page") {
-            THREAD_MODULE.startAuto(prev_id == "message-page");
-        } else if (id == "message-page") {
-            MESSAGE_MODULE.scrollBot();
-            MESSAGE_MODULE.startAuto();
-        } else if (id == "menu-page") {
-            MENU_MODULE.startAuto();
-        } else if (id == "placement-page" && prev_id == "checklist-page") {
-            PLACEMENT_MODULE.reload();
-        } else if (id == "search-page" && prev_id != "search-settings-page") {
-            SEARCH_SETTINGS_MODULE.resetForm();
-        } else if (id == "register-page") {
-            REGISTER_MODULE.resetForm();
+        for (var property in GLOBAL_DATA.eventsShow) {
+            if (GLOBAL_DATA.eventsShow.hasOwnProperty(property)) {
+                if (property == id) {
+                    var func = GLOBAL_DATA.eventsShow[property];
+                    func(prev_id);
+                    break;
+                }
+            }
         }
     });
 	   
     // configure page hide
     $(document).unbind("pagecontainerhide").on( "pagecontainerhide", function( event, ui ) {
-        var id = ui.prevPage.prop("id"), to_id = ui.toPage.prop("id");
+        var id = "#"+ui.prevPage.prop("id"), to_id = "#"+ui.toPage.prop("id");
         
-        if (id == "thread-page") {
-            THREAD_MODULE.stopAuto();
-        } else if (id == "message-page") {
-            MESSAGE_MODULE.stopAuto();
-        } else if (id == "menu-page") {
-            MENU_MODULE.stopAuto();
+        for (var property in GLOBAL_DATA.eventsHide) {
+            if (GLOBAL_DATA.eventsHide.hasOwnProperty(property)) {
+                if (property == id) {
+                    var func = GLOBAL_DATA.eventsHide[property];
+                    func(to_id);
+                    break;
+                }
+            }
         }
     });
 }
@@ -76,4 +73,20 @@ function swipePanel(pageId, leftPanelId) {
 			}
 		});
 	});
+}
+
+function registerShowEvent(pageID, func) {
+    GLOBAL_DATA.eventsShow[pageID] = func;
+}
+
+function deleteShowEvent(pageID) {
+    delete GLOBAL_DATA.eventsShow[pageID];
+}
+
+function registerHideEvent(pageID, func) {
+    GLOBAL_DATA.eventsHide[pageID] = func;
+}
+
+function deleteHideEvent(pageID) {
+    delete GLOBAL_DATA.eventsHide[pageID];
 }

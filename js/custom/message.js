@@ -5,9 +5,17 @@ var MESSAGE_MODULE_OBJ = function() {
         serviceChecker = null,
         serviceFrequency = 1000 * 60 * 3,
         names = null,
-        context = "#message-page",
-        thisOBJ = this;
+        context = "#message-page";
     
+    registerShowEvent(context, function(prev_id) {
+        scrollBot();
+        startAuto();
+    });
+
+    registerHideEvent(context, function(to_id) {
+        stopAuto();
+    });
+
     this.gotoMessage = function(tid, thisnames) {
 
         var user = GLOBAL_DATA.user;
@@ -45,17 +53,21 @@ var MESSAGE_MODULE_OBJ = function() {
         });
     };
 
-    this.startAuto = function() {
+    this.getContext = function() {
+        return context;
+    };
+
+    var startAuto = function() {
         serviceChecker = setInterval(function(){ 
             getNewMessages(thread_id);
         }, serviceFrequency);
     };
 
-    this.stopAuto = function() {
+    var stopAuto = function() {
         clearInterval(serviceChecker);
     };
 
-    this.scrollBot = function() {
+    var scrollBot = function() {
         $('html, body').animate({
             scrollTop:$(document).height()
         }, 'slow');
@@ -103,7 +115,7 @@ var MESSAGE_MODULE_OBJ = function() {
         var list = $(context).find("#message-list");
         if (onBottom) {
             list.append(html);
-            thisOBJ.scrollBot();
+            scrollBot();
         } else {
             list.prepend(html);
         }

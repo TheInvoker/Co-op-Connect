@@ -5,6 +5,12 @@ var SEARCH_MODULE_OBJ = function() {
 
 	swipePanel(context, "#search-panel");
 	
+    registerShowEvent(context, function(prev_id) {
+        if (prev_id != SEARCH_SETTINGS_MODULE.getContext()) {
+            SEARCH_SETTINGS_MODULE.resetForm();
+        }
+    });
+
     this.initSearch = function() {
         $.mobile.changePage(context, { 
             transition: "slide"
@@ -51,12 +57,12 @@ var SEARCH_MODULE_OBJ = function() {
         
         for(i=0; i<l; i+=1) {
             var obj = response[i];
-            
+            var tagid = 'searchlist-' + i;
+
             acc += "<tr class=\"search-person\" data-id=\"" + obj['id'] + "\" data-email=\"" + obj['email'] + "\">";
-            acc += "<th><div class='custom-radio' title='Click to toggle selection'></div></th>";
             acc += "<td>" + (i+1) + "</td>";
             acc += "<td><img class=\"small-image\" src=\"" + (obj['picURL']=='' ? GLOBAL_DATA.def_image_link : obj['picURL']) + "\"/></td>";
-            acc += "<td>" + obj['firstname'] + " " + obj['lastname'] + "</td>";
+            acc += '<th><input name="' + tagid + '" id="' + tagid + '" type="checkbox"><label for="' + tagid + '">' + obj['firstname'] + " " + obj['lastname'] + '</label></th>';
             acc += "<td>" + getColorCodeTag(obj['role_name'], obj['r_color']) + "</td>";
             acc += "<td>" + getColorCodeTag(obj['department_name'], obj['d_color']) + "</td>";
             acc += "<td>" + obj['num_placements'] + "</td>";
@@ -69,24 +75,29 @@ var SEARCH_MODULE_OBJ = function() {
     };
 
     var handleViewPerson = function() {
-        $(context).find("#search-table").find(".search-person").unbind('click').click(function() {
+        $(context).on("click", ".search-person", function(e) {
             var id = $(this).attr("data-id");
             PROFILE_MODULE.getProfile(id);
         });
     };
 
     var handleCheckBoxControls = function() {
-        var checkBoxes = $(context).find("#search-table").find(".custom-radio");
+        var checkBoxes = $(context).find("#search-table").find("input[type=checkbox]");
         
-        checkBoxes.unbind('click').click(function() {
-            $(this).toggleClass("custom-radio-on");
-            return false;
+        checkBoxes.checkboxradio().prop("checked", false).checkboxradio( "refresh" );
+
+        $(context).on("click", ".search-person .ui-checkbox .ui-btn", function(e) {
+            //toggle checkbox
+            $(this).click();
+            //don't change page
+            event.stopPropagation();
         });
+
         $(context).find("#search-clear-all").unbind('click').click(function() {
-            checkBoxes.removeClass("custom-radio-on");
+            checkBoxes.prop("checked", false).checkboxradio( "refresh" );
         });
         $(context).find("#search-select-all").unbind('click').click(function() {
-            checkBoxes.addClass("custom-radio-on");
+            checkBoxes.prop("checked", true).checkboxradio( "refresh" );
         });
         $(context).find("#search-message-all").unbind('click').click(function() {
             var idList = getDataList(checkBoxes, "data-id");
@@ -119,7 +130,7 @@ var SEARCH_MODULE_OBJ = function() {
         for(i=0; i<l; i+=1) {
             var obj = $(checkBoxes[i]);
             
-            if (obj.hasClass("custom-radio-on")) {
+            if (obj[0].checked) {
                 list.push(obj.parent().parent().attr(attr));
             }
         }

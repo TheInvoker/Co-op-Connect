@@ -2,8 +2,15 @@ var PLACEMENT_MODULE_OBJ = function() {
     
     var context = "#placement-page",
         placement = null,
-        user_id = null;
+        user_id = null,
+        thisOBJ = this;
     
+    registerShowEvent(context, function(prev_id) {
+        if (prev_id == CHECKLIST_MODULE.getContext()) {
+            thisOBJ.getPlacements(user_id);
+        }
+    });
+
     this.getPlacements = function(uid) {
         var user = GLOBAL_DATA.user, me = uid == user['id'];
         
@@ -34,10 +41,6 @@ var PLACEMENT_MODULE_OBJ = function() {
         }, function(data,status,xhr) {
 
         });
-    };
-
-    this.reload = function() {
-        this.getPlacements(user_id);
     };
 
     var displayPlacements = function(me, response) {

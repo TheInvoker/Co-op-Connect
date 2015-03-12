@@ -2,6 +2,10 @@ var REGISTER_MODULE_OBJ = function() {
     
     var context = "#register-page";
 
+    registerShowEvent(context, function(prev_id) {
+        resetForm();
+    });
+
     this.register = function() {
         $.mobile.changePage( context, { 
             transition: "slideup"
@@ -21,7 +25,7 @@ var REGISTER_MODULE_OBJ = function() {
         });
     };
     
-    this.resetForm = function() {
+    var resetForm = function() {
         $(context).find("#register-form").find("input").val("");
     };
 };

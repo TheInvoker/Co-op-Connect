@@ -34,6 +34,10 @@ var CHECKLIST_MODULE_OBJ = function () {
         });
     };
 
+    this.getContext = function() {
+        return context;
+    };
+
     var displayChecklist = function(pid, response) {
         var field = $(context).find("#checklistCB"), i=0, l=response.length, myListContent="";
 

@@ -25,6 +25,10 @@ var SEARCH_SETTINGS_MODULE_OBJ = function() {
         dateHandler(elements, false, function() {}, true);
     };
     
+    this.getContext = function() {
+        return context;
+    };
+    
     this.resetForm = function() {
         $(context).find("#search-settings-form").find("input[type=text],input[type=date]").val("");
         

@@ -342,7 +342,6 @@
 				<table data-role="table" id="search-table" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Columns to display..." data-column-popup-theme="b">
 					<thead>
 						<tr class="ui-bar-d">
-							<th data-priority="1">Select</th>
 							<th data-priority="2">#</th>
 							<th data-priority="4">Avatar</th>
 							<th data-priority="1">Name</th>
