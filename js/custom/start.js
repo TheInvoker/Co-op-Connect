@@ -22,30 +22,20 @@ function setPageShowHide() {
     $(document).unbind("pagecontainershow").on( "pagecontainershow", function( event, ui ) {
         var id = "#"+ui.toPage.prop("id"), prev_id = "#"+ui.prevPage.prop("id");
         
-        for (var property in GLOBAL_DATA.eventsShow) {
-            if (GLOBAL_DATA.eventsShow.hasOwnProperty(property)) {
-                if (property == id) {
-                    var func = GLOBAL_DATA.eventsShow[property];
-                    func(prev_id);
-                    break;
-                }
-            }
-        }
+		if (GLOBAL_DATA.eventsShow.hasOwnProperty(id)) {
+			var func = GLOBAL_DATA.eventsShow[id];
+			func(prev_id);
+		}
     });
 	   
     // configure page hide
     $(document).unbind("pagecontainerhide").on( "pagecontainerhide", function( event, ui ) {
         var id = "#"+ui.prevPage.prop("id"), to_id = "#"+ui.toPage.prop("id");
         
-        for (var property in GLOBAL_DATA.eventsHide) {
-            if (GLOBAL_DATA.eventsHide.hasOwnProperty(property)) {
-                if (property == id) {
-                    var func = GLOBAL_DATA.eventsHide[property];
-                    func(to_id);
-                    break;
-                }
-            }
-        }
+		if (GLOBAL_DATA.eventsHide.hasOwnProperty(id)) {
+			var func = GLOBAL_DATA.eventsHide[id];
+			func(to_id);
+		}
     });
 }
 
