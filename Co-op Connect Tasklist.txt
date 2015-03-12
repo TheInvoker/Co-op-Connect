@@ -1,0 +1,54 @@
+map marker refresh bug
+download too much coloumns for map
+generalize strings in php
+server side validation
+sanitize all inputs
+charts
+task ordering
+show home page news
+external panel
+port php to node.js
+
+$("#elementID").text()                        [DONE]
+messaging bug, highlighting wrong new thread  [DONE]
+context all js files                          [DONE]
+private properties in modules                 [DONE]
+fix forgot password                           [DONE]
+show more resources                           [DONE]
+put reset forms on page show                  [DONE]
+map date form picker bug                      [DONE]
+generalize ajax code                          [DONE]
+allow map with cleared dates                  [DONE]
+add email option to send mass message         [DONE]
+get count(*) for all messengers               [DONE]
+allow forward login                           [DONE]
+bug in search                                 [DONE]
+fix profile page                              [DONE]
+fall back avatar                              [DONE]
+add header buttons                            [DONE]
+add logo on homepage                          [DONE]
+group chats                                   [DONE]
+add member                                    [DONE]
+link messaging                                [DONE]
+reset user var on logout                      [DONE]
+add interval to threads                       [DONE]
+about page                                    [DONE]
+add intervals to messages                     [DONE]
+don't show all messages                       [DONE]
+delete pic when uploading                     [DONE]
+notification for # of new news                [DONE]
+remove resource check on login                [DONE]
+generate form data                            [DONE]
+seperate admin                                [DONE]
+modularize things                             [DONE]
+upload image                                  [DONE]
+folderize scripts                             [DONE]
+marker colors                                 [DONE]
+fix map                                       [DONE]
+show location on map                          [DONE]
+toggle checkbox                               [DONE]
+theory on reload page with new details        [DONE]
+fix date handler                              [DONE]
+extra task appearing?                         [DONE]
+
+thread multi same date bug                    [PRTL]
