@@ -15,7 +15,6 @@
 		<!-- Include the geolocation autocomplete library -->
 		<script src="js/jquery.geocomplete.min.js"></script>
 
-		<script src="js/custom/start.js"></script>
 		<script src="js/custom/login.js"></script>
 		<script src="js/custom/mainmenu.js"></script>
 		<script src="js/custom/map.js"></script>

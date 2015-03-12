@@ -2,9 +2,9 @@ var LOGIN_MODULE_OBJ = function() {
 
     var context = "#login-page";
 
-    this.initApp = function() {
+    $(document).ready(function() {
         login();
-    };
+    });
     
     var login = function() {
         $(context).find("#login-form").submit(function() {

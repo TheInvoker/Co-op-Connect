@@ -3,7 +3,10 @@ var RESET_MODULE_OBJ = function() {
     var context = "#reset-page";
     
     $(document).ready(function() {
-
+		handleReset();
+    });
+	
+	var handleReset = function() {
         $(context).find("#reset-form").unbind('submit').submit(function() {
             
             var token = getUrlParameter('token'), id = getUrlParameter('id');
@@ -20,7 +23,7 @@ var RESET_MODULE_OBJ = function() {
                 
             return false;
         });
-    });
+	};
 };
 
 var RESET_MODULE = new RESET_MODULE_OBJ();

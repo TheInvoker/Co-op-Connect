@@ -4,11 +4,11 @@ var LOGIN_MODULE_OBJ = function() {
 	
 	swipePanel(context, "#login-panel");
 	
-    this.initApp = function() {
+    $(document).ready(function() {
         login();
         register();
         forgot();
-    };
+    });
     
     var login = function() {
         $(context).find("#login-form").submit(function() {

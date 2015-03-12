@@ -4,25 +4,17 @@ var MENU_MODULE_OBJ = function() {
 
 	swipePanel(context, "#menu-panel");
 	
-    this.initMenu = function() {
-        $.mobile.changePage( context, { 
-            transition: "flip"
-        });
-    };
-
-    this.startAuto = function() {
-
-    };
-
-    this.stopAuto = function() {
-
-    };
-    
     $(document).ready(function() {
         setUserButton();
         setResourceButton();
         setTaskButton();
     });
+	
+    this.initMenu = function() {
+        $.mobile.changePage( context, { 
+            transition: "flip"
+        });
+    };
 
     var setUserButton = function() {
         $(context).find("#manage-users-button").click(function() {

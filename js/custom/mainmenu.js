@@ -14,14 +14,6 @@ var MENU_MODULE_OBJ = function() {
         stopAuto();
     });
 
-    this.initMenu = function() {
-        $.mobile.changePage( context, { 
-            transition: "flip"
-        });
-
-        GRID_MODULE.setGrid();
-    };
-    
     $(document).ready(function() {
         setUserButton();
         setPlacementButton();
@@ -31,6 +23,14 @@ var MENU_MODULE_OBJ = function() {
         setResourceButton();
         setAboutButton();
     });
+	
+    this.initMenu = function() {
+        $.mobile.changePage( context, { 
+            transition: "flip"
+        });
+
+        GRID_MODULE.setGrid();
+    };
 
     var startAuto = function() {
         getCount();
