@@ -1,7 +1,7 @@
 var RESOURCE_MODULE_OBJ = function() {
     
-    var page = 0;
-    var context = "#resource-page";
+    var page = 0,
+        context = "#resource-page";
 
     this.setResource = function() {
         
@@ -39,10 +39,9 @@ var RESOURCE_MODULE_OBJ = function() {
     };
     
     var displayResource = function(response) {
-        var list = $(context).find("#resource-list");
+        var list = $(context).find("#resource-list"), myListContent = "", i=0, l=response.length;
         
-        var myListContent = "";
-        for(var i=0; i<response.length; i+=1) {
+        for(i=0; i<l; i+=1) {
             var obj = response[i];
             myListContent += '<li' + checkNew(obj) + '>' + formatResource(obj) + '</li>';
         }

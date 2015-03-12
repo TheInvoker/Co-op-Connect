@@ -1,9 +1,9 @@
 var GRID_MODULE_OBJ = function() {
     
-    var context = "#menu-page";
+    var context = "#newsgrid";
     
     this.setGrid = function() {
-        var grid = $(context).find("#newsgrid");
+        var grid = $(context);
         grid.empty();
         
         var items = 100;

@@ -3,7 +3,7 @@
 	if (isset($_POST['id'])) {
 
 		$user_id = $_POST['id'];
-		$nameLim = 10;
+		$nameLim = 6;
 	
 		$query = "SELECT th.id, tm.message, tm.date_sent, tm.date_sent>tu.last_read_date AS new
 		          FROM thread th
@@ -26,20 +26,11 @@
 			
 			$thread_id = $row['id'];
 			
+
 			//////////////////
-			$query = "SELECT count(*) AS count
+			$query = "SELECT SQL_CALC_FOUND_ROWS u.id, u.first_name, u.last_name, u.avatar_filename
 					  FROM thread th
-					  JOIN thread_user tu ON tu.thread_id=th.id AND tu.user_id!={$user_id}
-					  JOIN user u ON tu.user_id=u.id
-					  WHERE th.id={$thread_id}
-					  ORDER BY u.last_name";
-			$recordset2 = mysqli_query($sqlConnection, $query);	
-			$row2 = mysqli_fetch_assoc($recordset2);
-			$total = $row2['count'];
-			
-			$query = "SELECT u.id, u.first_name, u.last_name, u.avatar_filename
-					  FROM thread th
-					  JOIN thread_user tu ON tu.thread_id=th.id AND tu.user_id!={$user_id}
+					  JOIN thread_user tu ON tu.thread_id=th.id
 					  JOIN user u ON tu.user_id=u.id
 					  WHERE th.id={$thread_id}
 					  ORDER BY u.last_name
@@ -63,6 +54,11 @@
 				
 				array_push($tempList, $tempObject);
 			}
+
+			$query = "SELECT FOUND_ROWS() AS total";
+			$recordset3 = mysqli_query($sqlConnection, $query);
+			$row3 = mysqli_fetch_assoc($recordset3);
+			$total = $row3['total'];
 			//////////////////
 			
 			
@@ -72,7 +68,7 @@
 				'date_sent' => $row['date_sent'],
 				'new' => $row['new'],
 				'member_names' => $tempList,
-				'extra' => max(0, $total - $nameLim)
+				'extra' => $total > $num_records2 ? 1 : 0
 			);
 			
 			array_push($successMessage, $tempObject);

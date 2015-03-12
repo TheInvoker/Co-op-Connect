@@ -1,7 +1,7 @@
 var MAP_MODULE_OBJ = function() {
     
-    var map = null;
-    var context = "#map-page";
+    var map = null,
+        context = "#map-page";
     
     this.showMap = function() {
         showMapPage();
@@ -27,9 +27,9 @@ var MAP_MODULE_OBJ = function() {
 
     var initMap = function() {
         
-        $(context).find('#map_canvas').gmap().bind('init', function(ev, map) {
+        $(context).find('#map_canvas').gmap().bind('init', function(ev, thismap) {
             
-            map = map;
+            map = thismap;
             $(this).prop('init', true);
             
             if ( navigator.geolocation ) {
@@ -77,9 +77,9 @@ var MAP_MODULE_OBJ = function() {
     };
     
     var initPointMap = function(obj) {
-        $(context).find('#map_canvas').gmap().bind('init', function(ev, map) {
+        $(context).find('#map_canvas').gmap().bind('init', function(ev, thismap) {
 
-            map = map;
+            map = thismap;
             $(this).prop('init', true);
                     
             displayPointOnMap(obj);
@@ -92,13 +92,14 @@ var MAP_MODULE_OBJ = function() {
     };
 
     var showOnMap = function(locations) {
-        var map = map;
-        
+
         // clear markers
         $(context).find('#map_canvas').gmap('clear', 'markers');
         
+        var i=0, l=locations.length;
+
         // add new markers
-        for (var i=0; i<locations.length; i+=1) {
+        for (i=0; i<l; i+=1) {
             
             var loc = locations[i];
 

@@ -6,8 +6,7 @@ var RESET_MODULE_OBJ = function() {
 
         $(context).find("#reset-form").unbind('submit').submit(function() {
             
-            var token = getUrlParameter('token');
-            var id = getUrlParameter('id');
+            var token = getUrlParameter('token'), id = getUrlParameter('id');
     
             runAJAXSerial($(this).serialize(), {
                 token : token,

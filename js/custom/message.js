@@ -1,25 +1,28 @@
 var MESSAGE_MODULE_OBJ = function() {
     
-    var page = 0;
-    var thread_id = null;
-    var serviceChecker = null;
-    var serviceFrequency = 1000 * 60 * 3;
-    var context = "#message-page";
+    var page = 0,
+        thread_id = null,
+        serviceChecker = null,
+        serviceFrequency = 1000 * 60 * 3,
+        names = null,
+        context = "#message-page",
+        thisOBJ = this;
     
-    this.gotoMessage = function(thread_id) {
+    this.gotoMessage = function(tid, thisnames) {
 
         var user = GLOBAL_DATA.user;
+        names = thisnames;
         
         runAJAXSerial('', {
             page : 'message/getmessages',
-            thread_id : thread_id,
+            thread_id : tid,
             id : user['id'],
             pageindex : 0
         }, function(response) {
             
             // update global vars
             page = 1;
-            thread_id = thread_id;
+            thread_id = tid;
             
             $.mobile.changePage(context, { 
                 transition: "slide"
@@ -32,13 +35,11 @@ var MESSAGE_MODULE_OBJ = function() {
             displayMessages(response, true);
             
             // handle sending messages
-            handleSend(thread_id);
+            handleSend(tid);
             
             // handle getting more messages
-            handleGetMore(thread_id);
-			
-			// scroll bot
-			scrollBot();
+            handleGetMore(tid);
+
         }, function(data,status,xhr) {
 
         });
@@ -54,7 +55,7 @@ var MESSAGE_MODULE_OBJ = function() {
         clearInterval(serviceChecker);
     };
 
-    var scrollBot = function() {
+    this.scrollBot = function() {
         $('html, body').animate({
             scrollTop:$(document).height()
         }, 'slow');
@@ -65,15 +66,16 @@ var MESSAGE_MODULE_OBJ = function() {
     };
 
     var displayMessages = function(response, onBottom) {
-        var user = GLOBAL_DATA.user;
-        
-        var acc = '';
-        for(var i=0; i<response.length; i+=1) {
+        var user = GLOBAL_DATA.user, i=0, l=response.length, acc = '';
+
+        for(i=0; i<l; i+=1) {
             var obj = response[i];
 
             var acc_temp = "";
             acc_temp += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-right' : 'message-left') + '">';
+            acc_temp += '<img src="' + getImage(obj['user_id']) + '" align="right" class="message-image" />';
             acc_temp += '<div>' + Autolinker.link(obj['message']) + '</div>';
+            acc_temp += '<br/>';
             if (obj['user_id']!=user['id']) {
                 acc_temp += '<div class="message-details">' + obj['first_name'] + ' ' + obj['last_name'] + '</div>';
             }
@@ -86,11 +88,22 @@ var MESSAGE_MODULE_OBJ = function() {
         addMessage(acc, onBottom);
     };
 
+    var getImage = function(id) {
+        var i=0; l=names.length;
+        for(i=0; i<l; i+=1) {
+            var obj = names[i];
+            if (obj['id'] == id) {
+                return obj['picURL']=='' ? GLOBAL_DATA.def_image_link : obj['picURL'];
+            }
+        }
+        return GLOBAL_DATA.def_image_link;
+    };
+
     var addMessage = function(html, onBottom) {
         var list = $(context).find("#message-list");
         if (onBottom) {
             list.append(html);
-            scrollBot();
+            thisOBJ.scrollBot();
         } else {
             list.prepend(html);
         }
@@ -101,7 +114,7 @@ var MESSAGE_MODULE_OBJ = function() {
         
         $(context).find("#message-form").unbind('submit').submit(function() {
         
-            var field = $(this).find("input[type=text]");
+            var field = $(this).find("textarea");
         
             runAJAXSerial($(this).serialize(), {
                 page : 'message/setmessage',
@@ -112,11 +125,11 @@ var MESSAGE_MODULE_OBJ = function() {
                 
                 var obj = {
                     user_id : user['id'],
-                    message : field.val(),
+                    message : field[0].value.replace(/<br\s*\/?>/mg,"\n"),
                     date_sent : getDate() + ' ' + getTime()
                 };
-				
-				cleanResponse(obj);
+
+                cleanResponse(obj);
                 
                 field.val("").focus();
                 

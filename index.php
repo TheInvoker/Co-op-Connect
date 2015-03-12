@@ -509,8 +509,13 @@
 
 			<div data-role="main" class="ui-content">
 				<ul id="thread-list" data-role="listview" data-filter="true" data-filter-placeholder="filter" data-inset="true">
-
 				</ul>
+				<div data-role="popup" id="memberList-popup">
+					<div style="margin:5px;">
+						<ul id="member-list" data-role="listview" data-filter="true" data-filter-placeholder="filter" data-inset="true">
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div id="message-page" data-role="page" data-theme="b">
@@ -524,7 +529,7 @@
 				</div>
 
 				<form id="message-form">
-					<input name="message" type="text" maxlength="255" required/>
+					<textarea name="message" cols="40" rows="2" maxlength="255"></textarea>
 					<input type="submit" value="Send">
 				</form>
 			</div>

@@ -24,10 +24,8 @@ var MAP_SETTINGS_MODULE_OBJ = function() {
     var getLocations = function() {
         
         $(context).find("#map-filter-form").unbind('submit').submit(function() {
-            
-            var formData = $(this).serialize();
 
-            runAJAXSerial(formData, {
+            runAJAXSerial($(this).serialize(), {
                 page : 'placement/getmapplacements'
             }, function(response) {
                 MAP_MODULE.showOnMap(response);

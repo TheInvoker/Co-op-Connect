@@ -26,6 +26,11 @@
 	width:50px;
 }
 
+.message-image {
+	width: 35px;
+	margin: 0px 0px 5px 5px;
+}
+
 .search-person {
 	cursor: pointer; 
 	cursor: hand; 
@@ -58,6 +63,7 @@
 	margin-bottom:10px;
 	text-shadow:none;
 	word-wrap: break-word;
+	white-space: pre;
 }
 
 .message-left {

@@ -1,7 +1,7 @@
 var SEARCH_MODULE_OBJ = function() {
     
-    var page = 0;
-    var context = "#search-page";
+    var page = 0,
+        context = "#search-page";
 
 	swipePanel(context, "#search-panel");
 	
@@ -31,10 +31,8 @@ var SEARCH_MODULE_OBJ = function() {
     var searchHandler = function() {
         
         $(context).find("#search-form").unbind('submit').submit(function() {
-            
-            var formData = SEARCH_SETTINGS_MODULE.getFormData() + "&" + $(this).serialize();
 
-            runAJAXSerial(formData, {
+            runAJAXSerial(SEARCH_SETTINGS_MODULE.getFormData() + "&" + $(this).serialize(), {
                 page : 'search/search'
             }, function(response) {
                 showResults(response);
@@ -49,10 +47,9 @@ var SEARCH_MODULE_OBJ = function() {
     };
     
     var showResults = function(response) {
-        var body = $(context).find("#search-table > tbody");
+        var body = $(context).find("#search-table > tbody"), acc = "", i=0, l=response.length;
         
-        var acc = "";
-        for(var i=0;i<response.length; i+=1) {
+        for(i=0; i<l; i+=1) {
             var obj = response[i];
             
             acc += "<tr class=\"search-person\" data-id=\"" + obj['id'] + "\" data-email=\"" + obj['email'] + "\">";
@@ -117,14 +114,13 @@ var SEARCH_MODULE_OBJ = function() {
     };
 
     var getDataList = function(checkBoxes, attr) {
-        var list = [];
-        
-        for(var i=0; i<checkBoxes.length; i+=1) {
+        var i=0; l=checkBoxes.length, list = [];
+
+        for(i=0; i<l; i+=1) {
             var obj = $(checkBoxes[i]);
             
             if (obj.hasClass("custom-radio-on")) {
-                var data = obj.parent().parent().attr(attr);
-                list.push(data);
+                list.push(obj.parent().parent().attr(attr));
             }
         }
         

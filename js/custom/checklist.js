@@ -35,11 +35,9 @@ var CHECKLIST_MODULE_OBJ = function () {
     };
 
     var displayChecklist = function(pid, response) {
-        var field = $(context).find("#checklistCB");
-        field.empty();
+        var field = $(context).find("#checklistCB"), i=0, l=response.length, myListContent="";
 
-        var myListContent = "";
-        for(var i=0; i<response.length; i+=1) {
+        for(i=0; i<l; i+=1) {
             var obj = response[i];
             var tagid = 'checklist-' + i;
 
@@ -47,7 +45,7 @@ var CHECKLIST_MODULE_OBJ = function () {
             myListContent += '<label for="' + tagid + '">' + formatChecklist(obj) + '</label>';
         }
 
-        field.append(myListContent).trigger("create");
+        field.html(myListContent).trigger("create");
     };
 
     var formatChecklist = function(obj) {

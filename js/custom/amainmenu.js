@@ -1,8 +1,6 @@
 var MENU_MODULE_OBJ = function() {
     
     var context = "#menu-page";
-    var serviceChecker = null;
-    var serviceFrequency = 1000 * 60 * 3;
 
 	swipePanel(context, "#menu-panel");
 	
@@ -13,12 +11,11 @@ var MENU_MODULE_OBJ = function() {
     };
 
     this.startAuto = function() {
-        serviceChecker = setInterval(function(){ 
-        }, serviceFrequency);
+
     };
 
     this.stopAuto = function() {
-        clearInterval(serviceChecker);
+
     };
     
     $(document).ready(function() {

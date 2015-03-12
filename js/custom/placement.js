@@ -1,12 +1,11 @@
 var PLACEMENT_MODULE_OBJ = function() {
     
-    var context = "#placement-page";
-    var placement = null;
-    var user_id = null;
+    var context = "#placement-page",
+        placement = null,
+        user_id = null;
     
     this.getPlacements = function(uid) {
-        var user = GLOBAL_DATA.user;
-        var me = uid == user['id'];
+        var user = GLOBAL_DATA.user, me = uid == user['id'];
         
         runAJAXSerial('', {
             page : 'placement/getplacements',
@@ -42,16 +41,14 @@ var PLACEMENT_MODULE_OBJ = function() {
     };
 
     var displayPlacements = function(me, response) {
-        var list = $(context).find("#placement-list");
-        list.empty();
+        var list = $(context).find("#placement-list"), myListContent = "", i=0, l=response.length;
         
-        var myListContent = "";
-        for(var i=0; i<response.length; i+=1) {
+        for(i=0; i<l; i+=1) {
             var obj = response[i];
             myListContent += '<li>' + formatLocation(obj, me) + '</li>';
         }
         
-        list.append(myListContent).listview().trigger('create');
+        list.html(myListContent).listview().trigger('create');
         list.listview('refresh');
     };
     
@@ -77,7 +74,7 @@ var PLACEMENT_MODULE_OBJ = function() {
         var items = $(context).find("#placement-list > li > a");
         
         // when clicked, store the obj reference
-        items.unbind('click').click(function() {
+        items.click(function() {
             var index = items.index(this);
             placement = response[index];
         });
@@ -106,25 +103,19 @@ var PLACEMENT_MODULE_OBJ = function() {
     
     var editPlacement = function(button) {
         button.show().unbind('click').click(function() {             
-            var obj = placement;
-
-            PLACEMENT_EDIT_MODULE.setPlacementForEdit(obj);
+            PLACEMENT_EDIT_MODULE.setPlacementForEdit(placement);
         });
     };
     
     var checklistPlacement = function(button) {
         button.show().unbind('click').click(function() { 
-            var obj = placement;
-
-            CHECKLIST_MODULE.getChecklist(user_id, obj);
+            CHECKLIST_MODULE.getChecklist(user_id, placement);
         });
     };
     
     var mapPlacement = function(button) {
         button.unbind('click').click(function() { 
-            var obj = placement;
-
-            MAP_MODULE.showPoint(obj);
+            MAP_MODULE.showPoint(placement);
         });
     };
 
