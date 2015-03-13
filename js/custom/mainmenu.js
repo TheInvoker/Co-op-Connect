@@ -14,16 +14,36 @@ var MENU_MODULE_OBJ = function() {
         stopAuto();
     });
 
-    $(document).ready(function() {
-        setUserButton();
-        setPlacementButton();
-        setSearchButton();
-        setMapButton();
-        setMessageButton();
-        setResourceButton();
-        setAboutButton();
-    });
-	
+	$(context).find("#profile-button").click(function() {
+		var user = GLOBAL_DATA.user;
+		PROFILE_MODULE.getProfile(user['id']);
+	});
+
+	$(context).find("#placement-button").click(function() {
+		var user = GLOBAL_DATA.user;
+		PLACEMENT_MODULE.getPlacements(user['id']);
+	});
+
+	$(context).find("#search-button").click(function() {
+		SEARCH_MODULE.initSearch();
+	});
+
+	$(context).find("#map-button").click(function() {
+		MAP_MODULE.showMap();
+	});
+
+	$(context).find("#message-button").click(function() {
+		THREAD_MODULE.setMessageThreads();
+	});
+
+	$(context).find("#resource-button").click(function() {
+		RESOURCE_MODULE.setResource();
+	});
+
+	$(context).find("#about-button").click(function() {
+		ABOUT_MODULE.setAbout();
+	});
+    
     this.initMenu = function() {
         $.mobile.changePage( context, { 
             transition: "flip"
@@ -43,51 +63,7 @@ var MENU_MODULE_OBJ = function() {
     var stopAuto = function() {
         clearInterval(serviceChecker);
     };
-
-    var setUserButton = function() {
-        $(context).find("#profile-button").click(function() {
-            var user = GLOBAL_DATA.user;
-            PROFILE_MODULE.getProfile(user['id']);
-        });
-    };
-
-    var setPlacementButton = function() {
-        $(context).find("#placement-button").click(function() {
-            var user = GLOBAL_DATA.user;
-            PLACEMENT_MODULE.getPlacements(user['id']);
-        });
-    };
-    
-    var setSearchButton = function() {
-        $(context).find("#search-button").click(function() {
-            SEARCH_MODULE.initSearch();
-        });
-    };
-    
-    var setMapButton = function() {
-        $(context).find("#map-button").click(function() {
-            MAP_MODULE.showMap();
-        });
-    };
-    
-    var setMessageButton = function() {
-        $(context).find("#message-button").click(function() {
-            THREAD_MODULE.setMessageThreads();
-        });
-    };
-    
-    var setResourceButton = function() {
-        $(context).find("#resource-button").click(function() {
-            RESOURCE_MODULE.setResource();
-        });
-    };
-    
-    var setAboutButton = function() {
-        $(context).find("#about-button").click(function() {
-            ABOUT_MODULE.setAbout();
-        });
-    };
-    
+	
     var getCount = function() {
         var user = GLOBAL_DATA.user;
         

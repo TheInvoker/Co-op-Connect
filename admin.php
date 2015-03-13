@@ -4,9 +4,6 @@
 		<?php
 			include "snippet/head.php";
 		?>
-		
-		<script src="js/custom/alogin.js"></script>
-		<script src="js/custom/amainmenu.js"></script>
 	</head>
 	<body>
 
@@ -87,5 +84,12 @@
 			</div>
 		</div> 
 
+		<?php
+			include "snippet/scripts.php";
+		?>
+		
+		<script src="js/custom/alogin.js"></script>
+		<script src="js/custom/amainmenu.js"></script>	
+		
 	</body>
 </html>

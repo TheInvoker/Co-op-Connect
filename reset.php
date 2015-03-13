@@ -4,8 +4,6 @@
 		<?php
 			include "snippet/head.php";
 		?>
-		
-		<script src="js/custom/reset.js"></script>
 	</head>
 	<body>
 
@@ -26,5 +24,11 @@
 			</div>
 		</div>
 
+		<?php
+			include "snippet/scripts.php";
+		?>
+		
+		<script src="js/custom/reset.js"></script>
+		
 	</body>
 </html>

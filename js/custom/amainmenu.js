@@ -4,33 +4,21 @@ var MENU_MODULE_OBJ = function() {
 
 	swipePanel(context, "#menu-panel");
 	
-    $(document).ready(function() {
-        setUserButton();
-        setResourceButton();
-        setTaskButton();
-    });
+	$(context).find("#manage-users-button").click(function() {
+		alert(1);
+	});
+
+	$(context).find("#manage-resources-button").click(function() {
+		alert(2);
+	});
+
+	$(context).find("#manage-tasks-button").click(function() {
+		alert(3);
+	});
 	
     this.initMenu = function() {
         $.mobile.changePage( context, { 
             transition: "flip"
-        });
-    };
-
-    var setUserButton = function() {
-        $(context).find("#manage-users-button").click(function() {
-            alert(1);
-        });
-    };
-    
-    var setResourceButton = function() {
-        $(context).find("#manage-resources-button").click(function() {
-            alert(2);
-        });
-    };
-    
-    var setTaskButton = function() {
-        $(context).find("#manage-tasks-button").click(function() {
-            alert(3);
         });
     };
 };

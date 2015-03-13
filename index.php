@@ -1,40 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 	<head>
-	
 		<?php
 			include "snippet/head.php";
 		?>
-
-		<!-- Include the Google maps library -->
-		<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-		<!-- Include the jquery maps library -->
-		<script src="js/jquery.ui.map.full.min.js"></script>
-		<!-- Include the maps clusterer library -->
-		<script src="js/markerclusterer_packed.js"></script>
-		<!-- Include the geolocation autocomplete library -->
-		<script src="js/jquery.geocomplete.min.js"></script>
-
-		<script src="js/custom/login.js"></script>
-		<script src="js/custom/mainmenu.js"></script>
-		<script src="js/custom/map.js"></script>
-		<script src="js/custom/map_edit.js"></script>
-		<script src="js/custom/profile.js"></script>
-		<script src="js/custom/profile_edit.js"></script>
-		<script src="js/custom/register.js"></script>
-		<script src="js/custom/placement.js"></script>
-		<script src="js/custom/placement_edit.js"></script>
-		<script src="js/custom/checklist.js"></script>
-		<script src="js/custom/search.js"></script>
-		<script src="js/custom/search_edit.js"></script>
-		<script src="js/custom/resource.js"></script>
-		<script src="js/custom/thread.js"></script>
-		<script src="js/custom/message.js"></script>
-		<script src="js/custom/about.js"></script>
-		<script src="js/custom/grid.js"></script>
-
-		<link rel="stylesheet" type="text/css" href="css/default.css">
-		<link rel="stylesheet" type="text/css" href="css/default.date.css">
 	</head>
 	<body>
 
@@ -605,8 +574,42 @@
 			</div>
 		</div>
 
+		<?php
+			include "snippet/scripts.php";
+		?>
+		
+		<!-- Include the Google maps library -->
+		<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+		<!-- Include the jquery maps library -->
+		<script src="js/jquery.ui.map.full.min.js"></script>
+		<!-- Include the maps clusterer library -->
+		<script src="js/markerclusterer_packed.js"></script>
+		<!-- Include the geolocation autocomplete library -->
+		<script src="js/jquery.geocomplete.min.js"></script>
+		<!-- Include the date picker library -->
 		<script src="js/picker.js"></script>
 		<script src="js/picker.date.js"></script>
+
+		<script src="js/custom/login.js"></script>
+		<script src="js/custom/mainmenu.js"></script>
+		<script src="js/custom/map.js"></script>
+		<script src="js/custom/map_edit.js"></script>
+		<script src="js/custom/profile.js"></script>
+		<script src="js/custom/profile_edit.js"></script>
+		<script src="js/custom/register.js"></script>
+		<script src="js/custom/placement.js"></script>
+		<script src="js/custom/placement_edit.js"></script>
+		<script src="js/custom/checklist.js"></script>
+		<script src="js/custom/search.js"></script>
+		<script src="js/custom/search_edit.js"></script>
+		<script src="js/custom/resource.js"></script>
+		<script src="js/custom/thread.js"></script>
+		<script src="js/custom/message.js"></script>
+		<script src="js/custom/about.js"></script>
+		<script src="js/custom/grid.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/default.css">
+		<link rel="stylesheet" type="text/css" href="css/default.date.css">
 		
 	</body>
 </html>

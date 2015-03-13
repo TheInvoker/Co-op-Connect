@@ -2,11 +2,18 @@ var CHECKLIST_MODULE_OBJ = function () {
 
     var context = "#checklist-page";
 	
-	$(document).ready(function() {
-		// configure back button
-		$(context).find("#done-checklist-button").click(function() {
-			history.back();
-		});
+	// configure back button
+	$(context).on("click", "#done-checklist-button", function() {
+		history.back();
+	});
+	
+	// configure checkbox clicks
+	$(context).find("#checklistCB").on("change", "input[type='checkbox']", function() {
+		if ($(this).is(":checked")) {
+			setChecklistState($(this), 1);
+		} else {
+			setChecklistState($(this), 0);
+		}
 	});
 
     this.getChecklist = function(user_id, obj) {
@@ -26,9 +33,6 @@ var CHECKLIST_MODULE_OBJ = function () {
             // add checklist items
             displayChecklist(obj['id'], response);
 
-            // attach click handlers
-            attachHandlers();
-			
         }, function(data,status,xhr) {
 
         });
@@ -58,18 +62,6 @@ var CHECKLIST_MODULE_OBJ = function () {
         str += '<tr title="Description"><td valign="top"><span class="ui-icon-info ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + Autolinker.link(obj['description']) + '</td></tr>';
         str += '</table>';
         return str;
-    };
-
-    var attachHandlers = function() {
-        var checkboxes = $(context).find("#checklistCB").find("input[type='checkbox']");
-
-        checkboxes.change(function() {
-            if ($(this).is(":checked")) {
-                setChecklistState($(this), 1);
-            } else {
-                setChecklistState($(this), 0);
-            }
-        });
     };
 
     var setChecklistState = function(me, state) {
