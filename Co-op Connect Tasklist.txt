@@ -7,7 +7,10 @@ charts
 task ordering
 show home page news
 external panel
-port php to node.js
+table plugin
+advanced chat
+auto class scoping
+
 
 $("#elementID").text()                        [DONE]
 messaging bug, highlighting wrong new thread  [DONE]
