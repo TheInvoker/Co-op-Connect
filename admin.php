@@ -85,6 +85,7 @@
 		</div> 
 
 		<?php
+			include "snippet/scripts_2.php";
 			include "snippet/scripts.php";
 		?>
 		

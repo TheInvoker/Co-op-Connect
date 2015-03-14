@@ -8,8 +8,9 @@ task ordering
 show home page news
 external panel
 table plugin
-advanced chat
-auto class scoping
+fix new line on textarea
+chain events on top
+static class
 
 
 $("#elementID").text()                        [DONE]

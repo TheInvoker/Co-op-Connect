@@ -3,4 +3,5 @@
 <!-- Include shake.js -->
 <script src="js/shake.js"></script>
 
-<script src="js/custom/common.js"></script>
+<!-- My code -->
+<link rel="stylesheet" type="text/css" href="css/custom/main.css">

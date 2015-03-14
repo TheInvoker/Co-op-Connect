@@ -107,7 +107,7 @@ var SEARCH_MODULE_OBJ = function() {
         
         body.html(acc);
 
-        $(context).find("#search-table").table("refresh");
+		$(context).find('.footable').footable();
     };
 
     var activateCheckBoxes = function() {

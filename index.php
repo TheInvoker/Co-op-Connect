@@ -301,25 +301,32 @@
 
 			<div data-role="main" class="ui-content">
 				<form id="search-form">
-
 					<input name="search" type="search" maxlength="255" data-mini="true">
-
 					<input type="submit" value="Search" data-mini="true">
 				</form>
-
-				<table data-role="table" id="search-table" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" data-column-btn-theme="b" data-column-btn-text="Columns to display..." data-column-popup-theme="b">
+				
+				<br/>
+				
+				<table id="search-table" class="footable" data-page-navigation=".pagination" data-page-size="20">
 					<thead>
-						<tr class="ui-bar-d">
-							<th data-priority="2">#</th>
-							<th data-priority="4">Avatar</th>
-							<th data-priority="1">Name</th>
-							<th data-priority="2">Role</th>
-							<th data-priority="3">Department</th>
-							<th data-priority="4">Matched Placements</th>
+						<tr>
+							<th data-type="numeric">#</th>
+							<th>Avatar</th>
+							<th>Name</th>
+							<th>Role</th>
+							<th>Department</th>
+							<th data-type="numeric">Matched Placements</th>
 						</tr>
 					</thead>
 					<tbody>
 					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="6">
+								<div class="pagination pagination-centered hide-if-no-paging"></div>
+							</td>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
 		</div>
@@ -575,6 +582,7 @@
 		</div>
 
 		<?php
+			include "snippet/scripts_2.php";
 			include "snippet/scripts.php";
 		?>
 		
