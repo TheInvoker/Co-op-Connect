@@ -85,7 +85,8 @@ var SEARCH_MODULE_OBJ = function() {
     
     var clearPage = function() {
         $(context).find("#search-form").find("input").eq(0).val("");
-        $(context).find("#search-table > tbody").empty();
+        $(context).find(".footable > tbody").empty();
+		$(context).find('.footable').trigger('footable_redraw');
     };
 
     var showResults = function(response) {
@@ -108,6 +109,8 @@ var SEARCH_MODULE_OBJ = function() {
         body.html(acc);
 
 		$(context).find('.footable').footable();
+		$(context).find('.footable').trigger('footable_redraw');
+		$(context).find('.footable tfoot a').filter('[data-page="0"]').trigger('click');
     };
 
     var activateCheckBoxes = function() {

@@ -576,6 +576,7 @@
 						<li><a href="https://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries" target="_blank">google-maps-utility-library-v3</a></li>
 						<li><a href="http://amsul.ca/pickadate.js" target="_blank">pickadate</a></li>
 						<li><a href="https://github.com/alexgibson/shake.js" target="_blank">shake</a></li>
+						<li><a href="http://fooplugins.com/plugins/footable-jquery" target="_blank">footable</a></li>
 					</ol>
 				</section>
 			</div>
