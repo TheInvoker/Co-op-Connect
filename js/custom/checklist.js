@@ -8,7 +8,7 @@ var CHECKLIST_MODULE_OBJ = function () {
 	});
 	
 	// configure checkbox clicks
-	$(context).find("#checklistCB").on("change", "input[type='checkbox']", function() {
+	$(context).on("change", "#checklistCB input[type='checkbox']", function() {
 		if ($(this).is(":checked")) {
 			setChecklistState($(this), 1);
 		} else {

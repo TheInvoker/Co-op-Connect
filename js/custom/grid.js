@@ -2,6 +2,11 @@ var GRID_MODULE_OBJ = function() {
     
     var context = "#newsgrid";
     
+    // configure click grid item
+    $(context).on("click", "div.grid-item", function() {
+        alert(1);
+    });
+
     this.setGrid = function() {
         var grid = $(context);
         grid.empty();

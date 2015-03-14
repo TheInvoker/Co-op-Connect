@@ -1,14 +1,34 @@
 var PROFILE_EDIT_MODULE_OBJ = function() {
     
-    var context = "#profile-edit-page";
+    var context = "#profile-edit-page",
+        user_id = null;
 
-    this.editProfileHandler = function(response, user_id) {
+    $(context).on('submit', "#profile-edit-form", function() {
+        
+        // this html5 way supports attaching images 
+        var formData = new FormData(this);
+
+        runAJAXHTML5(formData, {
+            id : user_id,
+            page : 'user/setprofile'
+        }, function(response) {
+            history.back();
+            PROFILE_MODULE.getProfile(user_id);
+        }, function(data,status,xhr) {
+            
+        });
+
+        return false;
+    });
+
+    this.editProfileHandler = function(response, uid) {
+        user_id = uid;
+
         $.mobile.changePage(context, { 
             transition: "slide"
         });
         
         setProfileForEdit(response);
-        profileSubmit(user_id);
     };
     
     var setProfileForEdit = function(user) {
@@ -25,30 +45,10 @@ var PROFILE_EDIT_MODULE_OBJ = function() {
         $(context).find("#profile-edit-form").find("textarea[name=biotext]").html(user['biotext']);
         
         var all = $(context).find("#profile_edit_department_rb").find("input");
-        var e = $(context).find("#profile_edit_department_rb").find("input[value='"+user['department_name']+"']");    
+        var e = $(context).find("#profile_edit_department_rb").find("input[value='" + unescapeHTML(user['department_name']) + "']");
         all.prop("checked", false);
         e.prop("checked", true);
         all.checkboxradio( "refresh" );
-    };
-    
-    var profileSubmit = function(user_id) {
-        $(context).find("#profile-edit-form").unbind('submit').submit(function() {
-            
-            // this html5 way supports attaching images 
-            var formData = new FormData(this);
-
-            runAJAXHTML5(formData, {
-                id : user_id,
-                page : 'user/setprofile'
-            }, function(response) {
-                history.back();
-                PROFILE_MODULE.getProfile(user_id);
-            }, function(data,status,xhr) {
-                
-            });
-
-            return false;
-        });
     };
 };
 

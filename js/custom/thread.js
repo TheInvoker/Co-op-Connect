@@ -2,7 +2,8 @@ var THREAD_MODULE_OBJ = function() {
     
     var serviceChecker = null,
         serviceFrequency = 1000 * 60 * 3,
-        context = "#thread-page";
+        context = "#thread-page",
+        response = null;
 
     registerShowEvent(context, function(prev_id) {
         startAuto(prev_id == MESSAGE_MODULE.getContext());
@@ -12,29 +13,71 @@ var THREAD_MODULE_OBJ = function() {
         stopAuto();
     });
 
+    $(context).on('click', ".memberList-button", function() {
+        var thread_id = $(this).attr("data-thread-id");
+        showMembers(thread_id);
+        return false;
+    });
+
+    $(context).on('click', "#member-list .member-individual", function() {
+        PROFILE_MODULE.getProfile($(this).attr("data-id"));
+    });
+
+    $(context).on('click', "#thread-list .add-member-button", function() {
+        var thread_id = $(this).attr("data-thread-id");
+        var email = prompt("Please enter email adress of member to add:", "");
+        
+        if (email != null) {
+            email = email.trim();
+            
+            runAJAXSerial('', {
+                page : 'message/addmember',
+                thread_id : thread_id,
+                email : email
+            }, function(response) {
+                var new_thread_id = response['id'];
+                gotoMessage(new_thread_id);
+            }, function(data,status,xhr) {
+
+            });
+        }
+        
+        return false;
+    });
+
+    $(context).on('click', "#thread-list .thread-image", function() {
+        PROFILE_MODULE.getProfile($(this).attr("data-id"));
+        return false;
+    });
+
+    $(context).on('click', "#thread-list > li > a", function() {
+        var tid = $(this).attr('data-thread-id'), i=0, l=response.length;
+
+        for(i=0; i<l; i+=1) {
+            var obj = response[i];
+            if (obj['id'] == tid) {
+                names = obj['member_names'];
+                MESSAGE_MODULE.gotoMessage(tid, names);
+                return;
+            }
+        }
+    });
+
     this.setMessageThreads = function() {
         var user = GLOBAL_DATA.user;
 
         runAJAXSerial('', {
             page : 'message/getthreads',
             id : user['id']
-        }, function(response) {
+        }, function(res) {
+            response = res;
+
             $.mobile.changePage(context, { 
                 transition: "slide"
             });
             
             // add thread items
-            displayThreads(response);
-            
-            // handle more members
-            handleMoreMembers();
-
-            // handle clicks
-            handleAddMember();
-
-            handleProfileClick();
-
-            clickHandler(response);
+            displayThreads(res);
 
         }, function(data,status,xhr) {
 
@@ -65,8 +108,6 @@ var THREAD_MODULE_OBJ = function() {
         
         list.html(myListContent).listview().trigger('create');
         list.listview('refresh');
-
-
     };
     
     var formatThread = function(obj) {
@@ -99,14 +140,6 @@ var THREAD_MODULE_OBJ = function() {
         return '';
     };
 
-    var handleMoreMembers = function() {
-        $(context).find(".memberList-button").click(function() {
-            var thread_id = $(this).attr("data-thread-id");
-            showMembers(thread_id);
-            return false;
-        });
-    };
-
     var showMembers = function(thread_id) {
         runAJAXSerial('', {
             page : 'message/getmembers',
@@ -131,10 +164,6 @@ var THREAD_MODULE_OBJ = function() {
         list.html(myListContent).listview().trigger('create');
         list.listview('refresh');
 
-        $(context).find("#member-list").find(".member-individual").click(function() {
-            PROFILE_MODULE.getProfile($(this).attr("data-id"));
-        });
-
         $(context).find("#memberList-popup").popup("open");
     };
 
@@ -147,49 +176,6 @@ var THREAD_MODULE_OBJ = function() {
         str += thisname;
         str += '</td></tr></table></a>';
         return str;
-    };
-
-    var handleAddMember = function() {
-        $(context).find("#thread-list").find(".add-member-button").click(function() {
-            var thread_id = $(this).attr("data-thread-id");
-            var email = prompt("Please enter email adress of member to add:", "");
-            
-            if (email != null) {
-                email = email.trim();
-                
-                runAJAXSerial('', {
-                    page : 'message/addmember',
-                    thread_id : thread_id,
-                    email : email
-                }, function(response) {
-                    var new_thread_id = response['id'];
-                    gotoMessage(new_thread_id);
-                }, function(data,status,xhr) {
-
-                });
-            }
-            
-            return false;
-        });
-    };
-
-    var handleProfileClick = function() {
-        $(context).find("#thread-list").find(".thread-image").click(function() {
-            PROFILE_MODULE.getProfile($(this).attr("data-id"));
-            return false;
-        });
-    };
-    
-    var clickHandler = function(response) {
-        var items = $(context).find("#thread-list > li > a");
-        
-        items.click(function() {
-            var index = items.index(this);
-            var thread = response[index];
-            var names = thread['member_names'];
-
-            MESSAGE_MODULE.gotoMessage($(this).attr("data-thread-id"), names);
-        });
     };
 };
 

@@ -2,25 +2,23 @@ var SEARCH_SETTINGS_MODULE_OBJ = function() {
     
     var context = "#search-settings-page";
 	
-	$(document).ready(function() {
-		// configure back button
-		$(context).find("#done-search-settings-button").click(function() {
-			history.back();
-		});
+	$(context).find('click', "#done-search-settings-button", function() {
+		history.back();
 	});
+
+    $(context).find('click', ".clear-cb-button", function() {
+        $(this).parent().find("input").prop("checked", false).checkboxradio( "refresh" );
+    });
+
+    $(context).find('click', ".selectall-cb-button", function() {
+        $(this).parent().find("input").prop("checked", true).checkboxradio( "refresh" );
+    });
 		
     this.initSettings = function() {
         $.mobile.changePage(context, { 
             transition: "slide"
         });
         
-        $(context).find(".clear-cb-button").unbind('click').click(function() {
-            $(this).parent().find("input").prop("checked", false).checkboxradio( "refresh" );
-        });
-        $(context).find(".selectall-cb-button").unbind('click').click(function() {
-            $(this).parent().find("input").prop("checked", true).checkboxradio( "refresh" );
-        });
-
         var elements = $(context).find("#search-settings-form").find("input[type=date]");
         dateHandler(elements, false, function() {}, true);
     };

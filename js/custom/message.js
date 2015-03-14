@@ -16,6 +16,58 @@ var MESSAGE_MODULE_OBJ = function() {
         stopAuto();
     });
 
+    // set the send message button
+    $(context).on('submit','#message-form',function() {
+        var field = $(this).find("textarea");
+    
+        if (field.val().trim()) {
+            runAJAXSerial($(this).serialize(), {
+                page : 'message/setmessage',
+                id : GLOBAL_DATA.user['id'],
+                thread_id : thread_id
+            }, function(response) {
+
+                var obj = {
+                    user_id : user['id'],
+                    message : field[0].value.replace(/<br\s*\/?>/mg,"\n"),
+                    date_sent : getDate() + ' ' + getTime()
+                };
+
+                cleanResponse(obj);
+                
+                field.val("").focus();
+                
+                displayMessages([obj], true);
+            }, function(data,status,xhr) {
+                
+            });
+        }
+        
+        return false;
+    });
+
+    // set the show more messages button
+    $(context).on('click','#more-message-button',function() {
+        runAJAXSerial('', {
+            page : 'message/getmessages',
+            thread_id : thread_id,
+            id : GLOBAL_DATA.user['id'],
+            pageindex : page
+        }, function(response) {
+            if (response.length > 0) {
+                page += 1;
+                
+                displayMessages(response, false);
+            } else {
+                alert("No more messages.");
+            }
+        }, function(data,status,xhr) {
+            
+        });
+
+        return false;
+    });
+
     this.gotoMessage = function(tid, thisnames) {
 
         var user = GLOBAL_DATA.user;
@@ -41,12 +93,6 @@ var MESSAGE_MODULE_OBJ = function() {
             
             // display messages
             displayMessages(response, true);
-            
-            // handle sending messages
-            handleSend(tid);
-            
-            // handle getting more messages
-            handleGetMore(tid);
 
         }, function(data,status,xhr) {
 
@@ -119,64 +165,6 @@ var MESSAGE_MODULE_OBJ = function() {
         } else {
             list.prepend(html);
         }
-    };
-
-    var handleSend = function(thread_id) {
-        var user = GLOBAL_DATA.user;
-        
-        $(context).find("#message-form").unbind('submit').submit(function() {
-        
-            var field = $(this).find("textarea");
-        
-            runAJAXSerial($(this).serialize(), {
-                page : 'message/setmessage',
-                id : user['id'],
-                thread_id : thread_id
-            }, function(response) {
-                var user = GLOBAL_DATA.user;
-                
-                var obj = {
-                    user_id : user['id'],
-                    message : field[0].value.replace(/<br\s*\/?>/mg,"\n"),
-                    date_sent : getDate() + ' ' + getTime()
-                };
-
-                cleanResponse(obj);
-                
-                field.val("").focus();
-                
-                displayMessages([obj], true);
-            }, function(data,status,xhr) {
-                
-            });
-            
-            return false;
-        });
-    };
-    
-    var handleGetMore = function(thread_id) {
-        var user = GLOBAL_DATA.user;
-        
-        $(context).find("#more-message-button").unbind('click').click(function() {
-            runAJAXSerial('', {
-                page : 'message/getmessages',
-                thread_id : thread_id,
-                id : user['id'],
-                pageindex : page
-            }, function(response) {
-                if (response.length > 0) {
-                    page += 1;
-                    
-                    displayMessages(response, false);
-                } else {
-                    alert("No more messages.");
-                }
-            }, function(data,status,xhr) {
-                
-            });
-
-            return false;
-        });
     };
     
     var getNewMessages = function(thread_id) {

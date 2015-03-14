@@ -3,6 +3,11 @@ var MAP_MODULE_OBJ = function() {
     var map = null,
         context = "#map-page";
     
+    // set map settings button click
+    $(context).on('click', "#map-setting-button", function() {
+        MAP_SETTINGS_MODULE.initSettings();
+    });
+
     this.showMap = function() {
         showMapPage();
 
@@ -22,6 +27,20 @@ var MAP_MODULE_OBJ = function() {
             displayPointOnMap(obj);
         } else {
             initPointMap(obj);
+        }
+    };
+
+    var showMapPage = function() {
+        $.mobile.changePage(context, { 
+            transition: "slide"
+        });
+    };
+
+    var handleSettingsButton = function(state) {
+        if (state) {
+            $(context).find("#map-setting-button").show();
+        } else {
+            $(context).find("#map-setting-button").hide();
         }
     };
 
@@ -76,6 +95,11 @@ var MAP_MODULE_OBJ = function() {
         });
     };
     
+    var loadDefLocation = function() {
+        var defLoc = new google.maps.LatLng(43.784712, -79.185998); // UTSC default location
+        $(context).find('#map_canvas').gmap("option", "center", defLoc);
+    };
+    
     var initPointMap = function(obj) {
         $(context).find('#map_canvas').gmap().bind('init', function(ev, thismap) {
 
@@ -109,7 +133,7 @@ var MAP_MODULE_OBJ = function() {
                 'icon': 'http://maps.google.com/mapfiles/ms/icons/' + loc['color'] + '-dot.png'
             };
             
-            $(context).find('#map_canvas').gmap('addMarker', pos).click(function() {
+            $(context).find('#map_canvas').gmap('addMarker', pos).on('click', function() {
                 $(context).find('#map_canvas').gmap('openInfoWindow', {'content': loc['address']}, this);
             });
         }
@@ -119,27 +143,6 @@ var MAP_MODULE_OBJ = function() {
         
         // cluster markers
         $(context).find('#map_canvas').gmap('set', 'MarkerClusterer', new MarkerClusterer(map, $(context).find('#map_canvas').gmap('get', 'markers')));
-    };
-
-    var loadDefLocation = function() {
-        var defLoc = new google.maps.LatLng(43.784712, -79.185998); // UTSC default location
-        $(context).find('#map_canvas').gmap("option", "center", defLoc);
-    };
-
-    var handleSettingsButton = function(state) {
-        if (state) {
-            $(context).find("#map-setting-button").show().unbind('click').click(function() {
-                MAP_SETTINGS_MODULE.initSettings();
-            });
-        } else {
-            $(context).find("#map-setting-button").hide();
-        }
-    };
-
-    var showMapPage = function() {
-        $.mobile.changePage(context, { 
-            transition: "slide"
-        });
     };
 };
 

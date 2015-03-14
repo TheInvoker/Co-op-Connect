@@ -14,33 +14,40 @@ var MENU_MODULE_OBJ = function() {
         stopAuto();
     });
 
-	$(context).find("#profile-button").click(function() {
+    // configure profile button click
+	$(context).on('click', "#profile-button", function() {
 		var user = GLOBAL_DATA.user;
 		PROFILE_MODULE.getProfile(user['id']);
 	});
 
-	$(context).find("#placement-button").click(function() {
+    // configure placement button click
+	$(context).on('click', "#placement-button", function() {
 		var user = GLOBAL_DATA.user;
 		PLACEMENT_MODULE.getPlacements(user['id']);
 	});
 
-	$(context).find("#search-button").click(function() {
+    // configure search button click
+	$(context).on('click', "#search-button", function() {
 		SEARCH_MODULE.initSearch();
 	});
 
-	$(context).find("#map-button").click(function() {
+    // configure map button click
+	$(context).on('click', "#map-button", function() {
 		MAP_MODULE.showMap();
 	});
 
-	$(context).find("#message-button").click(function() {
+    // configure message button click
+	$(context).on('click', "#message-button", function() {
 		THREAD_MODULE.setMessageThreads();
 	});
 
-	$(context).find("#resource-button").click(function() {
+    // configure resource button click
+	$(context).on('click', "#resource-button", function() {
 		RESOURCE_MODULE.setResource();
 	});
 
-	$(context).find("#about-button").click(function() {
+    // configure about button click
+	$(context).on('click', "#about-button", function() {
 		ABOUT_MODULE.setAbout();
 	});
     

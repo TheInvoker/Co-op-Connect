@@ -1,13 +1,42 @@
 var PLACEMENT_EDIT_MODULE_OBJ = function() {
     
-    var context = "#placement-edit-page";
+    var context = "#placement-edit-page",
+        pid = null;
+
+    // set up placement edit form
+    $(context).on('submit', '#placement-edit-form', function() {
+
+        var user = GLOBAL_DATA.user;
+
+        if (pid == null) {    
+            var obj = {
+                page : "placement/addplacements",
+                user_id : user['id']
+            };
+        } else {
+            var obj = {
+                page : "placement/setplacements",
+                id : pid
+            };
+        }
+        
+        runAJAXSerial($(this).serialize(), obj, function(response) {
+            history.back();
+            PLACEMENT_MODULE.getPlacements(user['id']);
+        }, function(data,status,xhr) {
+
+        });
+
+        return false;
+    });
 
     this.newPlacement = function() {
         switchPage();
         
         setFormFields(null);
         setDateFields(true);
-        placementSubmit(null);
+
+        pid = null;
     };
 
     this.setPlacementForEdit = function(obj) {
@@ -15,7 +44,8 @@ var PLACEMENT_EDIT_MODULE_OBJ = function() {
         
         setFormFields(obj);
         setDateFields(false);
-        placementSubmit(obj['id']);
+
+        pid = obj['id'];
     };
     
     var switchPage = function() {
@@ -61,34 +91,6 @@ var PLACEMENT_EDIT_MODULE_OBJ = function() {
     var setDateFields = function(setCurrentDate) {
         var elements = $(context).find("#placement-edit-form").find("input[type=date]");
         dateHandler(elements, setCurrentDate, function() {}, false);
-    };
-
-    var placementSubmit = function(pid) {
-        $(context).find("#placement-edit-form").unbind('submit').submit(function() {
-
-            var user = GLOBAL_DATA.user;
-
-            if (pid == null) {    
-                var obj = {
-                    page : "placement/addplacements",
-                    user_id : user['id']
-                };
-            } else {
-                var obj = {
-                    page : "placement/setplacements",
-                    id : pid
-                };
-            }
-            
-            runAJAXSerial($(this).serialize(), obj, function(response) {
-                history.back();
-                PLACEMENT_MODULE.getPlacements(user['id']);
-            }, function(data,status,xhr) {
-
-            });
-
-            return false;
-        });
     };
 };
 

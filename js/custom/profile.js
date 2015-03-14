@@ -1,25 +1,43 @@
 var PROFILE_MODULE_OBJ = function() {
     
-    var context = "#profile-page";
+    var context = "#profile-page",
+        response = null,
+        user_id = null;
 
-    this.getProfile = function(user_id) {
+    $(context).on('click',"#profile-edit-button",function() {
+        PROFILE_EDIT_MODULE.editProfileHandler(response, user_id);
+    });
+
+    $(context).on('click',"#profile-placements",function() {
+        PLACEMENT_MODULE.getPlacements(user_id);
+    });
+
+    $(context).on('click',"#profile-message",function() {
+        createThread();
+    });
+
+    this.getProfile = function(uid) {
         runAJAXSerial('', {
             page : 'user/getprofile',
-            id : user_id
-        }, function(response) {
+            id : uid
+        }, function(res) {
+            response = res;
+            user_id = uid;
+
             $.mobile.changePage(context, { 
                 transition: "slide"
             });
             
-            displayProfile(response, user_id);
+            displayProfile();
             
-            editProfileHandler(response, user_id);
+            editProfileHandler();
+            
         }, function(data,status,xhr) {
             
         });
     };
     
-    var displayProfile = function(response, user_id) {
+    var displayProfile = function() {
         var user = GLOBAL_DATA.user;
         
         $(context).find("#profile-fullname").html(response['firstname'] + ' ' + response['lastname']);
@@ -39,19 +57,26 @@ var PROFILE_MODULE_OBJ = function() {
         $(context).find("#profile-email").attr("href", "mailto:" + response['email']);
         $(context).find("#profile-phone").attr("href", "tel:+" + response['phone']);
         $(context).find("#profile-site").attr("href", $(Autolinker.link(response['website'])).attr("href"));
-        $(context).find("#profile-placements").unbind('click').click(function() {
-            PLACEMENT_MODULE.getPlacements(user_id);
-        });
+
+        var button = $(context).find("#profile-message");
         if (user['id'] == user_id) {
-            $(context).find("#profile-message").hide();
+            button.hide();
         } else {
-            $(context).find("#profile-message").show().unbind('click').click(function() {
-                createThread(user_id);
-            });
+            button.show();
         }
     };
-    
-    var createThread = function(user_id) {
+
+    var editProfileHandler = function() {
+        var user = GLOBAL_DATA.user, button = $(context).find("#profile-edit-button");
+        
+        if (user_id == user['id']) {
+            button.show();
+        } else {
+            button.hide();
+        }
+    };
+
+    var createThread = function() {
         var user = GLOBAL_DATA.user;
         
         runAJAXSerial('', {
@@ -64,18 +89,6 @@ var PROFILE_MODULE_OBJ = function() {
         }, function(data,status,xhr) {
             
         });
-    };
-    
-    var editProfileHandler = function(response, user_id) {
-        var user = GLOBAL_DATA.user;
-        
-        if (user_id == user['id']) {
-            $(context).find("#profile-edit-button").show().unbind('click').click(function() {
-                PROFILE_EDIT_MODULE.editProfileHandler(response, user_id);
-            });
-        } else {
-            $(context).find("#profile-edit-button").hide();
-        }
     };
 };
 

@@ -180,6 +180,9 @@ function escapeHTML(str) {
 	return $("<p/>").text(str).html();
 }
 
+function unescapeHTML(str) {
+    return $('<textarea/>').html(str).val();
+}
 
 
 
@@ -212,7 +215,7 @@ function goHomePage() {
 function setPageShowHide() {
     
     // configure page show
-    $(document).unbind("pagecontainershow").on( "pagecontainershow", function( event, ui ) {
+    $(document).on( "pagecontainershow", function( event, ui ) {
         var id = "#"+ui.toPage.prop("id"), prev_id = "#"+ui.prevPage.prop("id");
         
 		if (GLOBAL_DATA.eventsShow.hasOwnProperty(id)) {
@@ -222,7 +225,7 @@ function setPageShowHide() {
     });
 	   
     // configure page hide
-    $(document).unbind("pagecontainerhide").on( "pagecontainerhide", function( event, ui ) {
+    $(document).on( "pagecontainerhide", function( event, ui ) {
         var id = "#"+ui.prevPage.prop("id"), to_id = "#"+ui.toPage.prop("id");
         
 		if (GLOBAL_DATA.eventsHide.hasOwnProperty(id)) {

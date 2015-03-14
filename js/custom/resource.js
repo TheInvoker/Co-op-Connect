@@ -3,6 +3,28 @@ var RESOURCE_MODULE_OBJ = function() {
     var page = 0,
         context = "#resource-page";
 
+    $(context).on('click', "#more-resource-button", function() {
+        
+        var user = GLOBAL_DATA.user;
+        
+        runAJAXSerial('', {
+            page : 'resource/getresources',
+            id : user['id'],
+            pageindex : page
+        }, function(response) {
+            page += 1;
+
+            if (response.length > 0) {
+                // add resource items
+                displayResource(response);
+            } else {
+                alert("No more resources.");
+            }
+        }, function(data,status,xhr) {
+            
+        });
+    });
+
     this.setResource = function() {
         
         var user = GLOBAL_DATA.user;
@@ -26,8 +48,6 @@ var RESOURCE_MODULE_OBJ = function() {
             // add resource items
             displayResource(response);
             
-            // handle show more
-            handleShowMore();
         }, function(data,status,xhr) {
             
         });
@@ -63,30 +83,6 @@ var RESOURCE_MODULE_OBJ = function() {
         str += '<tr title="Last Updated"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['date_modified'] + '</td></tr>';
         str += '</table>';
         return str;
-    };
-    
-    var handleShowMore = function() {
-        $(context).find("#more-resource-button").unbind('click').click(function() {
-            
-            var user = GLOBAL_DATA.user;
-            
-            runAJAXSerial('', {
-                page : 'resource/getresources',
-                id : user['id'],
-                pageindex : page
-            }, function(response) {
-                page += 1;
-
-                if (response.length > 0) {
-                    // add resource items
-                    displayResource(response);
-                } else {
-                    alert("No more resources.");
-                }
-            }, function(data,status,xhr) {
-                
-            });
-        });
     };
 };
 

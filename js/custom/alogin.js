@@ -2,7 +2,8 @@ var LOGIN_MODULE_OBJ = function() {
 
     var context = "#login-page";
 
-	$(context).find("#login-form").submit(function() {
+    // set up login button click
+	$(context).on('submit', "#login-form", function() {
 		
 		runAJAXSerial($(this).serialize(), {
 			ad : 1,

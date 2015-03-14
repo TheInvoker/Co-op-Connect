@@ -4,15 +4,18 @@ var MENU_MODULE_OBJ = function() {
 
 	swipePanel(context, "#menu-panel");
 	
-	$(context).find("#manage-users-button").click(function() {
+	// set up users button click
+	$(context).on('click', "#manage-users-button", function() {
 		alert(1);
 	});
 
-	$(context).find("#manage-resources-button").click(function() {
+	// set up resources button click
+	$(context).on('click', "#manage-resources-button", function() {
 		alert(2);
 	});
 
-	$(context).find("#manage-tasks-button").click(function() {
+	// set up tasks button click
+	$(context).on('click', "#manage-tasks-button", function() {
 		alert(3);
 	});
 	
