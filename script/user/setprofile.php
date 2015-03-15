@@ -84,8 +84,11 @@
 			$query = "UPDATE user 
 					  SET avatar_filename='{$filename}'
 					  WHERE id={$targetID}";
-					  
-			mysqli_query($sqlConnection, $query);
+
+			if (!mysqli_query($sqlConnection, $query)) { 
+				$errorMessage = mysqli_error($sqlConnection); 
+				return; 
+			}
 		}
 	}
 

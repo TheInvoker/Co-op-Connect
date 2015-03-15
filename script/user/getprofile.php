@@ -14,6 +14,10 @@
 			  WHERE u.id = {$targetID}";
 			  
 	$recordset = mysqli_query($sqlConnection, $query);	
+	if (!$recordset) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 	$num_records = mysqli_num_rows($recordset);
 
 	if ($num_records == 0) {

@@ -14,6 +14,10 @@
 			  WHERE u.id={$user_id} AND r.active=1 AND rd.department_id=u.department_id AND r.date_modified>u.resource_checked_date";
 			  
 	$recordset = mysqli_query($sqlConnection, $query);	
+	if (!$recordset) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 	$row = mysqli_fetch_assoc($recordset);
 
 	$query = "SELECT count(*) AS count
@@ -22,6 +26,10 @@
 			  JOIN thread_message tm ON th.id=tm.thread_id AND tu.last_read_date<tm.date_sent";
 
 	$recordset = mysqli_query($sqlConnection, $query);	
+	if (!$recordset) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 	$row2 = mysqli_fetch_assoc($recordset);
 	
 	

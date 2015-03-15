@@ -81,6 +81,10 @@
 	$query = $query . "ORDER BY u.last_name ASC, num_placements DESC";
 
 	$recordset = mysqli_query($sqlConnection, $query);	
+	if (!$recordset) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 	$num_records = mysqli_num_rows($recordset);
 
 	
