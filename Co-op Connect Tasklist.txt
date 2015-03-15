@@ -15,6 +15,7 @@ search bug 'arts & f'
 chain events on top
 remove support for tasks for multi department
 
+swipe <=50 x-axis                             [DONE]
 error messages in php                         [DONE]
 horizontal scroll in search table             [DONE]
 data- attribute                               [DONE]
