@@ -2,7 +2,6 @@ map marker refresh bug
 download too much coloumns for map
 generalize strings in php
 server side validation
-sanitize all inputs
 charts
 task ordering
 show home page news
@@ -12,9 +11,8 @@ static class
 improve logo
 search bug 'arts & f'
 
-chain events on top
-remove support for tasks for multi department
-
+sanitize all inputs 
+chain events on top                           [DONE]
 swipe <=50 x-axis                             [DONE]
 error messages in php                         [DONE]
 horizontal scroll in search table             [DONE]
