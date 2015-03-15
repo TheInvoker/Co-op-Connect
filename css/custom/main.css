@@ -47,6 +47,12 @@
 .footable tbody tr:not(:last-child) td {
 	border-bottom: 1px solid #8C8C8C !important;
 }
+.footable tbody tr.search_row_select {
+	background-color: #005952 !important;
+}
+.footable tbody tr.search_row_select:hover {
+	background-color: #007A70 !important;
+}
 .footable tfoot  td {
 	box-shadow : none !important;
 	border-width: 0px !important;

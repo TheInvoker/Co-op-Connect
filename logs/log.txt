@@ -1,11 +1,25 @@
-SELECT r.*, r.date_modified>u.resource_checked_date AS new
-		          FROM resource r
-				  JOIN user u ON u.id=1
-				  JOIN department d on u.department_id=d.id
-				  JOIN resource_department rd ON r.id = rd.resource_id AND rd.department_id = u.department_id
-				  WHERE r.active=1
-				  ORDER BY r.date_modified DESC
-				  LIMIT 20, 5
+INSERT IGNORE
+								  INTO thread_user (thread_id,user_id,last_read_date)
+								  SELECT 24,1,NOW()
+								  UNION
+								  SELECT 24, b.a, NOW()
+								  FROM (SELECT (2,3,4) AS a) b
+
+
+----------------------------------------------------
+
+INSERT IGNORE
+								  INTO thread_user (thread_id,user_id,last_read_date)
+								  SELECT 25,1,NOW()
+								   UNION (SELECT 25, 2, NOW()) UNION (SELECT 25, 3, NOW()) UNION (SELECT 25, 4, NOW())
+
+
+----------------------------------------------------
+
+INSERT IGNORE
+								  INTO thread_user (thread_id,user_id,last_read_date)
+								  SELECT 26,1,NOW()
+								   UNION (SELECT 26, 2, NOW()) UNION (SELECT 26, 3, NOW()) UNION (SELECT 26, 4, NOW())
 
 
 ----------------------------------------------------

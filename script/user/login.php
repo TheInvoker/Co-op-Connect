@@ -6,7 +6,7 @@
 		$pass = mysqli_real_escape_string($sqlConnection, $_POST['password']); 
 		$admin = $_POST['ad']; 
 		
-		$query = "SELECT u.id, u.active, u.department_id
+		$query = "SELECT u.id, u.active, u.avatar_filename
 				  FROM user u
 				  JOIN role r ON r.id = u.role_id
 				  WHERE u.email_address = '{$email}' AND u.password = '{$pass}'" . ($admin=="1" ? " AND r.name='Admin'" : "");
@@ -17,6 +17,10 @@
 		if ($num_records == 1) {
 		
 			$row = mysqli_fetch_assoc($recordset);
+			
+			$filename = $row['avatar_filename'];
+			$picURL = FormatImageURL($row['id'], $filename);
+			
 			$active = $row['active'];
 			
 			if ($active == 0) {
@@ -24,7 +28,7 @@
 			} else {
 				$successMessage = array(
 					'id' => $row['id'],
-					'department_id' => $row['department_id']
+					'picURL' => $picURL
 				);
 			}
 		} else {

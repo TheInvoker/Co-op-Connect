@@ -36,12 +36,18 @@
 						mysqli_query($sqlConnection, $query);
 						$thread_id = mysqli_insert_id($sqlConnection);
 						
+						$acc = "";
+						for($i=0; $i<count($targetList); $i+=1) {
+							$mid = $targetList[$i];
+							$acc = $acc . " UNION ";
+							$acc = $acc . "(SELECT {$thread_id}, {$mid}, NOW())";
+						}
+						
 						$query = "INSERT IGNORE
 								  INTO thread_user (thread_id,user_id,last_read_date)
 								  SELECT {$thread_id},{$user_id},NOW()
-								  UNION
-								  SELECT {$thread_id}, b.a, NOW()
-								  FROM (SELECT ({$target_ids}) AS a) b";
+								  {$acc}";
+
 						mysqli_query($sqlConnection, $query);
 						
 					} else {

@@ -2,8 +2,7 @@ var THREAD_MODULE_OBJ = function() {
     
     var serviceChecker = null,
         serviceFrequency = 1000 * 60 * 3,
-        context = "#thread-page",
-        response = null;
+        context = "#thread-page";
 
     registerShowEvent(context, function(prev_id) {
         startAuto(prev_id == MESSAGE_MODULE.getContext());
@@ -36,7 +35,7 @@ var THREAD_MODULE_OBJ = function() {
                 email : email
             }, function(response) {
                 var new_thread_id = response['id'];
-                gotoMessage(new_thread_id);
+                MESSAGE_MODULE.gotoMessage(new_thread_id);
             }, function(data,status,xhr) {
 
             });
@@ -51,16 +50,8 @@ var THREAD_MODULE_OBJ = function() {
     });
 
     $(context).on('click', "#thread-list > li > a", function() {
-        var tid = $(this).attr('data-thread-id'), i=0, l=response.length;
-
-        for(i=0; i<l; i+=1) {
-            var obj = response[i];
-            if (obj['id'] == tid) {
-                names = obj['member_names'];
-                MESSAGE_MODULE.gotoMessage(tid, names);
-                return;
-            }
-        }
+        var tid = $(this).attr('data-thread-id');
+        MESSAGE_MODULE.gotoMessage(tid);
     });
 
     this.setMessageThreads = function() {
@@ -70,8 +61,6 @@ var THREAD_MODULE_OBJ = function() {
             page : 'message/getthreads',
             id : user['id']
         }, function(res) {
-            response = res;
-
             $.mobile.changePage(context, { 
                 transition: "slide"
             });

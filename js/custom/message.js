@@ -4,7 +4,6 @@ var MESSAGE_MODULE_OBJ = function() {
         thread_id = null,
         serviceChecker = null,
         serviceFrequency = 1000 * 60 * 3,
-        names = null,
         context = "#message-page";
     
     registerShowEvent(context, function(prev_id) {
@@ -28,9 +27,10 @@ var MESSAGE_MODULE_OBJ = function() {
             }, function(response) {
 
                 var obj = {
-                    user_id : user['id'],
+                    user_id : GLOBAL_DATA.user['id'],
                     message : field[0].value.replace(/<br\s*\/?>/mg,"\n"),
-                    date_sent : getDate() + ' ' + getTime()
+                    date_sent : getDate() + ' ' + getTime(),
+					picURL : GLOBAL_DATA.user['picURL']
                 };
 
                 cleanResponse(obj);
@@ -68,11 +68,10 @@ var MESSAGE_MODULE_OBJ = function() {
         return false;
     });
 
-    this.gotoMessage = function(tid, thisnames) {
+    this.gotoMessage = function(tid) {
 
         var user = GLOBAL_DATA.user;
-        names = thisnames;
-        
+
         runAJAXSerial('', {
             page : 'message/getmessages',
             thread_id : tid,
@@ -131,7 +130,7 @@ var MESSAGE_MODULE_OBJ = function() {
 
             var acc_temp = "";
             acc_temp += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-right' : 'message-left') + '">';
-            acc_temp += '<img src="' + getImage(obj['user_id']) + '" align="right" class="message-image" />';
+            acc_temp += '<img src="' + getImage(obj) + '" align="right" class="message-image" />';
             acc_temp += '<div>' + Autolinker.link(obj['message']) + '</div>';
             acc_temp += '<br/>';
             if (obj['user_id']!=user['id']) {
@@ -146,15 +145,8 @@ var MESSAGE_MODULE_OBJ = function() {
         addMessage(acc, onBottom);
     };
 
-    var getImage = function(id) {
-        var i=0; l=names.length;
-        for(i=0; i<l; i+=1) {
-            var obj = names[i];
-            if (obj['id'] == id) {
-                return obj['picURL']=='' ? GLOBAL_DATA.def_image_link : obj['picURL'];
-            }
-        }
-        return GLOBAL_DATA.def_image_link;
+    var getImage = function(obj) {
+        return obj['picURL']=='' ? GLOBAL_DATA.def_image_link : obj['picURL'];
     };
 
     var addMessage = function(html, onBottom) {

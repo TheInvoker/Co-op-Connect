@@ -7,12 +7,13 @@ charts
 task ordering
 show home page news
 external panel
-table plugin
 fix new line on textarea
 chain events on top
 static class
+remove support for tasks for multi department
+improve logo
 
-
+table plugin
 $("#elementID").text()                        [DONE]
 messaging bug, highlighting wrong new thread  [DONE]
 context all js files                          [DONE]

@@ -7,7 +7,7 @@
 		$lim = 30;
 		$offset = $_POST['pageindex'] * $lim;
 	
-		$query = "SELECT tm.user_id,tm.message,tm.date_sent,u.first_name,u.last_name
+		$query = "SELECT tm.user_id,tm.message,tm.date_sent,u.first_name,u.last_name,u.avatar_filename
 		          FROM thread_message tm
 				  JOIN user u ON u.id=tm.user_id
 				  WHERE tm.thread_id={$thread_id}
@@ -27,12 +27,16 @@
 		for ($i = 0; $i < $num_records; $i++) {
 			$row = mysqli_fetch_assoc($recordset);
 			
+			$filename = $row['avatar_filename'];
+			$picURL = FormatImageURL($row['user_id'], $filename);
+			
 			$tempObject = array(
 				'user_id' => $row['user_id'],
 				'message' => $row['message'],
 				'date_sent' => $row['date_sent'],
 				'first_name' => $row['first_name'],
-				'last_name' => $row['last_name']
+				'last_name' => $row['last_name'],
+				'picURL' => $picURL
 			);
 			
 			array_push($successMessage, $tempObject);

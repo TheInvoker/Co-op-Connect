@@ -307,7 +307,7 @@
 				
 				<br/>
 				
-				<table id="search-table" class="footable" data-page-navigation=".pagination" data-page-size="2">
+				<table id="search-table" class="footable" data-page-navigation=".pagination" data-page-size="20">
 					<thead>
 						<tr>
 							<th data-type="numeric">#</th>

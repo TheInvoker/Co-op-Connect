@@ -21,7 +21,6 @@ var SEARCH_MODULE_OBJ = function() {
             page : 'search/search'
         }, function(response) {
             showResults(response);
-            activateCheckBoxes();
         }, function(data,status,xhr) {
 
         });
@@ -30,29 +29,30 @@ var SEARCH_MODULE_OBJ = function() {
     });
 
     $(context).on("click", ".search-person", function(e) {
-        if (!e.hasOwnProperty('_clickedName')) {
-            var id = $(this).attr("data-id");
-            PROFILE_MODULE.getProfile(id);
-        }
+		if (!e.hasOwnProperty("_selectedProfile")) {
+			$(this).toggleClass("search_row_select");
+		}
     });
 
-    $(context).on("click", ".search-person .ui-checkbox .ui-btn", function(e) {
-        e['_clickedName'] = true;
+    $(context).on("click", ".footable tbody tr td img", function(e) {
+		var id = $(this).attr("data-id");
+		PROFILE_MODULE.getProfile(id);
+		e['_selectedProfile'] = true;
     });
-
+	
     $(context).on('click', "#search-clear-all", function() {
-        var checkBoxes = getcheckBoxes();
-        checkBoxes.prop("checked", false).checkboxradio( "refresh" );
+        var searchRows = getSearchRows();
+        searchRows.removeClass("search_row_select");
     });
 
     $(context).on('click', "#search-select-all", function() {
-        var checkBoxes = getcheckBoxes();
-        checkBoxes.prop("checked", true).checkboxradio( "refresh" );
+        var searchRows = getSearchRows();
+        searchRows.addClass("search_row_select");
     });
 
     $(context).on('click', "#search-message-all", function() {
         var idList = getDataList("data-id");
-        var strList = idList.join(";");
+        var strList = idList.join(",");
          
         var user = GLOBAL_DATA.user;
         
@@ -70,7 +70,7 @@ var SEARCH_MODULE_OBJ = function() {
 
     $(context).on('click', "#search-email-all", function() {
         var emailList = getDataList("data-email");
-        var strList = emailList.join(","); 
+        var strList = emailList.join(";"); 
         
         window.location.href = "mailto:?bcc=" + strList;
     });
@@ -98,8 +98,8 @@ var SEARCH_MODULE_OBJ = function() {
 
             acc += "<tr class=\"search-person\" data-id=\"" + obj['id'] + "\" data-email=\"" + obj['email'] + "\">";
             acc += "<td>" + (i+1) + "</td>";
-            acc += "<td><img class=\"small-image\" src=\"" + (obj['picURL']=='' ? GLOBAL_DATA.def_image_link : obj['picURL']) + "\"/></td>";
-            acc += '<td><div><input name="' + tagid + '" id="' + tagid + '" type="checkbox"><label for="' + tagid + '">' + obj['firstname'] + " " + obj['lastname'] + '</label></div></td>';
+            acc += "<td><img class=\"small-image\" src=\"" + (obj['picURL']=='' ? GLOBAL_DATA.def_image_link : obj['picURL']) + "\" data-id=\"" + obj['id'] + "\"/></td>";
+            acc += '<td>' + obj['firstname'] + " " + obj['lastname'] + '</td>';
             acc += "<td>" + getColorCodeTag(obj['role_name'], obj['r_color']) + "</td>";
             acc += "<td>" + getColorCodeTag(obj['department_name'], obj['d_color']) + "</td>";
             acc += "<td>" + obj['num_placements'] + "</td>";
@@ -113,28 +113,23 @@ var SEARCH_MODULE_OBJ = function() {
 		$(context).find('.footable tfoot a').filter('[data-page="0"]').trigger('click');
     };
 
-    var activateCheckBoxes = function() {
-        var checkBoxes = getcheckBoxes();
-        checkBoxes.checkboxradio().prop("checked", false).checkboxradio( "refresh" );
-    };
-
-    var getcheckBoxes = function() {
-        return $(context).find("#search-table").find("input[type=checkbox]");
-    };
-
     var getDataList = function(attr) {
-        var checkBoxes = getcheckBoxes();
-        var i=0; l=checkBoxes.length, list = [];
+        var searchRows = getSearchRows();
+        var i=0; l=searchRows.length, list = [];
 
         for(i=0; i<l; i+=1) {
-            var obj = $(checkBoxes[i]);
+            var obj = $(searchRows[i]);
             
-            if (obj[0].checked) {
-                list.push(obj.parent().parent().attr(attr));
+            if (obj.hasClass("search_row_select")) {
+                list.push(obj.attr(attr));
             }
         }
         
         return list;
+    };
+	
+    var getSearchRows = function() {
+        return $(context).find(".footable tbody tr");
     };
 };
 
