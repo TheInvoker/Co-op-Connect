@@ -37,7 +37,7 @@ var SEARCH_MODULE_OBJ = function() {
     });
 
     $(context).on("click", ".footable tbody tr td img", function(e) {
-		var id = $(this).attr("data-id");
+		var id = $(this).attr("data-uid");
 		PROFILE_MODULE.getProfile(id);
 		e['_selectedProfile'] = true;
     });
@@ -53,7 +53,7 @@ var SEARCH_MODULE_OBJ = function() {
     });
 
     $(context).on('click', "#search-message-all", function() {
-        var idList = getDataList("data-id");
+        var idList = getDataList("data-uid");
         var strList = idList.join(",");
          
         var user = GLOBAL_DATA.user;
@@ -92,16 +92,17 @@ var SEARCH_MODULE_OBJ = function() {
     };
 
     var showResults = function(response) {
-        var body = $(context).find("#search-table > tbody"), acc = "", i=0, l=response.length;
+        var body = $(context).find(".footable > tbody"), acc = "", i=0, l=response.length;
         
         for(i=0; i<l; i+=1) {
             var obj = response[i];
             var tagid = 'searchlist-' + i;
 
-            acc += "<tr class=\"search-person\" data-id=\"" + obj['id'] + "\" data-email=\"" + obj['email'] + "\">";
+            acc += "<tr class=\"search-person\" data-uid=\"" + obj['id'] + "\" data-email=\"" + obj['email'] + "\">";
             acc += "<td>" + (i+1) + "</td>";
-            acc += "<td><img class=\"small-image\" src=\"" + (obj['picURL']=='' ? GLOBAL_DATA.def_image_link : obj['picURL']) + "\" data-id=\"" + obj['id'] + "\"/></td>";
-            acc += '<td>' + obj['firstname'] + " " + obj['lastname'] + '</td>';
+            acc += "<td><img class=\"small-image\" title=\"Click to visit profile\" src=\"" + (obj['picURL']=='' ? GLOBAL_DATA.def_image_link : obj['picURL']) + "\" data-uid=\"" + obj['id'] + "\"/></td>";
+            acc += '<td>' + obj['firstname'] + '</td>';
+			acc += '<td>' + obj['lastname'] + '</td>';
             acc += "<td>" + getColorCodeTag(obj['role_name'], obj['r_color']) + "</td>";
             acc += "<td>" + getColorCodeTag(obj['department_name'], obj['d_color']) + "</td>";
             acc += "<td>" + obj['num_placements'] + "</td>";

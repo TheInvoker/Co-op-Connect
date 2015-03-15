@@ -14,9 +14,13 @@ remove support for tasks for multi department
 improve logo
 search bug 'arts & f'
 error messages in php
-data- attribute
-horizontal scroll in search table
 
+
+horizontal scroll in search table             [DONE]
+data- attribute                               [DONE]
+fix pagintation selecting                     [DONE]
+make first name,lastname columns              [DONE]
+search query for set thread optimization      [DONE]
 table plugin                                  [DONE]
 $("#elementID").text()                        [DONE]
 messaging bug, highlighting wrong new thread  [DONE]

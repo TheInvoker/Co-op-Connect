@@ -307,27 +307,30 @@
 				
 				<br/>
 				
-				<table id="search-table" class="footable" data-page-navigation=".pagination" data-page-size="20">
-					<thead>
-						<tr>
-							<th data-type="numeric">#</th>
-							<th>Avatar</th>
-							<th>Name</th>
-							<th>Role</th>
-							<th>Department</th>
-							<th data-type="numeric">Placements</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-					<tfoot>
-						<tr>
-							<td colspan="6">
-								<div class="pagination pagination-centered hide-if-no-paging"></div>
-							</td>
-						</tr>
-					</tfoot>
-				</table>
+				<div class="divscrollable">
+					<table id="search-table" class="footable" data-page-navigation="#search-table-pagination" data-page-size="20">
+						<thead>
+							<tr>
+								<th data-type="numeric">#</th>
+								<th>Avatar</th>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Role</th>
+								<th>Department</th>
+								<th data-type="numeric">Placements</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="100%">
+									<div id="search-table-pagination" class="pagination pagination-centered hide-if-no-paging"></div>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
 			</div>
 		</div>
 		<div id="search-settings-page" data-role="page" data-theme="b">

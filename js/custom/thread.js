@@ -13,17 +13,17 @@ var THREAD_MODULE_OBJ = function() {
     });
 
     $(context).on('click', ".memberList-button", function() {
-        var thread_id = $(this).attr("data-thread-id");
+        var thread_id = $(this).attr("data-tid");
         showMembers(thread_id);
         return false;
     });
 
     $(context).on('click', "#member-list .member-individual", function() {
-        PROFILE_MODULE.getProfile($(this).attr("data-id"));
+        PROFILE_MODULE.getProfile($(this).attr("data-uid"));
     });
 
     $(context).on('click', "#thread-list .add-member-button", function() {
-        var thread_id = $(this).attr("data-thread-id");
+        var thread_id = $(this).attr("data-tid");
         var email = prompt("Please enter email adress of member to add:", "");
         
         if (email != null) {
@@ -45,12 +45,12 @@ var THREAD_MODULE_OBJ = function() {
     });
 
     $(context).on('click', "#thread-list .thread-image", function() {
-        PROFILE_MODULE.getProfile($(this).attr("data-id"));
+        PROFILE_MODULE.getProfile($(this).attr("data-uid"));
         return false;
     });
 
     $(context).on('click', "#thread-list > li > a", function() {
-        var tid = $(this).attr('data-thread-id');
+        var tid = $(this).attr('data-tid');
         MESSAGE_MODULE.gotoMessage(tid);
     });
 
@@ -106,17 +106,17 @@ var THREAD_MODULE_OBJ = function() {
             var nameObj = nameList[i];
             if (nameObj['id'] != user['id']) {
                 var thisname = nameObj['first_name'] + ' ' + nameObj['last_name'];
-                picList += '<span class="thread-image" data-id="' + nameObj['id'] + '"><div><img title="' + thisname + '" alt="' + thisname + '" src="' + (nameObj['picURL']=='' ? GLOBAL_DATA.def_image_link : nameObj['picURL']) + '" class="small-image"/></div><div>' + thisname + '</div></span>';
+                picList += '<span class="thread-image" data-uid="' + nameObj['id'] + '"><div><img title="' + thisname + '" alt="' + thisname + '" src="' + (nameObj['picURL']=='' ? GLOBAL_DATA.def_image_link : nameObj['picURL']) + '" class="small-image"/></div><div>' + thisname + '</div></span>';
             }
         }
 
-        var str = '<a href="#"' + checkNew(obj) + ' data-thread-id="' + obj['id'] + '"><table>';
+        var str = '<a href="#"' + checkNew(obj) + ' data-tid="' + obj['id'] + '"><table>';
         str += '<tr title="Message"><td valign="top"><span class="ui-icon-comment ui-btn-icon-left myicon"/></td><td colspan="3" valign="top" class="mywrap">' + Autolinker.link(obj['message']) + '</td></tr>';
         str += '<tr title="Date Sent"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td colspan="3" valign="top" class="mywrap">' + obj['date_sent'] + '</td></tr>';
         str += '<tr title="Recipants"><td><span class="ui-icon-user ui-btn-icon-left myicon"/></td>';
         str += '<td valign="top" class="mywrap">' + picList + '</td>';
-        str += '<td>' + (obj['extra'] > 0 ? "<a href='#' title='Show All' data-thread-id='" + obj['id'] + "' class='memberList-button'>(Show All)</a>" : "") + '</td>';
-        str += '<td><a href="#" title="Add Member" class="add-member-button ui-btn ui-shadow ui-icon-plus ui-btn-icon-notext" data-thread-id="' + obj['id'] + '"></a></td></tr>';
+        str += '<td>' + (obj['extra'] > 0 ? "<a href='#' title='Show All' data-tid='" + obj['id'] + "' class='memberList-button'>(Show All)</a>" : "") + '</td>';
+        str += '<td><a href="#" title="Add Member" class="add-member-button ui-btn ui-shadow ui-icon-plus ui-btn-icon-notext" data-tid="' + obj['id'] + '"></a></td></tr>';
         str += '</table></a>';
 
         return str;
@@ -159,7 +159,7 @@ var THREAD_MODULE_OBJ = function() {
     var formatMember = function(obj) {
         var thisname = obj['first_name'] + ' ' + obj['last_name'];
 
-        var str = '<a class="member-individual" href="#" data-id="' + obj['id'] + '"><table><tr><td>';
+        var str = '<a class="member-individual" href="#" data-uid="' + obj['id'] + '"><table><tr><td>';
         str += '<img title="' + thisname + '" alt="' + thisname + '" src="' + (obj['picURL']=='' ? GLOBAL_DATA.def_image_link : obj['picURL']) + '" class="small-image"/>';
         str += '</td><td>';
         str += thisname;
