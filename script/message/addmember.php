@@ -23,8 +23,13 @@
 				  WHERE th.id={$thread_id}) inThread,
 				 (SELECT count(*) 
 				  FROM thread_user 
-				  WHERE thread_id={$thread_id}) memberCount";	  
+				  WHERE thread_id={$thread_id}) memberCount";	
+				  
 	$recordset = mysqli_query($sqlConnection, $query);	
+	if (!$recordset) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 	$row = mysqli_fetch_assoc($recordset);
 	
 	if ($row['id'] == null) {
@@ -52,7 +57,12 @@
 			  JOIN thread_user tu ON th.id=tu.thread_id AND (tu.user_id={$target_id} OR tu.user_id IN (SELECT user_id FROM thread_user WHERE thread_id={$thread_id}))
 			  GROUP BY th.id
 			  HAVING count(th.id) = 1 + {$member_count}";
+			  
 	$recordset = mysqli_query($sqlConnection, $query);	
+	if (!$recordset) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 	$num_records = mysqli_num_rows($recordset);
 	
 	if ($num_records == 0) {
@@ -61,7 +71,11 @@
 			
 			// create a new thread
 			$query = "INSERT INTO thread (date_created) VALUES (NOW())";
-			mysqli_query($sqlConnection, $query);
+			
+			if (!mysqli_query($sqlConnection, $query)) { 
+				$errorMessage = mysqli_error($sqlConnection); 
+				return; 
+			}
 			$new_thread_id = mysqli_insert_id($sqlConnection);
 			
 			// add people from selected thread plus the new person
@@ -71,14 +85,22 @@
 					  UNION
 					  SELECT {$new_thread_id}, a.user_id, NOW()
 					  FROM (SELECT user_id FROM thread_user WHERE thread_id={$thread_id}) a";
-			mysqli_query($sqlConnection, $query);
+					  
+			if (!mysqli_query($sqlConnection, $query)) { 
+				$errorMessage = mysqli_error($sqlConnection); 
+				return; 
+			}
 			
 			$thread_id = $new_thread_id;
 		} else {
 			
 			// add user to thread
 			$query = "INSERT INTO thread_user (thread_id,user_id,last_read_date) VALUES ({$thread_id},{$target_id},'0000-00-00 00:00:00')";
-			mysqli_query($sqlConnection, $query);
+			
+			if (!mysqli_query($sqlConnection, $query)) { 
+				$errorMessage = mysqli_error($sqlConnection); 
+				return; 
+			}
 		}
 	} else {
 		

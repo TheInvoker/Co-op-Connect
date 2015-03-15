@@ -31,6 +31,10 @@
 			  ORDER BY p.date_started DESC";
 
 	$recordset = mysqli_query($sqlConnection, $query);	
+	if (!$recordset) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 	$num_records = mysqli_num_rows($recordset);
 	
 	for ($i = 0; $i < $num_records; $i++) {

@@ -16,14 +16,21 @@
 			  ORDER BY tm.date_sent DESC";
 			  
 	$recordset = mysqli_query($sqlConnection, $query);	
+	if (!$recordset) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 	$num_records = mysqli_num_rows($recordset);
 	
 	
 	$query = "UPDATE thread_user
 			  SET last_read_date=NOW()
 			  WHERE thread_id={$thread_id} AND user_id={$user_id}";
-	mysqli_query($sqlConnection, $query);	
-	
+
+	if (!mysqli_query($sqlConnection, $query)) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 	
 	for ($i = 0; $i < $num_records; $i++) {
 		$row = mysqli_fetch_assoc($recordset);

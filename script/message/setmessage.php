@@ -11,12 +11,19 @@
 	
 	$query = "INSERT INTO thread_message (thread_id,user_id,message,date_sent)
 			  VALUES ({$thread_id},{$user_id},'{$message}',NOW())";
-	mysqli_query($sqlConnection, $query);	
 
+	if (!mysqli_query($sqlConnection, $query)) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 	
 	$query = "UPDATE thread_user
 			  SET last_read_date=NOW()
 			  WHERE thread_id={$thread_id} AND user_id={$user_id}";
-	mysqli_query($sqlConnection, $query);	
 
+	if (!mysqli_query($sqlConnection, $query)) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
+	
 ?>

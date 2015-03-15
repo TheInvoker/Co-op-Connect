@@ -8,7 +8,9 @@
 	$id = $_POST['id']; 
 	
 	$query = "DELETE FROM placement WHERE id={$id}";
-								
-	mysqli_query($sqlConnection, $query);
 
+	if (!mysqli_query($sqlConnection, $query)) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 ?>

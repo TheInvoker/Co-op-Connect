@@ -15,6 +15,8 @@
 		$query = "INSERT INTO checklist (task_id, placement_id) VALUES ({$taskid},{$placementid})";
 	}
 
-	mysqli_query($sqlConnection, $query);
-
+	if (!mysqli_query($sqlConnection, $query)) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 ?>

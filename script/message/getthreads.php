@@ -21,6 +21,10 @@
 			  ORDER BY tm.date_sent DESC";  
 			  
 	$recordset = mysqli_query($sqlConnection, $query);	
+	if (!$recordset) { 
+		$errorMessage = mysqli_error($sqlConnection); 
+		return; 
+	}
 	$num_records = mysqli_num_rows($recordset);
 	
 	
@@ -38,7 +42,12 @@
 				  WHERE th.id={$thread_id}
 				  ORDER BY u.last_name
 				  LIMIT {$nameLim}";
+				  
 		$recordset2 = mysqli_query($sqlConnection, $query);	
+		if (!$recordset2) { 
+			$errorMessage = mysqli_error($sqlConnection); 
+			return; 
+		}
 		$num_records2 = mysqli_num_rows($recordset2);
 		
 		$tempList = array();
@@ -59,7 +68,13 @@
 		}
 
 		$query = "SELECT FOUND_ROWS() AS total";
+		
 		$recordset3 = mysqli_query($sqlConnection, $query);
+		if (!$recordset3) { 
+			$errorMessage = mysqli_error($sqlConnection); 
+			return; 
+		}
+		
 		$row3 = mysqli_fetch_assoc($recordset3);
 		$total = $row3['total'];
 		//////////////////
