@@ -17,12 +17,12 @@
 
 .footable {
 	text-shadow : none;
-	width: 100%;
 	background : initial;
 	color: white;
 	border: 1px solid #8C8C8C;
 }
 .footable thead th {
+	vertical-align: initial !important;
 	text-shadow: none !important;
 	box-shadow: none !important;
 	border-width: 0px !important;
