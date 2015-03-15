@@ -1,14 +1,14 @@
 <?php
 
-	if (isset($_POST['id']) && isset($_POST['user_id']) && isset($_POST['department_id'])) {
+	if (isset($_POST['id']) && isset($_POST['user_id'])) {
 	
 		$id = $_POST['id']; 
 		$user_id = $_POST['user_id']; 
-		$department_id = $_POST['department_id'];
 		
 		$query = "SELECT t.*, (case when cl.task_id is null then 0 else 1 end) AS checked
 				  FROM task t
-				  JOIN task_department td ON td.task_id=t.id and td.department_id={$department_id}
+				  JOIN user u ON u.id={$user_id}
+				  JOIN task_department td ON td.task_id=t.id and td.department_id=u.department_id
 				  LEFT OUTER JOIN checklist cl ON t.id=cl.task_id AND cl.placement_id={$id}
 				  WHERE t.active=1";
 				  

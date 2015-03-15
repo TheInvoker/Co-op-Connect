@@ -23,8 +23,7 @@ var CHECKLIST_MODULE_OBJ = function () {
         runAJAXSerial("", {
             id : obj['id'],
             page : "checklist/getchecklist",
-            user_id : user['id'],
-            department_id : user['department_id']
+            user_id : user['id']
         }, function(response) {
             $.mobile.changePage(context, {
                 transition: "slide"
