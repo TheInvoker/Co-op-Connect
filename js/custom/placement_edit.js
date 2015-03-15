@@ -2,10 +2,10 @@ var PLACEMENT_EDIT_MODULE_OBJ = function() {
     
     var context = "#placement-edit-page",
         pid = null;
-
-    // set up placement edit form
+    
     $(context).on('submit', '#placement-edit-form', function() {
 
+		// set up placement edit form
         var user = GLOBAL_DATA.user;
 
         if (pid == null) {    
@@ -28,6 +28,7 @@ var PLACEMENT_EDIT_MODULE_OBJ = function() {
         });
 
         return false;
+		
     });
 
     this.newPlacement = function() {

@@ -23,6 +23,7 @@ var RESOURCE_MODULE_OBJ = function() {
         }, function(data,status,xhr) {
             
         });
+		
     });
 
     this.setResource = function() {

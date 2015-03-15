@@ -2,9 +2,9 @@ var LOGIN_MODULE_OBJ = function() {
 
     var context = "#login-page";
 
-    // set up login button click
 	$(context).on('submit', "#login-form", function() {
 		
+		// set up login button click
 		runAJAXSerial($(this).serialize(), {
 			ad : 1,
 			page : "user/login"
@@ -17,6 +17,7 @@ var LOGIN_MODULE_OBJ = function() {
 		});
 
 		return false;
+		
 	});
 };
 

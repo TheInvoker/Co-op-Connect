@@ -15,8 +15,9 @@ var MESSAGE_MODULE_OBJ = function() {
         stopAuto();
     });
 
-    // set the send message button
     $(context).on('submit','#message-form',function() {
+		
+		// set the send message button
         var field = $(this).find("textarea");
     
         if (field.val().trim()) {
@@ -44,10 +45,10 @@ var MESSAGE_MODULE_OBJ = function() {
         }
         
         return false;
-    });
-
-    // set the show more messages button
-    $(context).on('click','#more-message-button',function() {
+		
+    }).on('click','#more-message-button',function() {
+		
+		// set the show more messages button
         runAJAXSerial('', {
             page : 'message/getmessages',
             thread_id : thread_id,
@@ -66,6 +67,7 @@ var MESSAGE_MODULE_OBJ = function() {
         });
 
         return false;
+		
     });
 
     this.gotoMessage = function(tid) {

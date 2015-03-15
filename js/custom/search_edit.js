@@ -3,15 +3,17 @@ var SEARCH_SETTINGS_MODULE_OBJ = function() {
     var context = "#search-settings-page";
 	
 	$(context).on('click', "#done-search-settings-button", function() {
+		
 		history.back();
-	});
-
-    $(context).on('click', ".clear-cb-button", function() {
+		
+	}).on('click', ".clear-cb-button", function() {
+		
         $(this).parent().find("input").prop("checked", false).checkboxradio( "refresh" );
-    });
-
-    $(context).on('click', ".selectall-cb-button", function() {
+		
+    }).on('click', ".selectall-cb-button", function() {
+		
         $(this).parent().find("input").prop("checked", true).checkboxradio( "refresh" );
+		
     });
 		
     this.initSettings = function() {

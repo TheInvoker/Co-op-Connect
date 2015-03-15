@@ -5,19 +5,19 @@ var SEARCH_MODULE_OBJ = function() {
 
 	swipePanel(context, "#search-panel");
 	
-	$(context).find('.footable').footable();
-	
     registerShowEvent(context, function(prev_id) {
         if (prev_id != SEARCH_SETTINGS_MODULE.getContext()) {
             SEARCH_SETTINGS_MODULE.resetForm();
         }
     });
+	
+	$(context).find('.footable').footable();
 
     $(context).on('click', "#search-setting-button", function() {
+		
         SEARCH_SETTINGS_MODULE.initSettings();
-    });
-
-    $(context).on('submit', "#search-form", function() {
+		
+    }).on('submit', "#search-form", function() {
 
         runAJAXSerial(SEARCH_SETTINGS_MODULE.getFormData() + "&" + $(this).serialize(), {
             page : 'search/search'
@@ -28,31 +28,31 @@ var SEARCH_MODULE_OBJ = function() {
         });
         
         return false;
-    });
-
-    $(context).on("click", ".search-person", function(e) {
+		
+    }).on("click", ".footable tbody tr.search-person", function(e) {
+		
 		if (!e.hasOwnProperty("_selectedProfile")) {
 			$(this).toggleClass("search_row_select");
 		}
-    });
-
-    $(context).on("click", ".footable tbody tr td img", function(e) {
+		
+    }).on("click", ".footable tbody tr td img", function(e) {
+		
 		var id = $(this).attr("data-uid");
 		PROFILE_MODULE.getProfile(id);
 		e['_selectedProfile'] = true;
-    });
-	
-    $(context).on('click', "#search-clear-all", function() {
+		
+    }).on('click', "#search-clear-all", function() {
+		
         var searchRows = getSearchRows();
         searchRows.removeClass("search_row_select");
-    });
-
-    $(context).on('click', "#search-select-all", function() {
+		
+    }).on('click', "#search-select-all", function() {
+		
         var searchRows = getSearchRows();
         searchRows.addClass("search_row_select");
-    });
-
-    $(context).on('click', "#search-message-all", function() {
+		
+    }).on('click', "#search-message-all", function() {
+		
         var idList = getDataList("data-uid");
         var strList = idList.join(",");
          
@@ -68,13 +68,14 @@ var SEARCH_MODULE_OBJ = function() {
         }, function(data,status,xhr) {
             
         });
-    });
-
-    $(context).on('click', "#search-email-all", function() {
+		
+    }).on('click', "#search-email-all", function() {
+		
         var emailList = getDataList("data-email");
         var strList = emailList.join(";"); 
         
         window.location.href = "mailto:?bcc=" + strList;
+		
     });
 
     this.initSearch = function() {

@@ -17,6 +17,7 @@ var RESET_MODULE_OBJ = function() {
         });
             
         return false;
+		
     });
 };
 

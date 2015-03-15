@@ -5,15 +5,17 @@ var PROFILE_MODULE_OBJ = function() {
         user_id = null;
 
     $(context).on('click',"#profile-edit-button",function() {
+		
         PROFILE_EDIT_MODULE.editProfileHandler(response, user_id);
-    });
-
-    $(context).on('click',"#profile-placements",function() {
+		
+    }).on('click',"#profile-placements",function() {
+		
         PLACEMENT_MODULE.getPlacements(user_id);
-    });
-
-    $(context).on('click',"#profile-message",function() {
+		
+    }).on('click',"#profile-message",function() {
+		
         createThread();
+		
     });
 
     this.getProfile = function(uid) {

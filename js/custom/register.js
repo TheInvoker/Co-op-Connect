@@ -17,6 +17,7 @@ var REGISTER_MODULE_OBJ = function() {
         });
 
         return false;
+		
     });
 
     this.register = function() {

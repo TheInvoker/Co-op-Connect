@@ -3,9 +3,11 @@ var MAP_MODULE_OBJ = function() {
     var map = null,
         context = "#map-page";
     
-    // set map settings button click
     $(context).on('click', "#map-setting-button", function() {
+		
+		// set map settings button click
         MAP_SETTINGS_MODULE.initSettings();
+		
     });
 
     this.showMap = function() {

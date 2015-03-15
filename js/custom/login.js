@@ -4,9 +4,9 @@ var LOGIN_MODULE_OBJ = function() {
 	
 	swipePanel(context, "#login-panel");
 	
-	// configure login button click
 	$(context).on('submit', "#login-form", function() {
 		
+		// configure login button click
 		runAJAXSerial($(this).serialize(), {
 			ad : 0,
 			page : "user/login"
@@ -19,15 +19,15 @@ var LOGIN_MODULE_OBJ = function() {
 		});
 
 		return false;
-	});
-
-	// configure register button click
-	$(context).on('click', "#register-button", function() {
+		
+	}).on('click', "#register-button", function() {
+		
+		// configure register button click
 		REGISTER_MODULE.register();
-	});
-
-	// configure forgot password button click
-	$(context).on('click', "#forgot-button", function() {
+		
+	}).on('click', "#forgot-button", function() {
+		
+		// configure forgot password button click
 		var email = prompt("Please enter your email adress:", "");
 		
 		if (email != null) {
@@ -42,6 +42,7 @@ var LOGIN_MODULE_OBJ = function() {
 				
 			});
 		}
+		
 	});
 };
 

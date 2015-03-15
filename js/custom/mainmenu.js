@@ -14,41 +14,43 @@ var MENU_MODULE_OBJ = function() {
         stopAuto();
     });
 
-    // configure profile button click
 	$(context).on('click', "#profile-button", function() {
+		
+		// configure profile button click
 		var user = GLOBAL_DATA.user;
 		PROFILE_MODULE.getProfile(user['id']);
-	});
-
-    // configure placement button click
-	$(context).on('click', "#placement-button", function() {
+		
+	}).on('click', "#placement-button", function() {
+		
+		// configure placement button click
 		var user = GLOBAL_DATA.user;
 		PLACEMENT_MODULE.getPlacements(user['id']);
-	});
-
-    // configure search button click
-	$(context).on('click', "#search-button", function() {
+		
+	}).on('click', "#search-button", function() {
+		
+		// configure search button click
 		SEARCH_MODULE.initSearch();
-	});
-
-    // configure map button click
-	$(context).on('click', "#map-button", function() {
+		
+	}).on('click', "#map-button", function() {
+		
+		// configure map button click
 		MAP_MODULE.showMap();
-	});
-
-    // configure message button click
-	$(context).on('click', "#message-button", function() {
+		
+	}).on('click', "#message-button", function() {
+		
+		// configure message button click
 		THREAD_MODULE.setMessageThreads();
-	});
-
-    // configure resource button click
-	$(context).on('click', "#resource-button", function() {
+		
+	}).on('click', "#resource-button", function() {
+		
+		// configure resource button click
 		RESOURCE_MODULE.setResource();
-	});
-
-    // configure about button click
-	$(context).on('click', "#about-button", function() {
+		
+	}).on('click', "#about-button", function() {
+		
+		// configure about button click
 		ABOUT_MODULE.setAbout();
+		
 	});
     
     this.initMenu = function() {

@@ -2,18 +2,20 @@ var CHECKLIST_MODULE_OBJ = function () {
 
     var context = "#checklist-page";
 	
-	// configure back button
 	$(context).on("click", "#done-checklist-button", function() {
+		
+		// configure back button
 		history.back();
-	});
-	
-	// configure checkbox clicks
-	$(context).on("change", "#checklistCB input[type='checkbox']", function() {
+		
+	}).on("change", "#checklistCB input[type='checkbox']", function() {
+		
+		// configure checkbox clicks
 		if ($(this).is(":checked")) {
 			setChecklistState($(this), 1);
 		} else {
 			setChecklistState($(this), 0);
 		}
+		
 	});
 
     this.getChecklist = function(user_id, obj) {

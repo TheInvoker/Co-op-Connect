@@ -2,9 +2,9 @@ var MAP_SETTINGS_MODULE_OBJ = function() {
     
     var context = "#map-settings-page";
 
-    // configure map form submit
     $(context).on('submit', "#map-filter-form", function() {
-
+		
+		// configure map form submit
         runAJAXSerial($(this).serialize(), {
             page : 'placement/getmapplacements'
         }, function(response) {

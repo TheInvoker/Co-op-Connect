@@ -19,6 +19,7 @@ var PROFILE_EDIT_MODULE_OBJ = function() {
         });
 
         return false;
+		
     });
 
     this.editProfileHandler = function(response, uid) {

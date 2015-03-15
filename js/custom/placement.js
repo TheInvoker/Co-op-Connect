@@ -10,10 +10,9 @@ var PLACEMENT_MODULE_OBJ = function() {
         if (prev_id == CHECKLIST_MODULE.getContext()) {
             thisOBJ.getPlacements(user_id);
         }
-    });
-
-    // set the right placement object
-    $(context).on('click','#placement-list > li > a', function() {
+    }).on('click','#placement-list > li > a', function() {
+		
+		// set the right placement object
         var pid = $(this).attr('data-pid'), i=0, l=response.length;
 
         for(i=0; i<l; i+=1) {
@@ -25,25 +24,25 @@ var PLACEMENT_MODULE_OBJ = function() {
         }
 
         placement = null;
-    });
-
-    // set edit button
-    $(context).on('click','#placement-edit-button',function() {
+		
+    }).on('click','#placement-edit-button',function() {
+		
+		// set edit button
         PLACEMENT_EDIT_MODULE.setPlacementForEdit(placement);
-    });
-
-    // set checklist button
-    $(context).on('click','#placement-checklist-button',function() {
+		
+    }).on('click','#placement-checklist-button',function() {
+		
+		// set checklist button
         CHECKLIST_MODULE.getChecklist(user_id, placement);
-    });
-
-    // set map button
-    $(context).on('click','#placement-map-button',function() {
+		
+    }).on('click','#placement-map-button',function() {
+		
+		// set map button
         MAP_MODULE.showPoint(placement);
-    });
-
-    // set delete button
-    $(context).on('click','#placement-delete-button',function() {
+		
+    }).on('click','#placement-delete-button',function() {
+		
+		// set delete button
         if (confirm("Are you sure you want to delete this placement?")) {
             runAJAXSerial('', {
                 page : 'placement/deleteplacements',
@@ -55,11 +54,12 @@ var PLACEMENT_MODULE_OBJ = function() {
 
             });
         }
-    });
-
-    // set new placement button
-    $(context).on('click','#add-placement-button',function() {
+		
+    }).on('click','#add-placement-button',function() {
+		
+		// set new placement button
         PLACEMENT_EDIT_MODULE.newPlacement();
+		
     });
 
     this.getPlacements = function(uid) {

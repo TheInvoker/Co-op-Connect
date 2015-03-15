@@ -13,16 +13,17 @@ var THREAD_MODULE_OBJ = function() {
     });
 
     $(context).on('click', ".memberList-button", function() {
+		
         var thread_id = $(this).attr("data-tid");
         showMembers(thread_id);
         return false;
-    });
-
-    $(context).on('click', "#member-list .member-individual", function() {
+		
+    }).on('click', "#member-list .member-individual", function() {
+		
         PROFILE_MODULE.getProfile($(this).attr("data-uid"));
-    });
-
-    $(context).on('click', "#thread-list .add-member-button", function() {
+		
+    }).on('click', "#thread-list .add-member-button", function() {
+		
         var thread_id = $(this).attr("data-tid");
         var email = prompt("Please enter email adress of member to add:", "");
         
@@ -42,16 +43,17 @@ var THREAD_MODULE_OBJ = function() {
         }
         
         return false;
-    });
-
-    $(context).on('click', "#thread-list .thread-image", function() {
+		
+    }).on('click', "#thread-list .thread-image", function() {
+		
         PROFILE_MODULE.getProfile($(this).attr("data-uid"));
         return false;
-    });
-
-    $(context).on('click', "#thread-list > li > a", function() {
+		
+    }).on('click', "#thread-list > li > a", function() {
+		
         var tid = $(this).attr('data-tid');
         MESSAGE_MODULE.gotoMessage(tid);
+		
     });
 
     this.setMessageThreads = function() {
