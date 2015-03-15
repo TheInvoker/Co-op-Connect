@@ -8,13 +8,13 @@ task ordering
 show home page news
 external panel
 fix new line on textarea
-chain events on top
 static class
-remove support for tasks for multi department
 improve logo
 search bug 'arts & f'
-error messages in php
 
+chain events on top
+remove support for tasks for multi department
+error messages in php
 
 horizontal scroll in search table             [DONE]
 data- attribute                               [DONE]
