@@ -5,6 +5,8 @@ var SEARCH_MODULE_OBJ = function() {
 
 	swipePanel(context, "#search-panel");
 	
+	$(context).find('.footable').footable();
+	
     registerShowEvent(context, function(prev_id) {
         if (prev_id != SEARCH_SETTINGS_MODULE.getContext()) {
             SEARCH_SETTINGS_MODULE.resetForm();
@@ -107,8 +109,7 @@ var SEARCH_MODULE_OBJ = function() {
         }
         
         body.html(acc);
-
-		$(context).find('.footable').footable();
+		
 		$(context).find('.footable').trigger('footable_redraw');
 		$(context).find('.footable tfoot a').filter('[data-page="0"]').trigger('click');
     };
