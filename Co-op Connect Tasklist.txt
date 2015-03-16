@@ -6,7 +6,7 @@ show home page news
 external panel
 improve logo
 search bug 'arts & f'
-
+fix names on dynamic form inputs
 
 static class
 fix new line on textarea
