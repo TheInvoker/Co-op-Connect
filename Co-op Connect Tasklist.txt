@@ -1,17 +1,19 @@
 map marker refresh bug
 download too much coloumns for map
-generalize strings in php
-server side validation
 charts
 task ordering
 show home page news
 external panel
-fix new line on textarea
-static class
 improve logo
 search bug 'arts & f'
 
+
+static class
+fix new line on textarea
 sanitize all inputs 
+server side validation
+generalize strings in php
+
 chain events on top                           [DONE]
 swipe <=50 x-axis                             [DONE]
 error messages in php                         [DONE]
