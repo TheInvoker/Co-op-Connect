@@ -33,23 +33,20 @@ var PROFILE_EDIT_MODULE_OBJ = function() {
     };
     
     var setProfileForEdit = function(user) {
-        var input = $(context).find("#profile-edit-form").find("input[name=file]");
+        var context = $(context).find("#profile-edit-form");
+		
+		context.find("input[name=file]").val('');
+
+        context.find("input[name=firstname]").val(user['firstname']);
+        context.find("input[name=lastname]").val(user['lastname']);
+        context.find("input[name=email]").val(user['email']);
+        context.find("input[name=phone]").val(user['phone']);
+        context.find("input[name=website]").val(user['website']);
+        context.find("textarea[name=status]").html(user['status']);
+        context.find("textarea[name=biotext]").html(user['biotext']);
         
-        input.val('');
-        
-        $(context).find("#profile-edit-form").find("input[name=firstname]").val(user['firstname']);
-        $(context).find("#profile-edit-form").find("input[name=lastname]").val(user['lastname']);
-        $(context).find("#profile-edit-form").find("input[name=email]").val(user['email']);
-        $(context).find("#profile-edit-form").find("input[name=phone]").val(user['phone']);
-        $(context).find("#profile-edit-form").find("input[name=website]").val(user['website']);
-        $(context).find("#profile-edit-form").find("textarea[name=status]").html(user['status']);
-        $(context).find("#profile-edit-form").find("textarea[name=biotext]").html(user['biotext']);
-        
-        var all = $(context).find("#profile_edit_department_rb").find("input");
-        var e = $(context).find("#profile_edit_department_rb").find("input[value='" + unescapeHTML(user['department_name']) + "']");
-        all.prop("checked", false);
-        e.prop("checked", true);
-        all.checkboxradio( "refresh" );
+        context.find("#profile_edit_department_rb").find("input").prop("checked", false).checkboxradio( "refresh" );
+        context.find("#profile_edit_department_rb").find("input[value='" + unescapeHTML(user['department_name']) + "']").prop("checked", true).checkboxradio( "refresh" );
     };
 };
 
