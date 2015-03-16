@@ -534,7 +534,7 @@
 			<div data-role="main" class="ui-content">
 				<section>
 					<header>
-						<h1>UTSC Co-op Connect</h1><div id="about-version">v1.0.0</div>
+						<h1>UTSC Co-op Connect</h1><div id="about-version"></div>
 						<script>
 							document.getElementById("about-version").innerHTML = GLOBAL_DATA.version;
 						</script>
