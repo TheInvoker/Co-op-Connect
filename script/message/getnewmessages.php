@@ -5,8 +5,8 @@
 		return;
 	}
 
-	$user_id = $_POST['id'];
-	$thread_id = $_POST['thread_id'];
+	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['id']);
+	$thread_id = mysqli_real_escape_string($sqlConnection, $_POST['thread_id']);
 
 	$query = "SELECT tm.user_id,tm.message,tm.date_sent,u.first_name,u.last_name,u.avatar_filename
 			  FROM thread_user tu

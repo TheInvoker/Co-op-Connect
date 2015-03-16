@@ -5,8 +5,8 @@
 		return;
 	}
 
-	$user_id = $_POST['user_id'];
-	$target_ids = $_POST['target_ids'];
+	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['user_id']);
+	$target_ids = mysqli_real_escape_string($sqlConnection, $_POST['target_ids']);
 	
 	if (trim($target_ids) == "") {
 		$errorMessage = "Select at least 1 person.";

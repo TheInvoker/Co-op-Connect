@@ -7,6 +7,28 @@
 	</head>
 	<body>
 
+		<div data-role="panel" id="menu-panel" data-display="push" data-theme="b">
+			<ul data-role="listview">
+				<li><a id="home-button" href="#" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a></li>
+				<li><a id="profile-button" href="#" class="ui-btn ui-icon-user ui-btn-icon-left">My Profile</a></li>
+				<li><a id="placement-button" href="#" class="ui-btn ui-icon-shop ui-btn-icon-left">My Placements</a></li>
+				<li><a id="search-button" href="#" class="ui-btn ui-icon-search ui-btn-icon-left">Search</a></li>
+				<li><a id="map-button" href="#" class="ui-btn ui-icon-location ui-btn-icon-left">Map</a></li>
+				<li><a id="message-button" href="#" class="ui-btn ui-icon-comment ui-btn-icon-left">
+					Messages
+					<span id="message-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
+					</a>
+				</li>
+				<li><a id="resource-button" href="#" class="ui-btn ui-icon-alert ui-btn-icon-left">
+					Resources
+					<span id="resource-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
+					</a>
+				</li>
+				<li><a id="about-button" href="#" class="ui-btn ui-icon-info ui-btn-icon-left">About</a></li>
+			</ul>
+		</div>
+
+
 		<div id="login-page" data-role="page" data-theme="b">
 		
 			<div data-role="panel" id="login-panel" data-display="push">
@@ -72,28 +94,7 @@
 
 
 
-		<div id="menu-page" data-role="page" data-theme="b">
-		
-			<div data-role="panel" id="menu-panel" data-display="push">
-				<ul data-role="listview">
-					<li><a id="profile-button" href="#" class="ui-btn ui-icon-user ui-btn-icon-left">My Profile</a></li>
-					<li><a id="placement-button" href="#" class="ui-btn ui-icon-shop ui-btn-icon-left">My Placements</a></li>
-					<li><a id="search-button" href="#" class="ui-btn ui-icon-search ui-btn-icon-left">Search</a></li>
-					<li><a id="map-button" href="#" class="ui-btn ui-icon-location ui-btn-icon-left">Map</a></li>
-					<li><a id="message-button" href="#" class="ui-btn ui-icon-comment ui-btn-icon-left">
-						Messages
-						<span id="message-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
-						</a>
-					</li>
-					<li><a id="resource-button" href="#" class="ui-btn ui-icon-alert ui-btn-icon-left">
-						Resources
-						<span id="resource-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
-						</a>
-					</li>
-					<li><a id="about-button" href="#" class="ui-btn ui-icon-info ui-btn-icon-left">About</a></li>
-				</ul>
-			</div>
-		
+		<div id="grid-page" data-role="page" data-theme="b">
 			<div data-role="header">
 				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 				<h1>Home</h1>
@@ -114,8 +115,9 @@
 
 		<div id="profile-page" data-role="page" data-theme="b">
 			<div data-role="header">
+				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 				<h1>Profile</h1>
-				<a id="profile-edit-button" href="#" data-icon="edit" class="ui-btn-right">Edit</a>
+				<a id="profile-edit-button" href="#" data-icon="edit">Edit</a>
 			</div>
 
 			<div data-role="main" class="ui-content">
@@ -215,8 +217,9 @@
 			</div>
 		
 			<div data-role="header">
+				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 				<h1>Placements</h1>
-				<a id="add-placement-button" href="#" data-icon="plus" class="ui-btn-right">Add</a>
+				<a id="add-placement-button" href="#" data-icon="plus">Add</a>
 			</div>
 
 			<div data-role="main" class="ui-content">
@@ -284,8 +287,9 @@
 
 		<div id="search-page" data-role="page" data-theme="b">
 		
-			<div data-role="panel" id="search-panel" data-display="push">
+			<div data-role="panel" id="search-panel" data-display="push" data-position="right">
 				<ul data-role="listview">
+					<li><a id="search-setting-button" href="#" class="ui-btn ui-icon-gear ui-btn-icon-left">Settings</a></li>
 					<li><a id="search-clear-all" href="#" class="ui-btn ui-icon-minus ui-btn-icon-left">Select None</a></li>
 					<li><a id="search-select-all" href="#" class="ui-btn ui-icon-plus ui-btn-icon-left">Select All</a></li>
 					<li><a id="search-message-all" href="#" class="ui-btn ui-icon-comment ui-btn-icon-left">Message</a></li>
@@ -294,9 +298,9 @@
 			</div>
 		
 			<div data-role="header">
-				<a href="#search-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
+				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 				<h1>Search</h1>
-				<a id="search-setting-button" href="#" data-icon="gear">Settings</a>
+				<a href="#search-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 			</div>
 
 			<div data-role="main" class="ui-content">
@@ -454,10 +458,18 @@
 
 
 		<div id="map-page" data-role="page" data-theme="b">
-			<div role="main" class="ui-content" id="map_canvas">
-				<!-- map loads here... -->
+
+			<div data-role="header">
+				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
+				<h1>Map</h1>
 			</div>
-			
+
+			<div data-role="content" id="map_content">
+				<div role="main" class="ui-content" id="map_canvas">
+					<!-- map loads here... -->
+				</div>
+			</div>
+
 			<a id="map-setting-button" href="#" class="ui-btn ui-shadow ui-icon-gear ui-btn-icon-notext mapControl"></a>
 		</div>
 		<div id="map-settings-page" data-role="page" data-theme="b">
@@ -481,6 +493,7 @@
 		
 		<div id="thread-page" data-role="page" data-theme="b">
 			<div data-role="header">
+				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 				<h1>Threads</h1>
 			</div>
 
@@ -515,8 +528,9 @@
 
 		<div id="resource-page" data-role="page" data-theme="b">
 			<div data-role="header">
-				<a id="more-resource-button" href="#" data-icon="arrow-d" class="ui-btn-right">Show More</a>
+				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 				<h1>Resources</h1>
+				<a id="more-resource-button" href="#" data-icon="arrow-d">Show More</a>
 			</div>
 
 			<div data-role="main" class="ui-content">
@@ -528,6 +542,7 @@
 
 		<div id="about-page" data-role="page" data-theme="b">
 			<div data-role="header">
+				<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
 				<h1>About</h1>
 			</div>
 

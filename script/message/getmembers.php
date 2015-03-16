@@ -5,7 +5,7 @@
 		return;
 	}
 	
-	$thread_id = $_POST['id'];
+	$thread_id = mysqli_real_escape_string($sqlConnection, $_POST['id']);
 
 	$query = "SELECT u.id, u.first_name, u.last_name, u.avatar_filename
 			  FROM thread th

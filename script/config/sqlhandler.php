@@ -7,7 +7,7 @@
 				RunQueries($_POST['page']) : 
 				(isset($_GET['page']) ? 
 				   RunQueries($_GET['page']) : 
-				   "Unknown error occured.");
+				   "Missing request.");
 
 	if ($GLOBALS['printJSON']) {
 		print(json_encode(array("code" => (is_string($result) ? 401 : 200), "response" => $result)));

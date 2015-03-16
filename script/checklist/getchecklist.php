@@ -5,8 +5,8 @@
 		return;
 	}
 	
-	$id = $_POST['id']; 
-	$user_id = $_POST['user_id']; 
+	$id = mysqli_real_escape_string($sqlConnection, $_POST['id']); 
+	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['user_id']); 
 	
 	$query = "SELECT t.*, (case when cl.task_id is null then 0 else 1 end) AS checked
 			  FROM task t

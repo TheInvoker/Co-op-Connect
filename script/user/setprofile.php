@@ -1,6 +1,15 @@
 <?php
 
-	if (!isset($_POST['email'])) {
+	if (!isset($_POST['id']) || 
+		!isset($_POST['firstname']) || 
+		!isset($_POST['lastname']) || 
+		!isset($_POST['email']) || 
+		!isset($_POST['phone']) || 
+		!isset($_POST['website']) || 
+		!isset($_POST['status']) || 
+		!isset($_POST['biotext']) || 
+		!isset($_POST['department'])) {
+		
 		$errorMessage = "Did not recieve all of the data.";
 		return;
 	}

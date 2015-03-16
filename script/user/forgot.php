@@ -25,7 +25,7 @@
 	$row = mysqli_fetch_assoc($recordset);
 	
 	$id =  $row['id'];	
-	$token = getToken(20);
+	$token = getToken(30);
 	
 	$query = "UPDATE user
 			  SET reset_token='{$token}'

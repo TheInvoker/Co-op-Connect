@@ -12,7 +12,6 @@ var PROFILE_EDIT_MODULE_OBJ = function() {
             id : user_id,
             page : 'user/setprofile'
         }, function(response) {
-            history.back();
             PROFILE_MODULE.getProfile(user_id);
         }, function(data,status,xhr) {
             

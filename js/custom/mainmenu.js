@@ -1,10 +1,8 @@
 var MENU_MODULE_OBJ = function() {
     
-    var context = "#menu-page",
+    var context = "body",
         serviceChecker = null,
         serviceFrequency = 1000 * 60 * 3;
-	
-	swipePanel(context, "#menu-panel");
     
     registerShowEvent(context, function(prev_id) {
         startAuto();
@@ -14,7 +12,14 @@ var MENU_MODULE_OBJ = function() {
         stopAuto();
     });
 
-	$(context).on('click', "#profile-button", function() {
+    panelFix(context, "#menu-panel");
+
+	$(context).on('click', '#home-button',function() {
+
+        // configure search button click
+        GRID_MODULE.changePage();
+
+    }).on('click', "#profile-button", function() {
 		
 		// configure profile button click
 		var user = GLOBAL_DATA.user;
@@ -52,14 +57,6 @@ var MENU_MODULE_OBJ = function() {
 		ABOUT_MODULE.setAbout();
 		
 	});
-    
-    this.initMenu = function() {
-        $.mobile.changePage( context, { 
-            transition: "flip"
-        });
-
-        GRID_MODULE.setGrid();
-    };
 
     var startAuto = function() {
         getCount();

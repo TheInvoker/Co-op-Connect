@@ -7,8 +7,8 @@
 		return;
 	}
 	
-	$field = $_GET['field']; 
-	$radio = $_GET['radio']; 
+	$field = mysqli_real_escape_string($sqlConnection, $_GET['field']); 
+	$radio = mysqli_real_escape_string($sqlConnection, $_GET['radio']); 
 
 	if ($field == "department") {
 		$qname = "name";

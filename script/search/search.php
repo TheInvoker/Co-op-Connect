@@ -13,7 +13,19 @@
 		return $acc;
 	}
 
-	if (!isset($_POST['search'])) {
+	if (!isset($_POST['search']) ||
+		!isset($_POST['firstname']) ||
+		!isset($_POST['lastname']) || 
+		!isset($_POST['email']) || 
+		!isset($_POST['department']) ||
+		!isset($_POST['role']) ||
+		!isset($_POST['city']) ||
+		!isset($_POST['country']) ||
+		!isset($_POST['topic']) ||
+		!isset($_POST['company']) ||
+		!isset($_POST['date_start']) ||
+		!isset($_POST['date_end'])) {
+		
 		$errorMessage = "Did not recieve all of the data.";
 		return;
 	}
@@ -31,8 +43,8 @@
 	$topicList = isset($_POST['topic']) ? $_POST['topic'] : array();
 	$companyList = isset($_POST['company']) ? $_POST['company'] : array();
 	
-	$date_start = $_POST['date_start'];
-	$date_end = $_POST['date_end'];
+	$date_start = mysqli_real_escape_string($sqlConnection, $_POST['date_start']);
+	$date_end = mysqli_real_escape_string($sqlConnection, $_POST['date_end']);
 	
 	
 	$departmentListSQL = formatSqlOptionList($sqlConnection, $departmentList);

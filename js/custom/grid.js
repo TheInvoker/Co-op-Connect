@@ -1,6 +1,6 @@
 var GRID_MODULE_OBJ = function() {
     
-    var context = "#newsgrid";
+    var context = "#grid-page";
     
     $(context).on("click", "div.grid-item", function() {
 		
@@ -10,7 +10,12 @@ var GRID_MODULE_OBJ = function() {
     });
 
     this.setGrid = function() {
-        var grid = $(context);
+        $.mobile.changePage( context, { 
+            transition: "flip"
+        });
+
+        /*
+        var grid = $("#newsgrid", context);
         grid.empty();
         
         var items = 100;
@@ -21,6 +26,13 @@ var GRID_MODULE_OBJ = function() {
         }
     
         grid.html(str);
+        */
+    };
+
+    this.changePage = function() {
+        $.mobile.changePage( context, { 
+            transition: "slide"
+        });
     };
 };
 

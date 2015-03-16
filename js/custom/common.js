@@ -51,6 +51,12 @@ function getUrlParameter(sParam) {
 }
 
 
+function panelFix(context, panelID) {
+    $( panelID ).panel();
+    $( panelID ).find("ul[data-role=listview]").listview().trigger('create');
+    swipePanel(context, panelID);
+}
+
 // DATE/TIME CODE
 
 function getDate() {
@@ -249,7 +255,7 @@ function configureShakeToGoBack() {
 
 function swipePanel(pageId, leftPanelId) {
 	$( document ).on( "pageinit", pageId, function() {
-		$( document ).on( "swipeleft swiperight", pageId, function( e ) {
+		$( document ).on( "swiperight", pageId, function( e ) {
 			// We check if there is no open panel on the page because otherwise
 			// a swipe to close the left panel would also open the right panel (and v.v.).
 			// We do this by checking the data that the framework stores on the page element (panel: open).
@@ -257,14 +263,32 @@ function swipePanel(pageId, leftPanelId) {
 
 			if (startX <= 50) {
 				if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
-					if ( e.type === "swiperight" ) {
-						$( leftPanelId ).panel( "open" );
-					}
+					$( leftPanelId ).panel( "open" );
 				}
 			}
 		});
 	});
 }
+
+function swipePanelLeft(pageId, rightPanelId) {
+    $( document ).on( "pageinit", pageId, function() {
+        $( document ).on( "swipeleft", pageId, function( e ) {
+            // We check if there is no open panel on the page because otherwise
+            // a swipe to close the left panel would also open the right panel (and v.v.).
+            // We do this by checking the data that the framework stores on the page element (panel: open).
+            var startX = e.swipestart.coords[0];
+            var totalWidth = $(window).width();
+
+            if (startX >= totalWidth - 50) {
+                if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
+                    $( rightPanelId ).panel( "open" );
+                }
+            }
+        });
+    });
+}
+
+
 
 function registerShowEvent(pageID, func) {
     GLOBAL_DATA.eventsShow[pageID] = func;

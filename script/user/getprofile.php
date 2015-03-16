@@ -5,7 +5,7 @@
 		return;
 	}
 	
-	$targetID = $_POST['id']; 
+	$targetID = mysqli_real_escape_string($sqlConnection, $_POST['id']); 
 
 	$query = "SELECT u.*, d.name AS department_name, d.alt_color AS d_color, r.name AS role_name, r.color AS r_color
 			  FROM user u

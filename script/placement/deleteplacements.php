@@ -5,7 +5,7 @@
 		return;
 	}
 	
-	$id = $_POST['id']; 
+	$id = mysqli_real_escape_string($sqlConnection, $_POST['id']); 
 	
 	$query = "DELETE FROM placement WHERE id={$id}";
 

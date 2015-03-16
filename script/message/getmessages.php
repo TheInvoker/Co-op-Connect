@@ -5,10 +5,11 @@
 		return;
 	}
 	
-	$user_id = $_POST['id'];
-	$thread_id = $_POST['thread_id'];
 	$lim = 30;
-	$offset = $_POST['pageindex'] * $lim;
+
+	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['id']);
+	$thread_id = mysqli_real_escape_string($sqlConnection, $_POST['thread_id']);
+	$offset = mysqli_real_escape_string($sqlConnection, $_POST['pageindex']) * $lim;
 
 	$query = "SELECT tm.user_id,tm.message,tm.date_sent,u.first_name,u.last_name,u.avatar_filename
 			  FROM thread_message tm

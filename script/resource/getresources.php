@@ -5,9 +5,10 @@
 		return;
 	}
 	
-	$user_id = $_POST['id'];
 	$lim = 5;
-	$offset = $_POST['pageindex'] * $lim;
+
+	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['id']);
+	$offset = mysqli_real_escape_string($sqlConnection, $_POST['pageindex']) * $lim;
 	
 	$query = "SELECT r.*, r.date_modified>u.resource_checked_date AS new
 			  FROM resource r

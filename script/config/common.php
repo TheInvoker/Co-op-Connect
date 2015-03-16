@@ -21,7 +21,11 @@
 			$sqlDB = mysqli_select_db($sqlConnection, $sqldbname); 
 			if ($sqlDB) {
 				
-				include dirname(__FILE__) . '/../' . $page . '.php';
+				if (strpos($page, '..') !== FALSE) {
+					$errorMessage = "Invalid request given.";
+				} else { 
+					include dirname(__FILE__) . '/../' . $page . '.php';
+				}
 
 			} else {
 				$errorMessage = "Could not connect to database.";

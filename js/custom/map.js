@@ -15,7 +15,9 @@ var MAP_MODULE_OBJ = function() {
 
         handleSettingsButton(true);
         
-        if (!$(context).find('#map_canvas').prop('init')) {
+        if ($(context).find('#map_canvas').prop('init')) {
+            MAP_SETTINGS_MODULE_OBJ.getLocations();
+        } else {
             initMap();
         }
     };
@@ -30,6 +32,36 @@ var MAP_MODULE_OBJ = function() {
         } else {
             initPointMap(obj);
         }
+    };
+
+    this.showOnMap = function(locations) {
+
+        // clear markers
+        $(context).find('#map_canvas').gmap('clear', 'markers');
+        
+        var i=0, l=locations.length;
+
+        // add new markers
+        for (i=0; i<l; i+=1) {
+            
+            var loc = locations[i];
+
+            var pos = {
+                'position': new google.maps.LatLng(loc['latitude'], loc['longitude']), 
+                'bounds': false,
+                'icon': 'http://maps.google.com/mapfiles/ms/icons/' + loc['color'] + '-dot.png'
+            };
+            
+            $(context).find('#map_canvas').gmap('addMarker', pos).on('click', function() {
+                $(context).find('#map_canvas').gmap('openInfoWindow', {'content': loc['address']}, this);
+            });
+        }
+        
+        // set zoom
+        $(context).find('#map_canvas').gmap('option', 'zoom', 10);
+        
+        // cluster markers
+        $(context).find('#map_canvas').gmap('set', 'MarkerClusterer', new MarkerClusterer(map, $(context).find('#map_canvas').gmap('get', 'markers')));
     };
 
     var showMapPage = function() {
@@ -115,36 +147,6 @@ var MAP_MODULE_OBJ = function() {
     var displayPointOnMap = function(obj) {
         $(context).find('#map_canvas').gmap("option", "center", new google.maps.LatLng(obj['latitude'], obj['longitude']));
         showOnMap([obj]);
-    };
-
-    var showOnMap = function(locations) {
-
-        // clear markers
-        $(context).find('#map_canvas').gmap('clear', 'markers');
-        
-        var i=0, l=locations.length;
-
-        // add new markers
-        for (i=0; i<l; i+=1) {
-            
-            var loc = locations[i];
-
-            var pos = {
-                'position': new google.maps.LatLng(loc['latitude'], loc['longitude']), 
-                'bounds': false,
-                'icon': 'http://maps.google.com/mapfiles/ms/icons/' + loc['color'] + '-dot.png'
-            };
-            
-            $(context).find('#map_canvas').gmap('addMarker', pos).on('click', function() {
-                $(context).find('#map_canvas').gmap('openInfoWindow', {'content': loc['address']}, this);
-            });
-        }
-        
-        // set zoom
-        $(context).find('#map_canvas').gmap('option', 'zoom', 10);
-        
-        // cluster markers
-        $(context).find('#map_canvas').gmap('set', 'MarkerClusterer', new MarkerClusterer(map, $(context).find('#map_canvas').gmap('get', 'markers')));
     };
 };
 

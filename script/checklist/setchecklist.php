@@ -5,9 +5,9 @@
 		return;
 	}
 
-	$taskid = $_POST['taskid']; 
-	$placementid = $_POST['placementid']; 
-	$state = $_POST['state']; 
+	$taskid = mysqli_real_escape_string($sqlConnection, $_POST['taskid']); 
+	$placementid = mysqli_real_escape_string($sqlConnection, $_POST['placementid']); 
+	$state = mysqli_real_escape_string($sqlConnection, $_POST['state']); 
 
 	if ($state == '0') {
 		$query = "DELETE from checklist WHERE task_id={$taskid} AND placement_id={$placementid}";

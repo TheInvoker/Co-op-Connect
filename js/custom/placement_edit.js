@@ -21,7 +21,6 @@ var PLACEMENT_EDIT_MODULE_OBJ = function() {
         }
         
         runAJAXSerial($(this).serialize(), obj, function(response) {
-            history.back();
             PLACEMENT_MODULE.getPlacements(user['id']);
         }, function(data,status,xhr) {
 

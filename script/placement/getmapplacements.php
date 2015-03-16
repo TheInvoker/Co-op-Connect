@@ -5,8 +5,8 @@
 		return;
 	}
 	
-	$date_start = $_POST['map_date_start']; 
-	$date_end = $_POST['map_date_end']; 
+	$date_start = mysqli_real_escape_string($sqlConnection, $_POST['map_date_start']); 
+	$date_end = mysqli_real_escape_string($sqlConnection, $_POST['map_date_end']); 
 	
 	
 	if ($date_start=="" && $date_end=="") {

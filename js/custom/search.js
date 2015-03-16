@@ -3,7 +3,7 @@ var SEARCH_MODULE_OBJ = function() {
     var page = 0,
         context = "#search-page";
 
-	swipePanel(context, "#search-panel");
+	swipePanelLeft(context, "#search-panel");
 	
     registerShowEvent(context, function(prev_id) {
         if (prev_id != SEARCH_SETTINGS_MODULE.getContext()) {

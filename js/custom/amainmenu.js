@@ -1,10 +1,15 @@
 var MENU_MODULE_OBJ = function() {
     
-    var context = "#menu-page";
-
-	swipePanel(context, "#menu-panel");
+    var context = "body";
 	
-	$(context).on('click', "#manage-users-button", function() {
+	panelFix(context, "#menu-panel");
+
+	$(context).on('click', '#home-button',function() {
+
+        // configure search button click
+        GRID_MODULE.changePage();
+
+    }).on('click', "#manage-users-button", function() {
 		
 		// set up users button click
 		alert(1);
@@ -20,12 +25,6 @@ var MENU_MODULE_OBJ = function() {
 		alert(3);
 		
 	});
-	
-    this.initMenu = function() {
-        $.mobile.changePage( context, { 
-            transition: "flip"
-        });
-    };
 };
 
 var MENU_MODULE = new MENU_MODULE_OBJ();

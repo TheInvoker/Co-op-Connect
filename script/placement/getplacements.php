@@ -6,8 +6,8 @@
 	}
 	
 	
-	$user_id = $_POST['id']; 
-	$targetid = $_POST['targetid']; 
+	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['id']); 
+	$targetid = mysqli_real_escape_string($sqlConnection, $_POST['targetid']); 
 
 	// carry on
 	$Pquery = "(

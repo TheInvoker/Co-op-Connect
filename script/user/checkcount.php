@@ -5,7 +5,7 @@
 		return;
 	}
 	
-	$user_id = $_POST['id'];
+	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['id']);
 
 	$query = "SELECT count(*) AS count
 			  FROM user u

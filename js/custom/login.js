@@ -13,7 +13,7 @@ var LOGIN_MODULE_OBJ = function() {
 		}, function(response) {
 			GLOBAL_DATA.user = response;
 
-			MENU_MODULE.initMenu();    
+			GRID_MODULE.setGrid();  
 		}, function(data,status,xhr) {
 			
 		});
