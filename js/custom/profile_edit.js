@@ -33,7 +33,7 @@ var PROFILE_EDIT_MODULE_OBJ = function() {
     };
     
     var setProfileForEdit = function(user) {
-        var context = $(context).find("#profile-edit-form");
+		var context = $("#profile-edit-form");
 		
 		context.find("input[name=file]").val('');
 

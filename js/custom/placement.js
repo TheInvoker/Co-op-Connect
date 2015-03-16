@@ -10,7 +10,9 @@ var PLACEMENT_MODULE_OBJ = function() {
         if (prev_id == CHECKLIST_MODULE.getContext()) {
             thisOBJ.getPlacements(user_id);
         }
-    }).on('click','#placement-list > li > a', function() {
+    });
+	
+	$(context).on('click','#placement-list > li > a', function() {
 		
 		// set the right placement object
         var pid = $(this).attr('data-pid'), i=0, l=response.length;

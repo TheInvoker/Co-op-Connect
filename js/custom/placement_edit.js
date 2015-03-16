@@ -56,7 +56,7 @@ var PLACEMENT_EDIT_MODULE_OBJ = function() {
     };
 
     var setFormFields = function(obj) {
-		var context = $(context).find("#placement-edit-form");
+		var context = $("#placement-edit-form");
 		
         var swt = context.find("select[name=active]");
         var addr = context.find("input[name=address]");
