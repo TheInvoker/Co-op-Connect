@@ -1,4 +1,4 @@
-var PLACEMENT_EDIT_MODULE_OBJ = function() {
+var PLACEMENT_EDIT_MODULE = new function() {
     
     var context = "#placement-edit-page",
         pid = null;
@@ -94,5 +94,3 @@ var PLACEMENT_EDIT_MODULE_OBJ = function() {
         dateHandler(elements, setCurrentDate, function() {}, false);
     };
 };
-
-var PLACEMENT_EDIT_MODULE = new PLACEMENT_EDIT_MODULE_OBJ();

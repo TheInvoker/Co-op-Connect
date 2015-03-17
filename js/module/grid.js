@@ -1,4 +1,4 @@
-var GRID_MODULE_OBJ = function() {
+var GRID_MODULE = new function() {
     
     var context = "#grid-page";
     
@@ -39,5 +39,3 @@ var GRID_MODULE_OBJ = function() {
         grid.html(str);
 	};
 };
-
-var GRID_MODULE = new GRID_MODULE_OBJ();

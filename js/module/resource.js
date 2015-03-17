@@ -1,4 +1,4 @@
-var RESOURCE_MODULE_OBJ = function() {
+var RESOURCE_MODULE = new function() {
     
     var page = 0,
         context = "#resource-page";
@@ -86,5 +86,3 @@ var RESOURCE_MODULE_OBJ = function() {
         return str;
     };
 };
-
-var RESOURCE_MODULE = new RESOURCE_MODULE_OBJ();

@@ -1,4 +1,4 @@
-var SEARCH_MODULE_OBJ = function() {
+var SEARCH_MODULE = new function() {
     
     var page = 0,
         context = "#search-page";
@@ -135,5 +135,3 @@ var SEARCH_MODULE_OBJ = function() {
         return $(context).find(".footable tbody tr");
     };
 };
-
-var SEARCH_MODULE = new SEARCH_MODULE_OBJ();

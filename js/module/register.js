@@ -1,4 +1,4 @@
-var REGISTER_MODULE_OBJ = function() {
+var REGISTER_MODULE = new function() {
     
     var context = "#register-page";
 
@@ -30,5 +30,3 @@ var REGISTER_MODULE_OBJ = function() {
         $(context).find("#register-form").find("input").val("");
     };
 };
-
-var REGISTER_MODULE = new REGISTER_MODULE_OBJ();

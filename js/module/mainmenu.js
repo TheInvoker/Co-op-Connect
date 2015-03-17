@@ -1,4 +1,4 @@
-var MENU_MODULE_OBJ = function() {
+var MENU_MODULE = new function() {
     
     var context = "body",
         serviceChecker = null,
@@ -95,5 +95,3 @@ var MENU_MODULE_OBJ = function() {
         }
     };
 };
-
-var MENU_MODULE = new MENU_MODULE_OBJ();

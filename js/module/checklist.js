@@ -1,4 +1,4 @@
-var CHECKLIST_MODULE_OBJ = function () {
+var CHECKLIST_MODULE = new function () {
 
     var context = "#checklist-page";
 	
@@ -79,5 +79,3 @@ var CHECKLIST_MODULE_OBJ = function () {
         });
     };
 };
-
-var CHECKLIST_MODULE = new CHECKLIST_MODULE_OBJ();

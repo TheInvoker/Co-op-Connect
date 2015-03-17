@@ -1,4 +1,4 @@
-var PROFILE_EDIT_MODULE_OBJ = function() {
+var PROFILE_EDIT_MODULE = new function() {
     
     var context = "#profile-edit-page",
         user_id = null;
@@ -48,5 +48,3 @@ var PROFILE_EDIT_MODULE_OBJ = function() {
         context.find("#profile_edit_department_rb").find("input[value='" + unescapeHTML(user['department_name']) + "']").prop("checked", true).checkboxradio( "refresh" );
     };
 };
-
-var PROFILE_EDIT_MODULE = new PROFILE_EDIT_MODULE_OBJ();

@@ -1,4 +1,4 @@
-var ABOUT_MODULE_OBJ = function() {
+var ABOUT_MODULE = new function() {
     
     var context = "#about-page";
 
@@ -8,5 +8,3 @@ var ABOUT_MODULE_OBJ = function() {
         });
     };
 };
-
-var ABOUT_MODULE = new ABOUT_MODULE_OBJ();

@@ -1,4 +1,4 @@
-var PLACEMENT_MODULE_OBJ = function() {
+var PLACEMENT_MODULE = new function() {
     
     var context = "#placement-page",
         response = null,
@@ -134,5 +134,3 @@ var PLACEMENT_MODULE_OBJ = function() {
         }
     };
 };
-
-var PLACEMENT_MODULE = new PLACEMENT_MODULE_OBJ();

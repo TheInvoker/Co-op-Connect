@@ -1,4 +1,4 @@
-var SEARCH_SETTINGS_MODULE_OBJ = function() {
+var SEARCH_SETTINGS_MODULE = new function() {
     
     var context = "#search-settings-page";
 	
@@ -43,5 +43,3 @@ var SEARCH_SETTINGS_MODULE_OBJ = function() {
         return $(context).find("#search-settings-form").serialize();
     };
 };
-
-var SEARCH_SETTINGS_MODULE = new SEARCH_SETTINGS_MODULE_OBJ();

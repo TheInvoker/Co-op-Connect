@@ -1,4 +1,4 @@
-var PROFILE_MODULE_OBJ = function() {
+var PROFILE_MODULE = new function() {
     
     var context = "#profile-page",
         response = null,
@@ -93,5 +93,3 @@ var PROFILE_MODULE_OBJ = function() {
         });
     };
 };
-
-var PROFILE_MODULE = new PROFILE_MODULE_OBJ();

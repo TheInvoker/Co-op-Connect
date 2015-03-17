@@ -1,4 +1,4 @@
-var MENU_MODULE_OBJ = function() {
+var MENU_MODULE = new function() {
     
     var context = "body";
 	
@@ -26,5 +26,3 @@ var MENU_MODULE_OBJ = function() {
 		
 	});
 };
-
-var MENU_MODULE = new MENU_MODULE_OBJ();

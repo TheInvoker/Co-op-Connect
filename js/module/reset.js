@@ -1,4 +1,4 @@
-var RESET_MODULE_OBJ = function() {
+var RESET_MODULE = new function() {
     
     var context = "#reset-page";
     
@@ -20,5 +20,3 @@ var RESET_MODULE_OBJ = function() {
 		
     });
 };
-
-var RESET_MODULE = new RESET_MODULE_OBJ();

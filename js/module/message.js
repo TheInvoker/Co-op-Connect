@@ -1,4 +1,4 @@
-var MESSAGE_MODULE_OBJ = function() {
+var MESSAGE_MODULE = new function() {
     
     var page = 0,
         thread_id = null,
@@ -177,5 +177,3 @@ var MESSAGE_MODULE_OBJ = function() {
         });
     };
 };
-
-var MESSAGE_MODULE = new MESSAGE_MODULE_OBJ();

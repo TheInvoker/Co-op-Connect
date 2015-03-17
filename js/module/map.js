@@ -1,4 +1,4 @@
-var MAP_MODULE_OBJ = function() {
+var MAP_MODULE = new function() {
     
     var map = null,
         context = "#map-page";
@@ -16,7 +16,7 @@ var MAP_MODULE_OBJ = function() {
         handleSettingsButton(true);
         
         if ($(context).find('#map_canvas').prop('init')) {
-            MAP_SETTINGS_MODULE_OBJ.getLocations();
+            MAP_SETTINGS_MODULE.getLocations();
         } else {
             initMap();
         }
@@ -92,13 +92,13 @@ var MAP_MODULE_OBJ = function() {
 
                     $(context).find('#map_canvas').gmap("option", "center", new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
                     
-                    MAP_SETTINGS_MODULE_OBJ.getLocations();
+                    MAP_SETTINGS_MODULE.getLocations();
 
                 }, function (error) {
 
                     loadDefLocation();
                     
-                    MAP_SETTINGS_MODULE_OBJ.getLocations();
+                    MAP_SETTINGS_MODULE.getLocations();
                     
                     switch(error.code) {
                         case error.PERMISSION_DENIED:
@@ -149,5 +149,3 @@ var MAP_MODULE_OBJ = function() {
         showOnMap([obj]);
     };
 };
-
-var MAP_MODULE = new MAP_MODULE_OBJ();

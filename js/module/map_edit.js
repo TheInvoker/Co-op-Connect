@@ -1,4 +1,4 @@
-var MAP_SETTINGS_MODULE_OBJ = function() {
+var MAP_SETTINGS_MODULE = new function() {
     
     var context = "#map-settings-page";
 
@@ -34,5 +34,3 @@ var MAP_SETTINGS_MODULE_OBJ = function() {
         dateHandler(elements, true, MAP_MODULE.getLocations, true);
     };
 };
-
-var MAP_SETTINGS_MODULE = new MAP_SETTINGS_MODULE_OBJ();

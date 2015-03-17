@@ -1,4 +1,4 @@
-var THREAD_MODULE_OBJ = function() {
+var THREAD_MODULE = new function() {
     
     var serviceChecker = null,
         serviceFrequency = 1000 * 60 * 3,
@@ -169,5 +169,3 @@ var THREAD_MODULE_OBJ = function() {
         return str;
     };
 };
-
-var THREAD_MODULE = new THREAD_MODULE_OBJ();

@@ -1,4 +1,4 @@
-var LOGIN_MODULE_OBJ = function() {
+var LOGIN_MODULE = new function() {
 
     var context = "#login-page";
 
@@ -20,5 +20,3 @@ var LOGIN_MODULE_OBJ = function() {
 		
 	});
 };
-
-var LOGIN_MODULE = new LOGIN_MODULE_OBJ();
