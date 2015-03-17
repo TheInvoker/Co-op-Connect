@@ -3,14 +3,7 @@ var PLACEMENT_MODULE = new function() {
     var context = "#placement-page",
         response = null,
         placement = null,
-        user_id = null,
-        thisOBJ = this;
-    
-    registerShowEvent(context, function(prev_id) {
-        if (prev_id == CHECKLIST_MODULE.getContext()) {
-            thisOBJ.getPlacements(user_id);
-        }
-    });
+        user_id = null;
 	
 	$(context).on('click','#placement-list > li > a', function() {
 		

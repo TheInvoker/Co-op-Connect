@@ -1,11 +1,12 @@
 var CHECKLIST_MODULE = new function () {
 
-    var context = "#checklist-page";
+    var context = "#checklist-page",
+		user_id = null;
 	
 	$(context).on("click", "#done-checklist-button", function() {
 		
 		// configure back button
-		history.back();
+		PLACEMENT_MODULE.getPlacements(user_id);
 		
 	}).on("change", "#checklistCB input[type='checkbox']", function() {
 		
@@ -18,9 +19,10 @@ var CHECKLIST_MODULE = new function () {
 		
 	});
 
-    this.getChecklist = function(user_id, obj) {
+    this.getChecklist = function(uid, obj) {
 
         var user = GLOBAL_DATA.user;
+		user_id = uid;
 
         runAJAXSerial("", {
             id : obj['id'],

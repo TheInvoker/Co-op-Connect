@@ -13,6 +13,7 @@ generalize strings in php
 add search on ext panel
 clean picture filename
 map hostory.back() bug
+avoid back button
 
 select by id, then id again bug               [DONE]
 static class                                  [DONE]
