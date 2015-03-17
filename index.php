@@ -598,6 +598,7 @@
 						<li><a href="http://amsul.ca/pickadate.js" target="_blank">pickadate</a></li>
 						<li><a href="https://github.com/alexgibson/shake.js" target="_blank">shake</a></li>
 						<li><a href="http://fooplugins.com/plugins/footable-jquery" target="_blank">footable</a></li>
+						<li><a href="http://malsup.com/jquery/block" target="_blank">jQuery BlockUI</a></li>
 					</ol>
 				</section>
 			</div>
@@ -611,35 +612,37 @@
 		<!-- Include the Google maps library -->
 		<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 		<!-- Include the jquery maps library -->
-		<script src="js/jquery.ui.map.full.min.js"></script>
+		<script src="js/plugin/jquery.ui.map.full.min.js"></script>
 		<!-- Include the maps clusterer library -->
-		<script src="js/markerclusterer_packed.js"></script>
+		<script src="js/plugin/markerclusterer_packed.js"></script>
 		<!-- Include the geolocation autocomplete library -->
-		<script src="js/jquery.geocomplete.min.js"></script>
+		<script src="js/plugin/jquery.geocomplete.min.js"></script>
 		<!-- Include the date picker library -->
-		<script src="js/picker.js"></script>
-		<script src="js/picker.date.js"></script>
+		<script src="js/plugin/picker.js"></script>
+		<script src="js/plugin/picker.date.js"></script>
 
-		<script src="js/custom/login.js"></script>
-		<script src="js/custom/mainmenu.js"></script>
-		<script src="js/custom/map.js"></script>
-		<script src="js/custom/map_edit.js"></script>
-		<script src="js/custom/profile.js"></script>
-		<script src="js/custom/profile_edit.js"></script>
-		<script src="js/custom/register.js"></script>
-		<script src="js/custom/placement.js"></script>
-		<script src="js/custom/placement_edit.js"></script>
-		<script src="js/custom/checklist.js"></script>
-		<script src="js/custom/search.js"></script>
-		<script src="js/custom/search_edit.js"></script>
-		<script src="js/custom/resource.js"></script>
-		<script src="js/custom/thread.js"></script>
-		<script src="js/custom/message.js"></script>
-		<script src="js/custom/about.js"></script>
-		<script src="js/custom/grid.js"></script>
+		<!-- my modules -->
+		<script src="js/module/login.js"></script>
+		<script src="js/module/mainmenu.js"></script>
+		<script src="js/module/map.js"></script>
+		<script src="js/module/map_edit.js"></script>
+		<script src="js/module/profile.js"></script>
+		<script src="js/module/profile_edit.js"></script>
+		<script src="js/module/register.js"></script>
+		<script src="js/module/placement.js"></script>
+		<script src="js/module/placement_edit.js"></script>
+		<script src="js/module/checklist.js"></script>
+		<script src="js/module/search.js"></script>
+		<script src="js/module/search_edit.js"></script>
+		<script src="js/module/resource.js"></script>
+		<script src="js/module/thread.js"></script>
+		<script src="js/module/message.js"></script>
+		<script src="js/module/about.js"></script>
+		<script src="js/module/grid.js"></script>
 		
-		<link rel="stylesheet" type="text/css" href="css/default.css">
-		<link rel="stylesheet" type="text/css" href="css/default.date.css">
+		<!-- Include the date picker css -->
+		<link rel="stylesheet" type="text/css" href="css/plugin/default.css">
+		<link rel="stylesheet" type="text/css" href="css/plugin/default.date.css">
 		
 	</body>
 </html>

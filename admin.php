@@ -44,7 +44,8 @@
 			</div>
 
 			<div data-role="main" class="ui-content">
-
+				<div id="newsgrid">
+				</div>
 			</div>
 		</div> 
 		
@@ -89,9 +90,10 @@
 			include "snippet/scripts.php";
 		?>
 		
-		<script src="js/custom/alogin.js"></script>
-		<script src="js/custom/amainmenu.js"></script>
-		<script src="js/custom/grid.js"></script>
+		<!-- my modules -->
+		<script src="js/module/alogin.js"></script>
+		<script src="js/module/amainmenu.js"></script>
+		<script src="js/module/grid.js"></script>
 		
 	</body>
 </html>

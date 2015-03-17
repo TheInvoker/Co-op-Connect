@@ -153,7 +153,13 @@ function runAJAX(formData, sfunc, efunc, hasImage) {
             efunc(data,status,xhr);
 
             alert('An error occured when connecting to the server.');
-        }
+        },
+		beforeSend: function( xhr ) {
+			$.blockUI();
+		},
+		complete: function(data,status,xhr) {
+			$.unblockUI();
+		}
     };
     
     if (hasImage) {
@@ -256,9 +262,6 @@ function configureShakeToGoBack() {
 function swipePanel(pageId, leftPanelId) {
 	$( document ).on( "pageinit", pageId, function() {
 		$( document ).on( "swiperight", pageId, function( e ) {
-			// We check if there is no open panel on the page because otherwise
-			// a swipe to close the left panel would also open the right panel (and v.v.).
-			// We do this by checking the data that the framework stores on the page element (panel: open).
 			var startX = e.swipestart.coords[0];
 
 			if (startX <= 50) {
@@ -273,9 +276,6 @@ function swipePanel(pageId, leftPanelId) {
 function swipePanelLeft(pageId, rightPanelId) {
     $( document ).on( "pageinit", pageId, function() {
         $( document ).on( "swipeleft", pageId, function( e ) {
-            // We check if there is no open panel on the page because otherwise
-            // a swipe to close the left panel would also open the right panel (and v.v.).
-            // We do this by checking the data that the framework stores on the page element (panel: open).
             var startX = e.swipestart.coords[0];
             var totalWidth = $(window).width();
 
