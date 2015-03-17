@@ -137,6 +137,7 @@ function runAJAX(formData, sfunc, efunc, hasImage) {
         url: GLOBAL_DATA.server_link,
         data: formData,
         dataType: 'json',
+		timeout: 10 * 1000,
         success: function(jsonData,status,xhr) {
             var response = jsonData['response'];
 

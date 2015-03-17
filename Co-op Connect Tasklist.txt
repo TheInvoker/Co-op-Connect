@@ -11,6 +11,8 @@ fix new line on textarea
 server side validation
 generalize strings in php
 add search on ext panel
+clean picture filename
+map hostory.back() bug
 
 select by id, then id again bug               [DONE]
 static class                                  [DONE]
