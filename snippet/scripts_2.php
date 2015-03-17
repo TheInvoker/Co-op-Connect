@@ -1,4 +1,3 @@
-<script src="js/footable.all.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="css/footable.core.min.css">
-<link rel="stylesheet" type="text/css" href="css/footable.standalone.min.css">
+<script src="js/plugin/footable.all.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/plugin/footable.core.min.css">
+<link rel="stylesheet" type="text/css" href="css/plugin/footable.standalone.min.css">

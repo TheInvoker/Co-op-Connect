@@ -28,7 +28,8 @@
 			include "snippet/scripts.php";
 		?>
 		
-		<script src="js/custom/reset.js"></script>
+		<!-- my modules -->
+		<script src="js/module/reset.js"></script>
 		
 	</body>
 </html>
