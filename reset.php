@@ -25,7 +25,7 @@
 		</div>
 
 		<?php
-			include "snippet/scripts.php";
+			include "snippet/snippet2.php";
 		?>
 		
 		<!-- my modules -->

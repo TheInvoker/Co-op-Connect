@@ -9,7 +9,7 @@ var LOGIN_MODULE = new function() {
 		// configure login button click
 		runAJAXSerial($(this).serialize(), {
 			ad : 0,
-			page : "user/login"
+			page : "user/coopconnect"
 		}, function(response) {
 			GLOBAL_DATA.user = response;
 

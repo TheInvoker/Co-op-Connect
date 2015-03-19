@@ -3,46 +3,6 @@
     // enable debugging
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
-
-	// set print json
-	$GLOBALS['printJSON'] = true;
-	
-	function RunQueries($page) {
-	
-		$errorMessage = null;
-		$successMessage = array();
-
-		include dirname(__FILE__).'/dbinfo.php';
-	
-		$sqlConnection = mysqli_connect($sqlHost, $sqlusername, $sqlpassword);
-		
-		if ($sqlConnection) {
-		
-			$sqlDB = mysqli_select_db($sqlConnection, $sqldbname); 
-			if ($sqlDB) {
-				
-				if (strpos($page, '..') !== FALSE) {
-					$errorMessage = "Invalid request given.";
-				} else { 
-					include dirname(__FILE__) . '/../' . $page . '.php';
-				}
-
-			} else {
-				$errorMessage = "Could not connect to database.";
-			}
-			
-			mysqli_close($sqlConnection);
-			
-		} else {
-			$errorMessage = "Could not connect to server.";
-		}
-
-		if ($errorMessage == null) {
-			return $successMessage;
-		}
-		
-		return $errorMessage;
-	}
 	
 	function logQuery($str) {
 		$myFile = "../../logs/log.txt";

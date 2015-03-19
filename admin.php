@@ -86,8 +86,8 @@
 		</div> 
 
 		<?php
-			include "snippet/scripts_2.php";
-			include "snippet/scripts.php";
+			include "snippet/snippet1.php";
+			include "snippet/snippet2.php";
 		?>
 		
 		<!-- my modules -->

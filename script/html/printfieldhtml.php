@@ -1,7 +1,5 @@
 <?php
 
-	$GLOBALS['printJSON'] = false;
-
 	if (!isset($_GET['field']) || !isset($_GET['radio'])) {
 		print "Did not recieve all of the data.";
 		return;
@@ -56,12 +54,14 @@
 	}
 	$num_records = mysqli_num_rows($recordset);
 	
+	$token = getToken(10);
+
 	for ($i = 0; $i < $num_records; $i++) {
 		
 		$row = mysqli_fetch_assoc($recordset);
 		
 		$name = $row["{$qname}"];
-		$uid = "{$field}_{$radio}_{$i}";
+		$uid = "{$field}_{$radio}_{$i}_{$token}";
 		
 		if ($radio =='1') {
 			
