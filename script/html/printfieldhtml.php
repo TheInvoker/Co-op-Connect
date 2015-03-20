@@ -1,6 +1,6 @@
 <?php
 
-	if (!$_SESSION["auth"]) {
+	if (!isset($_SESSION["auth"]) || !$_SESSION["auth"]) {
 		$errorMessage = "You are not logged in.";
 		return;
 	}

@@ -2,7 +2,7 @@
 
 	include "script/config/common.php";
 	
-	if ($_SESSION["auth"]) {
+	if (isset($_SESSION["auth"]) && $_SESSION["auth"]) {
 		
 		if (isset($_POST['page'])) {
 
