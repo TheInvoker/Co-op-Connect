@@ -675,8 +675,10 @@
 								$def_email = $_POST['email'];
 							}
 						
+							/* DEBUG */
 							$def_email = "ryan.dsouza@hotmail.ca";
 							$def_pass = "test";
+							/* DEBUG */
 						?>
 						
 						<form id="login-form" method="post" data-ajax="false">

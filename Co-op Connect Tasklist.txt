@@ -14,6 +14,7 @@ add search on ext panel
 clean picture filename
 map hostory.back() bug
 avoid back button
+favicon
 
 select by id, then id again bug               [DONE]
 static class                                  [DONE]
