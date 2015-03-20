@@ -4,25 +4,6 @@ var LOGIN_MODULE = new function() {
 	
 	swipePanel(context, "#login-panel");
 	
-	/*
-	$(context).on('submit', "#login-form", function() {
-		
-		// configure login button click
-		runAJAXSerial($(this).serialize(), {
-			page : "user/login"
-		}, function(response) {
-			GLOBAL_DATA.user = response;
-
-			GRID_MODULE.setGrid();  
-		}, function(data,status,xhr) {
-			
-		});
-
-		return false;
-		
-	});
-	*/
-	
 	$(context).on('click', "#register-button", function() {
 		
 		// configure register button click
