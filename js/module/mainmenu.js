@@ -62,7 +62,9 @@ var MENU_MODULE = new function() {
         runAJAXSerial("", {
             page : "user/logout"
         }, function(response) {
-			forceGoHomePage();
+            
+			window.location.href = ".";
+
         }, function(data,status,xhr) {
             
         });

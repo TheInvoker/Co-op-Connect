@@ -1,6 +1,6 @@
 var GLOBAL_DATA = {
     user : null,                                      // basic user object for who ever is logged in now
-    server_link : '/Co-op-Connect/sqlhandler.php',    // main server link
+    server_link : 'sqlhandler.php',    // main server link
     def_image_link : 'images/site/person.png',
 	version: "v1.0.0",
     eventsShow : {},
@@ -138,25 +138,30 @@ function runAJAX(formData, sfunc, efunc, hasImage) {
         data: formData,
         dataType: 'json',
 		timeout: 10 * 1000,
+        beforeSend: function( xhr ) {
+            $.blockUI();
+        },
         success: function(jsonData,status,xhr) {
+            $.unblockUI();
+            
             var response = jsonData['response'];
 
             if (jsonData['code'] == 200) {
 				cleanResponse(response);
                 sfunc(response);
+            } else {
+                efunc(jsonData,status,xhr);
+
+                alert(response);
             }
         },
         error: function(data,status,xhr) {
+            $.unblockUI();
+
             efunc(data,status,xhr);
 
             alert(xhr);
-        },
-		beforeSend: function( xhr ) {
-			$.blockUI();
-		},
-		complete: function(data,status,xhr) {
-			$.unblockUI();
-		}
+        }
     };
     
     if (hasImage) {
@@ -220,15 +225,6 @@ function goHomePage() {
         return true;
     }
     return false;
-}
-
-function forceGoHomePage() {
-    var i = document.location.href.indexOf("#");
-    if (i != -1) {
-        document.location.href = document.location.href.substring(0, i);
-    } else {
-		window.location = window.location.href;
-	}
 }
 
 function setPageShowHide() {

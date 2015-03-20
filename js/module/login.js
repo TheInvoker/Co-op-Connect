@@ -4,7 +4,22 @@ var LOGIN_MODULE = new function() {
 	
 	swipePanel(context, "#login-panel");
 	
-	$(context).on('click', "#register-button", function() {
+	$(context).on('submit', "#login-form", function() {
+		
+		// configure login button click
+		runAJAXSerial($(this).serialize(), {
+			page : "user/login"
+		}, function(response) {
+			
+			window.location.href = "coopconnect.php";
+
+		}, function(data,status,xhr) {
+			
+		});
+
+		return false;
+		
+	}).on('click', "#register-button", function() {
 		
 		// configure register button click
 		REGISTER_MODULE.register();

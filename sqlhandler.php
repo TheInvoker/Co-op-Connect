@@ -2,48 +2,42 @@
 
 	include "script/config/common.php";
 	
-	if (isset($_SESSION["auth"]) && $_SESSION["auth"]) {
-		
-		if (isset($_POST['page'])) {
+	if (isset($_POST['page'])) {
 
-			$page = $_POST['page']; 
+		$page = $_POST['page']; 
 
-			if (strpos($page, '..') !== FALSE) {
+		if (strpos($page, '..') !== false) {
 
-				$result = "Invalid request given.";
+			$errorMessage = "Invalid request given.";
+			
+		} else {
+
+			$path = 'script/' . $page . '.php';
+
+			if (!file_exists($path)) {
+
+				$errorMessage = "Invalid request given.";
 
 			} else {
 
-				$path = 'script/' . $page . '.php';
-
-				if (!file_exists($path)) {
-
-					$result = "Invalid request given.";
-
-				} else {
-
-					include "script/config/sqlopen.php";
-					
-					if (!$errorMessage) {
-						include $path;
-					}
-
-					include "script/config/sqlclose.php";
-					
-					$result = $errorMessage ? $errorMessage : $successMessage;
+				include "script/config/sqlopen.php";
+				
+				if (!$errorMessage) {
+					include $path;
 				}
+
+				include "script/config/sqlclose.php";
 			}
-		} else {
-			$result = "Missing request.";
 		}
 	} else {
-		$errorMessage = "You are not logged in.";
+		$errorMessage = "Missing request.";
 	}
 
-  	if (is_string($result)) {
-	  	header("HTTP/1.1 503 {$result}");
+
+  	if ($errorMessage) {
+	  	print(json_encode(array("code" => 401, "response" => $errorMessage)));
   	} else {
-  		print(json_encode(array("code" => 200, "response" => $result)));
+  		print(json_encode(array("code" => 200, "response" => $successMessage)));
   	}
 
 ?>

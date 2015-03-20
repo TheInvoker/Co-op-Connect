@@ -8,11 +8,11 @@
 	session_start();
 	
 	// define vars to keep track of errors
-	$errorMessage = null;
+	$errorMessage = "";
 	$successMessage = array();
 	
 	function logQuery($str) {
-		$myFile = "../../logs/log.txt";
+		$myFile = "logs/log.txt";
 		$fh = fopen($myFile, 'a');
 		fwrite($fh, $str . "\n\n\n");
 		fwrite($fh, "----------------------------------------------------\n\n");

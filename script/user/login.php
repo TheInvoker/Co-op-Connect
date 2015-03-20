@@ -1,5 +1,10 @@
 <?php
 
+	if (!isset($_POST['email']) || !isset($_POST['password'])) {
+		$errorMessage = "Did not recieve all of the data.";
+		return;
+	}
+
 	$email = mysqli_real_escape_string($sqlConnection, $_POST['email']); 
 	$pass = mysqli_real_escape_string($sqlConnection, $_POST['password']); 
 	
