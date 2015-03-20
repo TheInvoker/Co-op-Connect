@@ -1,38 +1,46 @@
 <?php
 
 	include "common.php";
-	include "sqlopen.php";
+	
+	if ($_SESSION["auth"]) {
+		
+		if (isset($_POST['page'])) {
 
-	if (isset($_POST['page'])) {
+			$page = $_POST['page']; 
 
-		$page = $_POST['page']; 
-
-		if (strpos($page, '..') !== FALSE) {
-
-			$result = "Invalid request given.";
-
-		} else {
-
-			$path = '../' . $page . '.php';
-
-			if (!file_exists($path)) {
+			if (strpos($page, '..') !== FALSE) {
 
 				$result = "Invalid request given.";
 
 			} else {
 
-				include '../' . $page . '.php';
-				
-				$result = $errorMessage ? $errorMessage : $successMessage;
+				$path = '../' . $page . '.php';
+
+				if (!file_exists($path)) {
+
+					$result = "Invalid request given.";
+
+				} else {
+
+					include "sqlopen.php";
+					
+					if (!$errorMessage) {
+						include '../' . $page . '.php';
+					}
+
+					include "sqlclose.php";
+					
+					$result = $errorMessage ? $errorMessage : $successMessage;
+				}
 			}
+		} else {
+			$result = "Missing request.";
 		}
 	} else {
-		$result = "Missing request.";
+		$errorMessage = "You are not logged in.";
 	}
 
-	include "sqlclose.php";
-
-
+	
   	if (is_string($result)) {
 	  	header('HTTP/1.1 503 Service Unavailable');
   		print $result;

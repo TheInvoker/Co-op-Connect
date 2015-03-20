@@ -1,5 +1,10 @@
 <?php
 
+	if (isNotIncluded()) {
+		$errorMessage = "File is private.";
+		return;
+	}
+
 	if (!$_SESSION["auth"]) {
 		$errorMessage = "You are not logged in.";
 		return;

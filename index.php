@@ -13,7 +13,7 @@
 	<body>
 
 		<?php
-			$is_logged_in = !empty($_SESSION["auth"]) && isset($_SESSION["auth"]) && $_SESSION["auth"];
+			$is_logged_in = isset($_SESSION["auth"]) && $_SESSION["auth"];
 			$trying_to_log_in = !$is_logged_in && isset($_POST['email']) && isset($_POST['password']);
 		?>
 		
