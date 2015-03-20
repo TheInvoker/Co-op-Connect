@@ -595,6 +595,15 @@
 					include "snippet/snippet2.php";
 				?>
 				
+				<script>
+					GLOBAL_DATA.user = {
+						id : <?php print $_SESSION['id']; ?>,
+						picURL : '<?php print $_SESSION['picURL']; ?>'
+					};
+	
+					GRID_MODULE.setGrid();
+				</script>
+				
 				<!-- Include the Google maps library -->
 				<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 				<!-- Include the jquery maps library -->

@@ -45,7 +45,7 @@
 			return "";
 		}
 		
-		return "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']) . "/../../images/avatars/{$curID}/{$picName}";
+		return "http://" . $_SERVER['HTTP_HOST'] . "/Co-op-Connect/images/avatars/{$curID}/{$picName}";
 	}
 	
 	

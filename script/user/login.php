@@ -38,14 +38,10 @@
 		$errorMessage = "Your account is currently not activated.";
 		return;
 	}
-	
-	$successMessage = array(
-		'id' => $user_id,
-		'picURL' => $picURL
-	);
 
 	$_SESSION['auth'] = true;
 	$_SESSION['id'] = $user_id;
+	$_SESSION['picURL'] = $picURL;
 	$_SESSION['role_name'] = $role_name;
 	
 ?>
