@@ -1,16 +1,15 @@
 <?php
 
-	if ($_SESSION['allow_sql']) {
-
-		if (!$sqlConnection) {
-			$errorMessage = "Could not close database connection.";
-			return;
-		}
-
-		mysqli_close($sqlConnection);
-
+	if (isNotIncluded()) {
+		$errorMessage = "File is private.";
+		return;
 	}
 
-	$_SESSION['allow_sql'] = false;
+	if (!$sqlConnection) {
+		$errorMessage = "Could not close database connection.";
+		return;
+	}
+
+	mysqli_close($sqlConnection);
 
 ?>

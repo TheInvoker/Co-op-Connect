@@ -1,14 +1,20 @@
 <?php
 
+	if (isNotIncluded()) {
+		$errorMessage = "File is private.";
+		return;
+	}
+
     // enable debugging
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
 
 	// use sessions
 	session_start();
-
-	// allow use of sql
-	$_SESSION['allow_sql'] = true;
+	
+	// define vars to keep track of errors
+	$errorMessage = null;
+	$successMessage = array();
 	
 	function logQuery($str) {
 		$myFile = "../../logs/log.txt";

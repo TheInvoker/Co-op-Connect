@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 	<head>
+	
 		<?php
-		
-			$errorMessage = null;
-
 			include "snippet/head.php";
+			
 			include "script/config/common.php";
 			include "script/config/sqlopen.php";
 		?>
+		
 	</head>
 	<body>
 

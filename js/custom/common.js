@@ -227,7 +227,7 @@ function forceGoHomePage() {
     if (i != -1) {
         document.location.href = document.location.href.substring(0, i);
     } else {
-		location.reload();
+		document.location.href = "http://192.168.1.101:81/Co-op-Connect/";
 	}
 }
 

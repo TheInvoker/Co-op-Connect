@@ -1,8 +1,5 @@
 <?php
 
-	$errorMessage = null;
-	$successMessage = array();
-
 	include "common.php";
 	include "sqlopen.php";
 
