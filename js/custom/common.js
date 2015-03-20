@@ -144,16 +144,12 @@ function runAJAX(formData, sfunc, efunc, hasImage) {
             if (jsonData['code'] == 200) {
 				cleanResponse(response);
                 sfunc(response);
-            } else {
-                efunc(jsonData,status,xhr);
-
-                alert(response);
             }
         },
         error: function(data,status,xhr) {
             efunc(data,status,xhr);
 
-            alert('An error occured when connecting to the server.');
+            alert(status);
         },
 		beforeSend: function( xhr ) {
 			$.blockUI();
@@ -224,6 +220,15 @@ function goHomePage() {
         return true;
     }
     return false;
+}
+
+function forceGoHomePage() {
+    var i = document.location.href.indexOf("#");
+    if (i != -1) {
+        document.location.href = document.location.href.substring(0, i);
+    } else {
+		location.reload();
+	}
 }
 
 function setPageShowHide() {

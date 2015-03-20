@@ -3,6 +3,12 @@
     // enable debugging
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
+
+	// use sessions
+	session_start();
+
+	// allow use of sql
+	$_SESSION['allow_sql'] = true;
 	
 	function logQuery($str) {
 		$myFile = "../../logs/log.txt";
@@ -10,6 +16,10 @@
 		fwrite($fh, $str . "\n\n\n");
 		fwrite($fh, "----------------------------------------------------\n\n");
 		fclose($fh);
+	}
+	
+	function isNotIncluded() {
+		return realpath(__FILE__) == realpath($_SERVER['DOCUMENT_ROOT'] . $_SERVER['SCRIPT_FILENAME']);
 	}
 	
 	function sendEmail($toEmail, $subject, $message) {

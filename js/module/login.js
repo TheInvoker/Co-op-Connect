@@ -4,12 +4,12 @@ var LOGIN_MODULE = new function() {
 	
 	swipePanel(context, "#login-panel");
 	
+	/*
 	$(context).on('submit', "#login-form", function() {
 		
 		// configure login button click
 		runAJAXSerial($(this).serialize(), {
-			ad : 0,
-			page : "user/coopconnect"
+			page : "user/login"
 		}, function(response) {
 			GLOBAL_DATA.user = response;
 
@@ -20,7 +20,10 @@ var LOGIN_MODULE = new function() {
 
 		return false;
 		
-	}).on('click', "#register-button", function() {
+	});
+	*/
+	
+	$(context).on('click', "#register-button", function() {
 		
 		// configure register button click
 		REGISTER_MODULE.register();

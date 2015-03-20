@@ -1,5 +1,10 @@
 <?php
 
+	if (!$_SESSION["auth"]) {
+		$errorMessage = "You are not logged in.";
+		return;
+	}
+
 	if (!isset($_POST['id']) || !isset($_POST['user_id'])) {
 		$errorMessage = "Did not recieve all of the data.";
 		return;

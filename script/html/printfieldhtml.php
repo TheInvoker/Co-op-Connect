@@ -1,5 +1,10 @@
 <?php
 
+	if (!$_SESSION["auth"]) {
+		$errorMessage = "You are not logged in.";
+		return;
+	}
+
 	if (!isset($_GET['field']) || !isset($_GET['radio'])) {
 		print "Did not recieve all of the data.";
 		return;

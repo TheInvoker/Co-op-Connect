@@ -1,5 +1,10 @@
 <?php
 
+	if (!$_SESSION["auth"]) {
+		$errorMessage = "You are not logged in.";
+		return;
+	}
+
 	function formatSqlOptionList($sqlConnection, $list) {
 		for ($i=0; $i<count($list); $i+=1) {
 			$v = mysqli_real_escape_string($sqlConnection, trim($list[$i]));

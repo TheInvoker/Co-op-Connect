@@ -1,18 +1,17 @@
 <?php
 
-	if (!isset($_POST['email']) || !isset($_POST['password']) || !isset($_POST['ad'])) {
-		$errorMessage = "Did not recieve all of the data.";
+	if (isNotIncluded()) {
+		$errorMessage = "File is private.";
 		return;
 	}
 
 	$email = mysqli_real_escape_string($sqlConnection, $_POST['email']); 
 	$pass = mysqli_real_escape_string($sqlConnection, $_POST['password']); 
-	$admin = mysqli_real_escape_string($sqlConnection, $_POST['ad']); 
 	
-	$query = "SELECT u.id, u.active, u.avatar_filename
+	$query = "SELECT u.id, u.active, u.avatar_filename, r.name AS role_name
 			  FROM user u
 			  JOIN role r ON r.id = u.role_id
-			  WHERE u.email_address = '{$email}' AND u.password = '{$pass}'" . ($admin=="1" ? " AND r.name='Admin'" : "");
+			  WHERE u.email_address = '{$email}' AND u.password = '{$pass}'";
 			  
 	$recordset = mysqli_query($sqlConnection, $query);	
 	if (!$recordset) { 
@@ -23,9 +22,6 @@
 
 	if ($num_records == 0) {
 		$errorMessage = "Invalid email or password.";
-		if ($admin == "1") {
-			$errorMessage = $errorMessage . " Or you are not an admin.";
-		}
 		return;
 	}
 	
@@ -35,6 +31,8 @@
 	$picURL = FormatImageURL($row['id'], $filename);
 	
 	$active = $row['active'];
+	$user_id = $row['id'];
+	$role_name = $row['role_name'];
 	
 	if ($active == 0) {
 		$errorMessage = "Your account is currently not activated.";
@@ -42,8 +40,12 @@
 	}
 	
 	$successMessage = array(
-		'id' => $row['id'],
+		'id' => $user_id,
 		'picURL' => $picURL
 	);
 
+	$_SESSION['auth'] = true;
+	$_SESSION['id'] = $user_id;
+	$_SESSION['role_name'] = $role_name;
+	
 ?>

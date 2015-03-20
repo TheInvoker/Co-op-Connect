@@ -1,19 +1,23 @@
 <?php
 
-	include dirname(__FILE__).'/dbinfo.php';
+	if ($_SESSION['allow_sql']) {
 
-	$sqlConnection = mysqli_connect($sqlHost, $sqlusername, $sqlpassword);
+		include dirname(__FILE__).'/dbinfo.php';
 
-	if (!$sqlConnection) {
-		return "Could not connect to server.";
+		$sqlConnection = mysqli_connect($sqlHost, $sqlusername, $sqlpassword);
+
+		if (!$sqlConnection) {
+			$errorMessage = "Could not connect to server.";
+			return;
+		}
+
+		$sqlDB = mysqli_select_db($sqlConnection, $sqldbname); 
+		
+		if (!$sqlDB) {
+			$errorMessage = "Could not connect to database.";
+			return;
+		}
+
 	}
-
-	$sqlDB = mysqli_select_db($sqlConnection, $sqldbname); 
-	
-	if (!$sqlDB) {
-		return "Could not connect to database.";
-	}
-
-	return("");
 
 ?>

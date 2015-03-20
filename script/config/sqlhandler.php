@@ -1,10 +1,10 @@
 <?php
 
-	include "common.php";
-	include "sqlopen.php";
-
 	$errorMessage = null;
 	$successMessage = array();
+
+	include "common.php";
+	include "sqlopen.php";
 
 	if (isset($_POST['page'])) {
 
@@ -35,6 +35,12 @@
 
 	include "sqlclose.php";
 
-	print(json_encode(array("code" => (is_string($result) ? 401 : 200), "response" => $result)));
+
+  	if (is_string($result)) {
+	  	header('HTTP/1.1 503 Service Unavailable');
+  		print $result;
+  	} else {
+  		print(json_encode(array("code" => 200, "response" => $result)));
+  	}
 
 ?>

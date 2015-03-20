@@ -1,5 +1,10 @@
 <?php
 
+	if (!$_SESSION["auth"]) {
+		$errorMessage = "You are not logged in.";
+		return;
+	}
+
 	if (!isset($_POST['map_date_start']) || !isset($_POST['map_date_end'])) {
 		$errorMessage = "Did not recieve all of the data.";
 		return;

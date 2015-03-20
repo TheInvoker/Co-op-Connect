@@ -56,7 +56,19 @@ var MENU_MODULE = new function() {
 		// configure about button click
 		ABOUT_MODULE.setAbout();
 		
+	}).on('click', "#logout-button", function() {
+		
+		// configure logout button click
+        runAJAXSerial("", {
+            page : "user/logout"
+        }, function(response) {
+			forceGoHomePage();
+        }, function(data,status,xhr) {
+            
+        });
+		
 	});
+	
 
     var startAuto = function() {
         getCount();
