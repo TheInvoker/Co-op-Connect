@@ -45,7 +45,7 @@
 			return "";
 		}
 		
-		return "http://" . $_SERVER['HTTP_HOST'] . "/Co-op-Connect/images/avatars/{$curID}/{$picName}";
+		return "images/avatars/{$curID}/{$picName}";
 	}
 	
 	

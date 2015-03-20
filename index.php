@@ -13,7 +13,7 @@
 	<body>
 
 		<?php
-			$is_logged_in = !empty($_SESSION["auth"]);
+			$is_logged_in = !empty($_SESSION["auth"]) && isset($_SESSION["auth"]) && $_SESSION["auth"];
 			$trying_to_log_in = !$is_logged_in && isset($_POST['email']) && isset($_POST['password']);
 		?>
 		
@@ -662,7 +662,7 @@
 						<img class="logo-image-home" src="./images/site/coopconnect.png" alt="Co-op Connect logo" title="Co-op Connect logo"/>
 					</center>
 					
-					<form id="login-form" method="post">
+					<form id="login-form" method="post" data-ajax="false">
 						<label for="email">Email Address:</label>
 						<input name="email" type="email" maxlength="255" value="ryan.dsouza@hotmail.ca" required>
 						<label for="password">Password:</label>
