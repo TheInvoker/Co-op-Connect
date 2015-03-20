@@ -19,9 +19,18 @@
 		
 		<?php if ($errorMessage): ?>
 
-			<?php include "snippet/snippet3.php"; ?>
+			<div id="error-page" data-role="page" data-theme="b">
+				<div data-role="header">
+					<h1>Error</h1>
+				</div>
+				<div data-role="main" class="ui-content">
+					<?php
+						print $errorMessage;
+					?>
+				</div>
+			</div>
 
-		<?php elseif ($is_logged_in || $trying_to_log_in): ?>
+		<?php else: ?>
 
 			<?php 
 				if ($trying_to_log_in) {
@@ -29,11 +38,8 @@
 				}
 			?>
 			
-			<?php if ($errorMessage): ?>
+			<?php if ($is_logged_in || ($trying_to_log_in && !$errorMessage)): ?>
 
-				<?php include "snippet/snippet3.php"; ?>
-				
-			<?php else: ?>
 			
 				<div data-role="panel" id="menu-panel" data-display="push" data-theme="b">
 					<ul data-role="listview">
@@ -595,15 +601,6 @@
 					include "snippet/snippet2.php";
 				?>
 				
-				<script>
-					GLOBAL_DATA.user = {
-						id : <?php print $_SESSION['id']; ?>,
-						picURL : '<?php print $_SESSION['picURL']; ?>'
-					};
-	
-					GRID_MODULE.setGrid();
-				</script>
-				
 				<!-- Include the Google maps library -->
 				<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 				<!-- Include the jquery maps library -->
@@ -639,38 +636,66 @@
 				<link rel="stylesheet" type="text/css" href="css/plugin/default.css">
 				<link rel="stylesheet" type="text/css" href="css/plugin/default.date.css">
 				
-			<?php endif ?>
-			
-		<?php else: ?>
-		
-			<div id="login-page" data-role="page" data-theme="b">
-			
-				<div data-role="panel" id="login-panel" data-display="push">
-					<ul data-role="listview">
-						<li><a id="register-button" href="#" class="ui-btn ui-icon-arrow-u ui-btn-icon-left">Register</a></li>
-						<li><a id="forgot-button" href="#" class="ui-btn ui-icon-info ui-btn-icon-left">Forgot Password</a></li>
-					</ul>
-				</div>
-			
-				<div data-role="header">
-					<a href="#login-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-					<h1>UTSC Co-op Connect</h1>
-				</div>
+				<script>
+					GLOBAL_DATA.user = {
+						id : <?php print $_SESSION['id']; ?>,
+						picURL : '<?php print $_SESSION['picURL']; ?>'
+					};
+	
+					GRID_MODULE.setGrid();
+				</script>
+				
+			<?php else: ?>
+				
+				<div id="login-page" data-role="page" data-theme="b">
+				
+					<div data-role="panel" id="login-panel" data-display="push">
+						<ul data-role="listview">
+							<li><a id="register-button" href="#" class="ui-btn ui-icon-arrow-u ui-btn-icon-left">Register</a></li>
+							<li><a id="forgot-button" href="#" class="ui-btn ui-icon-info ui-btn-icon-left">Forgot Password</a></li>
+						</ul>
+					</div>
+				
+					<div data-role="header">
+						<a href="#login-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
+						<h1>UTSC Co-op Connect</h1>
+					</div>
 
-				<div data-role="main" class="ui-content">
-					<center>
-						<img class="logo-image-home" src="./images/site/coopconnect.png" alt="Co-op Connect logo" title="Co-op Connect logo"/>
-					</center>
-					
-					<form id="login-form" method="post" data-ajax="false">
-						<label for="email">Email Address:</label>
-						<input name="email" type="email" maxlength="255" value="ryan.dsouza@hotmail.ca" required>
-						<label for="password">Password:</label>
-						<input name="password" type="password" autocomplete="off" maxlength="255" value="test" required>
-						<input type="submit" value="Login">
-					</form>
+					<div data-role="main" class="ui-content">
+						<center>
+							<img class="logo-image-home" src="./images/site/coopconnect.png" alt="Co-op Connect logo" title="Co-op Connect logo"/>
+						</center>
+						
+						<?php
+						
+							$def_email = "";
+							$def_pass = "";
+						
+							if (isset($_POST['email'])) {
+								$def_email = $_POST['email'];
+							}
+						
+							$def_email = "ryan.dsouza@hotmail.ca";
+							$def_pass = "test";
+						?>
+						
+						<form id="login-form" method="post" data-ajax="false">
+							<label for="email">Email Address:</label>
+							<input name="email" type="email" maxlength="255" value="<?php print $def_email; ?>" required>
+							<label for="password">Password:</label>
+							<input name="password" type="password" autocomplete="off" maxlength="255" value="<?php print $def_pass; ?>" required>
+							<input type="submit" value="Login">
+						</form>
+					</div>
 				</div>
-			</div>
+				
+				<?php if ($errorMessage): ?>
+					<script>
+						alert('<?php print $errorMessage; ?>');
+					</script>
+				<?php endif ?>
+				
+			<?php endif ?>
 
 		<?php endif ?>
 

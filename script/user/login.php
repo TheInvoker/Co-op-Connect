@@ -1,10 +1,5 @@
 <?php
 
-	if (isNotIncluded()) {
-		$errorMessage = "File is private.";
-		return;
-	}
-
 	$email = mysqli_real_escape_string($sqlConnection, $_POST['email']); 
 	$pass = mysqli_real_escape_string($sqlConnection, $_POST['password']); 
 	

@@ -1,11 +1,6 @@
 <?php
 
-	if (isNotIncluded()) {
-		$errorMessage = "File is private.";
-		return;
-	}
-
-	include dirname(__FILE__).'/dbinfo.php';
+	include 'dbinfo.php';
 
 	$sqlConnection = mysqli_connect($sqlHost, $sqlusername, $sqlpassword);
 
@@ -20,5 +15,5 @@
 		$errorMessage = "Could not connect to database.";
 		return;
 	}
-		
+
 ?>

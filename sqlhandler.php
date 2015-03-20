@@ -1,6 +1,6 @@
 <?php
 
-	include "common.php";
+	include "script/config/common.php";
 	
 	if ($_SESSION["auth"]) {
 		
@@ -14,7 +14,7 @@
 
 			} else {
 
-				$path = '../' . $page . '.php';
+				$path = 'script/' . $page . '.php';
 
 				if (!file_exists($path)) {
 
@@ -22,13 +22,13 @@
 
 				} else {
 
-					include "sqlopen.php";
+					include "script/config/sqlopen.php";
 					
 					if (!$errorMessage) {
-						include '../' . $page . '.php';
+						include $path;
 					}
 
-					include "sqlclose.php";
+					include "script/config/sqlclose.php";
 					
 					$result = $errorMessage ? $errorMessage : $successMessage;
 				}
@@ -40,10 +40,8 @@
 		$errorMessage = "You are not logged in.";
 	}
 
-	
   	if (is_string($result)) {
-	  	header('HTTP/1.1 503 Service Unavailable');
-  		print $result;
+	  	header("HTTP/1.1 503 {$result}");
   	} else {
   		print(json_encode(array("code" => 200, "response" => $result)));
   	}

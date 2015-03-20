@@ -1,10 +1,5 @@
 <?php
 
-	if (isNotIncluded()) {
-		$errorMessage = "File is private.";
-		return;
-	}
-
     // enable debugging
 	ini_set('display_errors',1);
 	error_reporting(E_ALL);
@@ -23,11 +18,7 @@
 		fwrite($fh, "----------------------------------------------------\n\n");
 		fclose($fh);
 	}
-	
-	function isNotIncluded() {
-		return realpath(__FILE__) == realpath($_SERVER['DOCUMENT_ROOT'] . $_SERVER['SCRIPT_FILENAME']);
-	}
-	
+
 	function sendEmail($toEmail, $subject, $message) {
 		$hostEmail = "rydsouza82@gmail.com";
 		$message = $message . "<br/><br/><br/><br/>Co-op Connect";		
