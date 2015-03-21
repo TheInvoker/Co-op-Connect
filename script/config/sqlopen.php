@@ -5,14 +5,14 @@
 	$sqlConnection = mysqli_connect($sqlHost, $sqlusername, $sqlpassword);
 
 	if (!$sqlConnection) {
-		$errorMessage = "Could not connect to server.";
+		$errorMessage = $ERROR_SERVER_CONNECT;
 		return;
 	}
 
 	$sqlDB = mysqli_select_db($sqlConnection, $sqldbname); 
 	
 	if (!$sqlDB) {
-		$errorMessage = "Could not connect to database.";
+		$errorMessage = $ERROR_DB_CONNECT;
 		return;
 	}
 

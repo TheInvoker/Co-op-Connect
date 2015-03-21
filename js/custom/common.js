@@ -149,6 +149,9 @@ function runAJAX(formData, sfunc, efunc, hasImage) {
             if (jsonData['code'] == 200) {
 				cleanResponse(response);
                 sfunc(response);
+			} else if (jsonData['code'] == 402) {
+				alert(response);
+				window.location.href = ".";
             } else {
                 efunc(jsonData,status,xhr);
 

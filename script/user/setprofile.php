@@ -1,7 +1,7 @@
 <?php
 
 	if (!isset($_SESSION["auth"]) || !$_SESSION["auth"]) {
-		$errorMessage = "You are not logged in.";
+		$errorMessage = $ERROR_NOT_LOGGED_IN;
 		return;
 	}
 
@@ -15,7 +15,7 @@
 		!isset($_POST['biotext']) || 
 		!isset($_POST['department'])) {
 		
-		$errorMessage = "Did not recieve all of the data.";
+		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 	
@@ -51,17 +51,17 @@
 			$file_extension = strtolower(end($temporary));
 		
 			if (!in_array($_FILES["file"]["type"], $validtypes) || !in_array($file_extension, $validextensions)) {  
-				$errorMessage = "Invalid file type.";
+				$errorMessage = $ERROR_INVALID_IMAGE;
 				return;
 			}
 			
 			if ($_FILES["file"]["size"] > 100000) {
-				$errorMessage = "Size cannot be more than 100kb.";
+				$errorMessage = $ERROR_FILE_BIG;
 				return;
 			}
 			
 			if ($_FILES["file"]["error"] > 0) {
-				$errorMessage = "There was an error uploading the file.";
+				$errorMessage = $ERROR_UPLOADING_FILE;
 				return;
 			}
 				
@@ -91,7 +91,7 @@
 
 			// Moving Uploaded file
 			if (!move_uploaded_file($sourcePath, $target_path . $filename)) { 
-				$errorMessage = "There was an error uploading the file. Check permissions possibly.";
+				$errorMessage = $ERROR_MOVING_FILE;
 				return;
 			}
 			

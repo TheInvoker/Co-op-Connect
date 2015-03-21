@@ -1,7 +1,7 @@
 <?php
 
 	if (!isset($_POST['email']) || !isset($_POST['password'])) {
-		$errorMessage = "Did not recieve all of the data.";
+		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 
@@ -21,7 +21,7 @@
 	$num_records = mysqli_num_rows($recordset);
 
 	if ($num_records == 0) {
-		$errorMessage = "Invalid email or password.";
+		$errorMessage = $ERROR_INVALID_LOGIN;
 		return;
 	}
 	
@@ -35,7 +35,7 @@
 	$role_name = $row['role_name'];
 	
 	if ($active == 0) {
-		$errorMessage = "Your account is currently not activated.";
+		$errorMessage = $ERROR_ACCOUNT_NOT_ACTIVE;
 		return;
 	}
 

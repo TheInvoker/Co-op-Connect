@@ -1,7 +1,7 @@
 <?php
 
 	if (!isset($_POST['token']) || !isset($_POST['id']) || !isset($_POST['password']) || !isset($_POST['password2'])) {
-		$errorMessage = "Did not recieve all of the data.";
+		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 
@@ -13,7 +13,7 @@
 	
 	
 	if ($password != $password2) {
-		$errorMessage = "Passwords don't match.";
+		$errorMessage = $ERROR_PASSWORD_NOT_MATCH;
 		return;
 	}
 
@@ -28,7 +28,7 @@
 	$num_records = mysqli_num_rows($recordset);
 	
 	if ($num_records == 0) {
-		$errorMessage = "User does not exist.";
+		$errorMessage = $ERROR_ACCOUNT_NOT_FOUND;
 		return;
 	}
 	
@@ -36,7 +36,7 @@
 	$setToken = $row['reset_token'];
 	
 	if ($setToken=="" || $token=="" || $setToken != $token) {
-		$errorMessage = "Token is invalid or expired.";
+		$errorMessage = $ERROR_TOKEN_EXPIRED;
 		return;
 	}
 

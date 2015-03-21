@@ -1,12 +1,12 @@
 <?php
 
 	if (!isset($_SESSION["auth"]) || !$_SESSION["auth"]) {
-		$errorMessage = "You are not logged in.";
+		$errorMessage = $ERROR_NOT_LOGGED_IN;
 		return;
 	}
 
 	if (!isset($_POST['thread_id']) || !isset($_POST['email'])) {
-		$errorMessage = "Did not recieve all of the data.";
+		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 	
@@ -38,12 +38,12 @@
 	$row = mysqli_fetch_assoc($recordset);
 	
 	if ($row['id'] == null) {
-		$errorMessage = "Email address does not exist.";
+		$errorMessage = $ERROR_ACCOUNT_NOT_FOUND;
 		return;
 	} 
 	
 	if ($row['inThread'] == 1) {
-		$errorMessage = "User is already in this thread.";
+		$errorMessage = $ERROR_USER_IN_THREAD;
 		return;
 	}
 	

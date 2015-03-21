@@ -11,6 +11,25 @@
 	$errorMessage = "";
 	$successMessage = array();
 	
+	// define error messages
+	$ERROR_SERVER_CONNECT = "Could not connect to server.";
+	$ERROR_DB_CONNECT = "Could not connect to database.";
+	$ERROR_CLOSE_DB = "Could not close database connection.";
+	$ERROR_NOT_LOGGED_IN = "You are not logged in.";
+	$ERROR_NOT_GET_DATA = "Did not recieve all of the data.";
+	$ERROR_SELECT_PERSON_COUNT = "Select at least 1 person.";
+	$ERROR_USER_IN_CREATE_THREAD = "Cannot create thread with you selected.";
+	$ERROR_USER_IN_THREAD = "User is already in this thread.";
+	$ERROR_ACCOUNT_NOT_FOUND = "Account not found.";
+	$ERROR_INVALID_LOGIN = "Invalid email or password.";
+	$ERROR_ACCOUNT_NOT_ACTIVE = "Your account is currently not activated.";
+	$ERROR_PASSWORD_NOT_MATCH = "Passwords don't match.";
+	$ERROR_TOKEN_EXPIRED = "Token is invalid or expired.";
+	$ERROR_INVALID_IMAGE = "Invalid file type.";
+	$ERROR_FILE_BIG = "Size cannot be more than 100kb.";
+	$ERROR_UPLOADING_FILE = "There was an error uploading the file. Check permissions possibly.";
+	$ERROR_MOVING_FILE = "There was an error moving the file. Check permissions possibly.";
+	
 	function logQuery($str) {
 		$myFile = "logs/log.txt";
 		$fh = fopen($myFile, 'a');
@@ -41,9 +60,8 @@
 	
 	
 	
-	
-	// http://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
 	// by Scott
+	// http://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
 	
 	function crypto_rand_secure($min, $max) {
 		$range = $max - $min;

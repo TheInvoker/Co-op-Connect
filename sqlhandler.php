@@ -35,7 +35,16 @@
 
 
   	if ($errorMessage) {
-	  	print(json_encode(array("code" => 401, "response" => $errorMessage)));
+		
+		switch ($errorMessage) {
+			case $ERROR_NOT_LOGGED_IN:
+				$errno = 402;
+				break;
+			default:
+				$errno = 401;
+		}
+		
+	  	print(json_encode(array("code" => $errno, "response" => $errorMessage)));
   	} else {
   		print(json_encode(array("code" => 200, "response" => $successMessage)));
   	}

@@ -1,5 +1,10 @@
 <?php
 
+	if (!isset($_SESSION["auth"]) || !$_SESSION["auth"]) {
+		$errorMessage = $ERROR_NOT_LOGGED_IN;
+		return;
+	}
+
 	if (!isset($_POST['user_id']) ||
 		!isset($_POST['name']) ||
 		!isset($_POST['locality']) ||
@@ -12,7 +17,7 @@
 		!isset($_POST['lat']) ||
 		!isset($_POST['lng'])) {
 		
-		$errorMessage = "Did not recieve all of the data.";
+		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 

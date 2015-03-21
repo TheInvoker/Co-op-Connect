@@ -1,7 +1,7 @@
 <?php
 
 	if (!isset($_SESSION["auth"]) || !$_SESSION["auth"]) {
-		$errorMessage = "You are not logged in.";
+		$errorMessage = $ERROR_NOT_LOGGED_IN;
 		return;
 	}
 
@@ -31,7 +31,7 @@
 		!isset($_POST['date_start']) ||
 		!isset($_POST['date_end'])) {
 		
-		$errorMessage = "Did not recieve all of the data.";
+		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 	

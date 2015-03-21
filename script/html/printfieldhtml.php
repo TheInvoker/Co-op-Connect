@@ -1,12 +1,12 @@
 <?php
 
 	if (!isset($_SESSION["auth"]) || !$_SESSION["auth"]) {
-		$errorMessage = "You are not logged in.";
+		$errorMessage = $ERROR_NOT_LOGGED_IN;
 		return;
 	}
 
 	if (!isset($_GET['field']) || !isset($_GET['radio'])) {
-		print "Did not recieve all of the data.";
+		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 	
@@ -48,7 +48,7 @@
 				  WHERE active=1
 				  ORDER BY {$qname}";
 	} else {
-		print "Did not recieve all of the data.";
+		print $ERROR_NOT_GET_DATA;
 		return;
 	}
 

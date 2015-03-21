@@ -1,7 +1,7 @@
 <?php
 
 	if (!$sqlConnection) {
-		$errorMessage = "Could not close database connection.";
+		$errorMessage = $ERROR_CLOSE_DB;
 		return;
 	}
 

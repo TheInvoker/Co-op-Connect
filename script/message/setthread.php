@@ -1,12 +1,12 @@
 <?php
 
 	if (!isset($_SESSION["auth"]) || !$_SESSION["auth"]) {
-		$errorMessage = "You are not logged in.";
+		$errorMessage = $ERROR_NOT_LOGGED_IN;
 		return;
 	}
 
 	if (!isset($_POST['user_id']) || !isset($_POST['target_ids'])) {
-		$errorMessage = "Did not recieve all of the data.";
+		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 
@@ -14,7 +14,7 @@
 	$target_ids = mysqli_real_escape_string($sqlConnection, $_POST['target_ids']);
 	
 	if (trim($target_ids) == "") {
-		$errorMessage = "Select at least 1 person.";
+		$errorMessage = $ERROR_SELECT_PERSON_COUNT;
 		return;
 	}
 		
@@ -23,12 +23,12 @@
 	$total_member_count = $member_count + 1;
 	
 	if (in_array($user_id, $targetList)) {
-		$errorMessage = "Cannot create thread with you selected.";
+		$errorMessage = $ERROR_USER_IN_CREATE_THREAD;
 		return;
 	}
 	
 	if ($member_count = 0) {
-		$errorMessage = "Did not recieve all of the data.";
+		$errorMessage = $ERROR_SELECT_PERSON_COUNT;
 		return;
 	}
 	

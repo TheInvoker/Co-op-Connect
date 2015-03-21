@@ -1,7 +1,7 @@
 <?php
 
 	if (!isset($_POST['email'])) {
-		$errorMessage = "Did not recieve all of the data.";
+		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 	
@@ -18,7 +18,7 @@
 	}
 	
 	if (mysqli_num_rows($recordset) == 0) {
-		$errorMessage = "Account not found.";
+		$errorMessage = $ERROR_ACCOUNT_NOT_FOUND;
 		return;
 	}
 	

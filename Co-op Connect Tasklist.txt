@@ -3,19 +3,20 @@ download too much coloumns for map
 charts
 task ordering
 show home page news
-external panel
-improve logo
+map external panel
 search bug 'arts & f'
-fix names on dynamic form inputs
 fix new line on textarea
 server side validation
-generalize strings in php
 add search on ext panel
 clean picture filename
 map hostory.back() bug
 avoid back button
-favicon
+deny access to config files
 
+fix names on dynamic form inputs              [DONE]
+favicon                                       [DONE]
+generalize strings in php                     [DONE]
+improve logo                                  [DONE]
 select by id, then id again bug               [DONE]
 static class                                  [DONE]
 sanitize all inputs                           [DONE]
@@ -69,5 +70,3 @@ toggle checkbox                               [DONE]
 theory on reload page with new details        [DONE]
 fix date handler                              [DONE]
 extra task appearing?                         [DONE]
-
-thread multi same date bug                    [PRTL]
