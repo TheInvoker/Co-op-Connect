@@ -1,19 +1,22 @@
+avoid back button
+map history.back() bug
 map marker refresh bug
 download too much coloumns for map
+map external panel
+
 charts
 task ordering
 show home page news
-map external panel
 search bug 'arts & f'
 fix new line on textarea
 server side validation
 add search on ext panel
 clean picture filename
-map hostory.back() bug
-avoid back button
-deny access to config files
 support url to persons account
+private ssl
+captcha
 
+deny access to config files                   [DONE]
 fix names on dynamic form inputs              [DONE]
 favicon                                       [DONE]
 generalize strings in php                     [DONE]

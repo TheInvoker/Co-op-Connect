@@ -1,6 +1,6 @@
 <?php
 
-	include "script/config/common.php";
+	include "config/common.php";
 	
 	if (isset($_POST['page'])) {
 
@@ -20,13 +20,13 @@
 
 			} else {
 
-				include "script/config/sqlopen.php";
+				include "config/sqlopen.php";
 				
 				if (!$errorMessage) {
 					include $path;
 				}
 
-				include "script/config/sqlclose.php";
+				include "config/sqlclose.php";
 			}
 		}
 	} else {

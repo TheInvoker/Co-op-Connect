@@ -5,7 +5,7 @@
 		<?php
 			include "snippet/head.php";
 			
-			include "script/config/common.php";
+			include "config/common.php";
 		?>
 		
 	</head>

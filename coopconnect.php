@@ -5,7 +5,7 @@
 		<?php
 			include "snippet/head.php";
 			
-			include "script/config/common.php";
+			include "config/common.php";
 		?>
 		
 	</head>
@@ -14,7 +14,7 @@
 		<?php if (isset($_SESSION["auth"]) && $_SESSION["auth"]): ?>
 		
 			<?php
-				include "script/config/sqlopen.php";
+				include "config/sqlopen.php";
 			?>
 
 
@@ -609,7 +609,7 @@
 				</script>
 
 				<?php
-					include "script/config/sqlclose.php";
+					include "config/sqlclose.php";
 				?>
 
 			<?php endif ?>

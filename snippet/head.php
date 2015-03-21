@@ -18,4 +18,4 @@ favicon.png
 <!-- Include jQuery Mobile stylesheets -->
 <link rel="stylesheet" type="text/css" href="css/plugin/jquery.mobile-1.4.5.min.css">
 
-<link rel="icon" type="image/x-icon" href="images/site/favicon.png" />
+<link rel="icon" type="image/x-icon" href="images/site/favicon.png">
