@@ -12,6 +12,7 @@ clean picture filename
 map hostory.back() bug
 avoid back button
 deny access to config files
+support url to persons account
 
 fix names on dynamic form inputs              [DONE]
 favicon                                       [DONE]

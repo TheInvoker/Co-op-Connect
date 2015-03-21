@@ -284,7 +284,7 @@
 										<th>Last Name</th>
 										<th>Role</th>
 										<th>Department</th>
-										<th data-type="numeric">Placements</th>
+										<th data-type="numeric">Matched Placements</th>
 									</tr>
 								</thead>
 								<tbody>
