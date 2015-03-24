@@ -15,6 +15,9 @@ clean picture filename
 support url to persons account
 private ssl
 captcha
+use user_id from session
+add progress percent if ur account
+browser notifications like in hipchat.com
 
 deny access to config files                   [DONE]
 fix names on dynamic form inputs              [DONE]
