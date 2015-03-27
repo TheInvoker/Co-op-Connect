@@ -1,12 +1,12 @@
 var CHECKLIST_MODULE = new function () {
 
-    var context = "#checklist-page",
-		user_id = null;
+    var context = "#checklist-page";
 	
 	$(context).on("click", "#done-checklist-button", function() {
 		
 		// configure back button
-		PLACEMENT_MODULE.getPlacements(user_id);
+        var user = GLOBAL_DATA.user;
+		PLACEMENT_MODULE.getPlacements(user['id']);
 		
 	}).on("change", "#checklistCB input[type='checkbox']", function() {
 		
@@ -19,15 +19,11 @@ var CHECKLIST_MODULE = new function () {
 		
 	});
 
-    this.getChecklist = function(uid, obj) {
-
-        var user = GLOBAL_DATA.user;
-		user_id = uid;
+    this.getChecklist = function(obj) {
 
         runAJAXSerial("", {
             id : obj['id'],
-            page : "checklist/getchecklist",
-            user_id : user['id']
+            page : "checklist/getchecklist"
         }, function(response) {
             $.mobile.changePage(context, {
                 transition: "slide"

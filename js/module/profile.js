@@ -6,11 +6,11 @@ var PROFILE_MODULE = new function() {
 
     $(context).on('click',"#profile-edit-button",function() {
 		
-        PROFILE_EDIT_MODULE.editProfileHandler(response, user_id);
+        PROFILE_EDIT_MODULE.editProfileHandler(response);
 		
     }).on('click',"#profile-placements",function() {
 		
-        PLACEMENT_MODULE.getPlacements(user_id);
+        PLACEMENT_MODULE.getPlacements(GLOBAL_DATA.user["id"]);
 		
     }).on('click',"#profile-message",function() {
 		
@@ -79,12 +79,9 @@ var PROFILE_MODULE = new function() {
     };
 
     var createThread = function() {
-        var user = GLOBAL_DATA.user;
-        
         runAJAXSerial('', {
             page : 'message/setthread',
-            target_ids : user_id,
-            user_id : user['id']
+            target_ids : user_id
         }, function(response) {
             var thread_id = response['id'];
             MESSAGE_MODULE.gotoMessage(thread_id);

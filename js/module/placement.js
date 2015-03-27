@@ -2,8 +2,7 @@ var PLACEMENT_MODULE = new function() {
     
     var context = "#placement-page",
         response = null,
-        placement = null,
-        user_id = null;
+        placement = null;
 	
 	$(context).on('click','#placement-list > li > a', function() {
 		
@@ -28,7 +27,7 @@ var PLACEMENT_MODULE = new function() {
     }).on('click','#placement-checklist-button',function() {
 		
 		// set checklist button
-        CHECKLIST_MODULE.getChecklist(user_id, placement);
+        CHECKLIST_MODULE.getChecklist(placement);
 		
     }).on('click','#placement-map-button',function() {
 		
@@ -62,15 +61,11 @@ var PLACEMENT_MODULE = new function() {
         
         runAJAXSerial('', {
             page : 'placement/getplacements',
-            targetid : uid,
-            id : user['id']
+            targetid : uid
         }, function(res) {
 
             // record response
             response = res;
-
-            // record the user id in context
-            user_id = uid;
             
             $.mobile.changePage(context, { 
                 transition: "slide"

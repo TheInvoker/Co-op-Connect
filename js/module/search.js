@@ -56,12 +56,9 @@ var SEARCH_MODULE = new function() {
         var idList = getDataList("data-uid");
         var strList = idList.join(",");
          
-        var user = GLOBAL_DATA.user;
-        
         runAJAXSerial('', {
             page : 'message/setthread',
-            target_ids : strList,
-            user_id : user['id']
+            target_ids : strList
         }, function(response) {
             var thread_id = response['id'];
             MESSAGE_MODULE.gotoMessage(thread_id);

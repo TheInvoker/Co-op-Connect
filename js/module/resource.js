@@ -5,11 +5,8 @@ var RESOURCE_MODULE = new function() {
 
     $(context).on('click', "#more-resource-button", function() {
         
-        var user = GLOBAL_DATA.user;
-        
         runAJAXSerial('', {
             page : 'resource/getresources',
-            id : user['id'],
             pageindex : page
         }, function(response) {
             page += 1;
@@ -28,11 +25,8 @@ var RESOURCE_MODULE = new function() {
 
     this.setResource = function() {
         
-        var user = GLOBAL_DATA.user;
-
         runAJAXSerial('', {
             page : 'resource/getresources',
-            id : user['id'],
             pageindex : 0
         }, function(response) {
 			

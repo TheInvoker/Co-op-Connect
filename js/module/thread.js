@@ -57,11 +57,8 @@ var THREAD_MODULE = new function() {
     });
 
     this.setMessageThreads = function() {
-        var user = GLOBAL_DATA.user;
-
         runAJAXSerial('', {
-            page : 'message/getthreads',
-            id : user['id']
+            page : 'message/getthreads'
         }, function(res) {
             $.mobile.changePage(context, { 
                 transition: "slide"

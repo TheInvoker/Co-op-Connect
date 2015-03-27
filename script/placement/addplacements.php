@@ -5,8 +5,7 @@
 		return;
 	}
 
-	if (!isset($_POST['user_id']) ||
-		!isset($_POST['name']) ||
+	if (!isset($_POST['name']) ||
 		!isset($_POST['locality']) ||
 		!isset($_POST['country']) ||
 		!isset($_POST['role']) ||
@@ -21,7 +20,7 @@
 		return;
 	}
 
-	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['user_id']); 
+	$user_id = $_SESSION["id"]; 
 	$address = mysqli_real_escape_string($sqlConnection, $_POST['name']); 
 	$city = mysqli_real_escape_string($sqlConnection, $_POST['locality']); 
 	$country = mysqli_real_escape_string($sqlConnection, $_POST['country']); 

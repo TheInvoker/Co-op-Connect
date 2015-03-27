@@ -5,12 +5,12 @@
 		return;
 	}
 
-	if (!isset($_POST['id']) || !isset($_POST['thread_id']) || !isset($_POST['message'])) {
+	if (!isset($_POST['thread_id']) || !isset($_POST['message'])) {
 		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 	
-	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['id']);
+	$user_id = $_SESSION["id"];
 	$thread_id = mysqli_real_escape_string($sqlConnection, $_POST['thread_id']);
 	$message = mysqli_real_escape_string($sqlConnection, $_POST['message']);
 	

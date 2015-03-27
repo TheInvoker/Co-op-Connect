@@ -10,8 +10,7 @@ var PLACEMENT_EDIT_MODULE = new function() {
 
         if (pid == null) {    
             var obj = {
-                page : "placement/addplacements",
-                user_id : user['id']
+                page : "placement/addplacements"
             };
         } else {
             var obj = {

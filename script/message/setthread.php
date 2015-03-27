@@ -5,12 +5,12 @@
 		return;
 	}
 
-	if (!isset($_POST['user_id']) || !isset($_POST['target_ids'])) {
+	if (!isset($_POST['target_ids'])) {
 		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 
-	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['user_id']);
+	$user_id = $_SESSION["id"];
 	$target_ids = mysqli_real_escape_string($sqlConnection, $_POST['target_ids']);
 	
 	if (trim($target_ids) == "") {

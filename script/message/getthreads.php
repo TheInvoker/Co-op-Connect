@@ -5,14 +5,9 @@
 		return;
 	}
 
-	if (!isset($_POST['id'])) {
-		$errorMessage = $ERROR_NOT_GET_DATA;
-		return;
-	}
-	
 	$nameLim = 6;
 
-	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['id']);
+	$user_id = $_SESSION["id"];
 
 	$query = "SELECT th.id, tm.message, tm.date_sent, tm.date_sent>tu.last_read_date AS new
 			  FROM thread th

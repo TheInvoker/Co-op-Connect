@@ -5,13 +5,13 @@
 		return;
 	}
 
-	if (!isset($_POST['id']) || !isset($_POST['targetid'])) {
+	if (!isset($_POST['targetid'])) {
 		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 	
 	
-	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['id']); 
+	$user_id = $_SESSION["id"];
 	$targetid = mysqli_real_escape_string($sqlConnection, $_POST['targetid']); 
 
 	// carry on

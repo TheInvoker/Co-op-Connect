@@ -5,8 +5,7 @@
 		return;
 	}
 
-	if (!isset($_POST['id']) || 
-		!isset($_POST['firstname']) || 
+	if (!isset($_POST['firstname']) || 
 		!isset($_POST['lastname']) || 
 		!isset($_POST['email']) || 
 		!isset($_POST['phone']) || 
@@ -19,7 +18,7 @@
 		return;
 	}
 	
-	$targetID = mysqli_real_escape_string($sqlConnection, $_POST['id']); 
+	$targetID = $_SESSION["id"]; 
 	$firstname = mysqli_real_escape_string($sqlConnection, $_POST['firstname']); 
 	$lastname = mysqli_real_escape_string($sqlConnection, $_POST['lastname']); 
 	$email = mysqli_real_escape_string($sqlConnection, $_POST['email']); 

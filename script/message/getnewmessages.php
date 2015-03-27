@@ -5,12 +5,12 @@
 		return;
 	}
 
-	if (!isset($_POST['id']) || !isset($_POST['thread_id'])) {
+	if (!isset($_POST['thread_id'])) {
 		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 
-	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['id']);
+	$user_id = $_SESSION["id"];
 	$thread_id = mysqli_real_escape_string($sqlConnection, $_POST['thread_id']);
 
 	$query = "SELECT tm.user_id,tm.message,tm.date_sent,u.first_name,u.last_name,u.avatar_filename

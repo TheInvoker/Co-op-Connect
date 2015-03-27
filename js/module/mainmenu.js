@@ -85,10 +85,8 @@ var MENU_MODULE = new function() {
     };
 	
     var getCount = function() {
-        var user = GLOBAL_DATA.user;
-        
+
         runAJAXSerial("", {
-            id : user['id'],
             page : "user/checkcount"
         }, function(response) {
             var mCount = response['new_messages'];

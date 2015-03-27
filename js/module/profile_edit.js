@@ -1,7 +1,6 @@
 var PROFILE_EDIT_MODULE = new function() {
     
-    var context = "#profile-edit-page",
-        user_id = null;
+    var context = "#profile-edit-page";
 
     $(context).on('submit', "#profile-edit-form", function() {
         
@@ -9,10 +8,9 @@ var PROFILE_EDIT_MODULE = new function() {
         var formData = new FormData(this);
 
         runAJAXHTML5(formData, {
-            id : user_id,
             page : 'user/setprofile'
         }, function(response) {
-            PROFILE_MODULE.getProfile(user_id);
+            PROFILE_MODULE.getProfile(GLOBAL_DATA.user["id"]);
         }, function(data,status,xhr) {
             
         });
@@ -21,9 +19,7 @@ var PROFILE_EDIT_MODULE = new function() {
 		
     });
 
-    this.editProfileHandler = function(response, uid) {
-        user_id = uid;
-
+    this.editProfileHandler = function(response) {
         $.mobile.changePage(context, { 
             transition: "slide"
         });

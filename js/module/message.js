@@ -23,7 +23,6 @@ var MESSAGE_MODULE = new function() {
         if (field.val().trim()) {
             runAJAXSerial($(this).serialize(), {
                 page : 'message/setmessage',
-                id : GLOBAL_DATA.user['id'],
                 thread_id : thread_id
             }, function(response) {
 
@@ -52,7 +51,6 @@ var MESSAGE_MODULE = new function() {
         runAJAXSerial('', {
             page : 'message/getmessages',
             thread_id : thread_id,
-            id : GLOBAL_DATA.user['id'],
             pageindex : page
         }, function(response) {
             if (response.length > 0) {
@@ -72,12 +70,9 @@ var MESSAGE_MODULE = new function() {
 
     this.gotoMessage = function(tid) {
 
-        var user = GLOBAL_DATA.user;
-
         runAJAXSerial('', {
             page : 'message/getmessages',
             thread_id : tid,
-            id : user['id'],
             pageindex : 0
         }, function(response) {
             
@@ -166,8 +161,7 @@ var MESSAGE_MODULE = new function() {
         
         runAJAXSerial('', {
             page : 'message/getnewmessages',
-            thread_id : thread_id,
-            id : user['id']
+            thread_id : thread_id
         }, function(response) {
             if (response.length > 0) {
                 displayMessages(response, true);

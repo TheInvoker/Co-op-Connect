@@ -5,14 +5,14 @@
 		return;
 	}
 
-	if (!isset($_POST['id']) || !isset($_POST['pageindex'])) {
+	if (!isset($_POST['pageindex'])) {
 		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 	
 	$lim = 5;
 
-	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['id']);
+	$user_id = $_SESSION["id"];
 	$offset = mysqli_real_escape_string($sqlConnection, $_POST['pageindex']) * $lim;
 	
 	$query = "SELECT r.*, r.date_modified>u.resource_checked_date AS new

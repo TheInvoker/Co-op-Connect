@@ -5,12 +5,7 @@
 		return;
 	}
 
-	if (!isset($_POST['id'])) {
-		$errorMessage = $ERROR_NOT_GET_DATA;
-		return;
-	}
-	
-	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['id']);
+	$user_id = $_SESSION["id"];
 
 	$query = "SELECT count(*) AS count
 			  FROM user u

@@ -5,13 +5,13 @@
 		return;
 	}
 
-	if (!isset($_POST['id']) || !isset($_POST['user_id'])) {
+	if (!isset($_POST['id'])) {
 		$errorMessage = $ERROR_NOT_GET_DATA;
 		return;
 	}
 	
 	$id = mysqli_real_escape_string($sqlConnection, $_POST['id']); 
-	$user_id = mysqli_real_escape_string($sqlConnection, $_POST['user_id']); 
+	$user_id = $_SESSION["id"]; 
 	
 	$query = "SELECT t.*, (case when cl.task_id is null then 0 else 1 end) AS checked
 			  FROM task t
