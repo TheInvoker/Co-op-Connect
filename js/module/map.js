@@ -63,6 +63,10 @@ var MAP_MODULE = new function() {
         // cluster markers
         $(context).find('#map_canvas').gmap('set', 'MarkerClusterer', new MarkerClusterer(map, $(context).find('#map_canvas').gmap('get', 'markers')));
     };
+	
+	this.getContext = function() {
+		return context;
+	};
 
     var showMapPage = function() {
         $.mobile.changePage(context, { 

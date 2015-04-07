@@ -43,4 +43,8 @@ var LOGIN_MODULE = new function() {
 		}
 		
 	});
+	
+	this.getContext = function() {
+		return context;
+	};
 };

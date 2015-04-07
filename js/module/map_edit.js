@@ -9,7 +9,11 @@ var MAP_SETTINGS_MODULE = new function() {
             page : 'placement/getmapplacements'
         }, function(response) {
             MAP_MODULE.showOnMap(response);
-            history.back();
+			
+			$.mobile.changePage( MAP_MODULE.getContext(), { 
+				transition: "slide",
+				reverse: true
+			});  
         }, function(data,status,xhr) {
             
         });

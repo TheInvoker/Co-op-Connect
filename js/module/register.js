@@ -11,7 +11,10 @@ var REGISTER_MODULE = new function() {
         runAJAXSerial($(this).serialize(), {
             page : 'user/register'
         }, function(response) {
-            history.back();
+			$.mobile.changePage( LOGIN_MODULE.getContext(), { 
+				transition: "slideup",
+				reverse: true
+			});    
         }, function(data,status,xhr) {
 
         });

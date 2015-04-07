@@ -12,8 +12,8 @@
 	$cpassword = mysqli_real_escape_string($sqlConnection, $_POST['c-password']); 
 	
 	$query = "INSERT INTO user
-			  (password, date_joined, first_name, last_name, email_address, role_id, active, status_text, bio_text, department_id)
-			  VALUES ('{$password}', NOW(), '{$firstName}', '{$lastName}', '{$email}', 2, 1, '', '', 1)";
+			  (password, date_joined, first_name, last_name, email_address, role_id, active, status_text, bio_text, department_id, resource_checked_date, reset_token)
+			  VALUES ('{$password}', NOW(), '{$firstName}', '{$lastName}', '{$email}', 2, 1, '', '', 1, '0000-00-00 00:00:00', '')";
 
 
 	if (!mysqli_query($sqlConnection, $query)) {

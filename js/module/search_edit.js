@@ -4,7 +4,10 @@ var SEARCH_SETTINGS_MODULE = new function() {
 	
 	$(context).on('click', "#done-search-settings-button", function() {
 		
-		history.back();
+		$.mobile.changePage( SEARCH_MODULE.getContext(), { 
+			transition: "slide",
+			reverse: true
+		});   
 		
 	}).on('click', ".clear-cb-button", function() {
 		

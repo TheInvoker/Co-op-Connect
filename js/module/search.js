@@ -83,6 +83,10 @@ var SEARCH_MODULE = new function() {
         clearPage();
     };
     
+	this.getContext = function() {
+		return context;
+	};
+	
     var clearPage = function() {
         $(context).find("#search-form").find("input").eq(0).val("");
         $(context).find(".footable > tbody").empty();
