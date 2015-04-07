@@ -11,9 +11,10 @@ var RESET_MODULE = new function() {
             id : id,
             page : "user/reset"
         }, function(response) {
-            alert('Password has been updated.');
+			showNotification("Success", "Password has been updated.");
+			window.location = ".";
         }, function(data,status,xhr) {
-            
+
         });
             
         return false;

@@ -12,7 +12,8 @@ clean picture filename
 support url to persons account
 private ssl
 captcha
-
+folderize js files
+global intervals
 
 remove option for tasks multiple departments
 fix new line on textarea

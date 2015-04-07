@@ -28,3 +28,17 @@ script/resource/getresources.php
 
 ----------------------------------------------------
 
+SELECT reset_token
+			  FROM user
+			  WHERE id = 
+
+
+----------------------------------------------------
+
+SELECT reset_token
+			  FROM user
+			  WHERE id = 
+
+
+----------------------------------------------------
+

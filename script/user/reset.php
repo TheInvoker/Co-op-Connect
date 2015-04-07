@@ -20,6 +20,7 @@
 	$query = "SELECT reset_token
 			  FROM user
 			  WHERE id = {$id}";
+
 	$recordset = mysqli_query($sqlConnection, $query);	
 	if (!$recordset) { 
 		$errorMessage = mysqli_error($sqlConnection); 
