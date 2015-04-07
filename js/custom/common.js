@@ -18,21 +18,6 @@ var GLOBAL_DATA = {
 
 // MISC CODE
 
-function toast(msg) {
-    $("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h3>" + msg + "</h3></div>").css({ 
-        display: "block",
-        "background-color": "#1E1E1E",
-        position: "fixed",
-        padding: "7px",
-        "text-align": "center",
-        width: "270px",
-        left: ($(window).width() - 284)/2,
-        top: $(window).height()/2 
-    }).appendTo( $.mobile.pageContainer ).delay( 1500 ).fadeOut( 400, function(){
-        $(this).remove();
-    });
-}
-
 function getColorCodeTag(text, color) {
     return "<span style='color:" + color + ";'>" + text + "</span>";
 }
@@ -318,16 +303,42 @@ function swipePanelLeft(pageId, rightPanelId) {
 
 // NOTIFICATIONS
 
-function notifyMe() {
+function toast(msg) {
+    $("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h3>" + msg + "</h3></div>").css({ 
+        display: "block",
+        "background-color": "#1E1E1E",
+        position: "fixed",
+        padding: "7px",
+        "text-align": "center",
+        width: "270px",
+        left: ($(window).width() - 284)/2,
+        top: $(window).height()/2 
+    }).appendTo( $.mobile.pageContainer ).delay( 1500 ).fadeOut( 400, function(){
+        $(this).remove();
+    });
+}
+
+function showNotification(title, body) {
+	
+	var showNotificationHelper = function(title, body) {
+		var notification = new Notification(title, {
+			body : body,
+			dir : "rtl",
+			icon : "images/site/favicon.png"
+		});
+		return notification;
+	};
+	
 	// Let's check if the browser supports notifications
 	if (!("Notification" in window)) {
-		alert("This browser does not support desktop notification");
+		toast(title);
 	}
 
 	// Let's check if the user is okay to get some notification
 	else if (Notification.permission === "granted") {
 		// If it's okay let's create a notification
-		var notification = new Notification("Hi there!");
+		//var notification = new Notification("Hi there!");
+		var notification = showNotificationHelper(title, body);
 	}
 
 	// Otherwise, we need to ask the user for permission
@@ -335,7 +346,9 @@ function notifyMe() {
 		Notification.requestPermission(function (permission) {
 			// If the user is okay, let's create a notification
 			if (permission === "granted") {
-				var notification = new Notification("Hi there!");
+				var notification = showNotificationHelper(title, body);
+			} else {
+				toast(title);
 			}
 		});
 	}

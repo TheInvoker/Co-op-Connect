@@ -1,6 +1,7 @@
 var CHECKLIST_MODULE = new function () {
 
-    var context = "#checklist-page";
+    var context = "#checklist-page",
+		response = null;
 	
 	$(context).on("click", "#done-checklist-button", function() {
 		
@@ -11,11 +12,7 @@ var CHECKLIST_MODULE = new function () {
 	}).on("change", "#checklistCB input[type='checkbox']", function() {
 		
 		// configure checkbox clicks
-		if ($(this).is(":checked")) {
-			setChecklistState($(this), 1);
-		} else {
-			setChecklistState($(this), 0);
-		}
+		setChecklistState($(this), $(this).is(":checked") ? 1 : 0);
 		
 	});
 
@@ -24,13 +21,16 @@ var CHECKLIST_MODULE = new function () {
         runAJAXSerial("", {
             id : obj['id'],
             page : "checklist/getchecklist"
-        }, function(response) {
+        }, function(res) {
             $.mobile.changePage(context, {
                 transition: "slide"
             });
-
+			
+			// save the data
+			response = res;
+			
             // add checklist items
-            displayChecklist(obj['id'], response);
+            displayChecklist(obj['id']);
 
         }, function(data,status,xhr) {
 
@@ -41,7 +41,7 @@ var CHECKLIST_MODULE = new function () {
         return context;
     };
 
-    var displayChecklist = function(pid, response) {
+    var displayChecklist = function(pid) {
         var field = $(context).find("#checklistCB"), i=0, l=response.length, myListContent="";
 
         for(i=0; i<l; i+=1) {
@@ -64,16 +64,25 @@ var CHECKLIST_MODULE = new function () {
     };
 
     var setChecklistState = function(me, state) {
-        runAJAXSerial("", {
-            state : state,
-            page : "checklist/setchecklist",
-            taskid : me.attr("data-tid"),
-            placementid : me.attr("data-pid")
-        }, function(response) {
-            toast("Saved!");
-        }, function(data,status,xhr) {
-            me.prop("checked", !state);
-            me.checkboxradio("refresh");
-        });
+		var i, l=response.length;
+		for(i=0; i<l; i+=1) {
+			var task = response[i];
+			if (me.attr("data-tid") == task["task_id"]) {
+
+				runAJAXSerial("", {
+					state : state,
+					page : "checklist/setchecklist",
+					taskid : me.attr("data-tid"),
+					placementid : me.attr("data-pid")
+				}, function(response) {
+					showNotification("Changed to " + (state ? "Complete!" : "Incomplete!"), task["name"] + "\n" + task["description"]);
+				}, function(data,status,xhr) {
+					me.prop("checked", !state);
+					me.checkboxradio("refresh");
+				});
+
+				return;
+			}
+		}
     };
 };
