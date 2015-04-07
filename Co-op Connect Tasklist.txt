@@ -12,12 +12,13 @@ clean picture filename
 support url to persons account
 private ssl
 captcha
-browser notifications like in hipchat.com
+
 
 remove option for tasks multiple departments
 fix new line on textarea
 check permissions before doing things
 
+browser notifications like in hipchat.com
 avoid back button                             [DONE]
 use user_id from session                      [DONE]
 add progress percent if ur account            [DONE]

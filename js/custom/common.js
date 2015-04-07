@@ -323,7 +323,6 @@ function showNotification(title, body) {
 	var showNotificationHelper = function(title, body) {
 		var notification = new Notification(title, {
 			body : body,
-			dir : "rtl",
 			icon : "images/site/favicon.png"
 		});
 		return notification;
@@ -337,7 +336,6 @@ function showNotification(title, body) {
 	// Let's check if the user is okay to get some notification
 	else if (Notification.permission === "granted") {
 		// If it's okay let's create a notification
-		//var notification = new Notification("Hi there!");
 		var notification = showNotificationHelper(title, body);
 	}
 
@@ -351,6 +349,8 @@ function showNotification(title, body) {
 				toast(title);
 			}
 		});
+	} else {
+		toast(title);
 	}
 
 	// At last, if the user already denied any notification, and you 
