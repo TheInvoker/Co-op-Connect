@@ -11,11 +11,12 @@ clean picture filename
 support url to persons account
 private ssl
 captcha
-check permissions before doing things
 combine admin view
+vibrate on new messages
 
 
-folderize js files
+check permissions before doing things
+folderize js files                            [DONE]
 fix new line on textarea                      [DONE]
 global intervals                              [DONE]
 browser notifications like in hipchat.com     [DONE]

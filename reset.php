@@ -29,7 +29,7 @@
 		?>
 		
 		<!-- my modules -->
-		<script src="js/module/reset.js"></script>
+		<script src="js/module/user/reset.js"></script>
 		
 	</body>
 </html>

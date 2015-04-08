@@ -91,9 +91,9 @@
 		?>
 		
 		<!-- my modules -->
-		<script src="js/module/alogin.js"></script>
-		<script src="js/module/amainmenu.js"></script>
-		<script src="js/module/grid.js"></script>
+		<script src="js/module/user/alogin.js"></script>
+		<script src="js/module/navigation/amainmenu.js"></script>
+		<script src="js/module/grid/grid.js"></script>
 		
 	</body>
 </html>

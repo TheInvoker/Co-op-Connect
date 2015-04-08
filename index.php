@@ -82,8 +82,8 @@
 			?>
 
 			<!-- my modules -->
-			<script src="js/module/login.js"></script>
-			<script src="js/module/register.js"></script>
+			<script src="js/module/user/login.js"></script>
+			<script src="js/module/user/register.js"></script>
 
 		<?php endif ?>
 

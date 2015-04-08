@@ -579,21 +579,21 @@
 				<script src="js/plugin/picker.date.js"></script>
 
 				<!-- my modules -->
-				<script src="js/module/mainmenu.js"></script>
-				<script src="js/module/map.js"></script>
-				<script src="js/module/map_edit.js"></script>
-				<script src="js/module/profile.js"></script>
-				<script src="js/module/profile_edit.js"></script>
-				<script src="js/module/placement.js"></script>
-				<script src="js/module/placement_edit.js"></script>
-				<script src="js/module/checklist.js"></script>
-				<script src="js/module/search.js"></script>
-				<script src="js/module/search_edit.js"></script>
-				<script src="js/module/resource.js"></script>
-				<script src="js/module/thread.js"></script>
-				<script src="js/module/message.js"></script>
-				<script src="js/module/about.js"></script>
-				<script src="js/module/grid.js"></script>
+				<script src="js/module/navigation/mainmenu.js"></script>
+				<script src="js/module/map/map.js"></script>
+				<script src="js/module/map/map_edit.js"></script>
+				<script src="js/module/profile/profile.js"></script>
+				<script src="js/module/profile/profile_edit.js"></script>
+				<script src="js/module/placement/placement.js"></script>
+				<script src="js/module/placement/placement_edit.js"></script>
+				<script src="js/module/checklist/checklist.js"></script>
+				<script src="js/module/search/search.js"></script>
+				<script src="js/module/search/search_edit.js"></script>
+				<script src="js/module/resource/resource.js"></script>
+				<script src="js/module/thread/thread.js"></script>
+				<script src="js/module/thread/message.js"></script>
+				<script src="js/module/about/about.js"></script>
+				<script src="js/module/grid/grid.js"></script>
 				
 				<!-- Include the date picker css -->
 				<link rel="stylesheet" type="text/css" href="css/plugin/default.css">
