@@ -13,6 +13,7 @@ private ssl
 captcha
 combine admin view
 vibrate on new messages
+back/home button
 
 
 check permissions before doing things
