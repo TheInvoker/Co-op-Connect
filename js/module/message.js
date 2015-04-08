@@ -92,6 +92,7 @@ var MESSAGE_MODULE = new function() {
 
 			// update numbers on menu
 			MENU_MODULE.runGetCount();
+			
         }, function(data,status,xhr) {
 
         });
