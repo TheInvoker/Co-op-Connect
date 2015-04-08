@@ -36,7 +36,8 @@ var LOGIN_MODULE = new function() {
 				email : email,
 				page : "user/forgot"
 			}, function(response) {
-				showNotification("Success", "A confirmation email has been sent to you.");
+				showNotification("Success", "A confirmation email has been sent to you.", function() {
+				});
 			}, function(data,status,xhr) {
 				
 			});

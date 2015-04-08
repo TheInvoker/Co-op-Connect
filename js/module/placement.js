@@ -44,7 +44,8 @@ var PLACEMENT_MODULE = new function() {
             }, function(response) {
                 $(context).find('#placement-panel').panel('close');
                 $(context).find('#placement-list > li > a[data-pid=' + placement['id'] + ']').parent().remove();
-				showNotification("Placement Deleted", placement["organization"]);
+				showNotification("Placement Deleted", placement["organization"], function() {
+				});
             }, function(data,status,xhr) {
 
             });

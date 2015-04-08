@@ -2,17 +2,10 @@ var MENU_MODULE = new function() {
     
     var context = "body",
         serviceChecker = null,
-        serviceFrequency = 1000 * 60 * 3;
-    
-    registerShowEvent(context, function(prev_id) {
-        startAuto();
-    });
+        serviceFrequency = 1000 * 60 * 1;
 
-    registerHideEvent(context, function(to_id) {
-        stopAuto();
-    });
-
-    panelFix(context, "#menu-panel");
+	// prepare some things
+	panelFix(context, "#menu-panel");
 
 	$(context).on('click', '#home-button',function() {
 
@@ -70,20 +63,7 @@ var MENU_MODULE = new function() {
         });
 		
 	});
-	
 
-    var startAuto = function() {
-        getCount();
-        
-        serviceChecker = setInterval(function(){ 
-            getCount();
-        }, serviceFrequency);
-    };
-
-    var stopAuto = function() {
-        clearInterval(serviceChecker);
-    };
-	
     var getCount = function() {
 
         runAJAXSerial("", {
@@ -92,18 +72,27 @@ var MENU_MODULE = new function() {
             var mCount = response['new_messages'];
             var rCount = response['new_news'];
             
-            setCount("#message-number", mCount); 
-            setCount("#resource-number", rCount); 
+            setCount("#message-number", mCount, "Mesages", "#message-button"); 
+            setCount("#resource-number", rCount, "Resources", "#resource-button"); 
         }, function(data,status,xhr) {
             
         });
     };
     
-    var setCount = function(id, count) {
+    var setCount = function(id, count, name, buttonID) {
         if (count > 0) {
             $(context).find(id).show().text(count);
+			showNotification(count + " Unread " + name, "", function() {
+				$(buttonID).trigger("click");
+			});
         } else {
             $(context).find(id).hide();
         }
     };
+	
+	// set global interval
+	getCount();
+	serviceChecker = setInterval(function(){ 
+		getCount();
+	}, serviceFrequency);
 };

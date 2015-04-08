@@ -21,7 +21,8 @@ var PLACEMENT_EDIT_MODULE = new function() {
         
         runAJAXSerial($(this).serialize(), obj, function(response) {
             PLACEMENT_MODULE.getPlacements(user['id']);
-			showNotification("Placement Saved", "");
+			showNotification("Placement Saved", "", function() {
+			});
         }, function(data,status,xhr) {
 
         });

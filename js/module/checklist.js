@@ -75,7 +75,8 @@ var CHECKLIST_MODULE = new function () {
 					taskid : me.attr("data-tid"),
 					placementid : me.attr("data-pid")
 				}, function(response) {
-					showNotification("Changed to " + (state ? "Complete!" : "Incomplete!"), task["name"] + "\n" + task["description"]);
+					showNotification("Changed to " + (state ? "Complete!" : "Incomplete!"), task["name"] + "\n" + task["description"], function() {
+					});
 				}, function(data,status,xhr) {
 					me.prop("checked", !state);
 					me.checkboxradio("refresh");

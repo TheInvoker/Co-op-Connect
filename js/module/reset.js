@@ -11,7 +11,8 @@ var RESET_MODULE = new function() {
             id : id,
             page : "user/reset"
         }, function(response) {
-			showNotification("Success", "Password has been updated.");
+			showNotification("Success", "Password has been updated.", function() {
+			});
 			window.location = ".";
         }, function(data,status,xhr) {
 

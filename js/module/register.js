@@ -15,7 +15,8 @@ var REGISTER_MODULE = new function() {
 				transition: "slideup",
 				reverse: true
 			});    
-			showNotification("Registered", "");
+			showNotification("Registered", "", function() {
+			});
         }, function(data,status,xhr) {
 
         });

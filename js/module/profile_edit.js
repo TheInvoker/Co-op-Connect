@@ -11,7 +11,8 @@ var PROFILE_EDIT_MODULE = new function() {
             page : 'user/setprofile'
         }, function(response) {
             PROFILE_MODULE.getProfile(GLOBAL_DATA.user["id"]);
-			showNotification("Profile Saved", "");
+			showNotification("Profile Saved", "", function() {
+			});
         }, function(data,status,xhr) {
             
         });

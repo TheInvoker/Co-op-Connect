@@ -318,13 +318,14 @@ function toast(msg) {
     });
 }
 
-function showNotification(title, body) {
+function showNotification(title, body, onclick) {
 	
-	var showNotificationHelper = function(title, body) {
+	var showNotificationHelper = function() {
 		var notification = new Notification(title, {
 			body : body,
 			icon : "images/site/favicon.png"
 		});
+		notification.onclick = onclick;
 		return notification;
 	};
 	
@@ -336,7 +337,7 @@ function showNotification(title, body) {
 	// Let's check if the user is okay to get some notification
 	else if (Notification.permission === "granted") {
 		// If it's okay let's create a notification
-		var notification = showNotificationHelper(title, body);
+		var notification = showNotificationHelper();
 	}
 
 	// Otherwise, we need to ask the user for permission
@@ -344,7 +345,7 @@ function showNotification(title, body) {
 		Notification.requestPermission(function (permission) {
 			// If the user is okay, let's create a notification
 			if (permission === "granted") {
-				var notification = showNotificationHelper(title, body);
+				var notification = showNotificationHelper();
 			} else {
 				toast(title);
 			}
