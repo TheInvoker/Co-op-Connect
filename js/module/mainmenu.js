@@ -6,7 +6,7 @@ var MENU_MODULE = new function() {
 
 	// prepare some things
 	panelFix(context, "#menu-panel");
-
+	
 	$(context).on('click', '#home-button',function() {
 
         // configure search button click

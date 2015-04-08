@@ -357,3 +357,39 @@ function showNotification(title, body, onclick) {
 	// At last, if the user already denied any notification, and you 
 	// want to be respectful there is no need to bother them any more.
 }
+
+
+
+
+
+
+
+
+// VISIBILITY
+
+function isPageActive() {
+	var prefix = getPrefix();
+	if (prefix === null) {
+		return true;
+	} else if (document.hidden === false || document[prefix + "Hidden"] === false) {
+		return true;
+	}
+	return false;
+}
+
+function getPrefix() {
+	var prefix = null;
+	if (document.hidden !== undefined) {
+		prefix = "";
+	} else {
+		var browserPrefixes = ["webkit", "moz", "ms", "o"];
+		// Test all vendor prefixes
+		for (var i = 0; i < browserPrefixes.length; i++) {
+			if (document[browserPrefixes[i] + "Hidden"] != undefined) {
+				prefix = browserPrefixes[i];
+				break;
+			}
+		}
+	}
+	return prefix;
+}

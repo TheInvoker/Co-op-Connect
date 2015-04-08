@@ -167,7 +167,13 @@ var MESSAGE_MODULE = new function() {
             thread_id : thread_id
         }, function(response) {
             if (response.length > 0) {
-                displayMessages(response, true);
+				if (!isPageActive()) {
+					showNotification(response.length + " Unread Messages", "", function() {
+						window.focus();
+					});
+				}
+				
+				displayMessages(response, true);
             }
         }, function(data,status,xhr) {
             
