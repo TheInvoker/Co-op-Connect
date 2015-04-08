@@ -1,3 +1,7 @@
+/*
+	MAP
+*/
+
 #map-page ,#map_canvas { 
 	width: 100%; 
 	height: 100%; 
@@ -13,10 +17,47 @@
     left : 0 !important;     
 }
 
+.mapControl {
+	background-color:transparent !important;
+	border-width:0px;
+	margin-right:7px;
+}
+
+/*
+	IMAGES
+*/
 
 .myicon {
 	position:relative;
 }
+
+.avatar-image {
+	width:200px;
+}
+
+.logo-image-home {
+	width:200px;
+}
+
+.small-image {
+	width:50px;
+}
+
+.message-image {
+	width: 35px;
+	margin: 0px 0px 5px 5px;
+}
+
+.thread-image {
+	text-align:center;
+	float:left;
+	margin-right:10px;
+	font-size:13px;
+}
+
+/*
+	BUBBLE
+*/
 
 .countBubl {
 	background-color:#D16E00 !important;
@@ -24,13 +65,29 @@
 	border:1px solid white !important;
 }
 
+.bubble {
+    position: relative;
+	word-wrap: break-word;
+    min-height: 38px;
+    background: #ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 10px;
+	color:black;
+	margin-left:20px;
+	padding:10px;
+	text-shadow:none;
+}
+
+/*
+	TABLE
+*/
 
 .divscrollable {
 	width:100%;
 	overflow-y:hidden;
 	overflow-x:auto;
 }
-
 
 .footable {
 	text-shadow : none;
@@ -77,23 +134,6 @@
 	background : linear-gradient(to bottom, rgb(101, 101, 101), rgb(47, 47, 47)) !important;
 }
 
-.avatar-image {
-	width:200px;
-}
-
-.logo-image-home {
-	width:200px;
-}
-
-.small-image {
-	width:50px;
-}
-
-.message-image {
-	width: 35px;
-	margin: 0px 0px 5px 5px;
-}
-
 .search-person {
 	cursor: pointer; 
 	cursor: hand; 
@@ -103,21 +143,14 @@
 	background-color:#2F2F2F;
 }
 
-.mywrap {
-	white-space:normal;
-	word-wrap: break-word;
-}
 
-.new_item {
-	background-color:#005952 !important;
-}
 
-.thread-image {
-	text-align:center;
-	float:left;
-	margin-right:10px;
-	font-size:13px;
-}
+
+
+
+/*
+	MESSAGE
+*/
 
 .message {
 	border-radius:10px;
@@ -125,8 +158,6 @@
 	color:black;
 	margin-bottom:10px;
 	text-shadow:none;
-	word-wrap: break-word;
-	white-space: pre;
 }
 
 .message-left {
@@ -144,36 +175,20 @@
 	text-align:right;
 }
 
+
+/*
+	THREAD
+*/
+
 .add-member-button {
 	margin-left:5px;
 }
 
-.bubble {
-    position: relative;
-	word-wrap: break-word;
-    min-height: 38px;
-    background: #ffffff;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 10px;
-	color:black;
-	margin-left:20px;
-	padding:10px;
-	text-shadow:none;
-}
 
-.bubble:after {
-    content: "";
-    position: absolute;
-    top: 15px;
-    left: -15px;
-    border-style: solid;
-    border-width: 15px 15px 15px 0;
-    border-color: transparent #ffffff;
-    display: block;
-    width: 0;
-    z-index: 1;
-}
+
+/*
+	GRID
+*/
 
 .grid-item{
 	width: 200px;
@@ -187,11 +202,24 @@
 }
 
 .grid-item:hover{
-  box-shadow: 0px 0px 10px #fff;
+	box-shadow: 0px 0px 10px #fff;
 }
 
-.mapControl {
-	background-color:transparent !important;
-	border-width:0px;
-	margin-right:7px;
+
+/*
+	OTHER
+*/
+
+.mywrap {
+	white-space:normal;
+	word-wrap: break-word;
+}
+
+.new_item {
+	background-color:#005952 !important;
+}
+
+.multiline {
+	white-space: pre;
+	word-wrap: break-word;
 }

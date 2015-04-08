@@ -1,4 +1,3 @@
-map history.back() bug
 map marker refresh bug
 download too much coloumns for map
 map external panel
@@ -12,12 +11,12 @@ clean picture filename
 support url to persons account
 private ssl
 captcha
-folderize js files
-
-fix new line on textarea
 check permissions before doing things
 combine admin view
 
+
+folderize js files
+fix new line on textarea                      [DONE]
 global intervals                              [DONE]
 browser notifications like in hipchat.com     [DONE]
 avoid back button                             [DONE]

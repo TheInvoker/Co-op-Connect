@@ -110,7 +110,7 @@ var THREAD_MODULE = new function() {
         }
 
         var str = '<a href="#"' + checkNew(obj) + ' data-tid="' + obj['id'] + '"><table>';
-        str += '<tr title="Message"><td valign="top"><span class="ui-icon-comment ui-btn-icon-left myicon"/></td><td colspan="3" valign="top" class="mywrap">' + Autolinker.link(obj['message']) + '</td></tr>';
+        str += '<tr title="Message"><td valign="top"><span class="ui-icon-comment ui-btn-icon-left myicon"/></td><td colspan="3" valign="top" class="mywrap multiline">' + Autolinker.link(obj['message']) + '</td></tr>';
         str += '<tr title="Date Sent"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td colspan="3" valign="top" class="mywrap">' + obj['date_sent'] + '</td></tr>';
         str += '<tr title="Recipants"><td><span class="ui-icon-user ui-btn-icon-left myicon"/></td>';
         str += '<td valign="top" class="mywrap">' + picList + '</td>';

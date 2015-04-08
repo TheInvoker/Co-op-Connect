@@ -89,11 +89,11 @@
 						<table>
 							<tr>
 								<td><img src="" id="profile-avatar-image" class="avatar-image"/></td>
-								<td valign="top"><div id="profile-status" class="bubble"></div></td>
+								<td valign="top"><div id="profile-status" class="bubble multiline"></div></td>
 							</tr>
 						</table>
 						
-						<p id="profile-biotext"></p>
+						<p id="profile-biotext" class="multiline"></p>
 						
 						<h3>Details:</h3>
 						

@@ -28,7 +28,7 @@ var MESSAGE_MODULE = new function() {
 
                 var obj = {
                     user_id : GLOBAL_DATA.user['id'],
-                    message : field[0].value.replace(/<br\s*\/?>/mg,"\n"),
+                    message : field[0].value,
                     date_sent : getDate() + ' ' + getTime(),
 					picURL : GLOBAL_DATA.user['picURL']
                 };
@@ -129,7 +129,7 @@ var MESSAGE_MODULE = new function() {
             var obj = response[i];
 
             var acc_temp = "";
-            acc_temp += '<div class="message ' + (obj['user_id']==user['id'] ? 'message-right' : 'message-left') + '">';
+            acc_temp += '<div class="message multiline ' + (obj['user_id']==user['id'] ? 'message-right' : 'message-left') + '">';
             acc_temp += '<img src="' + getImage(obj) + '" align="right" class="message-image" />';
             acc_temp += '<div>' + Autolinker.link(obj['message']) + '</div>';
             acc_temp += '<br/>';
