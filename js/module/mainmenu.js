@@ -64,6 +64,10 @@ var MENU_MODULE = new function() {
 		
 	});
 
+	this.runGetCount = function() {
+		getCount();
+	};
+	
     var getCount = function() {
 
         runAJAXSerial("", {

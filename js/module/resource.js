@@ -43,6 +43,9 @@ var RESOURCE_MODULE = new function() {
             // add resource items
             displayResource(response);
             
+			// update numbers on menu
+			MENU_MODULE.runGetCount();
+			
         }, function(data,status,xhr) {
             
         });

@@ -90,6 +90,8 @@ var MESSAGE_MODULE = new function() {
             // display messages
             displayMessages(response, true);
 
+			// update numbers on menu
+			MENU_MODULE.runGetCount();
         }, function(data,status,xhr) {
 
         });
