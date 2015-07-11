@@ -34,37 +34,37 @@
 			<?php else: ?>
 
 
-				<div data-role="panel" id="menu-panel" data-display="push" data-theme="b">
-					<ul data-role="listview">
-						<li><a id="home-button" href="#" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a></li>
-						<li><a id="profile-button" href="#" class="ui-btn ui-icon-user ui-btn-icon-left">My Profile</a></li>
-						<li><a id="placement-button" href="#" class="ui-btn ui-icon-shop ui-btn-icon-left">My Placements</a></li>
-						<li><a id="search-button" href="#" class="ui-btn ui-icon-search ui-btn-icon-left">Search</a></li>
-						<li><a id="map-button" href="#" class="ui-btn ui-icon-location ui-btn-icon-left">Map</a></li>
-						<li><a id="message-button" href="#" class="ui-btn ui-icon-comment ui-btn-icon-left">
+				<div id="menu-panel" class="panel">
+					<ul>
+						<li><a id="home-button" href="#">Home</a></li>
+						<li><a id="profile-button" href="#">My Profile</a></li>
+						<li><a id="placement-button" href="#">My Placements</a></li>
+						<li><a id="search-button" href="#">Search</a></li>
+						<li><a id="map-button" href="#">Map</a></li>
+						<li><a id="message-button" href="#">
 							Messages
-							<span id="message-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
+							<span id="message-number" class="countBubl" style="display:none;"></span>
 							</a>
 						</li>
-						<li><a id="resource-button" href="#" class="ui-btn ui-icon-alert ui-btn-icon-left">
+						<li><a id="resource-button" href="#">
 							Resources
-							<span id="resource-number" class="ui-li-count ui-btn-corner-all countBubl" style="display:none;"></span>
+							<span id="resource-number" class="countBubl" style="display:none;"></span>
 							</a>
 						</li>
-						<li><a id="about-button" href="#" class="ui-btn ui-icon-info ui-btn-icon-left">About</a></li>
-						<li><a id="logout-button" href="#" class="ui-btn ui-icon-arrow-l ui-btn-icon-left">Logout</a></li>
+						<li><a id="about-button" href="#">About</a></li>
+						<li><a id="logout-button" href="#">Logout</a></li>
 					</ul>
 				</div>
 
 
 
-				<div id="grid-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-						<h1>Home</h1>
+				<div id="grid-page">
+					<div class="header">
+						<a href="#menu-panel" class="header-icon header-left header-icon-home" data-panel="#menu-panel"></a>
+						Home
 					</div>
 
-					<div data-role="main" class="ui-content">
+					<div>
 						<div id="newsgrid">
 						</div>
 					</div>
@@ -75,7 +75,7 @@
 
 
 
-
+				<div style="display:none;">
 
 				<div id="profile-page" data-role="page" data-theme="b">
 					<div data-role="header">
@@ -561,6 +561,9 @@
 					</div>
 				</div>
 
+				
+				</div>
+				
 				<?php
 					include "snippet/snippet1.php";
 					include "snippet/snippet2.php";

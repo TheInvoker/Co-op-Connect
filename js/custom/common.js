@@ -36,11 +36,7 @@ function getUrlParameter(sParam) {
 }
 
 
-function panelFix(context, panelID) {
-    $( panelID ).panel();
-    $( panelID ).find("ul[data-role=listview]").listview().trigger('create');
-    swipePanel(context, panelID);
-}
+
 
 
 
@@ -204,8 +200,7 @@ function unescapeHTML(str) {
 
 if (!goHomePage()) {
 	$(document).ready(function() {
-		setPageShowHide();
-		//configureShakeToGoBack();
+
 	});
 }
 
@@ -218,85 +213,42 @@ function goHomePage() {
     return false;
 }
 
-function setPageShowHide() {
-    
-    // configure page show
-    $(document).on( "pagecontainershow", function( event, ui ) {
-        var id = "#"+ui.toPage.prop("id"), prev_id = "#"+ui.prevPage.prop("id");
-        
-		if (GLOBAL_DATA.eventsShow.hasOwnProperty(id)) {
-			var func = GLOBAL_DATA.eventsShow[id];
-			func(prev_id);
-		}
-    });
-	   
-    // configure page hide
-    $(document).on( "pagecontainerhide", function( event, ui ) {
-        var id = "#"+ui.prevPage.prop("id"), to_id = "#"+ui.toPage.prop("id");
-        
-		if (GLOBAL_DATA.eventsHide.hasOwnProperty(id)) {
-			var func = GLOBAL_DATA.eventsHide[id];
-			func(to_id);
-		}
-    });
-}
 
-function registerShowEvent(pageID, func) {
-    GLOBAL_DATA.eventsShow[pageID] = func;
-}
 
-function deleteShowEvent(pageID) {
-    delete GLOBAL_DATA.eventsShow[pageID];
-}
 
-function registerHideEvent(pageID, func) {
-    GLOBAL_DATA.eventsHide[pageID] = func;
-}
 
-function deleteHideEvent(pageID) {
-    delete GLOBAL_DATA.eventsHide[pageID];
+// NAV DRAWER
+function openPanel(panelID) {
+	$(panelID).animate({
+		left:'0%'
+	},500);
 }
-
-function configureShakeToGoBack() {
-    var myShakeEvent = new Shake({
-        threshold: 10, // optional shake strength threshold
-        timeout: 1000 // optional, determines the frequency of event generation
-    });    
-    myShakeEvent.start();
-    window.addEventListener('shake', function() {
-        history.back();
-    }, false);
+function closePanel(panelID) {
+	$(panelID).animate({
+		left:'-70%'
+	},500);
 }
-
 function swipePanel(pageId, leftPanelId) {
-	$( document ).on( "pageinit", pageId, function() {
-		$( document ).on( "swiperight", pageId, function( e ) {
-			var startX = e.swipestart.coords[0];
-
-			if (startX <= 50) {
-				if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
-					$( leftPanelId ).panel( "open" );
-				}
-			}
-		});
+	$( document ).on( "swiperight", pageId, function( e ) {
+		var startX = e.swipestart.coords[0];
+		if (startX <= 50) {				
+			openPanel(leftPanelId);
+		}
 	});
 }
-
-function swipePanelLeft(pageId, rightPanelId) {
-    $( document ).on( "pageinit", pageId, function() {
-        $( document ).on( "swipeleft", pageId, function( e ) {
-            var startX = e.swipestart.coords[0];
-            var totalWidth = $(window).width();
-
-            if (startX >= totalWidth - 50) {
-                if ( $.mobile.activePage.jqmData( "panel" ) !== "open" ) {
-                    $( rightPanelId ).panel( "open" );
-                }
-            }
-        });
-    });
-}
-
+$(document).ready(function() {
+	$("div.panel").on('click',function() {
+		return false;
+	});
+	$("body").on('click',function() {
+		closePanel("div.panel");
+	});
+	$("a[data-panel]").click(function() {
+		var panelID = $(this).attr("data-panel");
+		openPanel(panelID);
+		return false;
+	});
+});
 
 
 

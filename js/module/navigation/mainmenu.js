@@ -1,13 +1,12 @@
 var MENU_MODULE = new function() {
     
-    var context = "body",
+    var context = "#menu-panel",
         serviceChecker = null,
         serviceFrequency = 1000 * 60 * 1;
 
-	// prepare some things
-	panelFix(context, "#menu-panel");
-	
-	$(context).on('click', '#home-button',function() {
+	swipePanel("body", context);
+		
+	$(context).on('click', '#home-button', function() {
 
         // configure search button click
         GRID_MODULE.changePage();

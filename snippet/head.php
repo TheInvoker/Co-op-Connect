@@ -5,17 +5,11 @@
 <!-- Include meta tag to ensure proper rendering and touch zooming -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-favicon.png
-
 <!-- Include the jQuery library -->
-<script src="js/plugin/jquery.min.js"></script>
-<!-- Include the jQuery Mobile library -->
-<script src="js/plugin/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/plugin/jquery-2.1.4.min.js"></script>
 
 <!-- My code -->
 <script src="js/custom/common.js"></script>
 
-<!-- Include jQuery Mobile stylesheets -->
-<link rel="stylesheet" type="text/css" href="css/plugin/jquery.mobile-1.4.5.min.css">
-
+<!-- Icon -->
 <link rel="icon" type="image/x-icon" href="images/site/favicon.png">
