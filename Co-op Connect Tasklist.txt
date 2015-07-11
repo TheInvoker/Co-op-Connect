@@ -12,11 +12,13 @@ support url to persons account
 private ssl
 captcha
 combine admin view
+
+strange going back on message page bug
+bug with side menu active on all pages
 vibrate on new messages
 back/home button
-
-
 check permissions before doing things
+
 folderize js files                            [DONE]
 fix new line on textarea                      [DONE]
 global intervals                              [DONE]
