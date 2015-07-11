@@ -36,23 +36,62 @@
 
 				<div id="menu-panel" class="panel">
 					<ul>
-						<li><a id="home-button" href="#">Home</a></li>
-						<li><a id="profile-button" href="#">My Profile</a></li>
-						<li><a id="placement-button" href="#">My Placements</a></li>
-						<li><a id="search-button" href="#">Search</a></li>
-						<li><a id="map-button" href="#">Map</a></li>
-						<li><a id="message-button" href="#">
-							Messages
-							<span id="message-number" class="countBubl" style="display:none;"></span>
+						<li>
+							<a id="home-button" href="#">
+								<img src="images/site/svg/home.svg"/>
+								Home
 							</a>
 						</li>
-						<li><a id="resource-button" href="#">
-							Resources
-							<span id="resource-number" class="countBubl" style="display:none;"></span>
+						<li>
+							<a id="profile-button" href="#">
+								<img src="images/site/svg/profile.svg"/>
+								My Profile
 							</a>
 						</li>
-						<li><a id="about-button" href="#">About</a></li>
-						<li><a id="logout-button" href="#">Logout</a></li>
+						<li>
+							<a id="placement-button" href="#">
+								<img src="images/site/svg/placement.svg"/>
+								My Placements
+							</a>
+						</li>
+						<li>
+							<a id="search-button" href="#">
+								<img src="images/site/svg/search.svg"/>
+								Search
+							</a>
+						</li>
+						<li>
+							<a id="map-button" href="#">
+								<img src="images/site/svg/map.svg"/>
+								Map
+							</a>
+						</li>
+						<li>
+							<a id="message-button" href="#">
+								<img src="images/site/svg/message.svg"/>
+								Messages
+								<span id="message-number" class="countBubl" style="display:none;"></span>
+							</a>
+						</li>
+						<li>
+							<a id="resource-button" href="#">
+								<img src="images/site/svg/resource.svg"/>
+								Resources
+								<span id="resource-number" class="countBubl" style="display:none;"></span>
+							</a>
+						</li>
+						<li>
+							<a id="about-button" href="#">
+								<img src="images/site/svg/info.svg"/>
+								About
+							</a>
+						</li>
+						<li>
+							<a id="logout-button" href="#">
+								<img src="images/site/svg/logout.svg"/>
+								Logout
+							</a>
+						</li>
 					</ul>
 				</div>
 

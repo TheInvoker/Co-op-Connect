@@ -13,41 +13,45 @@ body {
 	NAV DRAWER
 */
 
-#menu-panel {
+div.panel {
 	position:fixed;
 	top:0px;
 	left:-70%;
 	width:50%;
 	height:100%;
-	background-color:#90d1ff;
+	background-color:#ab0000;
 	box-shadow: 0px 1px 50px #5E5E5E;
 	z-index:1;
 	overflow-x:hidden;
 	overflow-y:auto;
-	border-top:1px solid black;
-	border-left:1px solid black;
-	border-right:1px solid black;
+	border:1px solid #570000;
 }
-#menu-panel > ul {
+div.panel > ul {
 	list-style-type:none;
 	margin:0px;
 	padding:0px;
 }
-#menu-panel > ul > li {
-	border-bottom:1px solid black;
+div.panel > ul > li {
+	border-bottom:1px solid #570000;
 }
-#menu-panel > ul > li:hover {
-	background-color:#6ab1e2;
+div.panel > ul > li:hover {
+	background-color:#8d0000;
 }
-#menu-panel > ul > li > a {
+div.panel > ul > li > a {
 	text-decoration:none;
-	color:black;
-	font-size:3vw;
+	color:white;
+	font-weight:bold;
+	font-size:5vw;
 	padding:2vw 0vw 2vw 2vw;
-	display:block;
+	display:inline-block;
 	width:100%;
 }
-
+div.panel > ul > li > a > img {
+	height:5vw;
+	position:relative;
+	top:0.7vw;
+	margin-right:0.4vw;
+}
 
 /*
 	HEADERS
