@@ -251,6 +251,9 @@ $(document).ready(function() {
 		openPanel(panelID);
 		return false;
 	});
+	$( document ).on( "swipeleft", pageId, function( e ) {
+		closePanel("div.panel");
+	});
 });
 
 
