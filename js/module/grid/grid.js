@@ -10,17 +10,7 @@ var GRID_MODULE = new function() {
     });
 
     this.setGrid = function() {
-        $.mobile.changePage( context, { 
-            transition: "flip"
-        });
-
-		setGrid();
-    };
-
-    this.changePage = function() {
-        $.mobile.changePage( context, { 
-            transition: "slide"
-        });
+        changePage(context);
 		
 		setGrid();
     };

@@ -192,25 +192,28 @@ function unescapeHTML(str) {
 
 
 
+// PAGE CHANGE
 
+function changePage(pageID) {
+	var curPage = $("body > div.page:visible");
+	if (curPage.length == 0) {
+		$("body > " + pageID).fadeIn(500);
+	} else if ("#" + curPage.attr("id") != pageID) {
+		curPage.fadeOut(500,function() {
+			$("body > " + pageID).fadeIn(500);
+		});
+	}
+}
 
 
 // INITIALIZE
 
-
-if (!goHomePage()) {
-	$(document).ready(function() {
-
-	});
-}
-
+goHomePage();
 function goHomePage() {
     var i = document.location.href.indexOf("#");
     if (i != -1) {
         document.location.href = document.location.href.substring(0, i);
-        return true;
     }
-    return false;
 }
 
 

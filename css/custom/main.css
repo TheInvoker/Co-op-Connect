@@ -57,6 +57,7 @@ div.panel > ul > li > a > img {
 	HEADERS
 	
 */
+
 div.header {
 	height:12vh;
 	font-size:10vh;
@@ -64,14 +65,14 @@ div.header {
 	color:white;
 	text-align:center;
 }
-.header-icon {
+div.header .header-icon {
 	width:12vh;
 	height:100%;
 }
-.header-left {
+div.header .header-left {
 	float:left;
 }
-.header-icon-home {
+div.header .header-icon-home {
 	background-image:url('../../images/site/svg/nav.svg');
 	background-repeat:no-repeat;
 	background-size: contain;
@@ -81,7 +82,6 @@ div.header {
 /*
 	MAP
 */
-
 
 #map-page ,#map_canvas { 
 	width: 100%; 

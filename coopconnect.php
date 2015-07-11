@@ -97,7 +97,7 @@
 
 
 
-				<div id="grid-page">
+				<div id="grid-page" class="page" style="display:none;">
 					<div class="header">
 						<a href="#menu-panel" class="header-icon header-left header-icon-home" data-panel="#menu-panel"></a>
 						Home
