@@ -206,15 +206,6 @@ function changePage(pageID) {
 }
 
 
-// INITIALIZE
-
-goHomePage();
-function goHomePage() {
-    var i = document.location.href.indexOf("#");
-    if (i != -1) {
-        document.location.href = document.location.href.substring(0, i);
-    }
-}
 
 
 
@@ -231,11 +222,11 @@ function closePanel(panelID) {
 		left:'-70%'
 	},500);
 }
-function swipePanel(pageId, leftPanelId) {
+function swipePanel(pageId, panelID) {
 	$( document ).on( "swiperight", pageId, function( e ) {
 		var startX = e.swipestart.coords[0];
 		if (startX <= 50) {				
-			openPanel(leftPanelId);
+			openPanel(panelID);
 		}
 	});
 }
@@ -251,7 +242,7 @@ $(document).ready(function() {
 		openPanel(panelID);
 		return false;
 	});
-	$( document ).on( "swipeleft", pageId, function( e ) {
+	$( document ).on( "swipeleft", "body", function( e ) {
 		closePanel("div.panel");
 	});
 });

@@ -67,17 +67,32 @@ div.header {
 	color:white;
 	text-align:center;
 }
+div.header a {
+	padding:0vw 0.4vw;
+    display: table-cell;
+    vertical-align: middle;
+}
+div.header a:hover {
+	background-color:red;
+}
 div.header .header-icon {
 	width:12vh;
 	height:100%;
+	background-repeat:no-repeat;
+	background-size: 50%;	
+	background-position: center;
 }
 div.header .header-left {
 	float:left;
 }
+div.header .header-right {
+	float:right;
+}
 div.header .header-icon-home {
 	background-image:url('../../images/site/svg/nav.svg');
-	background-repeat:no-repeat;
-	background-size: contain;
+}
+div.header .header-icon-edit {
+	background-image:url('../../images/site/svg/edit.svg');
 }
 
 

@@ -9,44 +9,52 @@ var MENU_MODULE = new function() {
 	$(context).on('click', '#home-button', function() {
 
         // configure search button click
-        GRID_MODULE.changePage();
+        GRID_MODULE.setGrid();
+		closePanel("div.panel");
 
     }).on('click', "#profile-button", function() {
 		
 		// configure profile button click
 		var user = GLOBAL_DATA.user;
 		PROFILE_MODULE.getProfile(user['id']);
+		closePanel("div.panel");
 		
 	}).on('click', "#placement-button", function() {
 		
 		// configure placement button click
 		var user = GLOBAL_DATA.user;
 		PLACEMENT_MODULE.getPlacements(user['id']);
+		closePanel("div.panel");
 		
 	}).on('click', "#search-button", function() {
 		
 		// configure search button click
 		SEARCH_MODULE.initSearch();
+		closePanel("div.panel");
 		
 	}).on('click', "#map-button", function() {
 		
 		// configure map button click
 		MAP_MODULE.showMap();
+		closePanel("div.panel");
 		
 	}).on('click', "#message-button", function() {
 		
 		// configure message button click
 		THREAD_MODULE.setMessageThreads();
+		closePanel("div.panel");
 		
 	}).on('click', "#resource-button", function() {
 		
 		// configure resource button click
 		RESOURCE_MODULE.setResource();
+		closePanel("div.panel");
 		
 	}).on('click', "#about-button", function() {
 		
 		// configure about button click
 		ABOUT_MODULE.setAbout();
+		closePanel("div.panel");
 		
 	}).on('click', "#logout-button", function() {
 		
@@ -60,6 +68,7 @@ var MENU_MODULE = new function() {
         }, function(data,status,xhr) {
             
         });
+		closePanel("div.panel");
 		
 	});
 

@@ -99,7 +99,7 @@
 
 				<div id="grid-page" class="page" style="display:none;">
 					<div class="header">
-						<a href="#menu-panel" class="header-icon header-left header-icon-home" data-panel="#menu-panel"></a>
+						<a href="#" class="header-icon header-left header-icon-home" data-panel="#menu-panel"></a>
 						Home
 					</div>
 
@@ -114,13 +114,13 @@
 
 
 
-				<div style="display:none;">
+				
 
-				<div id="profile-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-						<h1>Profile</h1>
-						<a id="profile-edit-button" href="#" data-icon="edit">Edit</a>
+				<div id="profile-page" class="page" style="display:none;">
+					<div class="header">
+						<a href="#" class="header-icon header-left header-icon-home" data-panel="#menu-panel"></a>
+						Profile
+						<a href="#" class="header-icon header-right header-icon-edit" data-panel=""></a>
 					</div>
 
 					<div data-role="main" class="ui-content">
@@ -205,7 +205,7 @@
 
 
 
-
+				<div style="display:none;">
 
 				<div id="placement-page" data-role="page" data-theme="b">
 				

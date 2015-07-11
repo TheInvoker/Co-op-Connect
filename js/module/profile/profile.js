@@ -26,9 +26,7 @@ var PROFILE_MODULE = new function() {
             response = res;
             user_id = uid;
 
-            $.mobile.changePage(context, { 
-                transition: "slide"
-            });
+            changePage(context);
             
             displayProfile();
             
