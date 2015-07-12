@@ -35,64 +35,62 @@
 
 
 				<div id="menu-panel" class="panel">
-					<ul>
-						<li>
-							<a id="home-button" href="#">
-								<img src="images/site/svg/home.svg"/>
-								Home
-							</a>
-						</li>
-						<li>
-							<a id="profile-button" href="#">
-								<img src="images/site/svg/profile.svg"/>
-								My Profile
-							</a>
-						</li>
-						<li>
-							<a id="placement-button" href="#">
-								<img src="images/site/svg/placement.svg"/>
-								My Placements
-							</a>
-						</li>
-						<li>
-							<a id="search-button" href="#">
-								<img src="images/site/svg/search.svg"/>
-								Search
-							</a>
-						</li>
-						<li>
-							<a id="map-button" href="#">
-								<img src="images/site/svg/map.svg"/>
-								Map
-							</a>
-						</li>
-						<li>
-							<a id="message-button" href="#">
-								<img src="images/site/svg/message.svg"/>
-								Messages
-								<span id="message-number" class="countBubl" style="display:none;"></span>
-							</a>
-						</li>
-						<li>
-							<a id="resource-button" href="#">
-								<img src="images/site/svg/resource.svg"/>
-								Resources
-								<span id="resource-number" class="countBubl" style="display:none;"></span>
-							</a>
-						</li>
-						<li>
-							<a id="about-button" href="#">
-								<img src="images/site/svg/info.svg"/>
-								About
-							</a>
-						</li>
-						<li>
-							<a id="logout-button" href="#">
-								<img src="images/site/svg/logout.svg"/>
-								Logout
-							</a>
-						</li>
-					</ul>
+					<div>
+						<a id="home-button" href="#">
+							<img src="images/site/svg/home.svg"/>
+							Home
+						</a>
+					</div>
+					<div>
+						<a id="profile-button" href="#">
+							<img src="images/site/svg/profile.svg"/>
+							My Profile
+						</a>
+					</div>
+					<div>
+						<a id="placement-button" href="#">
+							<img src="images/site/svg/placement.svg"/>
+							My Placements
+						</a>
+					</div>
+					<div>
+						<a id="search-button" href="#">
+							<img src="images/site/svg/search.svg"/>
+							Search
+						</a>
+					</div>
+					<div>
+						<a id="map-button" href="#">
+							<img src="images/site/svg/map.svg"/>
+							Map
+						</a>
+					</div>
+					<div>
+						<a id="message-button" href="#">
+							<img src="images/site/svg/message.svg"/>
+							Messages
+							<span id="message-number" class="countBubl" style="display:none;"></span>
+						</a>
+					</div>
+					<div>
+						<a id="resource-button" href="#">
+							<img src="images/site/svg/resource.svg"/>
+							Resources
+							<span id="resource-number" class="countBubl" style="display:none;"></span>
+						</a>
+					</div>
+					<div>
+						<a id="about-button" href="#">
+							<img src="images/site/svg/info.svg"/>
+							About
+						</a>
+					</div>
+					<div>
+						<a id="logout-button" href="#">
+							<img src="images/site/svg/logout.svg"/>
+							Logout
+						</a>
+					</div>
 				</div>
 
 
@@ -103,10 +101,10 @@
 						Home
 					</div>
 
-					<div>
+					<section>
 						<div id="newsgrid">
 						</div>
-					</div>
+					</section>
 				</div>
 
 
@@ -123,7 +121,7 @@
 						<a href="#" class="header-icon header-right header-icon-edit" data-panel=""></a>
 					</div>
 
-					<div data-role="main" class="ui-content">
+					<section>
 						<h2 id="profile-fullname"></h2>
 						<table>
 							<tr>
@@ -143,7 +141,7 @@
 						</table>
 						
 						<div class="ui-field-contain">
-							<fieldset data-role="controlgroup" data-type="horizontal">
+							<fieldset>
 								<a id="profile-email" class="ui-shadow ui-btn ui-corner-all ui-icon-mail ui-btn-icon-left">Email</a>
 								<a id="profile-phone" class="ui-shadow ui-btn ui-corner-all ui-icon-phone ui-btn-icon-left">Phone</a>
 								<a id="profile-site" class="ui-shadow ui-btn ui-corner-all ui-icon-info ui-btn-icon-left" target="_blank">Website</a>
@@ -151,14 +149,14 @@
 								<a id="profile-placements" class="ui-shadow ui-btn ui-corner-all ui-icon-shop ui-btn-icon-left">Placements</a>
 							</fieldset>
 						</div>
-					</div>
+					</section>
 				</div>
-				<div id="profile-edit-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<h1>Profile Edit</h1>
+				<div id="profile-edit-page" class="page" style="display:none;">
+					<div class="header">
+						Profile Edit
 					</div>
 
-					<div data-role="main" class="ui-content">
+					<section>
 						<form id="profile-edit-form">
 
 							<label for="file">Avatar Image:</label>
@@ -198,7 +196,7 @@
 
 							<input type="submit" value="Save">
 						</form>
-					</div>
+					</section>
 				</div>
 
 
