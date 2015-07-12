@@ -19,12 +19,15 @@ var PROFILE_EDIT_MODULE = new function() {
 
         return false;
 		
+    }).on('click',"#profile-cancel-button",function() {
+		
+		var user = GLOBAL_DATA.user;
+		PROFILE_MODULE.getProfile(user['id']);
+		
     });
 
     this.editProfileHandler = function(response) {
-        $.mobile.changePage(context, { 
-            transition: "slide"
-        });
+        changePage(context);
         
         setProfileForEdit(response);
     };
@@ -42,7 +45,7 @@ var PROFILE_EDIT_MODULE = new function() {
         context.find("textarea[name=status]").html(user['status']);
         context.find("textarea[name=biotext]").html(user['biotext']);
         
-        context.find("#profile_edit_department_rb").find("input").prop("checked", false).checkboxradio( "refresh" );
-        context.find("#profile_edit_department_rb").find("input[value='" + unescapeHTML(user['department_name']) + "']").prop("checked", true).checkboxradio( "refresh" );
+        context.find("#profile_edit_department_rb").find("input").prop("checked", false);
+        context.find("#profile_edit_department_rb").find("input[value='" + unescapeHTML(user['department_name']) + "']").prop("checked", true);
     };
 };

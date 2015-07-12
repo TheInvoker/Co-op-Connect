@@ -118,7 +118,7 @@
 					<div class="header">
 						<a href="#" class="header-icon header-left header-icon-home" data-panel="#menu-panel"></a>
 						Profile
-						<a href="#" class="header-icon header-right header-icon-edit" data-panel=""></a>
+						<a href="#" class="header-icon header-right header-icon-edit" id="profile-edit-button"></a>
 					</div>
 
 					<section>
@@ -155,48 +155,97 @@
 				</div>
 				<div id="profile-edit-page" class="page" style="display:none;">
 					<div class="header">
+						<a href="#" class="header-icon header-left header-icon-cancel" id="profile-cancel-button"></a>
 						Profile Edit
 					</div>
 
 					<section>
 						<form id="profile-edit-form">
+							<table>
+								<tr>
+									<td>
+										<label for="file">Avatar Image:</label>
+									</td>
+									<td>
+										<input name="file" type="file" accept="image/*">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="firstname">First Name:</label>
+									</td>
+									<td>
+										<input name="firstname" type="text" maxlength="255" required>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="lastname">Last Name:</label>
+									</td>
+									<td>
+										<input name="lastname" type="text" maxlength="255" required>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="email">Email Address:</label>
+									</td>
+									<td>
+										<input name="email" type="email" maxlength="255" required>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="phone">Phone Number:</label>
+									</td>
+									<td>
+										<input name="phone" type="tel" maxlength="255">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="website">Website:</label>
+									</td>
+									<td>
+										<input name="website" type="url" maxlength="255">
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="status">Status:</label>
+									</td>
+									<td>
+										<textarea name="status" cols="40" rows="2" maxlength="16777215"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="biotext">Bio Text:</label>
+									</td>
+									<td>
+										<textarea name="biotext" cols="40" rows="2" maxlength="4294967295"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<fieldset id="profile_edit_department_rb" data-role="controlgroup" data-type="horizontal" data-mini="true">
+											<legend>Co-op Department:</legend>
 
-							<label for="file">Avatar Image:</label>
-							<input name="file" type="file" accept="image/*">
+											<?php
+												$_GET['field'] = "department";
+												$_GET['radio'] = '1';
+												include "script/html/printfieldhtml.php";
+											?>
 
-							<label for="firstname">First Name:</label>
-							<input name="firstname" type="text" maxlength="255" required>
-
-							<label for="lastname">Last Name:</label>
-							<input name="lastname" type="text" maxlength="255" required>
-
-							<label for="email">Email Address:</label>
-							<input name="email" type="email" maxlength="255" required>
-
-							<label for="phone">Phone Number:</label>
-							<input name="phone" type="tel" maxlength="255">
-
-							<label for="website">Website:</label>
-							<input name="website" type="url" maxlength="255">
-
-							<label for="status">Status:</label>
-							<textarea name="status" cols="40" rows="2" maxlength="16777215"></textarea>
-
-							<label for="biotext">Bio Text:</label>
-							<textarea name="biotext" cols="40" rows="2" maxlength="4294967295"></textarea>
-
-							<fieldset id="profile_edit_department_rb" data-role="controlgroup" data-type="horizontal" data-mini="true">
-								<legend>Co-op Department:</legend>
-
-								<?php
-									$_GET['field'] = "department";
-									$_GET['radio'] = '1';
-									include "script/html/printfieldhtml.php";
-								?>
-
-							</fieldset>
-
-							<input type="submit" value="Save">
+										</fieldset>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2" align="right">
+										<input type="submit" value="Save">
+									</td>
+								</tr>
+							</table>
 						</form>
 					</section>
 				</div>
