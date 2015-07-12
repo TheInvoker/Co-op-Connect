@@ -106,9 +106,10 @@ div.header .header-icon-edit {
 */
 
 body > div.page > section {
-	height:88vh;
+	height:84vh;
 	overflow-x:hidden;
 	overflow-y:auto;
+	padding:2vh;
 }
 
 /*
@@ -144,6 +145,9 @@ body > div.page > section {
 	position:relative;
 }
 
+#profile-avatar-image {
+	border:1px solid black;
+}
 .avatar-image {
 	width:200px;
 }
@@ -177,12 +181,11 @@ body > div.page > section {
 	border-radius:2em;
 	border:1px solid white !important;
 }
-
 .bubble {
     position: relative;
 	word-wrap: break-word;
     min-height: 38px;
-    background: #ffffff;
+    background: #FFAB00;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 10px;
@@ -190,6 +193,16 @@ body > div.page > section {
 	margin-left:20px;
 	padding:10px;
 	text-shadow:none;
+	display:inline-block;
+}
+.bubble::before {
+   content: "";
+   position: absolute;
+   top: 10px;
+   left: -10px;
+   border-top: 10px solid transparent;
+   border-right: 10px solid #FFAB00;
+   border-bottom: 10px solid transparent; 
 }
 
 /*

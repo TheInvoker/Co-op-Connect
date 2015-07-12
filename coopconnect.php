@@ -123,10 +123,14 @@
 
 					<section>
 						<h2 id="profile-fullname"></h2>
-						<table>
+						<table width="100%">
 							<tr>
-								<td><img src="" id="profile-avatar-image" class="avatar-image"/></td>
-								<td valign="top"><div id="profile-status" class="bubble multiline"></div></td>
+								<td width="200px">
+									<img src="" id="profile-avatar-image" class="avatar-image"/>
+								</td>
+								<td valign="top">
+									<div id="profile-status" class="bubble multiline"></div>
+								</td>
 							</tr>
 						</table>
 						
