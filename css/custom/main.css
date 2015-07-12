@@ -112,6 +112,20 @@ body > div.page > section {
 	padding:2vh;
 }
 
+
+/*
+	PROFILE
+*/
+
+#profile-buttons {
+	background-color:black;
+	margin-top:1.5em;
+	height:100px;
+}
+#profile-buttons > a {
+	display:inline-block;
+}
+
 /*
 	MAP
 */
@@ -170,6 +184,13 @@ body > div.page > section {
 	float:left;
 	margin-right:10px;
 	font-size:13px;
+}
+.profile-icon {
+	height:80px;
+	padding:10px;
+}
+.profile-icon:hover {
+	background-color:red;
 }
 
 /*
