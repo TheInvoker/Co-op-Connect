@@ -123,17 +123,11 @@
 
 					<section>
 						<h2 id="profile-fullname"></h2>
-						<table width="100%">
-							<tr>
-								<td width="200px">
-									<img src="" id="profile-avatar-image" class="avatar-image"/>
-								</td>
-								<td valign="top">
-									<div id="profile-status" class="bubble multiline"></div>
-								</td>
-							</tr>
-						</table>
+
+						<div id="profile-status" class="bubble multiline"></div>
 						
+						<img id="profile-avatar-image" class="avatar-image"/>
+
 						<p id="profile-biotext" class="multiline"></p>
 						
 						<h3>Details:</h3>
@@ -229,7 +223,7 @@
 								<tr>
 									<td colspan="2">
 										<fieldset id="profile_edit_department_rb" data-role="controlgroup" data-type="horizontal" data-mini="true">
-											<legend>Co-op Department:</legend>
+											<legend>Co-op Department</legend>
 
 											<?php
 												$_GET['field'] = "department";
@@ -241,7 +235,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2" align="right">
+									<td colspan="2">
 										<input type="submit" value="Save">
 									</td>
 								</tr>

@@ -110,8 +110,7 @@ div.header .header-icon-cancel {
 
 body > div.page > section {
 	height:84vh;
-	overflow-x:auto;
-	overflow-y:auto;
+	overflow-x:hidden;
 	padding:2vh;
 }
 
@@ -165,6 +164,7 @@ body > div.page > section {
 
 #profile-avatar-image {
 	border:1px solid black;
+	display:block;
 }
 .avatar-image {
 	width:200px;
@@ -215,19 +215,19 @@ body > div.page > section {
     -moz-border-radius: 5px;
     border-radius: 10px;
 	color:black;
-	margin-left:20px;
 	padding:10px;
 	text-shadow:none;
 	display:inline-block;
+    margin-bottom:20px;
 }
 .bubble::before {
-   content: "";
-   position: absolute;
-   top: 10px;
-   left: -10px;
-   border-top: 10px solid transparent;
-   border-right: 10px solid #FFAB00;
-   border-bottom: 10px solid transparent; 
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 10%;
+	border-top: 10px solid #FFAB00;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent; 
 }
 
 /*

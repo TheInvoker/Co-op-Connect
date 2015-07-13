@@ -80,6 +80,10 @@
 			print "<label for=\"{$uid}\">{$name}</label>\n";
 			
 		}
+		
+		if ($i < $num_records-1) {
+			print "<br/>";
+		}
 	}
 	
 ?>
