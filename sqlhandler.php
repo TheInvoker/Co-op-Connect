@@ -33,7 +33,6 @@
 		$errorMessage = "Missing request.";
 	}
 
-
   	if ($errorMessage) {
 		
 		switch ($errorMessage) {

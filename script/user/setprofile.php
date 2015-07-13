@@ -48,7 +48,7 @@
 		if (count($temporary) > 0) {
 			
 			$file_extension = strtolower(end($temporary));
-		
+
 			if (!in_array($_FILES["file"]["type"], $validtypes) || !in_array($file_extension, $validextensions)) {  
 				$errorMessage = $ERROR_INVALID_IMAGE;
 				return;
@@ -63,14 +63,13 @@
 				$errorMessage = $ERROR_UPLOADING_FILE;
 				return;
 			}
-				
-				
-			$target_path = "../../images/avatars/{$targetID}/";
+
+			$target_path = "images/avatars/{$targetID}/";
 			$filename = $_FILES["file"]["name"];
-			
+
 			// if not exist
 			if (!is_dir($target_path)) {  
-			
+
 				// make the directory
 				mkdir($target_path);
 				
@@ -84,7 +83,7 @@
 					}
 				}
 			}
-			
+
 			// Storing source path of the file in a variable
 			$sourcePath = $_FILES['file']['tmp_name']; 
 
@@ -93,7 +92,7 @@
 				$errorMessage = $ERROR_MOVING_FILE;
 				return;
 			}
-			
+
 			$query = "UPDATE user 
 					  SET avatar_filename='{$filename}'
 					  WHERE id={$targetID}";
