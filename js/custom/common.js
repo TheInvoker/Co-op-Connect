@@ -237,7 +237,7 @@ $(document).ready(function() {
 	$("body").on('click',function() {
 		closePanel("div.panel");
 	});
-	$("a[data-panel]").click(function() {
+	$("body > div.page > div.header > div[data-panel]").click(function() {
 		var panelID = $(this).attr("data-panel");
 		openPanel(panelID);
 		return false;

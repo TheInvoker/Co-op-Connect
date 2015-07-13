@@ -20,76 +20,58 @@
 
 			<?php if ($errorMessage): ?>
 
-				<div id="error-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<h1>Error</h1>
+				<div id="error-page" class="page">
+					<div class="header">
+						Error
 					</div>
-					<div data-role="main" class="ui-content">
+					<section>
 						<?php
 							print $errorMessage;
 						?>
-					</div>
+					</section>
 				</div>
 
 			<?php else: ?>
 
 
 				<div id="menu-panel" class="panel">
-					<div>
-						<a id="home-button" href="#">
-							<img src="images/site/svg/home.svg"/>
-							Home
-						</a>
+					<div id="home-button">
+						<img src="images/site/svg/home.svg"/>
+						Home
 					</div>
-					<div>
-						<a id="profile-button" href="#">
-							<img src="images/site/svg/profile.svg"/>
-							My Profile
-						</a>
+					<div id="profile-button">
+						<img src="images/site/svg/profile.svg"/>
+						My Profile
 					</div>
-					<div>
-						<a id="placement-button" href="#">
-							<img src="images/site/svg/placement.svg"/>
-							My Placements
-						</a>
+					<div id="placement-button">
+						<img src="images/site/svg/placement.svg"/>
+						My Placements
 					</div>
-					<div>
-						<a id="search-button" href="#">
-							<img src="images/site/svg/search.svg"/>
-							Search
-						</a>
+					<div id="search-button">
+						<img src="images/site/svg/search.svg"/>
+						Search
 					</div>
-					<div>
-						<a id="map-button" href="#">
-							<img src="images/site/svg/map.svg"/>
-							Map
-						</a>
+					<div id="map-button">
+						<img src="images/site/svg/map.svg"/>
+						Map
 					</div>
-					<div>
-						<a id="message-button" href="#">
-							<img src="images/site/svg/message.svg"/>
-							Messages
-							<span id="message-number" class="countBubl" style="display:none;"></span>
-						</a>
+					<div id="message-button">
+						<img src="images/site/svg/message.svg"/>
+						Messages
+						<span id="message-number" class="countBubl" style="display:none;"></span>
 					</div>
-					<div>
-						<a id="resource-button" href="#">
-							<img src="images/site/svg/resource.svg"/>
-							Resources
-							<span id="resource-number" class="countBubl" style="display:none;"></span>
-						</a>
+					<div id="resource-button">
+						<img src="images/site/svg/resource.svg"/>
+						Resources
+						<span id="resource-number" class="countBubl" style="display:none;"></span>
 					</div>
-					<div>
-						<a id="about-button" href="#">
-							<img src="images/site/svg/info.svg"/>
-							About
-						</a>
+					<div id="about-button">
+						<img src="images/site/svg/info.svg"/>
+						About
 					</div>
-					<div>
-						<a id="logout-button" href="#">
-							<img src="images/site/svg/logout.svg"/>
-							Logout
-						</a>
+					<div id="logout-button">
+						<img src="images/site/svg/logout.svg"/>
+						Logout
 					</div>
 				</div>
 
@@ -97,7 +79,7 @@
 
 				<div id="grid-page" class="page" style="display:none;">
 					<div class="header">
-						<a href="#" class="header-icon header-left header-icon-home" data-panel="#menu-panel"></a>
+						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
 						Home
 					</div>
 
@@ -116,9 +98,9 @@
 
 				<div id="profile-page" class="page" style="display:none;">
 					<div class="header">
-						<a href="#" class="header-icon header-left header-icon-home" data-panel="#menu-panel"></a>
+						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
 						Profile
-						<a href="#" class="header-icon header-right header-icon-edit" id="profile-edit-button"></a>
+						<div class="header-icon header-right header-icon-edit" id="profile-edit-button"></div>
 					</div>
 
 					<section>
@@ -142,14 +124,14 @@
 							<a id="profile-email" href="#"><img class="profile-icon" src="images/site/svg/email.svg"/></a>
 							<a id="profile-phone" href="#"><img class="profile-icon" src="images/site/svg/phone.svg"/></a>
 							<a id="profile-site" href="#" target="_blank"><img class="profile-icon" src="images/site/svg/world.svg"/></a>
-							<a id="profile-message" href="#"><img class="profile-icon" src="images/site/svg/message.svg"/></a>
-							<a id="profile-placements" href="#"><img class="profile-icon" src="images/site/svg/placement.svg"/></a>
+							<div id="profile-message"><img class="profile-icon" src="images/site/svg/message.svg"/></div>
+							<div id="profile-placements"><img class="profile-icon" src="images/site/svg/placement.svg"/></div>
 						</div>
 					</section>
 				</div>
 				<div id="profile-edit-page" class="page" style="display:none;">
 					<div class="header">
-						<a href="#" class="header-icon header-left header-icon-cancel" id="profile-cancel-button"></a>
+						<div class="header-icon header-left header-icon-cancel" id="profile-cancel-button"></div>
 						Profile Edit
 					</div>
 
