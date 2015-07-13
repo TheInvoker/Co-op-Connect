@@ -3,7 +3,7 @@
 </title>
 
 <!-- Include meta tag to ensure proper rendering and touch zooming -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 <!-- Include the jQuery library -->
 <script src="js/plugin/jquery-2.1.4.min.js"></script>
