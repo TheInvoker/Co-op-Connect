@@ -2,8 +2,6 @@ var LOGIN_MODULE = new function() {
     
     var context = "#login-page";
 	
-	swipePanel(context, "#login-panel");
-	
 	$(context).on('submit', "#login-form", function() {
 		
 		// configure login button click

@@ -80,7 +80,7 @@ var PLACEMENT_EDIT_MODULE = new function() {
             swt.val(obj['active']);
 			
         } else {
-            context.find("input").val("");
+            //context.find("input").val("");
             
             swt.val('1');
         }
