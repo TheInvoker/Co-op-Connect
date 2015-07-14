@@ -4,8 +4,6 @@ var MENU_MODULE = new function() {
         serviceChecker = null,
         serviceFrequency = 1000 * 60 * 1;
 
-	swipePanel("body", context);
-		
 	$(context).on('click', '#home-button', function() {
 
         // configure search button click

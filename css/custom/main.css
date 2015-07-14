@@ -143,8 +143,13 @@ body > div.page > section {
 #placement-list {
 	font-size:2em;
 }
-
-
+#placement-list > div {
+	border:2px solid black;
+	padding:1em;
+	margin-bottom:2vh;
+	cursor: pointer; 
+	cursor: hand;
+}
 
 
 
