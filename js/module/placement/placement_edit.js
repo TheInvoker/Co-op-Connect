@@ -29,6 +29,10 @@ var PLACEMENT_EDIT_MODULE = new function() {
 
         return false;
 		
+    }).on('click',"#placement-cancel-button",function() {
+		
+		PLACEMENT_MODULE.showPage();
+		
     });
 
     this.newPlacement = function() {
@@ -50,9 +54,7 @@ var PLACEMENT_EDIT_MODULE = new function() {
     };
     
     var switchPage = function() {
-        $.mobile.changePage(context, { 
-            transition: "slide"
-        });
+        changePage(context);
     };
 
     var setFormFields = function(obj) {

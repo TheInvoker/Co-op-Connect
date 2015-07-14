@@ -36,6 +36,10 @@ var PROFILE_MODULE = new function() {
             
         });
     };
+	
+	this.showPage = function() {
+		changePage(context);
+	};
     
     var displayProfile = function() {
         var user = GLOBAL_DATA.user;

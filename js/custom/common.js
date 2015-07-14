@@ -215,12 +215,12 @@ function changePage(pageID) {
 function openPanel(panelID) {
 	$(panelID).animate({
 		left:'0%'
-	},500);
+	},300);
 }
 function closePanel(panelID) {
 	$(panelID).animate({
-		left:'-70%'
-	},500);
+		left:'-60%'
+	},300);
 }
 function swipePanel(pageId, panelID) {
 	$( document ).on( "swiperight", pageId, function( e ) {

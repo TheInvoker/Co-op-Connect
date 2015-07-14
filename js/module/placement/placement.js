@@ -69,9 +69,7 @@ var PLACEMENT_MODULE = new function() {
             // record response
             response = res;
             
-            $.mobile.changePage(context, { 
-                transition: "slide"
-            });
+            changePage(context);
 
             // add data to listview
             displayPlacements(me, res);
@@ -83,33 +81,34 @@ var PLACEMENT_MODULE = new function() {
 
         });
     };
+	
+	this.showPage = function() {
+		changePage(context);
+	};
 
     var displayPlacements = function(me, response) {
         var list = $(context).find("#placement-list"), myListContent = "", i=0, l=response.length;
         
         for(i=0; i<l; i+=1) {
             var obj = response[i];
-            myListContent += '<li>' + formatLocation(me, obj) + '</li>';
+            myListContent += formatLocation(me, obj);
         }
         
-        list.html(myListContent).listview().trigger('create');
-        list.listview('refresh');
+        list.html(myListContent);
     };
     
     var formatLocation = function(me, obj) {
-        var str = '<a href="#placement-panel" data-pid="' + obj['id'] + '">';
-        str += '<table>';
-        str += '<tr title="Address"><td valign="top"><span class="ui-icon-location ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['address'] + ', ' + obj['city'] + ', ' + obj['country'] + '</td></tr>';
-        str += '<tr title="Role"><td valign="top"><span class="ui-icon-star ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['topic'] + '</td></tr>';
-        str += '<tr title="Company"><td valign="top"><span class="ui-icon-shop ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['organization'] + '</td></tr>';
-        str += '<tr title="Date Worked"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['date_started'] + ' to ' + obj['date_finished'] + '</td></tr>';
+        var str = '<div data-pid="' + obj['id'] + '">';
+        str += '<div title="Address"><img src="images/site/svg/map.svg" class="small-image" />' + obj['address'] + ', ' + obj['city'] + ', ' + obj['country'] + '</div>';
+        str += '<div title="Role"><img src="" class="small-image" />' + obj['topic'] + '</div>';
+        str += '<div title="Company"><img src="" class="small-image" />' + obj['organization'] + '</div>';
+        str += '<div title="Date Worked"><img src="" class="small-image" />' + obj['date_started'] + ' to ' + obj['date_finished'] + '</div>';
         if (me) {
             var percentage = 100.0 * obj['percentage'];
-            str += '<tr title="Checklist Progress"><td valign="top"><span class="ui-icon-bullets ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + percentage + '% <progress value="' + percentage + '" max="100"></progress></td></tr>';
-            str += '<tr title="State"><td valign="top"><span class="ui-icon-' + (obj['active']=='1' ? 'check' : 'lock') + ' ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + (obj['active']=='1' ? 'Active' : 'Locked') + '</td></tr>';
+            str += '<div title="Checklist Progress"><img src="" class="small-image" />' + percentage + '% <progress value="' + percentage + '" max="100"></progress></div>';
+            str += '<div title="State"><img src="' + (obj['active']=='1' ? 'check' : 'lock') + '" class="small-image" />' + (obj['active']=='1' ? 'Active' : 'Locked') + '</div>';
         }
-        str += '</table>';
-        str += '</a>';
+        str += '</div>';
         
         return str;
     };

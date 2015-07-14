@@ -21,8 +21,7 @@ var PROFILE_EDIT_MODULE = new function() {
 		
     }).on('click',"#profile-cancel-button",function() {
 		
-		var user = GLOBAL_DATA.user;
-		PROFILE_MODULE.getProfile(user['id']);
+		PROFILE_MODULE.showPage();
 		
     });
 

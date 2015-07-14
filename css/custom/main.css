@@ -14,19 +14,19 @@ body {
 */
 
 div.panel {
-	position:fixed;
-	top:0px;
-	left:-70%;
 	width:50%;
 	height:100%;
+	position:fixed;
+	top:0px;
+	left:-60%;
 	background-color:#ab0000;
+	border:1px solid #570000;
 	-webkit-box-shadow: 16px 0px 26px -4px rgba(0,0,0,0.5);
 	-moz-box-shadow: 16px 0px 26px -4px rgba(0,0,0,0.5);
 	box-shadow: 16px 0px 26px -4px rgba(0,0,0,0.5);
 	z-index:1;
 	overflow-x:hidden;
 	overflow-y:auto;
-	border:1px solid #570000;
 }
 div.panel > div {
 	border-bottom:1px solid #570000;
@@ -79,18 +79,18 @@ div.header > div {
 div.header > div:hover {
 	background-color:red;
 }
+div.header .header-left {
+	float:left;
+}
+div.header .header-right {
+	float:right;
+}
 div.header .header-icon {
 	width:12vh;
 	height:100%;
 	background-repeat:no-repeat;
 	background-size: 50%;	
 	background-position: center;
-}
-div.header .header-left {
-	float:left;
-}
-div.header .header-right {
-	float:right;
 }
 div.header .header-icon-home {
 	background-image:url('../../images/site/svg/nav.svg');
@@ -101,6 +101,10 @@ div.header .header-icon-edit {
 div.header .header-icon-cancel {
 	background-image:url('../../images/site/svg/cancel.svg');
 }
+div.header .header-icon-add {
+	background-image:url('../../images/site/svg/add.svg');
+}
+
 
 /*
     PAGE
@@ -128,6 +132,25 @@ body > div.page > section {
 	cursor: pointer; 
 	cursor: hand;
 }
+#profile-edit-form textarea {
+	width:100%;
+}
+
+/*
+	PLACEMENT
+*/
+
+#placement-list {
+	font-size:2em;
+}
+
+
+
+
+
+
+
+
 
 /*
 	MAP
@@ -175,7 +198,10 @@ body > div.page > section {
 }
 
 .small-image {
-	width:50px;
+	width:0.8em;
+	padding:0.2em;
+	margin-right:0.2em;
+	background-color:black;
 }
 
 .message-image {

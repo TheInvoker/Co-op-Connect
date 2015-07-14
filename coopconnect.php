@@ -131,8 +131,9 @@
 				</div>
 				<div id="profile-edit-page" class="page" style="display:none;">
 					<div class="header">
-						<div class="header-icon header-left header-icon-cancel" id="profile-cancel-button"></div>
+						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
 						Profile Edit
+						<div class="header-icon header-right header-icon-cancel" id="profile-cancel-button"></div>
 					</div>
 
 					<section>
@@ -191,7 +192,7 @@
 										<label for="status">Status:</label>
 									</td>
 									<td>
-										<textarea name="status" cols="40" rows="2" maxlength="16777215"></textarea>
+										<textarea name="status" rows="2" maxlength="16777215"></textarea>
 									</td>
 								</tr>
 								<tr>
@@ -199,12 +200,12 @@
 										<label for="biotext">Bio Text:</label>
 									</td>
 									<td>
-										<textarea name="biotext" cols="40" rows="2" maxlength="4294967295"></textarea>
+										<textarea name="biotext" rows="2" maxlength="4294967295"></textarea>
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-										<fieldset id="profile_edit_department_rb" data-role="controlgroup" data-type="horizontal" data-mini="true">
+										<fieldset id="profile_edit_department_rb">
 											<legend>Co-op Department</legend>
 
 											<?php
@@ -230,37 +231,50 @@
 
 
 
-				<div style="display:none;">
 
-				<div id="placement-page" data-role="page" data-theme="b">
+
+				<div id="placement-page" class="page" style="display:none;">
 				
-					<div data-role="panel" id="placement-panel" data-display="push">
-						<ul data-role="listview">
-							<li><a id="placement-edit-button" href="#" class="ui-btn ui-icon-edit ui-btn-icon-left">Edit</a></li>
-							<li><a id="placement-checklist-button" href="#" class="ui-btn ui-icon-bullets ui-btn-icon-left">Checklist</a></li>
-							<li><a id="placement-map-button" href="#" class="ui-btn ui-icon-location ui-btn-icon-left">View On Map</a></li>
-							<li><a id="placement-delete-button" href="#" class="ui-btn ui-icon-delete ui-btn-icon-left">Delete</a></li>
-						</ul>
+				
+					<div id="placement-panel" class="panel">
+						<div id="placement-edit-button">
+							<img src="images/site/svg/home.svg"/>
+							Edit
+						</div>
+						<div id="placement-checklist-button">
+							<img src="images/site/svg/profile.svg"/>
+							Checklist
+						</div>
+						<div id="placement-map-button">
+							<img src="images/site/svg/placement.svg"/>
+							View On Map
+						</div>
+						<div id="placement-delete-button">
+							<img src="images/site/svg/search.svg"/>
+							Delete
+						</div>
 					</div>
 				
-					<div data-role="header">
-						<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-						<h1>Placements</h1>
-						<a id="add-placement-button" href="#" data-icon="plus">Add</a>
+					<div class="header">
+						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
+						Placements
+						<div class="header-icon header-right header-icon-add" id="add-placement-button"></div>
 					</div>
 
-					<div data-role="main" class="ui-content">
-						<ul id="placement-list" data-role="listview" data-filter="true" data-filter-placeholder="filter" data-inset="true">
+					<section>
+						<div id="placement-list">
 
-						</ul>
-					</div>
+						</div>
+					</section>
 				</div>
-				<div id="placement-edit-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<h1>Placement Edit</h1>
+				<div id="placement-edit-page" class="page" style="display:none;">
+					<div class="header">
+						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
+						Placement Edit
+						<div class="header-icon header-right header-icon-cancel" id="placement-cancel-button"></div>
 					</div>
 
-					<div data-role="main" class="ui-content">
+					<section>
 						<form id="placement-edit-form">
 
 							<label for="address">Address:</label>
@@ -294,10 +308,14 @@
 
 							<input type="submit" value="Save">
 						</form>
-					</div>
+					</section>
 				</div>
 
-
+				
+				
+				<div style="display:none;">
+				
+				
 				<div id="checklist-page" data-role="page" data-theme="b">
 					<div data-role="header">
 						<h1>Checklist</h1>
