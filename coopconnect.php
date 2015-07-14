@@ -276,37 +276,71 @@
 
 					<section>
 						<form id="placement-edit-form">
-
-							<label for="address">Address:</label>
-							<input name="address" type="text" maxlength="255" required>
-
-							<img src="images/site/powered-by-google-on-non-white.png" align="right"/>
-
 							<input name="name" type="hidden" maxlength="255">
 							<input name="locality" type="hidden" maxlength="255">
 							<input name="country" type="hidden" maxlength="255">
 							<input name="lat" type="hidden" maxlength="255">
 							<input name="lng" type="hidden" maxlength="255">
-
-							<label for="role">Role:</label>
-							<input name="role" type="text" maxlength="255" required>
-
-							<label for="company">Company:</label>
-							<input name="company" type="text" maxlength="255" required>
-
-							<label for="date_start">Start Date:</label>
-							<input name="date_start" type="date" required/>
-
-							<label for="date_end">End Date:</label>
-							<input name="date_end" type="date" required/>
-
-							<label for="active">Active:</label>
-							<select name="active" data-role="slider">
-								<option value="0">No</option>
-								<option value="1">Yes</option>
-							</select>
-
-							<input type="submit" value="Save">
+						
+							<table>
+								<tr>
+									<td>
+										<label for="address">Address:</label>
+									</td>
+									<td>
+										<input name="address" type="text" maxlength="255" required>
+										<img src="images/site/powered-by-google-on-non-white.png" align="right"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="role">Role:</label>
+									</td>
+									<td>
+										<input name="role" type="text" maxlength="255" required>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="company">Company:</label>
+									</td>
+									<td>
+										<input name="company" type="text" maxlength="255" required>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="date_start">Start Date:</label>
+									</td>
+									<td>
+										<input name="date_start" type="date" required/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="date_end">End Date:</label>
+									</td>
+									<td>
+										<input name="date_end" type="date" required/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="active">Active:</label>
+									</td>
+									<td>
+										<select name="active">
+											<option value="0">No</option>
+											<option value="1">Yes</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<input type="submit" value="Save"/>
+									</td>
+								</tr>
+							</table>
 						</form>
 					</section>
 				</div>
