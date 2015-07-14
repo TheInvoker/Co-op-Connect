@@ -4,7 +4,7 @@ var PLACEMENT_MODULE = new function() {
         response = null,
         placement = null;
 	
-	$(context).on('click','#placement-list > li > a', function() {
+	$(context).on('click','#placement-list > div', function() {
 		
 		// set the right placement object
         var pid = $(this).attr('data-pid'), i=0, l=response.length;
@@ -13,7 +13,8 @@ var PLACEMENT_MODULE = new function() {
             var obj = response[i];
             if (obj['id'] == pid) {
                 placement = obj;
-                return;
+				openPanel("#placement-panel");
+                return false;
             }
         }
 
@@ -100,13 +101,13 @@ var PLACEMENT_MODULE = new function() {
     var formatLocation = function(me, obj) {
         var str = '<div data-pid="' + obj['id'] + '">';
         str += '<div title="Address"><img src="images/site/svg/map.svg" class="small-image" />' + obj['address'] + ', ' + obj['city'] + ', ' + obj['country'] + '</div>';
-        str += '<div title="Role"><img src="" class="small-image" />' + obj['topic'] + '</div>';
-        str += '<div title="Company"><img src="" class="small-image" />' + obj['organization'] + '</div>';
-        str += '<div title="Date Worked"><img src="" class="small-image" />' + obj['date_started'] + ' to ' + obj['date_finished'] + '</div>';
+        str += '<div title="Role"><img src="images/site/svg/profile.svg" class="small-image" />' + obj['topic'] + '</div>';
+        str += '<div title="Company"><img src="images/site/svg/placement.svg" class="small-image" />' + obj['organization'] + '</div>';
+        str += '<div title="Date Worked"><img src="images/site/svg/date.svg" class="small-image" />' + obj['date_started'] + ' to ' + obj['date_finished'] + '</div>';
         if (me) {
             var percentage = 100.0 * obj['percentage'];
-            str += '<div title="Checklist Progress"><img src="" class="small-image" />' + percentage + '% <progress value="' + percentage + '" max="100"></progress></div>';
-            str += '<div title="State"><img src="' + (obj['active']=='1' ? 'check' : 'lock') + '" class="small-image" />' + (obj['active']=='1' ? 'Active' : 'Locked') + '</div>';
+            str += '<div title="Checklist Progress"><img src="images/site/svg/checklist.svg" class="small-image" />' + percentage + '% <progress value="' + percentage + '" max="100"></progress></div>';
+            str += '<div title="State"><img src="images/site/svg/' + (obj['active']=='1' ? 'unlock' : 'lock') + '.svg" class="small-image" />' + (obj['active']=='1' ? 'Active' : 'Locked') + '</div>';
         }
         str += '</div>';
         
