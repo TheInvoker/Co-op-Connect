@@ -238,19 +238,19 @@
 				
 					<div id="placement-panel" class="panel">
 						<div id="placement-edit-button">
-							<img src="images/site/svg/home.svg"/>
+							<img src="images/site/svg/edit.svg"/>
 							Edit
 						</div>
 						<div id="placement-checklist-button">
-							<img src="images/site/svg/profile.svg"/>
+							<img src="images/site/svg/checklist.svg"/>
 							Checklist
 						</div>
 						<div id="placement-map-button">
-							<img src="images/site/svg/placement.svg"/>
+							<img src="images/site/svg/map.svg"/>
 							View On Map
 						</div>
 						<div id="placement-delete-button">
-							<img src="images/site/svg/search.svg"/>
+							<img src="images/site/svg/cancel.svg"/>
 							Delete
 						</div>
 					</div>
