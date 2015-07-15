@@ -138,91 +138,47 @@
 
 					<section>
 						<form id="profile-edit-form">
-							<table>
-								<tr>
-									<td>
-										<label for="file">Avatar Image:</label>
-									</td>
-									<td>
-										<input name="file" type="file" accept="image/*">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="firstname">First Name:</label>
-									</td>
-									<td>
-										<input name="firstname" type="text" maxlength="255" required>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="lastname">Last Name:</label>
-									</td>
-									<td>
-										<input name="lastname" type="text" maxlength="255" required>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="email">Email Address:</label>
-									</td>
-									<td>
-										<input name="email" type="email" maxlength="255" required>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="phone">Phone Number:</label>
-									</td>
-									<td>
-										<input name="phone" type="tel" maxlength="255">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="website">Website:</label>
-									</td>
-									<td>
-										<input name="website" type="url" maxlength="255">
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="status">Status:</label>
-									</td>
-									<td>
-										<textarea name="status" rows="2" maxlength="16777215"></textarea>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="biotext">Bio Text:</label>
-									</td>
-									<td>
-										<textarea name="biotext" rows="2" maxlength="4294967295"></textarea>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">
-										<fieldset id="profile_edit_department_rb">
-											<legend>Co-op Department</legend>
-
-											<?php
-												$_GET['field'] = "department";
-												$_GET['radio'] = '1';
-												include "script/html/printfieldhtml.php";
-											?>
-
-										</fieldset>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">
-										<input type="submit" value="Save">
-									</td>
-								</tr>
-							</table>
+							<label for="file">Avatar Image:</label>
+							<br/>
+							<input name="file" type="file" accept="image/*">
+							<br/>
+							<label for="firstname">First Name:</label>
+							<br/>
+							<input name="firstname" type="text" maxlength="255" required>
+							<br/>
+							<label for="lastname">Last Name:</label>
+							<br/>
+							<input name="lastname" type="text" maxlength="255" required>
+							<br/>
+							<label for="email">Email Address:</label>
+							<br/>
+							<input name="email" type="email" maxlength="255" required>
+							<br/>
+							<label for="phone">Phone Number:</label>
+							<br/>
+							<input name="phone" type="tel" maxlength="255">
+							<br/>
+							<label for="website">Website:</label>
+							<br/>
+							<input name="website" type="url" maxlength="255">
+							<br/>
+							<label for="status">Status:</label>
+							<br/>
+							<textarea name="status" rows="2" maxlength="16777215"></textarea>
+							<br/>
+							<label for="biotext">Bio Text:</label>
+							<br/>
+							<textarea name="biotext" rows="4" maxlength="4294967295"></textarea>
+							<br/>
+							<label for="department">Co-op Department:</label>
+							<br/>
+							<?php
+								$_GET['field'] = "department";
+								$_GET['radio'] = '1';
+								include "script/html/printfieldhtml.php";
+							?>
+							<br/>
+							<input type="submit" value="Save">
 						</form>
 					</section>
 				</div>
@@ -281,66 +237,35 @@
 							<input name="country" type="hidden" maxlength="255">
 							<input name="lat" type="hidden" maxlength="255">
 							<input name="lng" type="hidden" maxlength="255">
-						
-							<table>
-								<tr>
-									<td>
-										<label for="address">Address:</label>
-									</td>
-									<td>
-										<input name="address" type="text" maxlength="255" required>
-										<img src="images/site/powered-by-google-on-non-white.png" align="right"/>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="role">Role:</label>
-									</td>
-									<td>
-										<input name="role" type="text" maxlength="255" required>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="company">Company:</label>
-									</td>
-									<td>
-										<input name="company" type="text" maxlength="255" required>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="date_start">Start Date:</label>
-									</td>
-									<td>
-										<input name="date_start" type="date" required/>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="date_end">End Date:</label>
-									</td>
-									<td>
-										<input name="date_end" type="date" required/>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<label for="active">Active:</label>
-									</td>
-									<td>
-										<select name="active">
-											<option value="0">No</option>
-											<option value="1">Yes</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">
-										<input type="submit" value="Save">
-									</td>
-								</tr>
-							</table>
+		
+							<label for="address">Address:</label>
+							<br/>
+							<input name="address" type="text" maxlength="255" required>
+							<br/>
+							<label for="role">Role:</label>
+							<br/>
+							<input name="role" type="text" maxlength="255" required>
+							<br/>
+							<label for="company">Company:</label>
+							<br/>
+							<input name="company" type="text" maxlength="255" required>
+							<br/>
+							<label for="date_start">Start Date:</label>
+							<br/>
+							<input name="date_start" type="date" placeholder="yyyy-mm-dd" required/>
+							<br/>
+							<label for="date_end">End Date:</label>
+							<br/>
+							<input name="date_end" type="date" placeholder="yyyy-mm-dd" required/>
+							<br/>
+							<label for="active">Active:</label>
+							<br/>
+							<select name="active">
+								<option value="0">No</option>
+								<option value="1">Yes</option>
+							</select>
+							<br/>
+							<input type="submit" value="Save">
 						</form>
 					</section>
 				</div>
@@ -693,9 +618,6 @@
 				<script src="js/plugin/markerclusterer_packed.js"></script>
 				<!-- Include the geolocation autocomplete library -->
 				<script src="js/plugin/jquery.geocomplete.min.js"></script>
-				<!-- Include the date picker library -->
-				<script src="js/plugin/picker.js"></script>
-				<script src="js/plugin/picker.date.js"></script>
 
 				<!-- my modules -->
 				<script src="js/module/navigation/mainmenu.js"></script>
@@ -713,10 +635,6 @@
 				<script src="js/module/thread/message.js"></script>
 				<script src="js/module/about/about.js"></script>
 				<script src="js/module/grid/grid.js"></script>
-				
-				<!-- Include the date picker css -->
-				<link rel="stylesheet" type="text/css" href="css/plugin/default.css">
-				<link rel="stylesheet" type="text/css" href="css/plugin/default.date.css">
 
 				<script>
 					GLOBAL_DATA.user = {

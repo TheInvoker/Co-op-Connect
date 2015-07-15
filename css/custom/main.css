@@ -133,6 +133,9 @@ body > div.page > section {
 #profile-edit-form textarea {
 	width:100%;
 }
+#profile-edit-form > input, #profile-edit-form > textarea {
+	margin-bottom:1em;
+}
 
 /*
 	PLACEMENT
@@ -148,7 +151,9 @@ body > div.page > section {
 	cursor: pointer; 
 	cursor: hand;
 }
-
+#placement-edit-form > input, #placement-edit-form > select {
+	margin-bottom:1em;
+}
 
 
 
