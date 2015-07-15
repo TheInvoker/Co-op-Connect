@@ -39,16 +39,14 @@ var PLACEMENT_EDIT_MODULE = new function() {
         switchPage();
         
         setFormFields(null);
-        setDateFields(true);
 
         pid = null;
     };
 
     this.setPlacementForEdit = function(obj) {
-        switchPage();
+		switchPage();
         
         setFormFields(obj);
-        setDateFields(false);
 
         pid = obj['id'];
     };
@@ -80,20 +78,11 @@ var PLACEMENT_EDIT_MODULE = new function() {
             swt.val(obj['active']);
 			
         } else {
-            //context.find("input").val("");
-            
             swt.val('1');
         }
         
         addr.geocomplete({ 
             details: "#placement-edit-form" 
         });
-
-        swt.slider('refresh');
-    };
-    
-    var setDateFields = function(setCurrentDate) {
-        var elements = $(context).find("#placement-edit-form").find("input[type=date]");
-        dateHandler(elements, setCurrentDate, function() {}, false);
     };
 };

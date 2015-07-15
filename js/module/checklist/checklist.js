@@ -3,7 +3,7 @@ var CHECKLIST_MODULE = new function () {
     var context = "#checklist-page",
 		response = null;
 	
-	$(context).on("click", "#done-checklist-button", function() {
+	$(context).on("click", "#checklist-accept-button", function() {
 		
 		// configure back button
         var user = GLOBAL_DATA.user;
@@ -22,9 +22,7 @@ var CHECKLIST_MODULE = new function () {
             id : obj['id'],
             page : "checklist/getchecklist"
         }, function(res) {
-            $.mobile.changePage(context, {
-                transition: "slide"
-            });
+            changePage(context);
 			
 			// save the data
 			response = res;

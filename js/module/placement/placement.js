@@ -3,7 +3,7 @@ var PLACEMENT_MODULE = new function() {
     var context = "#placement-page",
         response = null,
         placement = null;
-	
+
 	$(context).on('click','#placement-list > div', function() {
 		
 		// set the right placement object
@@ -20,8 +20,15 @@ var PLACEMENT_MODULE = new function() {
 
         placement = null;
 		
-    }).on('click','#placement-edit-button',function() {
+    }).on('click','#add-placement-button',function() {
 		
+		// set new placement button
+        PLACEMENT_EDIT_MODULE.newPlacement();
+		
+    });
+	
+	$("#placement-panel").on('click','#placement-edit-button',function() {
+
 		// set edit button
         PLACEMENT_EDIT_MODULE.setPlacementForEdit(placement);
 		
@@ -51,11 +58,6 @@ var PLACEMENT_MODULE = new function() {
 
             });
         }
-		
-    }).on('click','#add-placement-button',function() {
-		
-		// set new placement button
-        PLACEMENT_EDIT_MODULE.newPlacement();
 		
     });
 

@@ -252,11 +252,11 @@
 							<br/>
 							<label for="date_start">Start Date:</label>
 							<br/>
-							<input name="date_start" type="date" placeholder="yyyy-mm-dd" required/>
+							<input name="date_start" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d" required/>
 							<br/>
 							<label for="date_end">End Date:</label>
 							<br/>
-							<input name="date_end" type="date" placeholder="yyyy-mm-dd" required/>
+							<input name="date_end" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d" required/>
 							<br/>
 							<label for="active">Active:</label>
 							<br/>
@@ -272,22 +272,23 @@
 
 				
 				
-				<div style="display:none;">
+
 				
 				
-				<div id="checklist-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<h1>Checklist</h1>
-						<a id="done-checklist-button" href="#" data-icon="check" class="ui-btn-right">Done</a>
+				<div id="checklist-page" class="page" style="display:none;">
+					<div class="header">
+						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
+						Checklist
+						<div class="header-icon header-right header-icon-accept" id="checklist-accept-button"></div>
 					</div>
 
-					<div data-role="main" class="ui-content">
-						<fieldset id="checklistCB" data-role="controlgroup">
-						</fieldset>
-					</div>
+					<section>
+						<div id="checklistCB">
+						</div>
+					</section>
 				</div>
 
-
+				<div style="display:none;">
 
 				<div id="search-page" data-role="page" data-theme="b">
 				
