@@ -223,6 +223,7 @@ body > div.page > section {
 }
 .profile-icon {
 	width:9vw;
+	max-width:47px;
 	height:30px;
 	padding:10px;
 }
