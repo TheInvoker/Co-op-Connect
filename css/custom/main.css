@@ -16,6 +16,7 @@ body {
 
 div.panel {
 	width:50%;
+	max-width:232px;
 	height:100%;
 	position:fixed;
 	top:0px;
@@ -46,9 +47,6 @@ div.panel > div > img {
 	margin-right:0.4vw;
 }
 @media screen and (min-width: 465px) {
-    div.panel {
-		width:232px;
-	}
 	div.panel > div  {
 		padding:9px 0px 9px 9px;
 		font-size:23.2px;
@@ -224,6 +222,7 @@ body > div.page > section {
 	font-size:13px;
 }
 .profile-icon {
+	width:9vw;
 	height:30px;
 	padding:10px;
 }
@@ -247,7 +246,6 @@ body > div.page > section {
     background: #FFAB00;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
-    border-radius: 10px;
 	color:black;
 	padding:10px;
 	text-shadow:none;
