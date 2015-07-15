@@ -18,12 +18,10 @@ div.panel {
 	height:100%;
 	position:fixed;
 	top:0px;
-	left:-60%;
+	left:0;
+	transform:translateX(-100%);
 	background-color:#ab0000;
 	border:1px solid #570000;
-	-webkit-box-shadow: 16px 0px 26px -4px rgba(0,0,0,0.5);
-	-moz-box-shadow: 16px 0px 26px -4px rgba(0,0,0,0.5);
-	box-shadow: 16px 0px 26px -4px rgba(0,0,0,0.5);
 	z-index:1;
 	overflow-x:hidden;
 	overflow-y:auto;

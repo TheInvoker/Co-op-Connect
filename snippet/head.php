@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 <!-- Include the jQuery library -->
-<script src="js/plugin/jquery-2.1.4.min.js"></script>
+<script src="js/plugin/jquery-3.0.0-alpha1.min.js"></script>
 
 <!-- My code -->
 <script src="js/custom/common.js"></script>

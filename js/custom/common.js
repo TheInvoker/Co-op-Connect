@@ -216,13 +216,13 @@ function openPanel(panelID) {
 	$("div.panel").each(function(i, panel) {
 		closePanel(panel);
 	});
-	$(panelID).animate({
-		left:'0%'
+	$(panelID).css({
+		transform:'translateX(0%)'
 	},300);
 }
 function closePanel(panelID) {
-	$(panelID).animate({
-		left:'-60%'
+	$(panelID).css({
+		transform:'translateX(-100%)'
 	},300);
 }
 $(document).ready(function() {
