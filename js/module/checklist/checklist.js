@@ -12,7 +12,7 @@ var CHECKLIST_MODULE = new function () {
 	}).on("change", "#checklistCB input[type='checkbox']", function() {
 		
 		// configure checkbox clicks
-		setChecklistState($(this), $(this).is(":checked") ? 1 : 0);
+		setChecklistState($(this));
 		
 	});
 
@@ -46,22 +46,24 @@ var CHECKLIST_MODULE = new function () {
             var obj = response[i];
             var tagid = 'checklist-' + i;
 
-            myListContent += '<input name="' + tagid + '" id="' + tagid + '" ' + (obj['checked']=='0' ? '' : 'checked=""') + ' type="checkbox" data-pid="' + pid + '" data-tid="' + obj['task_id'] + '">';
-            myListContent += '<label for="' + tagid + '">' + formatChecklist(obj) + '</label>';
+			myListContent += '<div>';
+            myListContent += '<div><input name="' + tagid + '" id="' + tagid + '" ' + (obj['checked']=='0' ? '' : 'checked=""') + ' type="checkbox" data-pid="' + pid + '" data-tid="' + obj['task_id'] + '"></div>';
+            myListContent += formatChecklist(obj);
+			myListContent += '</div>';
         }
 
         field.html(myListContent);
     };
 
     var formatChecklist = function(obj) {
-        var str = '<table>';
-        str += '<tr title="Name"><td valign="top"><span class="ui-icon-arrow-r ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['name'] + '</td></tr>';
-        str += '<tr title="Description"><td valign="top"><span class="ui-icon-info ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + Autolinker.link(obj['description']) + '</td></tr>';
-        str += '</table>';
+        var str = '<div title="Name">' + obj['name'] + '</div>';
+        str += '<div title="Description">' + Autolinker.link(obj['description']) + '</div>';
         return str;
     };
 
-    var setChecklistState = function(me, state) {
+    var setChecklistState = function(me) {
+		var state = me.is(":checked") ? 1 : 0;
+		
 		var i, l=response.length;
 		for(i=0; i<l; i+=1) {
 			var task = response[i];
@@ -77,7 +79,6 @@ var CHECKLIST_MODULE = new function () {
 					});
 				}, function(data,status,xhr) {
 					me.prop("checked", !state);
-					me.checkboxradio("refresh");
 				});
 
 				return;
