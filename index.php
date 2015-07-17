@@ -59,31 +59,36 @@
 
 
 			<div id="register-page" class="page" style="display:none;">
-				<div data-role="header">
-					<h1>Register</h1>
+				<div class="header noselect">
+					Register
+					<div class="header-icon header-right header-icon-cancel" id="register-cancel-button"></div>
 				</div>
 
-				<div data-role="main" class="ui-content">
+				<section>
 					<form id="register-form">
-
 						<label for="firstname">First Name:</label>
+						<br/>
 						<input name="firstname" type="text" maxlength="255" required>
-
+						<br/>
 						<label for="lastname">Last Name:</label>
+						<br/>
 						<input name="lastname" type="text" maxlength="255" required>
-
+						<br/>
 						<label for="email">Email Address:</label>
+						<br/>
 						<input name="email" type="email" maxlength="255" required>
-
+						<br/>
 						<label for="password">Password:</label>
+						<br/>
 						<input name="password" type="password" maxlength="255" required>
-
+						<br/>
 						<label for="c-password">Confirm Password:</label>
+						<br/>
 						<input name="c-password" type="password" maxlength="255" required>
-
+						<br/>
 						<input type="submit" value="Register">
 					</form>
-				</div>
+				</section>
 			</div>
 			
 			<?php

@@ -17,12 +17,13 @@ var LOGIN_MODULE = new function() {
 
 		return false;
 		
-	}).on('click', "#register-button", function() {
-		
+	});
+	
+	$("#login-panel").on('click', "#login-register-button", function() {
 		// configure register button click
 		REGISTER_MODULE.register();
 		
-	}).on('click', "#forgot-button", function() {
+	}).on('click', "#login-forgot-button", function() {
 		
 		// configure forgot password button click
 		var email = prompt("Please enter your email adress:", "");

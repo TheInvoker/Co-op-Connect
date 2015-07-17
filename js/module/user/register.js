@@ -2,19 +2,12 @@ var REGISTER_MODULE = new function() {
     
     var context = "#register-page";
 
-    registerShowEvent(context, function(prev_id) {
-        resetForm();
-    });
-
     $(context).on('submit', "#register-form", function() {
         
         runAJAXSerial($(this).serialize(), {
             page : 'user/register'
         }, function(response) {
-			$.mobile.changePage( LOGIN_MODULE.getContext(), { 
-				transition: "slideup",
-				reverse: true
-			});    
+			changePage(LOGIN_MODULE.getContext());
 			showNotification("Registered", "", function() {
 			});
         }, function(data,status,xhr) {
@@ -23,12 +16,12 @@ var REGISTER_MODULE = new function() {
 
         return false;
 		
-    });
+    }).on('click', "#register-cancel-button", function() {
+		changePage(LOGIN_MODULE.getContext());
+	});
 
     this.register = function() {
-        $.mobile.changePage( context, { 
-            transition: "slideup"
-        });    
+        changePage(context);
     };
     
     var resetForm = function() {
