@@ -217,13 +217,13 @@ function openPanel(panelID) {
 		closePanel(panel);
 	});
 	$(panelID).css({
-		transform:'translateX(0%)'
-	},300);
+		left:'0px'
+	});
 }
 function closePanel(panelID) {
 	$(panelID).css({
-		transform:'translateX(-100%)'
-	},300);
+		left:''
+	});
 }
 $(document).ready(function() {
 	$("div.panel").on('click',function() {

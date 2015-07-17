@@ -21,7 +21,7 @@
 			<?php if ($errorMessage): ?>
 
 				<div id="error-page" class="page">
-					<div class="header">
+					<div class="header noselect">
 						Error
 					</div>
 					<section>
@@ -34,7 +34,7 @@
 			<?php else: ?>
 
 
-				<div id="menu-panel" class="panel">
+				<div id="menu-panel" class="panel noselect">
 					<div id="home-button">
 						<img src="images/site/svg/home.svg"/>
 						Home
@@ -78,7 +78,7 @@
 
 
 				<div id="grid-page" class="page" style="display:none;">
-					<div class="header">
+					<div class="header noselect">
 						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
 						Home
 					</div>
@@ -97,7 +97,7 @@
 				
 
 				<div id="profile-page" class="page" style="display:none;">
-					<div class="header">
+					<div class="header noselect">
 						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
 						Profile
 						<div class="header-icon header-right header-icon-edit" id="profile-edit-button"></div>
@@ -130,7 +130,7 @@
 					</section>
 				</div>
 				<div id="profile-edit-page" class="page" style="display:none;">
-					<div class="header">
+					<div class="header noselect">
 						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
 						Profile Edit
 						<div class="header-icon header-right header-icon-cancel" id="profile-cancel-button"></div>
@@ -192,7 +192,7 @@
 				<div id="placement-page" class="page" style="display:none;">
 				
 				
-					<div id="placement-panel" class="panel">
+					<div id="placement-panel" class="panel noselect">
 						<div id="placement-edit-button">
 							<img src="images/site/svg/edit.svg"/>
 							Edit
@@ -211,7 +211,7 @@
 						</div>
 					</div>
 				
-					<div class="header">
+					<div class="header noselect">
 						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
 						Placements
 						<div class="header-icon header-right header-icon-add" id="add-placement-button"></div>
@@ -224,7 +224,7 @@
 					</section>
 				</div>
 				<div id="placement-edit-page" class="page" style="display:none;">
-					<div class="header">
+					<div class="header noselect">
 						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
 						Placement Edit
 						<div class="header-icon header-right header-icon-cancel" id="placement-cancel-button"></div>
@@ -276,7 +276,7 @@
 				
 				
 				<div id="checklist-page" class="page" style="display:none;">
-					<div class="header">
+					<div class="header noselect">
 						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
 						Checklist
 						<div class="header-icon header-right header-icon-accept" id="checklist-accept-button"></div>

@@ -50,7 +50,7 @@ var CHECKLIST_MODULE = new function () {
             myListContent += '<label for="' + tagid + '">' + formatChecklist(obj) + '</label>';
         }
 
-        field.html(myListContent).trigger("create");
+        field.html(myListContent);
     };
 
     var formatChecklist = function(obj) {
