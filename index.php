@@ -34,10 +34,10 @@
 			
 				<div class="header noselect">
 					<div class="header-icon header-left header-icon-nav" data-panel="#login-panel"></div>
-					UTSC Co-op Connect
+					Login
 				</div>
 
-				<sectiom>
+				<section>
 					<center>
 						<img class="logo-image-home" src="./images/site/coopconnect.png" alt="Co-op Connect logo" title="Co-op Connect logo"/>
 					
@@ -54,7 +54,7 @@
 							<input type="submit" value="Login">
 						</form>
 					</center>
-				</sectiom>
+				</section>
 			</div>
 
 
