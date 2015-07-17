@@ -19,37 +19,46 @@
 
 		<?php else: ?>
 
-			<div id="login-page" data-role="page" data-theme="b">
+			<div id="login-page" class="page">
 			
-				<div data-role="panel" id="login-panel" data-display="push">
-					<ul data-role="listview">
-						<li><a id="register-button" href="#" class="ui-btn ui-icon-arrow-u ui-btn-icon-left">Register</a></li>
-						<li><a id="forgot-button" href="#" class="ui-btn ui-icon-info ui-btn-icon-left">Forgot Password</a></li>
-					</ul>
+				<div id="login-panel" class="panel noselect">
+					<div id="login-register-button">
+						<img src="images/site/svg/arrow.svg"/>
+						Register
+					</div>
+					<div id="login-forgot-button">
+						<img src="images/site/svg/info.svg"/>
+						Forgot Password
+					</div>
 				</div>
 			
-				<div data-role="header">
-					<a href="#login-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-					<h1>UTSC Co-op Connect</h1>
+				<div class="header noselect">
+					<div class="header-icon header-left header-icon-nav" data-panel="#login-panel"></div>
+					UTSC Co-op Connect
 				</div>
 
-				<div data-role="main" class="ui-content">
+				<sectiom>
 					<center>
 						<img class="logo-image-home" src="./images/site/coopconnect.png" alt="Co-op Connect logo" title="Co-op Connect logo"/>
-					</center>
+					
 
-					<form id="login-form">
-						<label for="email">Email Address:</label>
-						<input name="email" type="email" maxlength="255" value="ryan.dsouza@hotmail.ca" required>
-						<label for="password">Password:</label>
-						<input name="password" type="password" autocomplete="off" maxlength="255" value="test" required>
-						<input type="submit" value="Login">
-					</form>
-				</div>
+						<form id="login-form">
+							<label for="email">Email Address:</label>
+							<br/>
+							<input name="email" type="email" maxlength="255" value="ryan.dsouza@hotmail.ca" required>
+							<br/>
+							<label for="password">Password:</label>
+							<br/>
+							<input name="password" type="password" autocomplete="off" maxlength="255" value="test" required>
+							<br/>
+							<input type="submit" value="Login">
+						</form>
+					</center>
+				</sectiom>
 			</div>
 
 
-			<div id="register-page" data-role="page" data-theme="b">
+			<div id="register-page" class="page" style="display:none;">
 				<div data-role="header">
 					<h1>Register</h1>
 				</div>

@@ -79,7 +79,7 @@
 
 				<div id="grid-page" class="page" style="display:none;">
 					<div class="header noselect">
-						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						Home
 					</div>
 
@@ -98,7 +98,7 @@
 
 				<div id="profile-page" class="page" style="display:none;">
 					<div class="header noselect">
-						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						Profile
 						<div class="header-icon header-right header-icon-edit" id="profile-edit-button"></div>
 					</div>
@@ -131,7 +131,7 @@
 				</div>
 				<div id="profile-edit-page" class="page" style="display:none;">
 					<div class="header noselect">
-						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						Profile Edit
 						<div class="header-icon header-right header-icon-cancel" id="profile-cancel-button"></div>
 					</div>
@@ -212,7 +212,7 @@
 					</div>
 				
 					<div class="header noselect">
-						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						Placements
 						<div class="header-icon header-right header-icon-add" id="add-placement-button"></div>
 					</div>
@@ -225,7 +225,7 @@
 				</div>
 				<div id="placement-edit-page" class="page" style="display:none;">
 					<div class="header noselect">
-						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						Placement Edit
 						<div class="header-icon header-right header-icon-cancel" id="placement-cancel-button"></div>
 					</div>
@@ -277,7 +277,7 @@
 				
 				<div id="checklist-page" class="page" style="display:none;">
 					<div class="header noselect">
-						<div class="header-icon header-left header-icon-home" data-panel="#menu-panel"></div>
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						Checklist
 						<div class="header-icon header-right header-icon-accept" id="checklist-accept-button"></div>
 					</div>
