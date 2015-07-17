@@ -31,7 +31,7 @@ var PLACEMENT_EDIT_MODULE = new function() {
 		
     }).on('click',"#placement-cancel-button",function() {
 		
-		PLACEMENT_MODULE.showPage();
+		changePage(PLACEMENT_MODULE.getContext());
 		
     });
 

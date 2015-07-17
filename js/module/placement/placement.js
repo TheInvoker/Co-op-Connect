@@ -85,8 +85,8 @@ var PLACEMENT_MODULE = new function() {
         });
     };
 	
-	this.showPage = function() {
-		changePage(context);
+	this.getContext = function() {
+		return context;
 	};
 
     var displayPlacements = function(me, response) {
