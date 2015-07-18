@@ -216,7 +216,12 @@ div.header .header-icon-accept {
 #placement-edit-form > input, #placement-edit-form > select {
 	margin-bottom:1em;
 }
-
+.placement-small-icon {
+	width:1em;
+	padding:0.1em;
+	margin-right:0.5em;
+	background-color:#002350;
+}
 
 /*
     CHECKLIST
