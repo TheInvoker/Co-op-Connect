@@ -80,9 +80,8 @@
 				<div id="grid-page" class="page" style="display:none;">
 					<div class="header noselect">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
-						Home
+						<div class="name">Home</div>
 					</div>
-
 					<section>
 						<div id="newsgrid">
 						</div>
@@ -104,28 +103,30 @@
 					</div>
 
 					<section>
-						<h2 id="profile-fullname"></h2>
+						<div>
+							<div id="profile-fullname"></div>
 
-						<div id="profile-status" class="bubble multiline"></div>
-						
-						<img id="profile-avatar-image" class="avatar-image"/>
+							<div id="profile-status" class="bubble multiline"></div>
+							
+							<img id="profile-avatar-image"/>
 
-						<p id="profile-biotext" class="multiline"></p>
-						
-						<h3>Details:</h3>
-						
-						<table>
-							<tr><td>Role: </td><td id="profile-role"></td></tr>
-							<tr><td>Department: </td><td id="profile-department"></td></tr>
-							<tr><td>Member Since: </td><td id="profile-datejoined"></td></tr>
-						</table>
-						
-						<div id="profile-buttons">
-							<a id="profile-email" href="#"><img class="profile-icon" src="images/site/svg/email.svg"/></a>
-							<a id="profile-phone" href="#"><img class="profile-icon" src="images/site/svg/phone.svg"/></a>
-							<a id="profile-site" href="#" target="_blank"><img class="profile-icon" src="images/site/svg/world.svg"/></a>
-							<div id="profile-message"><img class="profile-icon" src="images/site/svg/message.svg"/></div>
-							<div id="profile-placements"><img class="profile-icon" src="images/site/svg/placement.svg"/></div>
+							<p id="profile-biotext" class="multiline"></p>
+							
+							<h3>Details:</h3>
+							
+							<table>
+								<tr><td>Role: </td><td id="profile-role"></td></tr>
+								<tr><td>Department: </td><td id="profile-department"></td></tr>
+								<tr><td>Member Since: </td><td id="profile-datejoined"></td></tr>
+							</table>
+							
+							<div id="profile-buttons">
+								<a id="profile-email" href="#"><img class="profile-icon" src="images/site/svg/email.svg"/></a>
+								<a id="profile-phone" href="#"><img class="profile-icon" src="images/site/svg/phone.svg"/></a>
+								<a id="profile-site" href="#" target="_blank"><img class="profile-icon" src="images/site/svg/world.svg"/></a>
+								<div id="profile-message"><img class="profile-icon" src="images/site/svg/message.svg"/></div>
+								<div id="profile-placements"><img class="profile-icon" src="images/site/svg/placement.svg"/></div>
+							</div>
 						</div>
 					</section>
 				</div>
@@ -137,49 +138,51 @@
 					</div>
 
 					<section>
-						<form id="profile-edit-form">
-							<label for="file">Avatar Image:</label>
-							<br/>
-							<input name="file" type="file" accept="image/*">
-							<br/>
-							<label for="firstname">First Name:</label>
-							<br/>
-							<input name="firstname" type="text" maxlength="255" required>
-							<br/>
-							<label for="lastname">Last Name:</label>
-							<br/>
-							<input name="lastname" type="text" maxlength="255" required>
-							<br/>
-							<label for="email">Email Address:</label>
-							<br/>
-							<input name="email" type="email" maxlength="255" required>
-							<br/>
-							<label for="phone">Phone Number:</label>
-							<br/>
-							<input name="phone" type="tel" maxlength="255">
-							<br/>
-							<label for="website">Website:</label>
-							<br/>
-							<input name="website" type="url" maxlength="255">
-							<br/>
-							<label for="status">Status:</label>
-							<br/>
-							<textarea name="status" rows="2" maxlength="16777215"></textarea>
-							<br/>
-							<label for="biotext">Bio Text:</label>
-							<br/>
-							<textarea name="biotext" rows="4" maxlength="4294967295"></textarea>
-							<br/>
-							<label for="department">Co-op Department:</label>
-							<br/>
-							<?php
-								$_GET['field'] = "department";
-								$_GET['radio'] = '1';
-								include "script/html/printfieldhtml.php";
-							?>
-							<br/>
-							<input type="submit" value="Save">
-						</form>
+						<div>
+							<form id="profile-edit-form">
+								<label for="file">Avatar Image:</label>
+								<br/>
+								<input name="file" type="file" accept="image/*">
+								<br/>
+								<label for="firstname">First Name:</label>
+								<br/>
+								<input name="firstname" type="text" maxlength="255" required>
+								<br/>
+								<label for="lastname">Last Name:</label>
+								<br/>
+								<input name="lastname" type="text" maxlength="255" required>
+								<br/>
+								<label for="email">Email Address:</label>
+								<br/>
+								<input name="email" type="email" maxlength="255" required>
+								<br/>
+								<label for="phone">Phone Number:</label>
+								<br/>
+								<input name="phone" type="tel" maxlength="255">
+								<br/>
+								<label for="website">Website:</label>
+								<br/>
+								<input name="website" type="url" maxlength="255">
+								<br/>
+								<label for="status">Status:</label>
+								<br/>
+								<textarea name="status" rows="2" maxlength="16777215"></textarea>
+								<br/>
+								<label for="biotext">Bio Text:</label>
+								<br/>
+								<textarea name="biotext" rows="4" maxlength="4294967295"></textarea>
+								<br/>
+								<label for="department">Co-op Department:</label>
+								<br/>
+								<?php
+									$_GET['field'] = "department";
+									$_GET['radio'] = '1';
+									include "script/html/printfieldhtml.php";
+								?>
+								<br/>
+								<input type="submit" value="Save">
+							</form>
+						</div>
 					</section>
 				</div>
 
@@ -190,8 +193,6 @@
 
 
 				<div id="placement-page" class="page" style="display:none;">
-				
-				
 					<div id="placement-panel" class="panel noselect">
 						<div id="placement-edit-button">
 							<img src="images/site/svg/edit.svg"/>
@@ -231,42 +232,44 @@
 					</div>
 
 					<section>
-						<form id="placement-edit-form">
-							<input name="name" type="hidden" maxlength="255">
-							<input name="locality" type="hidden" maxlength="255">
-							<input name="country" type="hidden" maxlength="255">
-							<input name="lat" type="hidden" maxlength="255">
-							<input name="lng" type="hidden" maxlength="255">
-		
-							<label for="address">Address:</label>
-							<br/>
-							<input name="address" type="text" maxlength="255" required>
-							<br/>
-							<label for="role">Role:</label>
-							<br/>
-							<input name="role" type="text" maxlength="255" required>
-							<br/>
-							<label for="company">Company:</label>
-							<br/>
-							<input name="company" type="text" maxlength="255" required>
-							<br/>
-							<label for="date_start">Start Date:</label>
-							<br/>
-							<input name="date_start" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d" required/>
-							<br/>
-							<label for="date_end">End Date:</label>
-							<br/>
-							<input name="date_end" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d" required/>
-							<br/>
-							<label for="active">Active:</label>
-							<br/>
-							<select name="active">
-								<option value="0">No</option>
-								<option value="1">Yes</option>
-							</select>
-							<br/>
-							<input type="submit" value="Save">
-						</form>
+						<div>
+							<form id="placement-edit-form">
+								<input name="name" type="hidden" maxlength="255">
+								<input name="locality" type="hidden" maxlength="255">
+								<input name="country" type="hidden" maxlength="255">
+								<input name="lat" type="hidden" maxlength="255">
+								<input name="lng" type="hidden" maxlength="255">
+			
+								<label for="address">Address:</label>
+								<br/>
+								<input name="address" type="text" maxlength="255" required>
+								<br/>
+								<label for="role">Role:</label>
+								<br/>
+								<input name="role" type="text" maxlength="255" required>
+								<br/>
+								<label for="company">Company:</label>
+								<br/>
+								<input name="company" type="text" maxlength="255" required>
+								<br/>
+								<label for="date_start">Start Date:</label>
+								<br/>
+								<input name="date_start" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d" required/>
+								<br/>
+								<label for="date_end">End Date:</label>
+								<br/>
+								<input name="date_end" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d" required/>
+								<br/>
+								<label for="active">Active:</label>
+								<br/>
+								<select name="active">
+									<option value="0">No</option>
+									<option value="1">Yes</option>
+								</select>
+								<br/>
+								<input type="submit" value="Save">
+							</form>
+						</div>
 					</section>
 				</div>
 
@@ -331,36 +334,38 @@
 					</div>
 
 					<section>
-						<form id="search-form">
-							<input name="search" type="search" maxlength="255">
-							<input type="submit" value="Search">
-						</form>
-						
-						<br/>
-						
-						<div class="divscrollable">
-							<table id="search-table" class="footable" data-page-navigation="#search-table-pagination" data-page-size="20">
-								<thead>
-									<tr>
-										<th data-type="numeric">#</th>
-										<th>Avatar</th>
-										<th>First Name</th>
-										<th>Last Name</th>
-										<th>Role</th>
-										<th>Department</th>
-										<th data-type="numeric">Matched Placements</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-								<tfoot>
-									<tr>
-										<td colspan="100%">
-											<div id="search-table-pagination" class="pagination pagination-centered hide-if-no-paging"></div>
-										</td>
-									</tr>
-								</tfoot>
-							</table>
+						<div>
+							<form id="search-form">
+								<input name="search" type="search" maxlength="255">
+								<input type="submit" value="Search">
+							</form>
+							
+							<br/>
+							
+							<div class="divscrollable">
+								<table id="search-table" class="footable" data-page-navigation="#search-table-pagination" data-page-size="20">
+									<thead>
+										<tr>
+											<th data-type="numeric">#</th>
+											<th>Avatar</th>
+											<th>First Name</th>
+											<th>Last Name</th>
+											<th>Role</th>
+											<th>Department</th>
+											<th data-type="numeric">Matched Placements</th>
+										</tr>
+									</thead>
+									<tbody>
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="100%">
+												<div id="search-table-pagination" class="pagination pagination-centered hide-if-no-paging"></div>
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
 						</div>
 					</section>
 				</div>
@@ -371,117 +376,119 @@
 					</div>
 
 					<section>
-						<form id="search-settings-form">
-							<h4>User Filters:</h4>
+						<div>
+							<form id="search-settings-form">
+								<h4>User Filters:</h4>
 
-							<label for="firstname">First Name:</label>
-							<br/>
-							<input name="firstname" type="text" maxlength="255">
-							<br/>
-							<label for="lastname">Last Name:</label>
-							<br/>
-							<input name="lastname" type="text" maxlength="255">
-							<br/>
-							<label for="email">Email Address:</label>
-							<br/>
-							<input name="email" type="text" maxlength="255">
-							<br/>
-							<br/>
-							<fieldset id="search_department_cb">
-								<legend>Co-op Department:</legend>
-								<div class="search-icons">
-									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
-								</div>
-								<?php
-									$_GET['field'] = "department";
-									$_GET['radio'] = '0';
-									include "script/html/printfieldhtml.php";
-								?>
-							</fieldset>
+								<label for="firstname">First Name:</label>
+								<br/>
+								<input name="firstname" type="text" maxlength="255">
+								<br/>
+								<label for="lastname">Last Name:</label>
+								<br/>
+								<input name="lastname" type="text" maxlength="255">
+								<br/>
+								<label for="email">Email Address:</label>
+								<br/>
+								<input name="email" type="text" maxlength="255">
+								<br/>
+								<br/>
+								<fieldset id="search_department_cb">
+									<legend>Co-op Department:</legend>
+									<div class="search-icons">
+										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+									</div>
+									<?php
+										$_GET['field'] = "department";
+										$_GET['radio'] = '0';
+										include "script/html/printfieldhtml.php";
+									?>
+								</fieldset>
 
-							<fieldset id="search_role_cb">
-								<legend>Role:</legend>
-								<div class="search-icons">
-									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
-								</div>
-								<?php
-									$_GET['field'] = "role";
-									$_GET['radio'] = '0';
-									include "script/html/printfieldhtml.php";
-								?>
+								<fieldset id="search_role_cb">
+									<legend>Role:</legend>
+									<div class="search-icons">
+										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+									</div>
+									<?php
+										$_GET['field'] = "role";
+										$_GET['radio'] = '0';
+										include "script/html/printfieldhtml.php";
+									?>
 
-							</fieldset>
+								</fieldset>
 
-							<h4>Placement Filters:</h4>
+								<h4>Placement Filters:</h4>
 
-							<fieldset id="search_city_cb">
-								<legend>City:</legend>
-								<div class="search-icons">
-									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
-								</div>
-								<?php
-									$_GET['field'] = "city";
-									$_GET['radio'] = '0';
-									include "script/html/printfieldhtml.php";
-								?>
+								<fieldset id="search_city_cb">
+									<legend>City:</legend>
+									<div class="search-icons">
+										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+									</div>
+									<?php
+										$_GET['field'] = "city";
+										$_GET['radio'] = '0';
+										include "script/html/printfieldhtml.php";
+									?>
 
-							</fieldset>
+								</fieldset>
 
-							<fieldset id="search_country_cb">
-								<legend>Country:</legend>
-								<div class="search-icons">
-									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
-								</div>
-								<?php
-									$_GET['field'] = "country";
-									$_GET['radio'] = '0';
-									include "script/html/printfieldhtml.php";
-								?>
+								<fieldset id="search_country_cb">
+									<legend>Country:</legend>
+									<div class="search-icons">
+										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+									</div>
+									<?php
+										$_GET['field'] = "country";
+										$_GET['radio'] = '0';
+										include "script/html/printfieldhtml.php";
+									?>
 
-							</fieldset>
+								</fieldset>
 
-							<fieldset id="search_topic_cb">
-								<legend>Role:</legend>
-								<div class="search-icons">
-									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
-								</div>
-								<?php
-									$_GET['field'] = "topic";
-									$_GET['radio'] = '0';
-									include "script/html/printfieldhtml.php";
-								?>
+								<fieldset id="search_topic_cb">
+									<legend>Role:</legend>
+									<div class="search-icons">
+										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+									</div>
+									<?php
+										$_GET['field'] = "topic";
+										$_GET['radio'] = '0';
+										include "script/html/printfieldhtml.php";
+									?>
 
-							</fieldset>
+								</fieldset>
 
-							<fieldset id="search_company_cb">
-								<legend>Company:</legend>
-								<div class="search-icons">
-									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
-								</div>
-								<?php
-									$_GET['field'] = "company";
-									$_GET['radio'] = '0';
-									include "script/html/printfieldhtml.php";
-								?>
+								<fieldset id="search_company_cb">
+									<legend>Company:</legend>
+									<div class="search-icons">
+										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+									</div>
+									<?php
+										$_GET['field'] = "company";
+										$_GET['radio'] = '0';
+										include "script/html/printfieldhtml.php";
+									?>
 
-							</fieldset>
-							<br/>
-							<label for="date_start">Start Date:</label>
-							<br/>
-							<input name="date_start" type="date"/>
-							<br/>
-							<label for="date_end">End Date:</label>
-							<br/>
-							<input name="date_end" type="date"/>
-							<br/>
-							<input name="active" type="hidden" maxlength="255" value="1">
-						</form>
+								</fieldset>
+								<br/>
+								<label for="date_start">Start Date:</label>
+								<br/>
+								<input name="date_start" type="date"/>
+								<br/>
+								<label for="date_end">End Date:</label>
+								<br/>
+								<input name="date_end" type="date"/>
+								<br/>
+								<input name="active" type="hidden" maxlength="255" value="1">
+							</form>
+						</div>
 					</section>
 				</div>
 

@@ -19,7 +19,7 @@ var GRID_MODULE = new function() {
         var grid = $("#newsgrid", context);
         grid.empty();
         
-        var items = 100;
+        var items = 10;
         
         var str = "";
         for (var i=0; i<items; i+=1) {

@@ -57,24 +57,55 @@ div.panel > div > img {
     }
 }
 
+
+/*
+    PAGE
+*/
+div.page {
+	height:100%;
+}
+div.page > div {
+	height:10%;
+}
+div.page > section {
+	height:90%;
+}
+div.page > section > div {
+	height:100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+	padding-left:10px;
+	padding-right:10px;
+}
+div.page > section > div:before {
+  content: "";
+  display: block;
+  height: 10px;
+  width: 100%;
+}
+div.page > section > div:after {
+  content: "";
+  display: block;
+  height: 10px;
+  width: 100%;
+}
+
 /*
 	HEADERS
 */
 
 div.header {
-	height:12vmin;
 	width:100%;
-	font-size:9vmin;
+	font-size:8vmin;
 	background-color:#002350;
 	color:white;
 	text-align:center;
 }
-div.header > div {
-	cursor: pointer; 
-	cursor: hand;
-}
-div.header > div:hover {
-	background-color:red;
+div.header > div.name {
+	position: relative;
+	top: 45%;
+	transform: translateY(-50%);
+	display:inline-block;
 }
 div.header .header-left {
 	float:left;
@@ -88,6 +119,10 @@ div.header .header-icon {
 	background-repeat:no-repeat;
 	background-size: 50%;	
 	background-position: center;
+	cursor: pointer;
+}
+div.header .header-icon:hover {
+	background-color:red;
 }
 div.header .header-icon-nav {
 	background-image:url('../../images/site/svg/nav.svg');
@@ -106,15 +141,6 @@ div.header .header-icon-accept {
 }
 
 
-/*
-    PAGE
-*/
-
-body > div.page > section {
-	height:84vh;
-	overflow-x:hidden;
-	padding:10px;
-}
 
 /*
 	LOGIN
@@ -137,11 +163,14 @@ body > div.page > section {
 	PROFILE
 */
 
+#profile-fullname {
+	font-size:28px;
+	margin-bottom:10px;
+	font-weight:bold;
+}
 #profile-avatar-image {
 	border:1px solid #002350;
 	display:block;
-}
-.avatar-image {
 	width:200px;
 }
 #profile-buttons {
