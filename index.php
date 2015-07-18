@@ -38,10 +38,9 @@
 				</div>
 
 				<section>
-					<center>
+					<div align="center">
 						<img class="logo-image-home" src="./images/site/coopconnect.png" alt="Co-op Connect logo" title="Co-op Connect logo"/>
-					
-
+				
 						<form id="login-form">
 							<label for="email">Email Address:</label>
 							<br/>
@@ -53,7 +52,7 @@
 							<br/>
 							<input type="submit" value="Login">
 						</form>
-					</center>
+					</div>
 				</section>
 			</div>
 
@@ -65,29 +64,31 @@
 				</div>
 
 				<section>
-					<form id="register-form">
-						<label for="firstname">First Name:</label>
-						<br/>
-						<input name="firstname" type="text" maxlength="255" required>
-						<br/>
-						<label for="lastname">Last Name:</label>
-						<br/>
-						<input name="lastname" type="text" maxlength="255" required>
-						<br/>
-						<label for="email">Email Address:</label>
-						<br/>
-						<input name="email" type="email" maxlength="255" required>
-						<br/>
-						<label for="password">Password:</label>
-						<br/>
-						<input name="password" type="password" maxlength="255" required>
-						<br/>
-						<label for="c-password">Confirm Password:</label>
-						<br/>
-						<input name="c-password" type="password" maxlength="255" required>
-						<br/>
-						<input type="submit" value="Register">
-					</form>
+					<div>
+						<form id="register-form">
+							<label for="firstname">First Name:</label>
+							<br/>
+							<input name="firstname" type="text" maxlength="255" required>
+							<br/>
+							<label for="lastname">Last Name:</label>
+							<br/>
+							<input name="lastname" type="text" maxlength="255" required>
+							<br/>
+							<label for="email">Email Address:</label>
+							<br/>
+							<input name="email" type="email" maxlength="255" required>
+							<br/>
+							<label for="password">Password:</label>
+							<br/>
+							<input name="password" type="password" maxlength="255" required>
+							<br/>
+							<label for="c-password">Confirm Password:</label>
+							<br/>
+							<input name="c-password" type="password" maxlength="255" required>
+							<br/>
+							<input type="submit" value="Register">
+						</form>
+					</div>
 				</section>
 			</div>
 			

@@ -12,7 +12,7 @@ var SEARCH_MODULE = new function() {
 
         });
         
-        //return false;
+        return false;
 		
     }).on("click", ".footable tbody tr.search-person", function(e) {
 		

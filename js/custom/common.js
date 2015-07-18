@@ -232,7 +232,6 @@ $(document).ready(function() {
 	});
 	$("body").on('click',function() {
 		closePanel("div.panel");
-		return false;
 	});
 	$("body > div.page > div.header > div[data-panel]").click(function() {
 		var panelID = $(this).attr("data-panel");
