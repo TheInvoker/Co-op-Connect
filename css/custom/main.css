@@ -207,9 +207,11 @@ div.header .header-icon-accept {
 #placement-list > div {
 	border:2px solid #002350;
 	padding:1em;
-	margin-bottom:2vh;
 	cursor: pointer; 
 	cursor: hand;
+}
+#placement-list > div:not(:last-child) {
+	margin-bottom:1em;
 }
 #placement-edit-form > input, #placement-edit-form > select {
 	margin-bottom:1em;
@@ -222,7 +224,9 @@ div.header .header-icon-accept {
 
 #checklistCB > div {
 	border:2px solid #002350;
-	margin-bottom:2vh;
+}
+#checklistCB > div:not(:last-child) {
+	margin-bottom:1em;
 }
 #checklistCB > div > div:nth-child(2) {
 	padding:1em;
