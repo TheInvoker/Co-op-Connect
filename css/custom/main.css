@@ -189,6 +189,58 @@ body > div.page > section {
 	float:right;
 	margin-bottom:1em;
 }
+.divscrollable {
+	width:100%;
+	overflow-y:hidden;
+	overflow-x:auto;
+}
+.footable {
+	text-shadow : none;
+	background : initial;
+	color: black;
+	border: 1px solid #8C8C8C;
+}
+.footable thead th {
+	color:white;
+	vertical-align: initial !important;
+	text-shadow: none !important;
+	box-shadow: none !important;
+	border-width: 0px !important;
+	background-color: rgb(101, 101, 101) !important;
+	background-image: linear-gradient(to bottom, rgb(101, 101, 101), rgb(47, 47, 47)) !important;
+}
+.footable tbody .footable-odd {
+	background-color: initial;
+}
+.footable tbody tr:hover {
+	color:white;
+	background-color: #3B3B3B !important;
+}
+.footable tbody  td {
+	border-width: 0px !important;
+}
+.footable tbody tr:not(:last-child) td {
+	border-bottom: 1px solid #8C8C8C !important;
+}
+.footable tbody tr.search_row_select {
+	color:white;
+	background-color: #005952 !important;
+}
+.footable tbody tr.search_row_select:hover {
+	background-color: #007A70 !important;
+}
+.footable tfoot  td {
+	box-shadow : none !important;
+	border-width: 0px !important;
+	background : linear-gradient(to bottom, rgb(101, 101, 101), rgb(47, 47, 47)) !important;
+}
+.search-person {
+	cursor: pointer; 
+	cursor: hand; 
+}
+.search-person:hover {
+	background-color:#2F2F2F;
+}
 
 /*
 	MAP
@@ -294,69 +346,6 @@ body > div.page > section {
 	border-left: 10px solid transparent; 
 }
 
-/*
-	TABLE
-*/
-
-.divscrollable {
-	width:100%;
-	overflow-y:hidden;
-	overflow-x:auto;
-}
-
-.footable {
-	text-shadow : none;
-	background : initial;
-	color: white;
-	border: 1px solid #8C8C8C;
-}
-.footable thead th {
-	vertical-align: initial !important;
-	text-shadow: none !important;
-	box-shadow: none !important;
-	border-width: 0px !important;
-	background-color: rgb(101, 101, 101) !important;
-	background-image: linear-gradient(to bottom, rgb(101, 101, 101), rgb(47, 47, 47)) !important;
-}
-.footable thead th:first-child {
-	border-radius: 5px 0px 0px 0px !important;
-}
-.footable thead th:last-child {
-	border-radius: 0px 5px 0px 0px !important;
-}
-.footable tbody .footable-odd {
-	background-color: initial;
-}
-.footable tbody tr:hover {
-	background-color: #3B3B3B !important;
-}
-.footable tbody  td {
-	border-width: 0px !important;
-}
-.footable tbody tr:not(:last-child) td {
-	border-bottom: 1px solid #8C8C8C !important;
-}
-.footable tbody tr.search_row_select {
-	background-color: #005952 !important;
-}
-.footable tbody tr.search_row_select:hover {
-	background-color: #007A70 !important;
-}
-.footable tfoot  td {
-	box-shadow : none !important;
-	border-width: 0px !important;
-	border-radius: 0px 0px 5px 5px !important;
-	background : linear-gradient(to bottom, rgb(101, 101, 101), rgb(47, 47, 47)) !important;
-}
-
-.search-person {
-	cursor: pointer; 
-	cursor: hand; 
-}
-
-.search-person:hover {
-	background-color:#2F2F2F;
-}
 
 
 
