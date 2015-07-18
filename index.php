@@ -34,7 +34,7 @@
 			
 				<div class="header noselect">
 					<div class="header-icon header-left header-icon-nav" data-panel="#login-panel"></div>
-					Login
+					<div class="name">Login</div>
 				</div>
 
 				<section>
@@ -60,7 +60,7 @@
 
 			<div id="register-page" class="page" style="display:none;">
 				<div class="header noselect">
-					Register
+					<div class="name">Register</div>
 					<div class="header-icon header-right header-icon-cancel" id="register-cancel-button"></div>
 				</div>
 

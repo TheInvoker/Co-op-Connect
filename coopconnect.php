@@ -98,7 +98,7 @@
 				<div id="profile-page" class="page" style="display:none;">
 					<div class="header noselect">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
-						Profile
+						<div class="name">Profile</div>
 						<div class="header-icon header-right header-icon-edit" id="profile-edit-button"></div>
 					</div>
 
@@ -133,7 +133,7 @@
 				<div id="profile-edit-page" class="page" style="display:none;">
 					<div class="header noselect">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
-						Profile Edit
+						<div class="name">Profile Edit</div>
 						<div class="header-icon header-right header-icon-cancel" id="profile-cancel-button"></div>
 					</div>
 
@@ -214,7 +214,7 @@
 				
 					<div class="header noselect">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
-						Placements
+						<div class="name">Placements</div>
 						<div class="header-icon header-right header-icon-add" id="add-placement-button"></div>
 					</div>
 
@@ -227,7 +227,7 @@
 				<div id="placement-edit-page" class="page" style="display:none;">
 					<div class="header noselect">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
-						Placement Edit
+						<div class="name">Placement Edit</div>
 						<div class="header-icon header-right header-icon-cancel" id="placement-cancel-button"></div>
 					</div>
 
@@ -281,7 +281,7 @@
 				<div id="checklist-page" class="page" style="display:none;">
 					<div class="header noselect">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
-						Checklist
+						<div class="name">Checklist</div>
 						<div class="header-icon header-right header-icon-accept" id="checklist-accept-button"></div>
 					</div>
 
@@ -329,7 +329,7 @@
 				
 					<div class="header noselect">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
-						Search
+						<div class="name">Search</div>
 						<div class="header-icon header-right header-icon-nav" data-panel="#search-panel"></div>
 					</div>
 
@@ -371,7 +371,7 @@
 				</div>
 				<div id="search-settings-page" class="page" style="display:none;">
 					<div class="header noselect">
-						Settings
+						<div class="name">Settings</div>
 						<div class="header-icon header-right header-icon-accept" id="search-accept-button"></div>
 					</div>
 
