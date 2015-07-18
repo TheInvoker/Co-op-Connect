@@ -3,8 +3,7 @@ var MAP_MODULE = new function() {
     var map = null,
         context = "#map-page";
     
-    $(context).on('click', "#map-setting-button", function() {
-		
+    $(context).on('click', "#map-settings-button", function() {
 		// set map settings button click
         MAP_SETTINGS_MODULE.initSettings();
 		
@@ -69,9 +68,7 @@ var MAP_MODULE = new function() {
 	};
 
     var showMapPage = function() {
-        $.mobile.changePage(context, { 
-            transition: "slide"
-        });
+        changePage(context);
     };
 
     var handleSettingsButton = function(state) {

@@ -25,9 +25,11 @@
 						Error
 					</div>
 					<section>
-						<?php
-							print $errorMessage;
-						?>
+						<div>
+							<?php
+								print $errorMessage;
+							?>
+						</div>
 					</section>
 				</div>
 
@@ -493,25 +495,29 @@
 					</section>
 				</div>
 
-				<div style="display:none;">
+				
 
 
 
-				<div id="map-page" data-role="page" data-theme="b">
-
-					<div data-role="header">
-						<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-						<h1>Map</h1>
+				<div id="map-page" class="page" style="display:none;">
+					<div class="header">
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
+						<div class="name">Map</div>
 					</div>
 
-					<div data-role="content" id="map_content">
-						<div role="main" class="ui-content" id="map_canvas">
+					<section>
+						<div id="map_canvas">
 							<!-- map loads here... -->
 						</div>
-					</div>
-
-					<a id="map-setting-button" href="#" class="ui-btn ui-shadow ui-icon-gear ui-btn-icon-notext mapControl"></a>
+						<div id="map-settings-button"><img class="mapControl" src="images/site/svg/settings.svg"/></div>
+					</section>
 				</div>
+				
+				
+				
+				<div style="display:none;">
+				
+				
 				<div id="map-settings-page" data-role="page" data-theme="b">
 					<div data-role="header">
 						<h1>Settings</h1>

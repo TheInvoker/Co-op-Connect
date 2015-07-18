@@ -339,9 +339,11 @@ div.header .header-icon-accept {
     left : 0 !important;     
 }
 .mapControl {
+	cursor:pointer;
 	background-color:transparent !important;
 	border-width:0px;
 	margin-right:7px;
+	width:2em;
 }
 
 

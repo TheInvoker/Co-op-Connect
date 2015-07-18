@@ -10,10 +10,7 @@ var MAP_SETTINGS_MODULE = new function() {
         }, function(response) {
             MAP_MODULE.showOnMap(response);
 			
-			$.mobile.changePage( MAP_MODULE.getContext(), { 
-				transition: "slide",
-				reverse: true
-			});  
+			changePage(MAP_MODULE.getContext());
         }, function(data,status,xhr) {
             
         });
@@ -25,6 +22,7 @@ var MAP_SETTINGS_MODULE = new function() {
         $.mobile.changePage(context, { 
             transition: "slide"
         });
+		changePage(context);
         
         initDate();
     };
