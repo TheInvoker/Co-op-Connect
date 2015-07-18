@@ -4,7 +4,6 @@ var SEARCH_MODULE = new function() {
         context = "#search-page";
 
     $(context).on('submit', "#search-form", function() {
-
         runAJAXSerial(SEARCH_SETTINGS_MODULE.getFormData() + "&" + $(this).serialize(), {
             page : 'search/search'
         }, function(response) {
@@ -13,7 +12,7 @@ var SEARCH_MODULE = new function() {
 
         });
         
-        return false;
+        //return false;
 		
     }).on("click", ".footable tbody tr.search-person", function(e) {
 		
