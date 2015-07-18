@@ -375,32 +375,37 @@
 							<h4>User Filters:</h4>
 
 							<label for="firstname">First Name:</label>
+							<br/>
 							<input name="firstname" type="text" maxlength="255">
-
+							<br/>
 							<label for="lastname">Last Name:</label>
+							<br/>
 							<input name="lastname" type="text" maxlength="255">
-
+							<br/>
 							<label for="email">Email Address:</label>
+							<br/>
 							<input name="email" type="text" maxlength="255">
-
+							<br/>
+							<br/>
 							<fieldset id="search_department_cb">
 								<legend>Co-op Department:</legend>
-								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
-								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
-
+								<div class="search-icons">
+									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+								</div>
 								<?php
 									$_GET['field'] = "department";
 									$_GET['radio'] = '0';
 									include "script/html/printfieldhtml.php";
 								?>
-
 							</fieldset>
 
 							<fieldset id="search_role_cb">
 								<legend>Role:</legend>
-								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
-								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
-
+								<div class="search-icons">
+									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+								</div>
 								<?php
 									$_GET['field'] = "role";
 									$_GET['radio'] = '0';
@@ -413,9 +418,10 @@
 
 							<fieldset id="search_city_cb">
 								<legend>City:</legend>
-								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
-								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
-
+								<div class="search-icons">
+									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+								</div>
 								<?php
 									$_GET['field'] = "city";
 									$_GET['radio'] = '0';
@@ -426,9 +432,10 @@
 
 							<fieldset id="search_country_cb">
 								<legend>Country:</legend>
-								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
-								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
-
+								<div class="search-icons">
+									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+								</div>
 								<?php
 									$_GET['field'] = "country";
 									$_GET['radio'] = '0';
@@ -439,9 +446,10 @@
 
 							<fieldset id="search_topic_cb">
 								<legend>Role:</legend>
-								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
-								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
-
+								<div class="search-icons">
+									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+								</div>
 								<?php
 									$_GET['field'] = "topic";
 									$_GET['radio'] = '0';
@@ -452,9 +460,10 @@
 
 							<fieldset id="search_company_cb">
 								<legend>Company:</legend>
-								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
-								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
-
+								<div class="search-icons">
+									<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
+									<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+								</div>
 								<?php
 									$_GET['field'] = "company";
 									$_GET['radio'] = '0';
@@ -462,13 +471,15 @@
 								?>
 
 							</fieldset>
-
+							<br/>
 							<label for="date_start">Start Date:</label>
+							<br/>
 							<input name="date_start" type="date"/>
-
+							<br/>
 							<label for="date_end">End Date:</label>
+							<br/>
 							<input name="date_end" type="date"/>
-
+							<br/>
 							<input name="active" type="hidden" maxlength="255" value="1">
 						</form>
 					</section>

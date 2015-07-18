@@ -2,20 +2,17 @@ var SEARCH_SETTINGS_MODULE = new function() {
     
     var context = "#search-settings-page";
 	
-	$(context).on('click', "#done-search-settings-button", function() {
+	$(context).on('click', "#search-accept-button", function() {
 		
-		$.mobile.changePage( SEARCH_MODULE.getContext(), { 
-			transition: "slide",
-			reverse: true
-		});   
+		changePage(SEARCH_MODULE.getContext());
 		
 	}).on('click', ".clear-cb-button", function() {
 		
-        $(this).parent().find("input").prop("checked", false).checkboxradio( "refresh" );
+        $(this).closest("fieldset").find("input").prop("checked", false);
 		
     }).on('click', ".selectall-cb-button", function() {
 		
-        $(this).parent().find("input").prop("checked", true).checkboxradio( "refresh" );
+        $(this).closest("fieldset").find("input").prop("checked", true);
 		
     });
 		
