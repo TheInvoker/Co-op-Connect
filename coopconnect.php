@@ -371,6 +371,7 @@
 				</div>
 				<div id="search-settings-page" class="page" style="display:none;">
 					<div class="header noselect">
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						<div class="name">Settings</div>
 						<div class="header-icon header-right header-icon-accept" id="search-accept-button"></div>
 					</div>
@@ -378,7 +379,7 @@
 					<section>
 						<div>
 							<form id="search-settings-form">
-								<h4>User Filters:</h4>
+								<div class="search-settings-title">User Filters:</div>
 
 								<label for="firstname">First Name:</label>
 								<br/>
@@ -419,8 +420,9 @@
 									?>
 
 								</fieldset>
-
-								<h4>Placement Filters:</h4>
+								
+								<br/>
+								<div class="search-settings-title">Placement Filters:</div>
 
 								<fieldset id="search_city_cb">
 									<legend>City:</legend>
@@ -480,12 +482,11 @@
 								<br/>
 								<label for="date_start">Start Date:</label>
 								<br/>
-								<input name="date_start" type="date"/>
+								<input name="date_start" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d"/>
 								<br/>
 								<label for="date_end">End Date:</label>
 								<br/>
-								<input name="date_end" type="date"/>
-								<br/>
+								<input name="date_end" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d"/>
 								<input name="active" type="hidden" maxlength="255" value="1">
 							</form>
 						</div>
