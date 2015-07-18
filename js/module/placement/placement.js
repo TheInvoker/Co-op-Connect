@@ -31,16 +31,19 @@ var PLACEMENT_MODULE = new function() {
 
 		// set edit button
         PLACEMENT_EDIT_MODULE.setPlacementForEdit(placement);
+		closePanel("div.panel");
 		
     }).on('click','#placement-checklist-button',function() {
 		
 		// set checklist button
         CHECKLIST_MODULE.getChecklist(placement);
+		closePanel("div.panel");
 		
     }).on('click','#placement-map-button',function() {
 		
 		// set map button
         MAP_MODULE.showPoint(placement);
+		closePanel("div.panel");
 		
     }).on('click','#placement-delete-button',function() {
 		
@@ -58,6 +61,7 @@ var PLACEMENT_MODULE = new function() {
 
             });
         }
+		closePanel("div.panel");
 		
     });
 

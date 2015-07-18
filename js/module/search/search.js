@@ -32,16 +32,19 @@ var SEARCH_MODULE = new function() {
 	$("#search-panel").on('click', "#search-settings-button", function() {
 		
         SEARCH_SETTINGS_MODULE.initSettings();
+		closePanel("div.panel");
 		
     }).on('click', "#search-none-button", function() {
 		
         var searchRows = getSearchRows();
         searchRows.removeClass("search_row_select");
+		closePanel("div.panel");
 		
     }).on('click', "#search-all-button", function() {
 		
         var searchRows = getSearchRows();
         searchRows.addClass("search_row_select");
+		closePanel("div.panel");
 		
     }).on('click', "#search-message-button", function() {
 		
@@ -58,13 +61,15 @@ var SEARCH_MODULE = new function() {
             
         });
 		
+		closePanel("div.panel");
+		
     }).on('click', "#search-email-button", function() {
 		
         var emailList = getDataList("data-email");
         var strList = emailList.join(";"); 
         
         window.location.href = "mailto:?bcc=" + strList;
-		
+		closePanel("div.panel");
     });
 
     this.initSearch = function() {
