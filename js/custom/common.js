@@ -213,9 +213,7 @@ function changePage(pageID) {
 
 // NAV DRAWER
 function openPanel(panelID) {
-	$("div.panel").each(function(i, panel) {
-		closePanel(panel);
-	});
+	closePanel("div.panel");
 	$(panelID).css({
 		left:'0px'
 	});
@@ -229,16 +227,17 @@ $(document).ready(function() {
 	$("div.panel").on('click',function() {
 		return false;
 	});
+	$("div.panel > div").on('click',function() {
+		closePanel($(this).parent());
+	});
 	$("body").on('click',function() {
 		closePanel("div.panel");
+		return false;
 	});
 	$("body > div.page > div.header > div[data-panel]").click(function() {
 		var panelID = $(this).attr("data-panel");
 		openPanel(panelID);
 		return false;
-	});
-	$( document ).on( "swipeleft", "body", function( e ) {
-		closePanel("div.panel");
 	});
 });
 
