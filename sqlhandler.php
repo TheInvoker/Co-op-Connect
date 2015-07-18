@@ -48,4 +48,8 @@
   		print(json_encode(array("code" => 200, "response" => $successMessage)));
   	}
 
+	// force client to redownload everything
+	header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
+	header("Pragma: no-cache"); // HTTP 1.0.
+	header("Expires: 0"); // Proxies.
 ?>

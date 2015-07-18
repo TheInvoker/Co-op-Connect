@@ -297,30 +297,43 @@
 				
 				
 				
-				<div style="display:none;">
-
-				<div id="search-page" data-role="page" data-theme="b">
 				
-					<div data-role="panel" id="search-panel" data-display="push" data-position="right">
-						<ul data-role="listview">
-							<li><a id="search-setting-button" href="#" class="ui-btn ui-icon-gear ui-btn-icon-left">Settings</a></li>
-							<li><a id="search-clear-all" href="#" class="ui-btn ui-icon-minus ui-btn-icon-left">Select None</a></li>
-							<li><a id="search-select-all" href="#" class="ui-btn ui-icon-plus ui-btn-icon-left">Select All</a></li>
-							<li><a id="search-message-all" href="#" class="ui-btn ui-icon-comment ui-btn-icon-left">Message</a></li>
-							<li><a id="search-email-all" href="#" class="ui-btn ui-icon-mail ui-btn-icon-left">Email</a></li>
-						</ul>
+
+				<div id="search-page" class="page" style="display:none;">
+				
+					<div id="search-panel" class="panel noselect">
+						<div id="search-settings-button">
+							<img src="images/site/svg/settings.svg"/>
+							Settings
+						</div>
+						<div id="search-none-button">
+							<img src="images/site/svg/circle.svg"/>
+							Select None
+						</div>
+						<div id="search-all-button">
+							<img src="images/site/svg/square.svg"/>
+							Select All
+						</div>
+						<div id="search-message-button">
+							<img src="images/site/svg/message.svg"/>
+							Message
+						</div>
+						<div id="search-email-button">
+							<img src="images/site/svg/email.svg"/>
+							Email
+						</div>
 					</div>
 				
-					<div data-role="header">
-						<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-						<h1>Search</h1>
-						<a href="#search-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
+					<div class="header noselect">
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
+						Search
+						<div class="header-icon header-right header-icon-nav" data-panel="#search-panel"></div>
 					</div>
 
-					<div data-role="main" class="ui-content">
+					<section>
 						<form id="search-form">
-							<input name="search" type="search" maxlength="255" data-mini="true">
-							<input type="submit" value="Search" data-mini="true">
+							<input name="search" type="search" maxlength="255">
+							<input type="submit" value="Search">
 						</form>
 						
 						<br/>
@@ -349,15 +362,15 @@
 								</tfoot>
 							</table>
 						</div>
-					</div>
+					</section>
 				</div>
-				<div id="search-settings-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<h1>Settings</h1>
-						<a id="done-search-settings-button" href="#" data-icon="check" class="ui-btn-right">Done</a>
+				<div id="search-settings-page" class="page" style="display:none;">
+					<div class="header noselect">
+						Settings
+						<div class="header-icon header-right header-icon-accept" id="search-accept-button"></div>
 					</div>
 
-					<div data-role="main" class="ui-content">
+					<section>
 						<form id="search-settings-form">
 							<h4>User Filters:</h4>
 
@@ -370,7 +383,7 @@
 							<label for="email">Email Address:</label>
 							<input name="email" type="text" maxlength="255">
 
-							<fieldset id="search_department_cb" data-role="controlgroup" data-mini="true">
+							<fieldset id="search_department_cb">
 								<legend>Co-op Department:</legend>
 								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
@@ -383,7 +396,7 @@
 
 							</fieldset>
 
-							<fieldset id="search_role_cb" data-role="controlgroup" data-mini="true">
+							<fieldset id="search_role_cb">
 								<legend>Role:</legend>
 								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
@@ -398,7 +411,7 @@
 
 							<h4>Placement Filters:</h4>
 
-							<fieldset id="search_city_cb" data-role="controlgroup" data-mini="true">
+							<fieldset id="search_city_cb">
 								<legend>City:</legend>
 								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
@@ -411,7 +424,7 @@
 
 							</fieldset>
 
-							<fieldset id="search_country_cb" data-role="controlgroup" data-mini="true">
+							<fieldset id="search_country_cb">
 								<legend>Country:</legend>
 								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
@@ -424,7 +437,7 @@
 
 							</fieldset>
 
-							<fieldset id="search_topic_cb" data-role="controlgroup" data-mini="true">
+							<fieldset id="search_topic_cb">
 								<legend>Role:</legend>
 								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
@@ -437,7 +450,7 @@
 
 							</fieldset>
 
-							<fieldset id="search_company_cb" data-role="controlgroup" data-mini="true">
+							<fieldset id="search_company_cb">
 								<legend>Company:</legend>
 								<a href="#" class="clear-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-minus ui-btn-icon-left">Select None</a>
 								<a href="#" class="selectall-cb-button ui-shadow ui-btn ui-corner-all ui-btn-inline ui-btn-b ui-mini ui-icon-plus ui-btn-icon-left">Select All</a>
@@ -458,10 +471,10 @@
 
 							<input name="active" type="hidden" maxlength="255" value="1">
 						</form>
-					</div>
+					</section>
 				</div>
 
-
+				<div style="display:none;">
 
 
 

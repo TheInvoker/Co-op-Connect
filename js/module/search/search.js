@@ -3,21 +3,7 @@ var SEARCH_MODULE = new function() {
     var page = 0,
         context = "#search-page";
 
-	swipePanelLeft(context, "#search-panel");
-	
-    registerShowEvent(context, function(prev_id) {
-        if (prev_id != SEARCH_SETTINGS_MODULE.getContext()) {
-            SEARCH_SETTINGS_MODULE.resetForm();
-        }
-    });
-	
-	$(context).find('.footable').footable();
-
-    $(context).on('click', "#search-setting-button", function() {
-		
-        SEARCH_SETTINGS_MODULE.initSettings();
-		
-    }).on('submit', "#search-form", function() {
+    $(context).on('submit', "#search-form", function() {
 
         runAJAXSerial(SEARCH_SETTINGS_MODULE.getFormData() + "&" + $(this).serialize(), {
             page : 'search/search'
@@ -41,17 +27,23 @@ var SEARCH_MODULE = new function() {
 		PROFILE_MODULE.getProfile(id);
 		e['_selectedProfile'] = true;
 		
-    }).on('click', "#search-clear-all", function() {
+    });
+	
+	$("#search-panel").on('click', "#search-settings-button", function() {
+		
+        SEARCH_SETTINGS_MODULE.initSettings();
+		
+    }).on('click', "#search-none-button", function() {
 		
         var searchRows = getSearchRows();
         searchRows.removeClass("search_row_select");
 		
-    }).on('click', "#search-select-all", function() {
+    }).on('click', "#search-all-button", function() {
 		
         var searchRows = getSearchRows();
         searchRows.addClass("search_row_select");
 		
-    }).on('click', "#search-message-all", function() {
+    }).on('click', "#search-message-button", function() {
 		
         var idList = getDataList("data-uid");
         var strList = idList.join(",");
@@ -66,7 +58,7 @@ var SEARCH_MODULE = new function() {
             
         });
 		
-    }).on('click', "#search-email-all", function() {
+    }).on('click', "#search-email-button", function() {
 		
         var emailList = getDataList("data-email");
         var strList = emailList.join(";"); 
@@ -76,9 +68,7 @@ var SEARCH_MODULE = new function() {
     });
 
     this.initSearch = function() {
-        $.mobile.changePage(context, { 
-            transition: "slide"
-        });
+        changePage(context);
         
         clearPage();
     };

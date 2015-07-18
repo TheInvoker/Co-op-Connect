@@ -20,9 +20,7 @@ var SEARCH_SETTINGS_MODULE = new function() {
     });
 		
     this.initSettings = function() {
-        $.mobile.changePage(context, { 
-            transition: "slide"
-        });
+        changePage(context);
         
         var elements = $(context).find("#search-settings-form").find("input[type=date]");
         dateHandler(elements, false, function() {}, true);
