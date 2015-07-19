@@ -12,7 +12,6 @@ var MAP_MODULE = new function() {
 
     this.showMap = function() {
         changePage(context, function() {
-			alert($(context).find('#map_canvas').prop('init'));
 			if ($(context).find('#map_canvas').prop('init')) {
 				MAP_SETTINGS_MODULE.getLocations();
 			} else {

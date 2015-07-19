@@ -50,7 +50,6 @@ var PLACEMENT_MODULE = new function() {
                 page : 'placement/deleteplacements',
                 id : placement['id']
             }, function(response) {
-                $(context).find('#placement-panel').panel('close');
                 $(context).find('#placement-list > li > a[data-pid=' + placement['id'] + ']').parent().remove();
 				showNotification("Placement Deleted", placement["organization"], function() {
 				});

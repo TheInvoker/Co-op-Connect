@@ -593,6 +593,8 @@
 					</section>
 				</div>
 
+				
+				
 				<div id="about-page" class="page" style="display:none;">
 					<div class="header">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>

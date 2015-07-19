@@ -74,19 +74,19 @@ div.page > section > div {
 	height:100%;
     overflow-x: hidden;
     overflow-y: auto;
-	padding-left:10px;
-	padding-right:10px;
+	padding-left:1em;
+	padding-right:1em;
 }
 div.page > section > div:before {
   content: "";
   display: block;
-  height: 10px;
+  height: 1em;
   width: 100%;
 }
 div.page > section > div:after {
   content: "";
   display: block;
-  height: 10px;
+  height: 1em;
   width: 100%;
 }
 
@@ -161,6 +161,25 @@ div.header .header-icon-arrowdown {
 	margin-top:1em;
 	margin-bottom:1em;
 	display:block;
+}
+
+/*
+	GRID
+*/
+
+.grid-item{
+	width: 200px;
+	height: 200px;
+	background: black;
+	transition: all 600ms ease;
+	margin:5px;
+	float:left;
+	cursor: pointer; 
+	cursor: hand; 
+}
+
+.grid-item:hover{
+	box-shadow: 0px 0px 10px #fff;
 }
 
 
@@ -463,6 +482,27 @@ div.header .header-icon-arrowdown {
 
 
 /*
+	RESOURCES
+*/
+#resource-list > table {
+	border:2px solid #002350;
+	/*margin:1em 1em 0em 1em;*/
+	width:100%;
+}
+#resource-list > table > tbody > tr > td:first-child {
+	width:1em;
+}
+#resource-list > table:not(:last-child) {
+	margin-bottom:1em;
+}
+.resource-small-icon {
+	width:1em;
+	padding:0.1em;
+	margin-right:0.5em;
+	background-color:#002350;
+}
+
+/*
 	ABOUT
 */
 
@@ -473,34 +513,11 @@ div.header .header-icon-arrowdown {
 }
 
 
-/*
-	GRID
-*/
-
-.grid-item{
-	width: 200px;
-	height: 200px;
-	background: black;
-	transition: all 600ms ease;
-	margin:5px;
-	float:left;
-	cursor: pointer; 
-	cursor: hand; 
-}
-
-.grid-item:hover{
-	box-shadow: 0px 0px 10px #fff;
-}
 
 
 /*
 	OTHER
 */
-
-.mywrap {
-	white-space:normal;
-	word-wrap: break-word;
-}
 
 .new_item {
 	background-color:#005952 !important;

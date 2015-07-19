@@ -59,24 +59,27 @@ var RESOURCE_MODULE = new function() {
         
         for(i=0; i<l; i+=1) {
             var obj = response[i];
-            myListContent += '<div' + checkNew(obj) + '>' + formatResource(obj) + '</div>';
+            myListContent += formatResource(obj);
         }
         
         list.append(myListContent);
     };
-    
+
+    var formatResource = function(obj) {
+        var str = '<table class="multiline' + checkNew(obj) + '">';
+		str += '<tr>';
+        str += '<td title="Description" valign="top"><img src="images/site/svg/note.svg" class="resource-small-icon" /></td><td>' + Autolinker.link(obj['text']) + '</td>';
+        str += '</tr><tr>';
+		str += '<td title="Last Updated" valign="top"><img src="images/site/svg/date.svg" class="resource-small-icon" /></td><td>' + obj['date_modified'] + '</td>';
+        str += '</tr>';
+		str += '</table>';
+        return str;
+    };
+	
     var checkNew = function(obj) {
         if (obj['new']=='1') {
-            return ' class="new_item"'; 
+            return ' new_item'; 
         }
         return '';
-    };
-    
-    var formatResource = function(obj) {
-        var str = '<table>';
-        str += '<tr title="Description"><td valign="top"><span class="ui-icon-alert ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap multiline">' + Autolinker.link(obj['text']) + '</td></tr>';
-        str += '<tr title="Last Updated"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td valign="top" class="mywrap">' + obj['date_modified'] + '</td></tr>';
-        str += '</table>';
-        return str;
     };
 };

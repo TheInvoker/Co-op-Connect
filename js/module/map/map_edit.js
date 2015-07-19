@@ -22,8 +22,6 @@ var MAP_SETTINGS_MODULE = new function() {
 
     this.initSettings = function() {
 		changePage(context,function(){});
-        
-        initDate();
     };
 
     this.getLocations = function() {
@@ -34,4 +32,6 @@ var MAP_SETTINGS_MODULE = new function() {
         var elements = $(context).find("#map-filter-form").find("input[type=date]");
         dateHandler(elements, true, MAP_MODULE.getLocations, true);
     };
+	
+	initDate();
 };
