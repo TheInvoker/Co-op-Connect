@@ -16,7 +16,9 @@ var MAP_SETTINGS_MODULE = new function() {
         });
         
         return false;
-    });
+    }).on('click', "#map-cancel-button", function() {
+		changePage(MAP_MODULE.getContext(),function(){});
+	});
 
     this.initSettings = function() {
 		changePage(context,function(){});

@@ -142,6 +142,9 @@ div.header .header-icon-accept {
 div.header .header-icon-settings {
 	background-image:url('../../images/site/svg/settings.svg');
 }
+div.header .header-icon-arrowdown {
+	background-image:url('../../images/site/svg/arrowdown.svg');
+}
 
 
 /*
@@ -448,6 +451,8 @@ div.header .header-icon-settings {
 	font-size:13px;
 }
 
+
+
 /*
 	THREAD
 */
@@ -456,6 +461,16 @@ div.header .header-icon-settings {
 	margin-left:5px;
 }
 
+
+/*
+	ABOUT
+*/
+
+.about-title {
+	font-size:28px;
+	margin-bottom:10px;
+	font-weight:bold;
+}
 
 
 /*

@@ -3,7 +3,7 @@ var RESOURCE_MODULE = new function() {
     var page = 0,
         context = "#resource-page";
 
-    $(context).on('click', "#more-resource-button", function() {
+    $(context).on('click', "#resource-showmore-button", function() {
         
         runAJAXSerial('', {
             page : 'resource/getresources',
@@ -33,9 +33,7 @@ var RESOURCE_MODULE = new function() {
 			// update global vars
             page = 1;
             
-            $.mobile.changePage(context, { 
-                transition: "slide"
-            });
+            changePage(context, function(){});
             
             // clear
             emptyScreen();

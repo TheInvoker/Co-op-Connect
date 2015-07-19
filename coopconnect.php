@@ -515,8 +515,8 @@
 				<div id="map-settings-page" class="page" style="display:none;">
 					<div class="header">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
-						Settings
-						<div class="header-icon header-right header-icon-accept" id="map-accept-button"></div>
+						<div class="name">Settings</div>
+						<div class="header-icon header-right header-icon-cancel" id="map-cancel-button"></div>
 					</div>
 				
 					<section>
@@ -576,88 +576,88 @@
 						</form>
 					</div>
 				</div>
-
-
-				<div id="resource-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-						<h1>Resources</h1>
-						<a id="more-resource-button" href="#" data-icon="arrow-d">Show More</a>
-					</div>
-
-					<div data-role="main" class="ui-content">
-						<ul id="resource-list" data-role="listview" data-filter="true" data-filter-placeholder="filter" data-inset="true">
-
-						</ul>
-					</div>
+				
 				</div>
 
-				<div id="about-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-						<h1>About</h1>
+				<div id="resource-page" class="page" style="display:none;">
+					<div class="header">
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
+						<div class="name">Resources</div>
+						<div class="header-icon header-right header-icon-arrowdown" id="resource-showmore-button"></div>
 					</div>
 
-					<div data-role="main" class="ui-content">
-						<section>
-							<header>
-								<h1>UTSC Co-op Connect</h1><div id="about-version"></div>
-								<script>
-									document.getElementById("about-version").innerHTML = GLOBAL_DATA.version;
-								</script>
-							</header>
-						</section>
-						
-						<section>
-							<header>
-								<h4>Description:</h4>
-							</header>
-							<p>
-								Co-op Connect is a social platform designed to enhance the work term experience of co-op students in UTSC. It includes tools that can help users to search for other relavent people who might be of some help. It also allows for efficient communication between users using a built in messaging service. Users also get access to public resources and tools for keeping track of tasks.
-							</p>
-						</section>
-						
-						<section>
-							<header>
-								<h4>Background Story:</h4>
-							</header>
-							<p>
-								This app was originally developed for the Android O.S. for the <a href="http://blog.utsc.utoronto.ca/appstar" target="_blank">AppStar</a> contest at <a href="http://blog.utsc.utoronto.ca/thehub" target="_blank">TheHub</a> in 2013 for the <a href="http://www.utsc.utoronto.ca/admissions/programs/international-development-studies" target="_blank">IDS</a> department in UTSC. This app won first place in the education category. To see details, click <a href="http://blog.utsc.utoronto.ca/thehub/2013/10/13/appstar-2013-1st-prize-education-goes-to-ids-connect" target="_blank">here</a> and <a href="http://ose.utsc.utoronto.ca/ose/story.php?id=5422" target="_blank">here</a>. In early 2015, it was ported to a web app, optimized for mobile devices and generalized for all co-op departments in UTSC.
-							</p>
-						</section>
-						
-						<section>
-							<header>
-								<h4>Developers:</h4>
-							</header>
-							<ol>
-								<li><a href="http://www.linkedin.com/profile/view?id=282676120" target="_blank">Ryan D'Souza</a></li>
-							</ol>
-						</section>
-						
-						<section>
-							<header>
-								<h4>Plugins:</h4>
-							</header>
-							<ol>
-								<li><a href="http://jquery.com" target="_blank">jQuery</a></li>
-								<li><a href="http://jquerymobile.com" target="_blank">jQuery Mobile</a></li>
-								<li><a href="https://github.com/gregjacobs/Autolinker.js" target="_blank">Autolinker</a></li>
-								<li><a href="https://developers.google.com/maps/documentation/javascript" target="_blank">Google Maps</a></li>
-								<li><a href="http://ubilabs.github.io/geocomplete" target="_blank">Geocomplete</a></li>
-								<li><a href="https://code.google.com/p/jquery-ui-map" target="_blank">jquery-ui-map</a></li>
-								<li><a href="https://code.google.com/p/google-maps-utility-library-v3/wiki/Libraries" target="_blank">google-maps-utility-library-v3</a></li>
-								<li><a href="http://amsul.ca/pickadate.js" target="_blank">pickadate</a></li>
-								<li><a href="https://github.com/alexgibson/shake.js" target="_blank">shake</a></li>
-								<li><a href="http://fooplugins.com/plugins/footable-jquery" target="_blank">footable</a></li>
-								<li><a href="http://malsup.com/jquery/block" target="_blank">jQuery BlockUI</a></li>
-							</ol>
-						</section>
+					<section>
+						<div id="resource-list">
+						</div>
+					</section>
+				</div>
+
+				<div id="about-page" class="page" style="display:none;">
+					<div class="header">
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
+						<div class="name">About</div>
 					</div>
+
+					<section>
+						<div>
+							<section>
+								<header>
+									<div class="about-title">UTSC Co-op Connect</div>
+									<div id="about-version"></div>
+									<script>
+										document.getElementById("about-version").innerHTML = GLOBAL_DATA.version;
+									</script>
+								</header>
+							</section>
+							
+							<section>
+								<header>
+									<h4>Description:</h4>
+								</header>
+								<p>
+									Co-op Connect is a social platform designed to enhance the work term experience of co-op students in UTSC. It includes tools that can help users to search for other relavent people who might be of some help. It also allows for efficient communication between users using a built in messaging service. Users also get access to public resources and tools for keeping track of tasks.
+								</p>
+							</section>
+							
+							<section>
+								<header>
+									<h4>Background Story:</h4>
+								</header>
+								<p>
+									This app was originally developed for the Android O.S. for the <a href="http://blog.utsc.utoronto.ca/appstar" target="_blank">AppStar</a> contest at <a href="http://blog.utsc.utoronto.ca/thehub" target="_blank">TheHub</a> in 2013 for the <a href="http://www.utsc.utoronto.ca/admissions/programs/international-development-studies" target="_blank">IDS</a> department in UTSC. This app won first place in the education category. To see details, click <a href="http://blog.utsc.utoronto.ca/thehub/2013/10/13/appstar-2013-1st-prize-education-goes-to-ids-connect" target="_blank">here</a> and <a href="http://ose.utsc.utoronto.ca/ose/story.php?id=5422" target="_blank">here</a>. In early 2015, it was ported to a web app, optimized for mobile devices and generalized for all co-op departments in UTSC.
+								</p>
+							</section>
+							
+							<section>
+								<header>
+									<h4>Developers:</h4>
+								</header>
+								<ol>
+									<li><a href="http://www.linkedin.com/profile/view?id=282676120" target="_blank">Ryan D'Souza</a></li>
+								</ol>
+							</section>
+							
+							<section>
+								<header>
+									<h4>Plugins:</h4>
+								</header>
+								<ol>
+									<li><a href="http://jquery.com" target="_blank">jQuery</a></li>
+									<li><a href="https://github.com/gregjacobs/Autolinker.js" target="_blank">Autolinker</a></li>
+									<li><a href="https://developers.google.com/maps/documentation/javascript" target="_blank">Google Maps</a></li>
+									<li><a href="http://ubilabs.github.io/geocomplete" target="_blank">Geocomplete</a></li>
+									<li><a href="http://gmap3.net" target="_blank">gmap3</a></li>
+									<li><a href="http://fooplugins.com/plugins/footable-jquery" target="_blank">footable</a></li>
+									<li><a href="http://malsup.com/jquery/block" target="_blank">jQuery BlockUI</a></li>
+									<li><div>Icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div></li>
+								</ol>
+							</section>
+						</div>
+					</section>
 				</div>
 
 				
-				</div>
+
 				
 				<?php
 					include "snippet/snippet1.php";

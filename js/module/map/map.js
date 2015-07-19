@@ -12,6 +12,7 @@ var MAP_MODULE = new function() {
 
     this.showMap = function() {
         changePage(context, function() {
+			alert($(context).find('#map_canvas').prop('init'));
 			if ($(context).find('#map_canvas').prop('init')) {
 				MAP_SETTINGS_MODULE.getLocations();
 			} else {
@@ -39,69 +40,71 @@ var MAP_MODULE = new function() {
         // clear markers
 		$(context).find('#map_canvas').gmap3({
 			clear: {
-				name:"marker"
-			}
-		});
-
-        // add new markers
-        var i=0, l=locations.length, markerArray = [];
-        for (i=0; i<l; i+=1) {
-            var loc = locations[i];
-			markerArray.push({
-				latLng: [loc['latitude'], loc['longitude']], 
-				data:loc["address"],  
-				options: {
-					icon:'http://maps.google.com/mapfiles/ms/icons/' + loc['color'] + '-dot.png'
-				}
-			});
-        }
-		
-		$(context).find('#map_canvas').gmap3({
-			marker:{
-				values : markerArray,
-				cluster:{
-					radius:100,
-					0: {
-						content: "<div class='cluster cluster-1'>CLUSTER_COUNT</div>",
-						width: 53,
-						height: 52
-					},
-					20: {
-						content: "<div class='cluster cluster-2'>CLUSTER_COUNT</div>",
-						width: 56,
-						height: 55
-					},
-					50: {
-						content: "<div class='cluster cluster-3'>CLUSTER_COUNT</div>",
-						width: 66,
-						height: 65
+				name:"marker",
+				callback : function() {
+					
+					// add new markers
+					var i=0, l=locations.length, markerArray = [];
+					for (i=0; i<l; i+=1) {
+						var loc = locations[i];
+						markerArray.push({
+							latLng: [loc['latitude'], loc['longitude']], 
+							data:loc["address"],  
+							options: {
+								icon:'http://maps.google.com/mapfiles/ms/icons/' + loc['color'] + '-dot.png'
+							}
+						});
 					}
-				},
-				options : {
-					draggable: false
-				},
-				events:{
-					mouseover: function(marker, event, context){
-						var map = $(this).gmap3("get"),
-							infowindow = $(this).gmap3({get:{name:"infowindow"}});
-						if (infowindow){
-							infowindow.open(map, marker);
-							infowindow.setContent(context.data);
-						} else {
-							$(this).gmap3({
-								infowindow:{
-									anchor:marker, 
-									options:{content: context.data}
+					
+					$(context).find('#map_canvas').gmap3({
+						marker:{
+							values : markerArray,
+							cluster:{
+								radius:100,
+								0: {
+									content: "<div class='cluster cluster-1'>CLUSTER_COUNT</div>",
+									width: 53,
+									height: 52
+								},
+								20: {
+									content: "<div class='cluster cluster-2'>CLUSTER_COUNT</div>",
+									width: 56,
+									height: 55
+								},
+								50: {
+									content: "<div class='cluster cluster-3'>CLUSTER_COUNT</div>",
+									width: 66,
+									height: 65
 								}
-							});
+							},
+							options : {
+								draggable: false
+							},
+							events:{
+								mouseover: function(marker, event, context){
+									var map = $(this).gmap3("get"),
+										infowindow = $(this).gmap3({get:{name:"infowindow"}});
+									if (infowindow){
+										infowindow.open(map, marker);
+										infowindow.setContent(context.data);
+									} else {
+										$(this).gmap3({
+											infowindow:{
+												anchor:marker, 
+												options:{content: context.data}
+											}
+										});
+									}
+								},
+								mouseout: function(){
+									var infowindow = $(this).gmap3({get:{name:"infowindow"}});
+									if (infowindow){
+										infowindow.close();
+									}
+								}
+							}
 						}
-					},
-					mouseout: function(){
-						var infowindow = $(this).gmap3({get:{name:"infowindow"}});
-						if (infowindow){
-							infowindow.close();
-						}
-					}
+					});
 				}
 			}
 		});
