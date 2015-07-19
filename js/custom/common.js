@@ -76,14 +76,6 @@ function dateHandler(elements, putCurrentDate, changefunction, showClearButton) 
         if (putCurrentDate) {
             picker.val(today);
         }
-
-        picker.pickadate({
-            format: 'yyyy-mm-dd',
-            clear: showClearButton ? 'Clear' : '',
-            onSet: function(context) {
-                changefunction();
-            }
-        });
     }
 }
 

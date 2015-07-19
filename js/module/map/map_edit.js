@@ -19,9 +19,6 @@ var MAP_SETTINGS_MODULE = new function() {
     });
 
     this.initSettings = function() {
-        $.mobile.changePage(context, { 
-            transition: "slide"
-        });
 		changePage(context);
         
         initDate();

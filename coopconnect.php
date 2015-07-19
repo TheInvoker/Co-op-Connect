@@ -503,38 +503,44 @@
 					<div class="header">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						<div class="name">Map</div>
+						<div class="header-icon header-right header-icon-settings" id="map-settings-button"></div>
 					</div>
 
 					<section>
 						<div id="map_canvas">
 							<!-- map loads here... -->
 						</div>
-						<div id="map-settings-button"><img class="mapControl" src="images/site/svg/settings.svg"/></div>
+					</section>
+				</div>
+				<div id="map-settings-page" class="page" style="display:none;">
+					<div class="header">
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
+						Settings
+						<div class="header-icon header-right header-icon-accept" id="map-accept-button"></div>
+					</div>
+				
+					<section>
+						<div>
+							<form id="map-filter-form">
+								<label for="map_date_start">Start Date:</label>
+								<br/>
+								<input name="map_date_start" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d"/>
+								<br/>
+								<label for="map_date_end">End Date:</label>
+								<br/>
+								<input name="map_date_end" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d"/>
+								<br/>
+								<input type="submit" value="Update">
+							</form>
+						</div>
 					</section>
 				</div>
 				
 				
 				
+				
+				
 				<div style="display:none;">
-				
-				
-				<div id="map-settings-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<h1>Settings</h1>
-					</div>
-				
-					<div data-role="main" class="ui-content">
-						<form id="map-filter-form">
-							<label for="map_date_start">Start Date:</label>
-							<input name="map_date_start" type="date"/>
-							<label for="map_date_end">End Date:</label>
-							<input name="map_date_end" type="date"/>
-							<input type="submit" value="Update">
-						</form>
-					</div>
-				</div>
-				
-				
 				
 				
 				<div id="thread-page" data-role="page" data-theme="b">
@@ -658,12 +664,10 @@
 					include "snippet/snippet2.php";
 				?>
 				
-				<!-- Include the Google maps library -->
-				<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-				<!-- Include the jquery maps library -->
-				<script src="js/plugin/jquery.ui.map.full.min.js"></script>
-				<!-- Include the maps clusterer library -->
-				<script src="js/plugin/markerclusterer_packed.js"></script>
+				<!-- Include the google maps library -->
+				<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+				<!-- Include the gmap3 library -->
+				<script src="js/plugin/gmap3.min.js"></script>
 				<!-- Include the geolocation autocomplete library -->
 				<script src="js/plugin/jquery.geocomplete.min.js"></script>
 
