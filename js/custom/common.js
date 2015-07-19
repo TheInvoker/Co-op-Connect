@@ -186,13 +186,15 @@ function unescapeHTML(str) {
 
 // PAGE CHANGE
 
-function changePage(pageID) {
+function changePage(pageID, callback) {
 	var curPage = $("body > div.page:visible");
 	if (curPage.length == 0) {
 		$("body > " + pageID).fadeIn(500);
 	} else if ("#" + curPage.attr("id") != pageID) {
 		curPage.fadeOut(500,function() {
-			$("body > " + pageID).fadeIn(500);
+			$("body > " + pageID).fadeIn(500, function() {
+				callback();
+			});
 		});
 	}
 }

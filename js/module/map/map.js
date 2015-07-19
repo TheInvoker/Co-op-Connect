@@ -11,23 +11,27 @@ var MAP_MODULE = new function() {
     });
 
     this.showMap = function() {
-        showMapPage();
-
-        if ($(context).find('#map_canvas').prop('init')) {
-            MAP_SETTINGS_MODULE.getLocations();
-        } else {
-            initMap();
-        }
+        changePage(context, function() {
+			if ($(context).find('#map_canvas').prop('init')) {
+				MAP_SETTINGS_MODULE.getLocations();
+			} else {
+				startMap(function() {
+					MAP_SETTINGS_MODULE.getLocations();
+				});
+			}
+		});
     };
 
     this.showPoint = function(obj) {
-        showMapPage();
-        
-        if ($(context).find('#map_canvas').prop('init')) {
-            displayPointOnMap(obj);
-        } else {
-            initPointMap(obj);
-        }
+        changePage(context, function() {
+			if ($(context).find('#map_canvas').prop('init')) {
+				MAP_MODULE.showOnMap([obj]);
+			} else {
+				startMap(function() {
+					MAP_MODULE.showOnMap([obj]);
+				});
+			}	
+		});
     };
 
     this.showOnMap = function(locations) {
@@ -39,14 +43,10 @@ var MAP_MODULE = new function() {
 			}
 		});
 
-        var i=0, l=locations.length;
-
         // add new markers
-		var markerArray = [];
+        var i=0, l=locations.length, markerArray = [];
         for (i=0; i<l; i+=1) {
-            
             var loc = locations[i];
-
 			markerArray.push({
 				latLng: [loc['latitude'], loc['longitude']], 
 				data:loc["address"],  
@@ -112,21 +112,37 @@ var MAP_MODULE = new function() {
 	};
 
 	
-	
-    var showMapPage = function() {
-        changePage(context);
-    };
 
-    var initMap = function() {
-		if ( navigator.geolocation ) {
+	var startMap = function(callback) {
+		$(context).find('#map_canvas').gmap3({
+			map:{
+				options:{
+					center:DEFAULT_LOCATION,
+					zoom:10,
+					mapTypeId: google.maps.MapTypeId.TERRAIN,
+					mapTypeControl: true,
+					mapTypeControlOptions: {
+						style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+					},
+					navigationControl: true,
+					scrollwheel: true,
+					streetViewControl: true
+				},
+				callback : function() {
+					$(context).find('#map_canvas').prop('init', true);
+					getMyLocation();
+					callback();
+				}
+			}
+		});
+	};
+	
+	var getMyLocation = function() {
+		if (navigator.geolocation) {
 			// Find the users current position.  Cache the location for 5 minutes, timeout after 6 seconds
 			navigator.geolocation.getCurrentPosition(function (pos) {
-				startMap([pos.coords.latitude, pos.coords.longitude]);
-				MAP_SETTINGS_MODULE.getLocations();
+				setLocation([pos.coords.latitude, pos.coords.longitude]);
 			}, function (error) {
-				startMap(DEFAULT_LOCATION);
-				MAP_SETTINGS_MODULE.getLocations();
-				
 				switch(error.code) {
 					case error.PERMISSION_DENIED:
 						alert("Could not get your location. User denied the request for Geolocation.");
@@ -148,39 +164,16 @@ var MAP_MODULE = new function() {
 				enableHighAccuracy:true, 
 				timeout: 6000
 			});
-		} else {
-			startMap(DEFAULT_LOCATION);
-			MAP_SETTINGS_MODULE.getLocations();
 		}
-    };
-	
-	var startMap = function(startLocation) {
-		$(context).find('#map_canvas').gmap3({
-		 map:{
-			options:{
-			 center:startLocation,
-			 zoom:10,
-			 mapTypeId: google.maps.MapTypeId.TERRAIN,
-			 mapTypeControl: true,
-			 mapTypeControlOptions: {
-			   style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-			 },
-			 navigationControl: true,
-			 scrollwheel: true,
-			 streetViewControl: true
-			}
-		 }
-		});
-		$(context).find('#map_canvas').prop('init', true);
 	};
-    
-    var initPointMap = function(obj) {
-        $(context).find('#map_canvas').gmap().bind('init', function(ev, thismap) {
-
-            map = thismap;
-            $(this).prop('init', true);
-                    
-            displayPointOnMap(obj);
-        });
-    };
+	
+	var setLocation = function(location) {
+		$(context).find('#map_canvas').gmap3({
+			map:{
+				options:{
+					center:location
+				}
+			}
+		});
+	};
 };
