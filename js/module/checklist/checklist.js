@@ -22,7 +22,7 @@ var CHECKLIST_MODULE = new function () {
             id : obj['id'],
             page : "checklist/getchecklist"
         }, function(res) {
-            changePage(context);
+            changePage(context,function(){});
 			
 			// save the data
 			response = res;

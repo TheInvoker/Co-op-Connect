@@ -21,12 +21,12 @@ var PROFILE_EDIT_MODULE = new function() {
 		
     }).on('click',"#profile-cancel-button",function() {
 		
-		PROFILE_MODULE.showPage();
+		changePage(PROFILE_MODULE.getContext(),function(){});
 		
     });
 
     this.editProfileHandler = function(response) {
-        changePage(context);
+        changePage(context,function(){});
         
         setProfileForEdit(response);
     };

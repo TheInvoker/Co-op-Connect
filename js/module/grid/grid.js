@@ -10,7 +10,7 @@ var GRID_MODULE = new function() {
     });
 
     this.setGrid = function() {
-        changePage(context);
+        changePage(context,function(){});
 		
 		setGrid();
     };

@@ -10,7 +10,7 @@ var MAP_SETTINGS_MODULE = new function() {
         }, function(response) {
             MAP_MODULE.showOnMap(response);
 			
-			changePage(MAP_MODULE.getContext());
+			changePage(MAP_MODULE.getContext(),function(){});
         }, function(data,status,xhr) {
             
         });
@@ -19,7 +19,7 @@ var MAP_SETTINGS_MODULE = new function() {
     });
 
     this.initSettings = function() {
-		changePage(context);
+		changePage(context,function(){});
         
         initDate();
     };

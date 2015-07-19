@@ -72,7 +72,7 @@ var PLACEMENT_MODULE = new function() {
             // record response
             response = res;
             
-            changePage(context);
+            changePage(context,function(){});
 
             // add data to listview
             displayPlacements(me, res);

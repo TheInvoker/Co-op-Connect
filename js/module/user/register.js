@@ -21,7 +21,7 @@ var REGISTER_MODULE = new function() {
 	});
 
     this.register = function() {
-        changePage(context);
+        changePage(context,function(){});
     };
     
     var resetForm = function() {

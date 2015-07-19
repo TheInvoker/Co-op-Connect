@@ -52,7 +52,7 @@ var PLACEMENT_EDIT_MODULE = new function() {
     };
     
     var switchPage = function() {
-        changePage(context);
+        changePage(context,function(){});
     };
 
     var setFormFields = function(obj) {

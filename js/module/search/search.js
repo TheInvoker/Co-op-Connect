@@ -66,7 +66,7 @@ var SEARCH_MODULE = new function() {
     });
 
     this.initSearch = function() {
-        changePage(context);
+        changePage(context,function(){});
         
         clearPage();
     };

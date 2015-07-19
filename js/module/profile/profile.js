@@ -26,7 +26,7 @@ var PROFILE_MODULE = new function() {
             response = res;
             user_id = uid;
 
-            changePage(context);
+            changePage(context,function(){});
             
             displayProfile();
             
@@ -37,8 +37,8 @@ var PROFILE_MODULE = new function() {
         });
     };
 	
-	this.showPage = function() {
-		changePage(context);
+	this.getContext = function() {
+		return context;
 	};
     
     var displayProfile = function() {

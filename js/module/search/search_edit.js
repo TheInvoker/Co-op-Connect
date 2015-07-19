@@ -17,7 +17,7 @@ var SEARCH_SETTINGS_MODULE = new function() {
     });
 		
     this.initSettings = function() {
-        changePage(context);
+        changePage(context,function(){});
         
         var elements = $(context).find("#search-settings-form").find("input[type=date]");
         dateHandler(elements, false, function() {}, true);
