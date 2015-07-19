@@ -59,11 +59,10 @@ var RESOURCE_MODULE = new function() {
         
         for(i=0; i<l; i+=1) {
             var obj = response[i];
-            myListContent += '<li' + checkNew(obj) + '>' + formatResource(obj) + '</li>';
+            myListContent += '<div' + checkNew(obj) + '>' + formatResource(obj) + '</div>';
         }
         
-        list.append(myListContent).listview().trigger('create');
-        list.listview('refresh');
+        list.append(myListContent);
     };
     
     var checkNew = function(obj) {

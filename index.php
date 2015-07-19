@@ -4,7 +4,6 @@
 	
 		<?php
 			include "snippet/head.php";
-			
 			include "config/common.php";
 		?>
 		
@@ -19,7 +18,7 @@
 
 		<?php else: ?>
 
-			<div id="login-page" class="page">
+			<div id="login-page" class="page" style="display:none;">
 			
 				<div id="login-panel" class="panel noselect">
 					<div id="login-register-button">
@@ -100,6 +99,10 @@
 			<script src="js/module/user/login.js"></script>
 			<script src="js/module/user/register.js"></script>
 
+			<script>
+				//GRID_MODULE.setGrid();
+			</script>
+			
 		<?php endif ?>
 
 	</body>

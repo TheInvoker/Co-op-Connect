@@ -539,45 +539,46 @@
 				
 				
 				
-				
-				<div style="display:none;">
-				
-				
-				<div id="thread-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<a href="#menu-panel" class="ui-btn ui-shadow ui-icon-bars ui-btn-icon-notext"></a>
-						<h1>Threads</h1>
+				<div id="thread-page" class="page" style="display:none;">
+					<div class="header">
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
+						<div class="name">Threads</div>
 					</div>
 
-					<div data-role="main" class="ui-content">
-						<ul id="thread-list" data-role="listview" data-filter="true" data-filter-placeholder="filter" data-inset="true">
-						</ul>
-						<div data-role="popup" id="memberList-popup">
-							<div style="margin:5px;">
-								<ul id="member-list" data-role="listview" data-filter="true" data-filter-placeholder="filter" data-inset="true">
-								</ul>
+					<section>
+						<div>
+							<div id="thread-list">
+							</div>
+							<div id="memberList-popup">
+								<div style="margin:5px;">
+									<div id="member-list">
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
+					</section>
 				</div>
-				<div id="message-page" data-role="page" data-theme="b">
-					<div data-role="header">
-						<a id="more-message-button" href="#" data-icon="arrow-d" class="ui-btn-right">Show More</a>
-						<h1>Messages</h1>
+				<div id="message-page" class="page" style="display:none;">
+					<div class="header">
+						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
+						<div class="name">Messages</div>
+						<div class="header-icon header-right header-icon-arrowdown" id="message-showmore-button"></div>
 					</div>
 
-					<div data-role="main" class="ui-content">
-						<div id="message-list">
+					<section>
+						<div>
+							<div id="message-list">
+							</div>
+
+							<form id="message-form">
+								<textarea name="message" cols="40" rows="2" maxlength="255"></textarea>
+								<input type="submit" value="Send">
+							</form>
 						</div>
-
-						<form id="message-form">
-							<textarea name="message" cols="40" rows="2" maxlength="255"></textarea>
-							<input type="submit" value="Send">
-						</form>
-					</div>
+					</section>
 				</div>
 				
-				</div>
+
 
 				<div id="resource-page" class="page" style="display:none;">
 					<div class="header">
