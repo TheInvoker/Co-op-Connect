@@ -41,7 +41,7 @@ var THREAD_MODULE = new function() {
         PROFILE_MODULE.getProfile($(this).attr("data-uid"));
         return false;
 		
-    }).on('click', "#thread-list > div", function() {
+    }).on('click', "#thread-list > table", function() {
 		
         var tid = $(this).attr('data-tid');
         MESSAGE_MODULE.gotoMessage(tid);
@@ -110,7 +110,7 @@ var THREAD_MODULE = new function() {
 		str += '<td valign="top"><img src="images/site/svg/profile.svg" class="thread-small-icon" /></td>';
         str += '<td>' + picList + '</td>';
         str += '<td align="right">' + (obj['extra'] > 0 ? "<div title='Show All' data-tid='" + obj['id'] + "' class='memberList-button'>(Show All)</div>" : "") + '</td>';
-        str += '<td align="right"><div title="Add Member" class="add-member-button" data-tid="' + obj['id'] + '"><img src="images/site/svg/adduser.svg" class="thread-add-user-button" /></div></td>';
+        str += '<td align="right"><div title="Add Member" data-tid="' + obj['id'] + '"><img src="images/site/svg/adduser.svg" class="add-member-button thread-add-user-button" /></div></td>';
 		str += '</tr>';
         str += '</table>';
 

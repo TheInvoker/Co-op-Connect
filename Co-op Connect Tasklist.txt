@@ -13,6 +13,8 @@ combine admin view
 vibrate on new messages
 check permissions before doing things
 url parameters
+put prefix page on css
+research realtime html5
 
 back/home button (external button)            [DONE]
 folderize js files                            [DONE]

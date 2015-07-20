@@ -393,44 +393,24 @@ div.header .header-icon-arrowdown {
 }
 
 
-/*
-	BUBBLE
-*/
-
-.countBubl {
-	background-color:#D16E00 !important;
-	border-radius:2em;
-	border:1px solid white !important;
-}
-.bubble {
-    position: relative;
-	word-wrap: break-word;
-    min-height: 38px;
-    background: #FFAB00;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-	color:black;
-	padding:10px;
-	text-shadow:none;
-	display:inline-block;
-    margin-bottom:20px;
-}
-.bubble::before {
-	content: "";
-	position: absolute;
-	top: 100%;
-	left: 10%;
-	border-top: 10px solid #FFAB00;
-	border-right: 10px solid transparent;
-	border-left: 10px solid transparent; 
-}
 
 
 
 /*
 	THREAD
 */
-
+#thread-list > table {
+	border:2px solid #002350;
+	width:100%;
+	cursor: pointer; 
+	cursor: hand; 
+}
+#thread-list  > table > tbody > tr > td:first-child {
+	width:1em;
+}
+#thread-list > table:not(:last-child) {
+	margin-bottom:1em;
+}
 .add-member-button {
 	margin-left:5px;
 }
@@ -468,16 +448,7 @@ div.header .header-icon-arrowdown {
 	MESSAGE
 */
 
-#thread-list > table {
-	border:2px solid #002350;
-	width:100%;
-}
-#thread-list  > table > tbody > tr > td:first-child {
-	width:1em;
-}
-#thread-list > table:not(:last-child) {
-	margin-bottom:1em;
-}
+
 .message {
 	border-radius:10px;
 	padding:10px;
@@ -540,6 +511,37 @@ div.header .header-icon-arrowdown {
 }
 
 
+/*
+	BUBBLE
+*/
+
+.countBubl {
+	background-color:#D16E00 !important;
+	border-radius:2em;
+	border:1px solid white !important;
+}
+.bubble {
+    position: relative;
+	word-wrap: break-word;
+    min-height: 38px;
+    background: #FFAB00;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+	color:black;
+	padding:10px;
+	text-shadow:none;
+	display:inline-block;
+    margin-bottom:20px;
+}
+.bubble::before {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 10%;
+	border-top: 10px solid #FFAB00;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent; 
+}
 
 
 /*
