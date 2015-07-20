@@ -44,6 +44,10 @@ var LOGIN_MODULE = new function() {
 		
 	});
 	
+	this.showLogin = function() {
+		changePage(context, function() {});
+	};
+	
 	this.getContext = function() {
 		return context;
 	};

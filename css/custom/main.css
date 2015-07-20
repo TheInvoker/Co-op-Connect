@@ -456,17 +456,14 @@ div.header .header-icon-arrowdown {
 	margin-bottom:10px;
 	text-shadow:none;
 }
-
 .message-left {
 	margin-right:20%;
 	background-color:#e8e177;
 }
-
 .message-right {
     margin-left:20%;
 	background-color:#90e6ff; 
 }
-
 .message-details {
 	font-size:10px;
 	text-align:right;
@@ -474,6 +471,12 @@ div.header .header-icon-arrowdown {
 .message-image {
 	width: 35px;
 	margin: 0px 0px 5px 5px;
+}
+#message-form {
+	display:flex;
+}
+#message-form textarea {
+	width:100%;
 }
 
 

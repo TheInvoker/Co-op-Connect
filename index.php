@@ -85,6 +85,7 @@
 							<br/>
 							<input name="c-password" type="password" maxlength="255" required>
 							<br/>
+							<br/>
 							<input type="submit" value="Register">
 						</form>
 					</div>
@@ -100,7 +101,7 @@
 			<script src="js/module/user/register.js"></script>
 
 			<script>
-				//GRID_MODULE.setGrid();
+				LOGIN_MODULE.showLogin();
 			</script>
 			
 		<?php endif ?>

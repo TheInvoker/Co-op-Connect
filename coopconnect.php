@@ -174,13 +174,14 @@
 								<br/>
 								<textarea name="biotext" rows="4" maxlength="4294967295"></textarea>
 								<br/>
-								<label for="department">Co-op Department:</label>
-								<br/>
-								<?php
-									$_GET['field'] = "department";
-									$_GET['radio'] = '1';
-									include "script/html/printfieldhtml.php";
-								?>
+								<fieldset>
+									<legend>Co-op Department</legend>
+									<?php
+										$_GET['field'] = "department";
+										$_GET['radio'] = '1';
+										include "script/html/printfieldhtml.php";
+									?>
+								</fieldset>
 								<br/>
 								<input type="submit" value="Save">
 							</form>
@@ -397,7 +398,7 @@
 								<br/>
 								<br/>
 								<fieldset id="search_department_cb">
-									<legend>Co-op Department:</legend>
+									<legend>Co-op Department</legend>
 									<div class="search-icons">
 										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
 										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
@@ -410,7 +411,7 @@
 								</fieldset>
 
 								<fieldset id="search_role_cb">
-									<legend>Role:</legend>
+									<legend>Role</legend>
 									<div class="search-icons">
 										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
 										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
@@ -427,7 +428,7 @@
 								<div class="search-settings-title">Placement Filters:</div>
 
 								<fieldset id="search_city_cb">
-									<legend>City:</legend>
+									<legend>City</legend>
 									<div class="search-icons">
 										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
 										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
@@ -441,7 +442,7 @@
 								</fieldset>
 
 								<fieldset id="search_country_cb">
-									<legend>Country:</legend>
+									<legend>Country</legend>
 									<div class="search-icons">
 										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
 										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
@@ -455,7 +456,7 @@
 								</fieldset>
 
 								<fieldset id="search_topic_cb">
-									<legend>Role:</legend>
+									<legend>Role</legend>
 									<div class="search-icons">
 										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
 										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
@@ -469,7 +470,7 @@
 								</fieldset>
 
 								<fieldset id="search_company_cb">
-									<legend>Company:</legend>
+									<legend>Company</legend>
 									<div class="search-icons">
 										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
 										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
@@ -529,6 +530,7 @@
 								<label for="map_date_end">End Date:</label>
 								<br/>
 								<input name="map_date_end" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d"/>
+								<br/>
 								<br/>
 								<input type="submit" value="Update">
 							</form>
