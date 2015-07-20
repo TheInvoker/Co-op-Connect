@@ -296,7 +296,7 @@ div.header .header-icon-arrowdown {
 	text-shadow : none;
 	background : initial;
 	color: black;
-	border: 1px solid #8C8C8C;
+	border: 1px solid #002350;
 }
 .footable thead th {
 	color:white;
@@ -304,8 +304,8 @@ div.header .header-icon-arrowdown {
 	text-shadow: none !important;
 	box-shadow: none !important;
 	border-width: 0px !important;
-	background-color: rgb(101, 101, 101) !important;
-	background-image: linear-gradient(to bottom, rgb(101, 101, 101), rgb(47, 47, 47)) !important;
+	background-color: #002350 !important;
+	background-image: none !important;
 }
 .footable tbody .footable-odd {
 	background-color: initial;
@@ -330,7 +330,7 @@ div.header .header-icon-arrowdown {
 .footable tfoot  td {
 	box-shadow : none !important;
 	border-width: 0px !important;
-	background : linear-gradient(to bottom, rgb(101, 101, 101), rgb(47, 47, 47)) !important;
+	background : #002350 !important;
 }
 .search-person {
 	cursor: pointer; 

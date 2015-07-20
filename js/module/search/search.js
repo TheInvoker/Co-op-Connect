@@ -67,8 +67,6 @@ var SEARCH_MODULE = new function() {
 
     this.initSearch = function() {
         changePage(context,function(){});
-        
-        clearPage();
     };
     
 	this.getContext = function() {
@@ -84,6 +82,8 @@ var SEARCH_MODULE = new function() {
     var showResults = function(response) {
         var body = $(context).find(".footable > tbody"), acc = "", i=0, l=response.length;
         
+		clearPage();
+		
         for(i=0; i<l; i+=1) {
             var obj = response[i];
             var tagid = 'searchlist-' + i;
