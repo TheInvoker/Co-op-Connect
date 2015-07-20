@@ -4,14 +4,6 @@ var THREAD_MODULE = new function() {
         serviceFrequency = 1000 * 60 * 3,
         context = "#thread-page";
 
-    registerShowEvent(context, function(prev_id) {
-        startAuto(prev_id == MESSAGE_MODULE.getContext());
-    });
-
-    registerHideEvent(context, function(to_id) {
-        stopAuto();
-    });
-
     $(context).on('click', ".memberList-button", function() {
 		
         var thread_id = $(this).attr("data-tid");
@@ -49,7 +41,7 @@ var THREAD_MODULE = new function() {
         PROFILE_MODULE.getProfile($(this).attr("data-uid"));
         return false;
 		
-    }).on('click', "#thread-list > li > a", function() {
+    }).on('click', "#thread-list > div", function() {
 		
         var tid = $(this).attr('data-tid');
         MESSAGE_MODULE.gotoMessage(tid);
@@ -60,30 +52,26 @@ var THREAD_MODULE = new function() {
         runAJAXSerial('', {
             page : 'message/getthreads'
         }, function(res) {
-            $.mobile.changePage(context, { 
-                transition: "slide"
-            });
+            changePage(context, function(){});
             
             // add thread items
             displayThreads(res);
 
+			startAuto();
         }, function(data,status,xhr) {
 
         });
     };
-
-    var startAuto = function(wentBack) {
-		if (wentBack) {
-			THREAD_MODULE.setMessageThreads();
-		}
-		
+	
+    var stopAuto = function() {
+        clearInterval(serviceChecker);
+    };
+	
+    var startAuto = function() {
+		stopAuto();
         threadChecker = setInterval(function(){ 
             THREAD_MODULE.setMessageThreads();
         }, serviceFrequency);
-    };
-
-    var stopAuto = function() {
-        clearInterval(serviceChecker);
     };
 
     var displayThreads = function(response) {
@@ -91,11 +79,10 @@ var THREAD_MODULE = new function() {
         
         for(i=0; i<l; i+=1) {
             var obj = response[i];
-            myListContent += '<li>' + formatThread(obj) + '</li>';
+            myListContent += formatThread(obj);
         }
         
-        list.html(myListContent).listview().trigger('create');
-        list.listview('refresh');
+        list.html(myListContent);
     };
     
     var formatThread = function(obj) {
@@ -105,18 +92,27 @@ var THREAD_MODULE = new function() {
             var nameObj = nameList[i];
             if (nameObj['id'] != user['id']) {
                 var thisname = nameObj['first_name'] + ' ' + nameObj['last_name'];
-                picList += '<span class="thread-image" data-uid="' + nameObj['id'] + '"><div><img title="' + thisname + '" alt="' + thisname + '" src="' + (nameObj['picURL']=='' ? GLOBAL_DATA.def_image_link : nameObj['picURL']) + '" class="small-image"/></div><div>' + thisname + '</div></span>';
+                picList += '<span class="thread-image" data-uid="' + nameObj['id'] + '">' + 
+				           '<div>' + 
+						   '<img title="' + thisname + '" src="' + (nameObj['picURL']=='' ? GLOBAL_DATA.def_image_link : nameObj['picURL']) + '"/>' + 
+						   '</div>' + 
+						   '<div>' +
+						   thisname + 
+						   '</div>' +
+						   '</span>';
             }
         }
 
-        var str = '<a href="#"' + checkNew(obj) + ' data-tid="' + obj['id'] + '"><table>';
-        str += '<tr title="Message"><td valign="top"><span class="ui-icon-comment ui-btn-icon-left myicon"/></td><td colspan="3" valign="top" class="mywrap multiline">' + Autolinker.link(obj['message']) + '</td></tr>';
-        str += '<tr title="Date Sent"><td valign="top"><span class="ui-icon-calendar ui-btn-icon-left myicon"/></td><td colspan="3" valign="top" class="mywrap">' + obj['date_sent'] + '</td></tr>';
-        str += '<tr title="Recipants"><td><span class="ui-icon-user ui-btn-icon-left myicon"/></td>';
-        str += '<td valign="top" class="mywrap">' + picList + '</td>';
-        str += '<td>' + (obj['extra'] > 0 ? "<a href='#' title='Show All' data-tid='" + obj['id'] + "' class='memberList-button'>(Show All)</a>" : "") + '</td>';
-        str += '<td><a href="#" title="Add Member" class="add-member-button ui-btn ui-shadow ui-icon-plus ui-btn-icon-notext" data-tid="' + obj['id'] + '"></a></td></tr>';
-        str += '</table></a>';
+        var str = '<table'+checkNew(obj)+' data-tid="' + obj['id'] +'">';
+        str += '<tr title="Message"><td valign="top"><img src="images/site/svg/message.svg" class="thread-small-icon" /></td><td colspan="3" class="multiline">' + Autolinker.link(obj['message']) + '</td></tr>';
+        str += '<tr title="Date Sent"><td valign="top"><img src="images/site/svg/date.svg" class="thread-small-icon" /></td><td colspan="3">' + obj['date_sent'] + '</td></tr>';
+        str += '<tr title="Recipants">'
+		str += '<td valign="top"><img src="images/site/svg/profile.svg" class="thread-small-icon" /></td>';
+        str += '<td>' + picList + '</td>';
+        str += '<td align="right">' + (obj['extra'] > 0 ? "<div title='Show All' data-tid='" + obj['id'] + "' class='memberList-button'>(Show All)</div>" : "") + '</td>';
+        str += '<td align="right"><div title="Add Member" class="add-member-button" data-tid="' + obj['id'] + '"><img src="images/site/svg/adduser.svg" class="thread-add-user-button" /></div></td>';
+		str += '</tr>';
+        str += '</table>';
 
         return str;
     };
@@ -145,14 +141,13 @@ var THREAD_MODULE = new function() {
         for(i=0; i<l; i+=1) {
             var obj = response[i];
             if (obj['id'] != user['id']) {
-                myListContent += '<li>' + formatMember(obj) + '</li>';
+                myListContent += '<div>' + formatMember(obj) + '</div>';
             }
         }
 
-        list.html(myListContent).listview().trigger('create');
-        list.listview('refresh');
+        list.html(myListContent);
 
-        $(context).find("#memberList-popup").popup("open");
+        $(context).find("#memberList-popup").show();
     };
 
     var formatMember = function(obj) {

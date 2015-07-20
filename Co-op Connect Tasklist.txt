@@ -12,6 +12,7 @@ captcha
 combine admin view
 vibrate on new messages
 check permissions before doing things
+url parameters
 
 back/home button (external button)            [DONE]
 folderize js files                            [DONE]

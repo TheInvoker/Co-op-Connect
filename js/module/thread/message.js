@@ -5,22 +5,14 @@ var MESSAGE_MODULE = new function() {
         serviceChecker = null,
         serviceFrequency = 1000 * 60 * 3,
         context = "#message-page";
-    
-    registerShowEvent(context, function(prev_id) {
-        scrollBot();
-        startAuto();
-    });
-
-    registerHideEvent(context, function(to_id) {
-        stopAuto();
-    });
 
     $(context).on('submit','#message-form',function() {
 		
 		// set the send message button
         var field = $(this).find("textarea");
-    
-        if (field.val().trim()) {
+		var value = field.val().trim();
+		
+        if (value) {
             runAJAXSerial($(this).serialize(), {
                 page : 'message/setmessage',
                 thread_id : thread_id
@@ -28,7 +20,7 @@ var MESSAGE_MODULE = new function() {
 
                 var obj = {
                     user_id : GLOBAL_DATA.user['id'],
-                    message : field[0].value,
+                    message : value,
                     date_sent : getDate() + ' ' + getTime(),
 					picURL : GLOBAL_DATA.user['picURL']
                 };
@@ -79,13 +71,11 @@ var MESSAGE_MODULE = new function() {
             // update global vars
             page = 1;
             thread_id = tid;
-            
-            $.mobile.changePage(context, { 
-                transition: "slide"
-            });
-            
+           
             // clear screen
             clearScreen();
+		   
+            changePage(context, function(){});
             
             // display messages
             displayMessages(response, true);
@@ -93,6 +83,7 @@ var MESSAGE_MODULE = new function() {
 			// update numbers on menu
 			MENU_MODULE.runGetCount();
 			
+			startAuto();
         }, function(data,status,xhr) {
 
         });
@@ -102,19 +93,20 @@ var MESSAGE_MODULE = new function() {
         return context;
     };
 
-    var startAuto = function() {
-        serviceChecker = setInterval(function(){ 
-            getNewMessages(thread_id);
-        }, serviceFrequency);
-    };
-
     var stopAuto = function() {
         clearInterval(serviceChecker);
     };
-
+	
+    var startAuto = function() {
+		stopAuto();
+        serviceChecker = setInterval(function(){ 
+            getNewMessages();
+        }, serviceFrequency);
+    };
+	
     var scrollBot = function() {
-        $('html, body').animate({
-            scrollTop:$(document).height()
+        $(context + " > section > div").animate({
+            scrollTop : $(context + " > section > div").height()
         }, 'slow');
     };
 
@@ -159,9 +151,7 @@ var MESSAGE_MODULE = new function() {
         }
     };
     
-    var getNewMessages = function(thread_id) {
-        var user = GLOBAL_DATA.user;
-        
+    var getNewMessages = function() {
         runAJAXSerial('', {
             page : 'message/getnewmessages',
             thread_id : thread_id

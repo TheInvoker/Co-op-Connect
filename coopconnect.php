@@ -549,11 +549,7 @@
 						<div>
 							<div id="thread-list">
 							</div>
-							<div id="memberList-popup">
-								<div style="margin:5px;">
-									<div id="member-list">
-									</div>
-								</div>
+							<div id="memberList-popup" class="thread-popup">
 							</div>
 						</div>
 					</section>
