@@ -569,7 +569,7 @@
 							</div>
 
 							<form id="message-form">
-								<textarea name="message" cols="40" rows="2" maxlength="255"></textarea>
+								<textarea name="message" rows="2" maxlength="255"></textarea>
 								<input type="submit" value="Send">
 							</form>
 						</div>
