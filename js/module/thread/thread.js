@@ -36,7 +36,7 @@ var THREAD_MODULE = new function() {
         
         return false;
 		
-    }).on('click', "#thread-list .thread-image", function() {
+    }).on('click', "#thread-list .thread-row", function() {
 		
         PROFILE_MODULE.getProfile($(this).attr("data-uid"));
         return false;
@@ -92,7 +92,7 @@ var THREAD_MODULE = new function() {
             var nameObj = nameList[i];
             if (nameObj['id'] != user['id']) {
                 var thisname = nameObj['first_name'] + ' ' + nameObj['last_name'];
-                picList += '<span class="thread-image" data-uid="' + nameObj['id'] + '">' + 
+                picList += '<span class="thread-row" data-uid="' + nameObj['id'] + '">' + 
 				           '<div>' + 
 						   '<img title="' + thisname + '" src="' + (nameObj['picURL']=='' ? GLOBAL_DATA.def_image_link : nameObj['picURL']) + '"/>' + 
 						   '</div>' + 
@@ -104,13 +104,13 @@ var THREAD_MODULE = new function() {
         }
 
         var str = '<table'+checkNew(obj)+' data-tid="' + obj['id'] +'">';
-        str += '<tr title="Message"><td valign="top"><img src="images/site/svg/message.svg" class="thread-small-icon" /></td><td colspan="3" class="multiline">' + Autolinker.link(obj['message']) + '</td></tr>';
-        str += '<tr title="Date Sent"><td valign="top"><img src="images/site/svg/date.svg" class="thread-small-icon" /></td><td colspan="3">' + obj['date_sent'] + '</td></tr>';
+        str += '<tr title="Message"><td valign="top"><img src="images/site/svg/message.svg" class="thread-small-icon myicon" /></td><td colspan="3" class="multiline">' + Autolinker.link(obj['message']) + '</td></tr>';
+        str += '<tr title="Date Sent"><td valign="top"><img src="images/site/svg/date.svg" class="thread-small-icon myicon" /></td><td colspan="3">' + obj['date_sent'] + '</td></tr>';
         str += '<tr title="Recipants">'
-		str += '<td valign="top"><img src="images/site/svg/profile.svg" class="thread-small-icon" /></td>';
+		str += '<td valign="top"><img src="images/site/svg/profile.svg" class="thread-small-icon myicon" /></td>';
         str += '<td>' + picList + '</td>';
         str += '<td align="right">' + (obj['extra'] > 0 ? "<div title='Show All' data-tid='" + obj['id'] + "' class='memberList-button'>(Show All)</div>" : "") + '</td>';
-        str += '<td align="right"><div title="Add Member" data-tid="' + obj['id'] + '"><img src="images/site/svg/adduser.svg" class="add-member-button thread-add-user-button" /></div></td>';
+        str += '<td align="right"><div title="Add Member" data-tid="' + obj['id'] + '"><img src="images/site/svg/adduser.svg" class="add-member-button thread-add-user-button myicon" /></div></td>';
 		str += '</tr>';
         str += '</table>';
 
@@ -147,7 +147,7 @@ var THREAD_MODULE = new function() {
 
         list.html(myListContent);
 
-        $(context).find("#memberList-popup").show();
+        $(context).find("#thread-memberList-popup").show();
     };
 
     var formatMember = function(obj) {

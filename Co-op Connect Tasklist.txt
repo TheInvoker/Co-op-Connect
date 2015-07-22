@@ -2,20 +2,17 @@ download too much coloumns for map
 charts
 task ordering
 show home page news
-search bug 'arts & f'
 server side validation
-add search on ext panel
 clean picture filename
-support url to persons account
 private ssl
 captcha
 combine admin view
 vibrate on new messages
 check permissions before doing things
 url parameters
-put prefix page on css
 research realtime html5
 
+put prefix page on css                        [DONE]
 back/home button (external button)            [DONE]
 folderize js files                            [DONE]
 fix new line on textarea                      [DONE]

@@ -7,7 +7,7 @@ var REGISTER_MODULE = new function() {
         runAJAXSerial($(this).serialize(), {
             page : 'user/register'
         }, function(response) {
-			changePage(LOGIN_MODULE.getContext());
+			changePage(LOGIN_MODULE.getContext(), function(){});
 			showNotification("Registered", "", function() {
 			});
         }, function(data,status,xhr) {
@@ -17,7 +17,7 @@ var REGISTER_MODULE = new function() {
         return false;
 		
     }).on('click', "#register-cancel-button", function() {
-		changePage(LOGIN_MODULE.getContext());
+		changePage(LOGIN_MODULE.getContext(), function(){});
 	});
 
     this.register = function() {

@@ -68,9 +68,9 @@ var RESOURCE_MODULE = new function() {
     var formatResource = function(obj) {
         var str = '<table class="multiline' + checkNew(obj) + '">';
 		str += '<tr>';
-        str += '<td title="Description" valign="top"><img src="images/site/svg/note.svg" class="resource-small-icon" /></td><td>' + Autolinker.link(obj['text']) + '</td>';
+        str += '<td title="Description" valign="top"><img src="images/site/svg/note.svg" class="resource-small-icon myicon" /></td><td>' + Autolinker.link(obj['text']) + '</td>';
         str += '</tr><tr>';
-		str += '<td title="Last Updated" valign="top"><img src="images/site/svg/date.svg" class="resource-small-icon" /></td><td>' + obj['date_modified'] + '</td>';
+		str += '<td title="Last Updated" valign="top"><img src="images/site/svg/date.svg" class="resource-small-icon myicon" /></td><td>' + obj['date_modified'] + '</td>';
         str += '</tr>';
 		str += '</table>';
         return str;

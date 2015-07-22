@@ -60,12 +60,12 @@
 					<div id="message-button">
 						<img src="images/site/svg/message.svg"/>
 						Messages
-						<span id="message-number" class="countBubl" style="display:none;"></span>
+						<div id="message-number" class="countBubl" style="display:none;"></div>
 					</div>
 					<div id="resource-button">
 						<img src="images/site/svg/resource.svg"/>
 						Resources
-						<span id="resource-number" class="countBubl" style="display:none;"></span>
+						<div id="resource-number" class="countBubl" style="display:none;"></div>
 					</div>
 					<div id="about-button">
 						<img src="images/site/svg/info.svg"/>
@@ -218,12 +218,11 @@
 					<div class="header noselect">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						<div class="name">Placements</div>
-						<div class="header-icon header-right header-icon-add" id="add-placement-button"></div>
+						<div class="header-icon header-right header-icon-add" id="placement-add-button"></div>
 					</div>
 
 					<section>
 						<div id="placement-list">
-
 						</div>
 					</section>
 				</div>
@@ -400,8 +399,8 @@
 								<fieldset id="search_department_cb">
 									<legend>Co-op Department</legend>
 									<div class="search-icons">
-										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+										<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 									</div>
 									<?php
 										$_GET['field'] = "department";
@@ -413,8 +412,8 @@
 								<fieldset id="search_role_cb">
 									<legend>Role</legend>
 									<div class="search-icons">
-										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+										<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 									</div>
 									<?php
 										$_GET['field'] = "role";
@@ -430,8 +429,8 @@
 								<fieldset id="search_city_cb">
 									<legend>City</legend>
 									<div class="search-icons">
-										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+										<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 									</div>
 									<?php
 										$_GET['field'] = "city";
@@ -444,8 +443,8 @@
 								<fieldset id="search_country_cb">
 									<legend>Country</legend>
 									<div class="search-icons">
-										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+										<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 									</div>
 									<?php
 										$_GET['field'] = "country";
@@ -458,8 +457,8 @@
 								<fieldset id="search_topic_cb">
 									<legend>Role</legend>
 									<div class="search-icons">
-										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+										<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 									</div>
 									<?php
 										$_GET['field'] = "topic";
@@ -472,8 +471,8 @@
 								<fieldset id="search_company_cb">
 									<legend>Company</legend>
 									<div class="search-icons">
-										<div class="clear-cb-button"><img class="search-small-icon" src="images/site/svg/circle.svg"/></div>
-										<div class="selectall-cb-button"><img class="search-small-icon" src="images/site/svg/square.svg"/></div>
+										<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
+										<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 									</div>
 									<?php
 										$_GET['field'] = "company";
@@ -551,7 +550,7 @@
 						<div>
 							<div id="thread-list">
 							</div>
-							<div id="memberList-popup" class="thread-popup">
+							<div id="thread-memberList-popup" class="popup">
 							</div>
 						</div>
 					</section>
@@ -666,7 +665,7 @@
 				?>
 				
 				<!-- Include the google maps library -->
-				<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+				<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en&libraries=places"></script>
 				<!-- Include the gmap3 library -->
 				<script src="js/plugin/gmap3.min.js"></script>
 				<!-- Include the geolocation autocomplete library -->

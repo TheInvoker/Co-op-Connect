@@ -121,7 +121,7 @@ var MAP_MODULE = new function() {
 				options:{
 					center:DEFAULT_LOCATION,
 					zoom:10,
-					mapTypeId: google.maps.MapTypeId.TERRAIN,
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
 					mapTypeControl: true,
 					mapTypeControlOptions: {
 						style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
