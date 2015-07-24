@@ -41,26 +41,67 @@ var PROFILE_MODULE = new function() {
 		return context;
 	};
     
+	this.MVC = {
+		setFullName : function(firstname, lastname) {
+			response['firstname'] = firstname;
+			response['lastname'] = lastname;
+			$(context).find("#profile-fullname").html(firstname + ' ' + lastname);
+		},
+		setImage : function(url) {
+			response['picURL'] = url;
+			$(context).find("#profile-avatar-image").attr("src", url=='' ? GLOBAL_DATA.def_image_link : url);
+		},
+		setStatus : function(status) {
+			response['status'] = status;
+			if (status) {
+				$(context).find("#profile-status").show().html(Autolinker.link(status));
+			} else {
+				$(context).find("#profile-status").hide();
+			}
+		},
+		setBioText : function(biotext) {
+			response['biotext'] = biotext;
+			$(context).find("#profile-biotext").html(Autolinker.link(biotext));
+		},
+		setRole : function(role) {
+			response['role_name'] = role;
+			$(context).find("#profile-role").html(getColorCodeTag(role, response['r_color']));
+		},
+		setDepartment : function(department) {
+			response['department_name'] = department;
+			$(context).find("#profile-department").html(getColorCodeTag(department, response['d_color']));
+		},
+		setDateJoined : function(date) {
+			response['datejoined'] = date;
+			$(context).find("#profile-datejoined").html(date);
+		},
+		setEmail : function(email) {
+			response['email'] = email;
+			$(context).find("#profile-email").attr("href", "mailto:" + email);
+		},
+		setPhone : function(phone) {
+			response['phone'] = phone;
+			$(context).find("#profile-phone").attr("href", "tel:+" + phone);
+		},
+		setSite : function(url) {
+			response['website'] = url;
+			$(context).find("#profile-site").attr("href", $(Autolinker.link(url)).attr("href"));
+		}
+	};
+	
     var displayProfile = function() {
         var user = GLOBAL_DATA.user;
         
-        $(context).find("#profile-fullname").html(response['firstname'] + ' ' + response['lastname']);
-        $(context).find("#profile-avatar-image").attr("src", response['picURL']=='' ? GLOBAL_DATA.def_image_link : response['picURL']);
-
-        if (response['status']) {
-            $(context).find("#profile-status").show().html(Autolinker.link(response['status']));
-        } else {
-            $(context).find("#profile-status").hide();
-        }
-        $(context).find("#profile-biotext").html(Autolinker.link(response['biotext']));
-        
-        $(context).find("#profile-role").html(getColorCodeTag(response['role_name'], response['r_color']));
-        $(context).find("#profile-department").html(getColorCodeTag(response['department_name'], response['d_color']));
-        $(context).find("#profile-datejoined").html(response['datejoined']);
-        
-        $(context).find("#profile-email").attr("href", "mailto:" + response['email']);
-        $(context).find("#profile-phone").attr("href", "tel:+" + response['phone']);
-        $(context).find("#profile-site").attr("href", $(Autolinker.link(response['website'])).attr("href"));
+		PROFILE_MODULE.MVC.setFullName(response['firstname'], response['lastname']);
+		PROFILE_MODULE.MVC.setImage(response['picURL']);
+		PROFILE_MODULE.MVC.setStatus(response['status']);
+		PROFILE_MODULE.MVC.setBioText(response['biotext']);
+		PROFILE_MODULE.MVC.setRole(response['role_name']);
+		PROFILE_MODULE.MVC.setDepartment(response['department_name']);
+		PROFILE_MODULE.MVC.setDateJoined(response['datejoined']);
+		PROFILE_MODULE.MVC.setEmail(response['email']);
+		PROFILE_MODULE.MVC.setPhone(response['phone']);
+		PROFILE_MODULE.MVC.setSite(response['website']);
 
         var button = $(context).find("#profile-message");
         if (user['id'] == user_id) {

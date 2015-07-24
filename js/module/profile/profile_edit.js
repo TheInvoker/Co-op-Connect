@@ -10,7 +10,22 @@ var PROFILE_EDIT_MODULE = new function() {
         runAJAXHTML5(formData, {
             page : 'user/setprofile'
         }, function(response) {
-            PROFILE_MODULE.getProfile(GLOBAL_DATA.user["id"]);
+			var data = $('#profile-edit-form').serializeArray().reduce(function(obj, item) {
+				obj[item.name] = item.value;
+				return obj;
+			}, {});
+			
+			PROFILE_MODULE.MVC.setFullName(data['firstname'], data['lastname']);
+			if (data['file']) PROFILE_MODULE.MVC.setImage(data['file']);
+			PROFILE_MODULE.MVC.setStatus(data['status']);
+			PROFILE_MODULE.MVC.setBioText(data['biotext']);
+			PROFILE_MODULE.MVC.setDepartment(data['department']);
+			PROFILE_MODULE.MVC.setEmail(data['email']);
+			PROFILE_MODULE.MVC.setPhone(data['phone']);
+			PROFILE_MODULE.MVC.setSite(data['website']);
+			
+			changePage(PROFILE_MODULE.getContext(),function(){});
+			
 			showNotification("Profile Saved", "", function() {
 			});
         }, function(data,status,xhr) {
