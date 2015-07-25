@@ -5,20 +5,19 @@ var PLACEMENT_MODULE = new function() {
         placement = null;
 
 	$(context).on('click','#placement-list > div', function() {
-		
+
 		// set the right placement object
         var pid = $(this).attr('data-pid'), i=0, l=response.length;
+		var index = getPlacementObjectIndex(pid);
 
-        for(i=0; i<l; i+=1) {
-            var obj = response[i];
-            if (obj['id'] == pid) {
-                placement = obj;
-				openPanel("#placement-panel");
-                return false;
-            }
-        }
-
-        placement = null;
+		if (index >= 0) {
+			placement = response[index];
+			openPanel("#placement-panel");
+		} else {
+			placement = null;
+		}
+		
+		return false;
 		
     }).on('click','#placement-add-button',function() {
 		
@@ -50,7 +49,7 @@ var PLACEMENT_MODULE = new function() {
                 page : 'placement/deleteplacements',
                 id : placement['id']
             }, function(response) {
-                $(context).find('#placement-list > li > a[data-pid=' + placement['id'] + ']').parent().remove();
+				PLACEMENT_MODULE.MVC.deleteLocation(placement['id']);
 				showNotification("Placement Deleted", placement["organization"], function() {
 				});
             }, function(data,status,xhr) {
@@ -87,33 +86,111 @@ var PLACEMENT_MODULE = new function() {
 	this.getContext = function() {
 		return context;
 	};
+	
+	this.MVC = {
+		formatLocation : function(me, obj) {
+			var str = '<div data-pid="' + obj['id'] + '">';
+			str += '<div title="Address"><img src="images/site/svg/map.svg" class="placement-small-icon myicon" /><span>' + obj['address'] + ', ' + obj['city'] + ', ' + obj['country'] + '</span></div>';
+			str += '<div title="Role"><img src="images/site/svg/profile.svg" class="placement-small-icon myicon" /><span>' + obj['topic'] + '</span></div>';
+			str += '<div title="Company"><img src="images/site/svg/placement.svg" class="placement-small-icon myicon" /><span>' + obj['organization'] + '</span></div>';
+			str += '<div title="Date Worked"><img src="images/site/svg/date.svg" class="placement-small-icon myicon" /><span>' + PLACEMENT_MODULE.MVC.getDateTag(obj['date_started'], obj['date_finished']) + '</span></div>';
+			if (me) {
+				var percentage = 100.0 * obj['percentage'];
+				str += '<div title="Checklist Progress"><img src="images/site/svg/checklist.svg" class="placement-small-icon myicon" /><span>' + PLACEMENT_MODULE.MVC.getProgressTag(percentage) + '</span></div>';
+				str += '<div title="State">' + PLACEMENT_MODULE.MVC.getStateTag(obj['active']) + '</div>';
+			}
+			str += '</div>';
+			
+			return str;
+		},
+		deleteLocation : function(pid) {
+			var index = getPlacementObjectIndex(pid);
+			response.splice(index, 1);
+			$(context).find("div[data-pid='"+pid+"']").remove();	
+		},
+		getProgressTag : function(percentage) {
+			return percentage + '% <progress value="' + percentage + '" max="100"></progress>';
+		},
+		getStateTag : function(state) {
+			return '<img src="images/site/svg/' + (state=='1' ? 'unlock' : 'lock') + '.svg" class="placement-small-icon myicon" />' + (state=='1' ? 'Active' : 'Locked');
+		},
+		getDateTag : function(datestarted, dateended) {
+			return datestarted + ' to ' + dateended;
+		},
+		setAddress : function(pid, address, city, country) {
+			var index = getPlacementObjectIndex(pid);
+			var obj = response[index];
+			var htmltag = $(context).find("div[data-pid='"+pid+"'] > div[title='Address'] > span");
+			obj['address'] = address;
+			obj['city'] = city;
+			obj['country'] = country;
+			htmltag.text(address + ", " + city + ", " + country);
+		},
+		setTopic : function(pid, topic) {
+			var index = getPlacementObjectIndex(pid);
+			var obj = response[index];
+			var htmltag = $(context).find("div[data-pid='"+pid+"'] > div[title='Role'] > span");
+			obj['topic'] = topic;
+			htmltag.text(topic);
+		},
+		setCompany : function(pid, company) {
+			var index = getPlacementObjectIndex(pid);
+			var obj = response[index];
+			var htmltag = $(context).find("div[data-pid='"+pid+"'] > div[title='Company'] > span");
+			obj['organization'] = company;
+			htmltag.text(company);
+		},
+		setDate : function(pid, datestarted, dateended) {
+			var index = getPlacementObjectIndex(pid);
+			var obj = response[index];
+			var htmltag = $(context).find("div[data-pid='"+pid+"'] > div[title='Date Worked'] > span");
+			obj['date_started'] = datestarted;
+			obj['date_finished'] = dateended;
+			htmltag.text(PLACEMENT_MODULE.MVC.getDateTag(datestarted, dateended));
+		},
+		setProgress : function(pid, percentage) {
+			var htmltag = $(context).find("div[data-pid='"+pid+"'] > div[title='Checklist Progress'] > span");
+			if (htmltag.length > 0) {
+				var index = getPlacementObjectIndex(pid);
+				var obj = response[index];
+				obj['percentage'] = percentage;
+				htmltag.html(PLACEMENT_MODULE.MVC.getProgressTag(percentage));
+			}
+		},
+		setActive : function(pid, active) {
+			var htmltag = $(context).find("div[data-pid='"+pid+"'] > div[title='State']");
+			if (htmltag.length > 0) {
+				var index = getPlacementObjectIndex(pid);
+				var obj = response[index];
+				obj['active'] = active;
+				htmltag.html(PLACEMENT_MODULE.MVC.getStateTag(active));
+			}
+		}
+	};
 
+	var getPlacementObjectIndex = function(pid) {
+        var i, l=response.length;
+		for(i=0; i<l; i+=1) {
+            var obj = response[i];
+            if (obj['id'] == pid) {
+                return i;
+            }
+        }
+		return -1;
+	};
+	
     var displayPlacements = function(me, response) {
         var list = $(context).find("#placement-list"), myListContent = "", i=0, l=response.length;
         
         for(i=0; i<l; i+=1) {
             var obj = response[i];
-            myListContent += formatLocation(me, obj);
+            myListContent += PLACEMENT_MODULE.MVC.formatLocation(me, obj);
         }
         
         list.html(myListContent);
     };
     
-    var formatLocation = function(me, obj) {
-        var str = '<div data-pid="' + obj['id'] + '">';
-        str += '<div title="Address"><img src="images/site/svg/map.svg" class="placement-small-icon myicon" />' + obj['address'] + ', ' + obj['city'] + ', ' + obj['country'] + '</div>';
-        str += '<div title="Role"><img src="images/site/svg/profile.svg" class="placement-small-icon myicon" />' + obj['topic'] + '</div>';
-        str += '<div title="Company"><img src="images/site/svg/placement.svg" class="placement-small-icon myicon" />' + obj['organization'] + '</div>';
-        str += '<div title="Date Worked"><img src="images/site/svg/date.svg" class="placement-small-icon myicon" />' + obj['date_started'] + ' to ' + obj['date_finished'] + '</div>';
-        if (me) {
-            var percentage = 100.0 * obj['percentage'];
-            str += '<div title="Checklist Progress"><img src="images/site/svg/checklist.svg" class="placement-small-icon myicon" />' + percentage + '% <progress value="' + percentage + '" max="100"></progress></div>';
-            str += '<div title="State"><img src="images/site/svg/' + (obj['active']=='1' ? 'unlock' : 'lock') + '.svg" class="placement-small-icon myicon" />' + (obj['active']=='1' ? 'Active' : 'Locked') + '</div>';
-        }
-        str += '</div>';
-        
-        return str;
-    };
+
 
     var menuHandler = function(me) {
         var buttons = $(context).find("#placement-edit-button, #placement-checklist-button, #placement-delete-button, #placement-add-button");

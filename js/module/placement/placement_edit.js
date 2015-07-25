@@ -27,9 +27,19 @@ var PLACEMENT_EDIT_MODULE = new function() {
 			}
 			
 			runAJAXSerial($(this).serialize(), obj, function(response) {
-				PLACEMENT_MODULE.getPlacements(user['id']);
+
+				var data = getFormData('#placement-edit-form');
+				
+				PLACEMENT_MODULE.MVC.setAddress(pid, data["name"], data["locality"], data["country"]); 
+				PLACEMENT_MODULE.MVC.setTopic(pid, data["role"]);
+				PLACEMENT_MODULE.MVC.setCompany(pid, data["company"]);
+				PLACEMENT_MODULE.MVC.setDate(pid, data["date_start"], data["date_end"]);
+				PLACEMENT_MODULE.MVC.setActive(pid, data["active"]);
+				
 				showNotification("Placement Saved", "", function() {
 				});
+				
+				changePage(PLACEMENT_MODULE.getContext(), function(){});
 			}, function(data,status,xhr) {
 
 			});

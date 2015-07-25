@@ -10,10 +10,7 @@ var PROFILE_EDIT_MODULE = new function() {
         runAJAXHTML5(formData, {
             page : 'user/setprofile'
         }, function(response) {
-			var data = $('#profile-edit-form').serializeArray().reduce(function(obj, item) {
-				obj[item.name] = item.value;
-				return obj;
-			}, {});
+			var data = getFormData('#profile-edit-form');
 			
 			PROFILE_MODULE.MVC.setFullName(data['firstname'], data['lastname']);
 			if (data['file']) PROFILE_MODULE.MVC.setImage(data['file']);

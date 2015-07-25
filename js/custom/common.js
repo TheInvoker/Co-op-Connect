@@ -35,6 +35,12 @@ function getUrlParameter(sParam) {
     }
 }
 
+function getFormData(id) {
+	return $(id).serializeArray().reduce(function(obj, item) {
+		obj[item.name] = item.value;
+		return obj;
+	}, {});
+}
 
 
 

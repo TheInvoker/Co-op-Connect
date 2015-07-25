@@ -1,14 +1,20 @@
 var CHECKLIST_MODULE = new function () {
 
     var context = "#checklist-page",
+		pid = null,
 		response = null;
 	
 	$(context).on("click", "#checklist-accept-button", function() {
 		
-		// configure back button
-        var user = GLOBAL_DATA.user;
-		PLACEMENT_MODULE.getPlacements(user['id']);
+		var totalNum = $(context).find("#checklistCB input").length;
+		if (totalNum == 0) {
+			PLACEMENT_MODULE.MVC.setProgress(pid, '100');
+		} else {
+			var checkedNum = $(context).find("#checklistCB input:checked").length;
+			PLACEMENT_MODULE.MVC.setProgress(pid, 100 * checkedNum/totalNum);
+		}
 		
+		changePage(PLACEMENT_MODULE.getContext(), function(){});
 	}).on("change", "#checklistCB input[type='checkbox']", function() {
 		
 		// configure checkbox clicks
@@ -23,6 +29,8 @@ var CHECKLIST_MODULE = new function () {
             page : "checklist/getchecklist"
         }, function(res) {
             changePage(context,function(){});
+			
+			pid = obj['id'];
 			
 			// save the data
 			response = res;
