@@ -1,31 +1,39 @@
 var PLACEMENT_EDIT_MODULE = new function() {
     
     var context = "#placement-edit-page",
+		locationValidated = true;
         pid = null;
     
     $(context).on('submit', '#placement-edit-form', function() {
 
-		// set up placement edit form
-        var user = GLOBAL_DATA.user;
+		if (!locationValidated) {
+			
+			alert("Please re-validate the address from the autocomplete");
+			
+		} else {
+		
+			// set up placement edit form
+			var user = GLOBAL_DATA.user;
 
-        if (pid == null) {    
-            var obj = {
-                page : "placement/addplacements"
-            };
-        } else {
-            var obj = {
-                page : "placement/setplacements",
-                id : pid
-            };
-        }
-        
-        runAJAXSerial($(this).serialize(), obj, function(response) {
-            PLACEMENT_MODULE.getPlacements(user['id']);
-			showNotification("Placement Saved", "", function() {
+			if (pid == null) {    
+				var obj = {
+					page : "placement/addplacements"
+				};
+			} else {
+				var obj = {
+					page : "placement/setplacements",
+					id : pid
+				};
+			}
+			
+			runAJAXSerial($(this).serialize(), obj, function(response) {
+				PLACEMENT_MODULE.getPlacements(user['id']);
+				showNotification("Placement Saved", "", function() {
+				});
+			}, function(data,status,xhr) {
+
 			});
-        }, function(data,status,xhr) {
-
-        });
+		}
 
         return false;
 		
@@ -81,8 +89,12 @@ var PLACEMENT_EDIT_MODULE = new function() {
             swt.val('1');
         }
         
-        addr.geocomplete({ 
+		addr.on('input',function() {
+			locationValidated = false;
+		}).geocomplete({ 
             details: "#placement-edit-form" 
-        });
+        }).bind("geocode:result", function(event, result){
+			locationValidated = true;
+		});
     };
 };
