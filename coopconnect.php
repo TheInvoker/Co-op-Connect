@@ -560,6 +560,7 @@
 					<div class="header">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						<div class="name">Messages</div>
+						<div class="header-icon header-right header-icon-cancel" id="message-cancel-button"></div>
 						<div class="header-icon header-right header-icon-arrowdown" id="message-showmore-button"></div>
 					</div>
 

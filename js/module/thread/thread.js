@@ -63,6 +63,10 @@ var THREAD_MODULE = new function() {
         });
     };
 	
+	this.getContext = function() {
+		return context;
+	};
+	
     var stopAuto = function() {
         clearInterval(serviceChecker);
     };
