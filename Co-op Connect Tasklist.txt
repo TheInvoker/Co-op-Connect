@@ -12,6 +12,7 @@ check permissions before doing things
 url parameters
 research realtime html5
 
+MVC                                           [DONE]
 put prefix page on css                        [DONE]
 back/home button (external button)            [DONE]
 folderize js files                            [DONE]
