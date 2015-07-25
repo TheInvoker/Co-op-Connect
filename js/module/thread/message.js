@@ -75,6 +75,8 @@ var MESSAGE_MODULE = new function() {
             // clear screen
             clearScreen();
 		   
+		    $(context).find("#message-form").trigger("reset");
+		   
             changePage(context, function(){});
             
             // display messages

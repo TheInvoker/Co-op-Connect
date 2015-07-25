@@ -54,7 +54,9 @@ var PLACEMENT_EDIT_MODULE = new function() {
     });
 
     this.newPlacement = function() {
-        switchPage();
+        $(context).find("#placement-edit-form").trigger("reset");
+		
+		switchPage();
         
         setFormFields(null);
 

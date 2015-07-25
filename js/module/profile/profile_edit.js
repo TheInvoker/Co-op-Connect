@@ -38,7 +38,7 @@ var PROFILE_EDIT_MODULE = new function() {
     });
 
     this.editProfileHandler = function(response) {
-        changePage(context,function(){});
+		changePage(context,function(){});
         
         setProfileForEdit(response);
     };

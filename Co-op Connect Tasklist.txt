@@ -12,6 +12,10 @@ check permissions before doing things
 url parameters
 research realtime html5
 
+
+view point on map bug
+seperate clear screen function
+reset forms                                   [DONE]
 MVC                                           [DONE]
 put prefix page on css                        [DONE]
 back/home button (external button)            [DONE]

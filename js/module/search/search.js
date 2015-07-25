@@ -66,7 +66,9 @@ var SEARCH_MODULE = new function() {
     });
 
     this.initSearch = function() {
-        changePage(context,function(){});
+        $(context).find("#search-form").trigger("reset");
+		$("#search-settings-form").trigger("reset");
+		changePage(context,function(){});
     };
     
 	this.getContext = function() {

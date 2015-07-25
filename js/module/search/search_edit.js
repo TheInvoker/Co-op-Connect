@@ -4,7 +4,7 @@ var SEARCH_SETTINGS_MODULE = new function() {
 	
 	$(context).on('click', "#search-accept-button", function() {
 		
-		changePage(SEARCH_MODULE.getContext());
+		changePage(SEARCH_MODULE.getContext(), function(){});
 		
 	}).on('click', ".clear-cb-button", function() {
 		

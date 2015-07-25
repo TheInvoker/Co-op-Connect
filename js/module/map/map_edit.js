@@ -28,10 +28,8 @@ var MAP_SETTINGS_MODULE = new function() {
         $(context).find("#map-filter-form").submit();
     };
     
-    var initDate = function() {
+    this.initDate = function() {
         var elements = $(context).find("#map-filter-form").find("input[type=date]");
         dateHandler(elements, true, MAP_MODULE.getLocations, true);
     };
-	
-	initDate();
 };

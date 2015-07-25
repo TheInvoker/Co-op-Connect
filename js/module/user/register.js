@@ -21,7 +21,8 @@ var REGISTER_MODULE = new function() {
 	});
 
     this.register = function() {
-        changePage(context,function(){});
+        $(context).find("#register-form").trigger("reset");
+		changePage(context,function(){});
     };
     
     var resetForm = function() {

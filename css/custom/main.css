@@ -282,6 +282,14 @@ div.header .header-icon-arrowdown {
 	overflow-y:hidden;
 	overflow-x:auto;
 }
+#search-settings-page div.search-icons > div {
+	display:inline-block;
+	cursor: pointer; 
+	cursor: hand; 
+}
+#search-settings-page div.search-settings-title {
+	font-weight:bold;
+}
 .footable {
 	text-shadow : none;
 	background : initial;

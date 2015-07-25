@@ -8,9 +8,15 @@ var MAP_MODULE = new function() {
 		
 		// set map settings button click
         MAP_SETTINGS_MODULE.initSettings();
-    });
+    }).on('click', "#map-cancel-button", function() {
+		changePage(PLACEMENT_MODULE.getContext(), function() {});
+	});
 
     this.showMap = function() {
+		$(context).find("#map-settings-button").show();
+		$(context).find("#map-cancel-button").hide();
+		MAP_SETTINGS_MODULE.initDate();
+		
         changePage(context, function() {
 			if ($(context).find('#map_canvas').prop('init')) {
 				MAP_SETTINGS_MODULE.getLocations();
@@ -23,7 +29,10 @@ var MAP_MODULE = new function() {
     };
 
     this.showPoint = function(obj) {
-        changePage(context, function() {
+        $(context).find("#map-settings-button").hide();
+		$(context).find("#map-cancel-button").show();
+		
+		changePage(context, function() {
 			if ($(context).find('#map_canvas').prop('init')) {
 				MAP_MODULE.showOnMap([obj]);
 			} else {
