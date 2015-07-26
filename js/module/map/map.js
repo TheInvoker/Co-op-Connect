@@ -19,11 +19,7 @@ var MAP_MODULE = new function() {
 	});
 
     this.showMap = function() {
-		$(context).find("#map-settings-button").show();
-		$(context).find("#map-cancel-button").hide();
-		$(context).find("#map-people-panel").html("");
-		$(context).find("#map-people-panel-wrapper").hide();
-		MAP_SETTINGS_MODULE.initDate();
+		prepareButtons(false);
 		
         changePage(context, function() {
 			if ($(context).find('#map_canvas').prop('init')) {
@@ -37,10 +33,7 @@ var MAP_MODULE = new function() {
     };
 
     this.showPoint = function(obj) {
-        $(context).find("#map-settings-button").hide();
-		$(context).find("#map-cancel-button").show();
-		$(context).find("#map-people-panel").html("");
-		$(context).find("#map-people-panel-wrapper").hide();
+        prepareButtons(true);
 
 		changePage(context, function() {
 			if ($(context).find('#map_canvas').prop('init')) {
@@ -122,7 +115,19 @@ var MAP_MODULE = new function() {
 	};
 
 	
-
+	var prepareButtons = function(showPoint) {
+		if (showPoint) {
+			$(context).find("#map-settings-button").hide();
+			$(context).find("#map-cancel-button").show();
+		} else {
+			$(context).find("#map-settings-button").show();
+			$(context).find("#map-cancel-button").hide();
+			MAP_SETTINGS_MODULE.initDate();
+		}
+		$(context).find("#map-people-panel").html("");
+		$(context).find("#map-people-panel-wrapper").hide();
+	};
+	
 	var startMap = function(showMyLocation, setLocation, callback) {
 		$(context).find('#map_canvas').gmap3({
 			map:{

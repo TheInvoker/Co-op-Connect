@@ -31,7 +31,7 @@ var PROFILE_EDIT_MODULE = new function() {
 
         return false;
 		
-    }).on('click',"#profile-cancel-button",function() {
+    }).on('click',"#profile-edit-cancel-button",function() {
 		
 		changePage(PROFILE_MODULE.getContext(),function(){});
 		

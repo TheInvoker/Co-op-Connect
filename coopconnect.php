@@ -99,6 +99,7 @@
 
 				<div id="profile-page" class="page" style="display:none;">
 					<div class="header noselect">
+						<div class="header-icon header-left header-icon-arrowback" id="profile-back-button"></div>
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						<div class="name">Profile</div>
 						<div class="header-icon header-right header-icon-edit" id="profile-edit-button"></div>
@@ -136,7 +137,7 @@
 					<div class="header noselect">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						<div class="name">Profile Edit</div>
-						<div class="header-icon header-right header-icon-cancel" id="profile-cancel-button"></div>
+						<div class="header-icon header-right header-icon-cancel" id="profile-edit-cancel-button"></div>
 					</div>
 
 					<section>

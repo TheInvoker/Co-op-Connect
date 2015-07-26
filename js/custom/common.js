@@ -42,6 +42,9 @@ function getFormData(id) {
 	}, {});
 }
 
+function getCurrentPage() {
+	return "#"+$("div.page:visible").attr("id");
+}
 
 
 

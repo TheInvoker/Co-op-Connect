@@ -146,7 +146,9 @@ div.header .header-icon-settings {
 div.header .header-icon-arrowdown {
 	background-image:url('../../images/site/svg/arrowdown.svg');
 }
-
+div.header .header-icon-arrowback {
+	background-image:url('../../images/site/svg/arrowback.svg');
+}
 
 /*
 	LOGIN

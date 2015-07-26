@@ -2,15 +2,20 @@ var PROFILE_MODULE = new function() {
     
     var context = "#profile-page",
         response = null,
-        user_id = null;
+        user_id = null,
+		callerContext = null;
 
     $(context).on('click',"#profile-edit-button",function() {
 		
         PROFILE_EDIT_MODULE.editProfileHandler(response);
 		
+    }).on('click',"#profile-back-button",function() {
+		
+        changePage(callerContext, function(){});
+		
     }).on('click',"#profile-placements",function() {
 		
-        PLACEMENT_MODULE.getPlacements(GLOBAL_DATA.user["id"]);
+        PLACEMENT_MODULE.getPlacements(user_id);
 		
     }).on('click',"#profile-message",function() {
 		
@@ -25,13 +30,14 @@ var PROFILE_MODULE = new function() {
         }, function(res) {
             response = res;
             user_id = uid;
-
+			callerContext = getCurrentPage();
+			
             changePage(context,function(){});
             
             displayProfile();
             
             editProfileHandler();
-            
+			
         }, function(data,status,xhr) {
             
         });
