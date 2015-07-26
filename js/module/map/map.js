@@ -137,6 +137,7 @@ var MAP_MODULE = new function() {
 				},
 				events:{
 					click: function(){
+						$(context).find("#map-people-panel").html("");
 						$(context).find("#map-people-panel-wrapper").hide();
 					}
 				}
@@ -185,11 +186,13 @@ var MAP_MODULE = new function() {
 	};
 
 	var showPeople = function(dataList) {
+		var acc = "";
+		
 		for(var i=0; i<dataList.length; i+=1) {
 			var marker_data = dataList[i].data;
 		}
 		
-		$(context).find("#map-people-panel").html("");
+		$(context).find("#map-people-panel").html(acc);
 		$(context).find("#map-people-panel-wrapper").show();
 	};
 };
