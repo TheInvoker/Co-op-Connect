@@ -205,11 +205,13 @@ var MAP_MODULE = new function() {
 			var marker_data = dataList[i].data;
 			
 			var tag = "<div class='map-person-box'>";
-			tag += "<img data-id='" + marker_data["user_id"] + "' src='" + (marker_data["picURL"]=='' ? GLOBAL_DATA.def_image_link : marker_data["picURL"]) + "' align='left' title='" + (marker_data["firstname"] + " " + marker_data["lastname"]) + "'/>";
+			tag += "<img data-id='" + marker_data["user_id"] + "' src='" + (marker_data["picURL"]=='' ? GLOBAL_DATA.def_image_link : marker_data["picURL"]) + "' title='" + (marker_data["firstname"] + " " + marker_data["lastname"]) + "'/>";
+			tag += "<div>";
 			tag += marker_data["firstname"] + " " + marker_data["lastname"] + "<br/>";
 			tag += marker_data["address"] + ", " + marker_data["city"] + ", " + marker_data["country"] + "<br/>";
 			tag += marker_data["topic"] + ", " + marker_data["organization"] + "<br/>";
 			tag += marker_data["date_started"] + " to " + marker_data["date_finished"];
+			tag += "</div>";
 			tag += "</div>";
 			
 			acc += tag;
