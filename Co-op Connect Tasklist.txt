@@ -11,10 +11,11 @@ vibrate on new messages
 check permissions before doing things
 url parameters
 research realtime html5
-
-
-view point on map bug
+normalize field names
+use jquery.text for encoding
 seperate clear screen function
+
+view point on map bug                         [DONE]
 reset forms                                   [DONE]
 MVC                                           [DONE]
 put prefix page on css                        [DONE]

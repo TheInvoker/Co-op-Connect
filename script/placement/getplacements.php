@@ -30,8 +30,10 @@
 				 WHERE t.active = 1
 			   )";
 	
-	$query = "SELECT p.*, " . ($user_id==$targetid ? "({$Pquery})" : "null") . " AS percentage
+	$query = "SELECT p.*, " . ($user_id==$targetid ? "({$Pquery})" : "null") . " AS percentage, d.color
 			  FROM placement p
+			  JOIN user u ON u.id={$targetid}
+			  JOIN department d ON d.id = u.department_id
 			  WHERE p.user_id={$targetid}" . ($user_id==$targetid ? "" : " AND p.active=1") . "
 			  ORDER BY p.date_started DESC";
 
@@ -57,7 +59,8 @@
 			'city' => $row['city'],
 			'latitude' => $row['latitude'],
 			'longitude' => $row['longitude'],
-			'percentage' => $row['percentage']==null ? 1 : $row['percentage']
+			'percentage' => $row['percentage']==null ? 1 : $row['percentage'],
+			'color' => $row['color']
 		);
 		
 		array_push($successMessage, $tempObject);
