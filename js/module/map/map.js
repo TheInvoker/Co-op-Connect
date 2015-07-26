@@ -12,6 +12,10 @@ var MAP_MODULE = new function() {
 		
 		changePage(PLACEMENT_MODULE.getContext(), function() {});
 		
+	}).on('click', "div.map-person-box > img", function() {
+		
+		PROFILE_MODULE.getProfile($(this).attr("data-id"));
+		
 	});
 
     this.showMap = function() {
@@ -190,6 +194,15 @@ var MAP_MODULE = new function() {
 		
 		for(var i=0; i<dataList.length; i+=1) {
 			var marker_data = dataList[i].data;
+			
+			var tag = "<div class='map-person-box'>";
+			tag += "<img data-id='" + marker_data["user_id"] + "' src='" + (marker_data["picURL"]=='' ? GLOBAL_DATA.def_image_link : marker_data["picURL"]) + "' align='left' title='" + (marker_data["firstname"] + " " + marker_data["lastname"]) + "'/>";
+			tag += marker_data["firstname"] + " " + marker_data["lastname"] + "<br/>";
+			tag += marker_data["address"] + ", " + marker_data["city"] + ", " + marker_data["country"] + "<br/>";
+			tag += marker_data["topic"] + ", " + marker_data["organization"];
+			tag += "</div>";
+			
+			acc += tag;
 		}
 		
 		$(context).find("#map-people-panel").html(acc);
