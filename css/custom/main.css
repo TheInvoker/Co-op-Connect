@@ -26,7 +26,7 @@ div.panel {
 	border:1px solid #570000;
 	overflow-x:hidden;
 	overflow-y:auto;
-	z-index:1;
+	z-index:2;
 }
 div.panel > div {
 	border-bottom:1px solid #570000;
@@ -71,20 +71,20 @@ div.page > div.header {
 div.page > section {
 	height:90%;
 }
-div.page > section > div {
+div.page > section > div:not(.nopadding) {
 	height:100%;
     overflow-x: hidden;
     overflow-y: auto;
 	padding-left:1em;
 	padding-right:1em;
 }
-div.page > section > div:before {
+div.page > section > div:not(.nopadding):before {
   content: "";
   display: block;
   height: 1em;
   width: 100%;
 }
-div.page > section > div:after {
+div.page > section > div:not(.nopadding):after {
   content: "";
   display: block;
   height: 1em;
@@ -380,7 +380,20 @@ div.header .header-icon-arrowdown {
 	width: 66px;
 	height: 65px;
 }
-
+#map-people-panel-wrapper {
+	width:100%;
+	height:33%;
+	position:absolute;
+	bottom:0;
+	background-color:#ab0000;
+	z-index:1;
+}
+#map-people-panel {
+	width:100%;
+	height:100%;
+	overflow-x:auto;
+	overflow-y:hidden;
+}
 
 
 

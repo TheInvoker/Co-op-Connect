@@ -7,7 +7,7 @@ var PLACEMENT_MODULE = new function() {
 	$(context).on('click','#placement-list > div', function() {
 
 		// set the right placement object
-        var pid = $(this).attr('data-pid'), i=0, l=response.length;
+        var pid = $(this).attr('data-pid');
 		var index = getPlacementObjectIndex(pid);
 
 		if (index >= 0) {

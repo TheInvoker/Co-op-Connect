@@ -511,6 +511,10 @@
 						<div id="map_canvas">
 							<!-- map loads here... -->
 						</div>
+						<div id="map-people-panel-wrapper" class="nopadding" style="display:none;">
+							<div id="map-people-panel">
+							</div>
+						</div>
 					</section>
 				</div>
 				<div id="map-settings-page" class="page" style="display:none;">

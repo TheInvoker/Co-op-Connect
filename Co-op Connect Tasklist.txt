@@ -1,4 +1,3 @@
-download too much coloumns for map
 charts
 task ordering
 show home page news
@@ -13,8 +12,9 @@ url parameters
 research realtime html5
 normalize field names
 use jquery.text for encoding
-seperate clear screen function
+update map infowindow
 
+seperate clear screen function
 view point on map bug                         [DONE]
 reset forms                                   [DONE]
 MVC                                           [DONE]

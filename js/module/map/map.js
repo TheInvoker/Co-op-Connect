@@ -60,7 +60,7 @@ var MAP_MODULE = new function() {
 						var loc = locations[i];
 						markerArray.push({
 							latLng: [loc['latitude'], loc['longitude']], 
-							data:loc["address"],  
+							data:loc,  
 							options: {
 								icon:'http://maps.google.com/mapfiles/ms/icons/' + loc['color'] + '-dot.png'
 							}
@@ -86,32 +86,20 @@ var MAP_MODULE = new function() {
 									content: "<div class='cluster cluster-3'>CLUSTER_COUNT</div>",
 									width: 66,
 									height: 65
+								},
+								events: {
+									click:function(cluster, event, data) {
+										var markers = data.data.markers;
+										showPeople(markers);
+									}
 								}
 							},
 							options : {
 								draggable: false
 							},
 							events:{
-								mouseover: function(marker, event, context){
-									var map = $(this).gmap3("get"),
-										infowindow = $(this).gmap3({get:{name:"infowindow"}});
-									if (infowindow){
-										infowindow.open(map, marker);
-										infowindow.setContent(context.data);
-									} else {
-										$(this).gmap3({
-											infowindow:{
-												anchor:marker, 
-												options:{content: context.data}
-											}
-										});
-									}
-								},
-								mouseout: function(){
-									var infowindow = $(this).gmap3({get:{name:"infowindow"}});
-									if (infowindow){
-										infowindow.close();
-									}
+								click: function(marker, event, context){
+									showPeople([context]);
 								}
 							}
 						}
@@ -146,6 +134,11 @@ var MAP_MODULE = new function() {
 					$(context).find('#map_canvas').prop('init', true);
 					if (!showMyLocation) getMyLocation();
 					callback();
+				},
+				events:{
+					click: function(){
+						$(context).find("#map-people-panel-wrapper").hide();
+					}
 				}
 			}
 		});
@@ -189,5 +182,14 @@ var MAP_MODULE = new function() {
 				}
 			}
 		});
+	};
+
+	var showPeople = function(dataList) {
+		for(var i=0; i<dataList.length; i+=1) {
+			var marker_data = dataList[i].data;
+		}
+		
+		$(context).find("#map-people-panel").html("");
+		$(context).find("#map-people-panel-wrapper").show();
 	};
 };
