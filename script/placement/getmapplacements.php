@@ -24,7 +24,7 @@
 		$datePred = " AND ('{$date_start}' <= p.date_finished AND '{$date_end}' >= p.date_started)";
 	}
 	
-	$query = "SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.address, p.city, p.country, p.topic, p.organization, p.latitude, p.longitude, d.name AS department_name, d.color
+	$query = "SELECT u.first_name, u.last_name, u.avatar_filename, p.id, p.user_id, p.date_started, p.date_finished, p.address, p.city, p.country, p.topic, p.organization, p.latitude, p.longitude, d.name AS department_name, d.color
 			  FROM user u
 			  JOIN placement p ON p.user_id=u.id
 			  JOIN department d ON d.id = u.department_id
@@ -47,6 +47,8 @@
 		$tempObject = array(
 			'id' => $row['id'], 
 			'user_id' => $curID, 
+			'date_started' => $row['date_started'],
+			'date_finished' => $row['date_finished'],
 			'address' => $row['address'],
 			'city' => $row['city'],
 			'country' => $row['country'],

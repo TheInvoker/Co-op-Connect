@@ -21,6 +21,8 @@ var MAP_MODULE = new function() {
     this.showMap = function() {
 		$(context).find("#map-settings-button").show();
 		$(context).find("#map-cancel-button").hide();
+		$(context).find("#map-people-panel").html("");
+		$(context).find("#map-people-panel-wrapper").hide();
 		MAP_SETTINGS_MODULE.initDate();
 		
         changePage(context, function() {
@@ -37,6 +39,8 @@ var MAP_MODULE = new function() {
     this.showPoint = function(obj) {
         $(context).find("#map-settings-button").hide();
 		$(context).find("#map-cancel-button").show();
+		$(context).find("#map-people-panel").html("");
+		$(context).find("#map-people-panel-wrapper").hide();
 
 		changePage(context, function() {
 			if ($(context).find('#map_canvas').prop('init')) {
@@ -199,7 +203,8 @@ var MAP_MODULE = new function() {
 			tag += "<img data-id='" + marker_data["user_id"] + "' src='" + (marker_data["picURL"]=='' ? GLOBAL_DATA.def_image_link : marker_data["picURL"]) + "' align='left' title='" + (marker_data["firstname"] + " " + marker_data["lastname"]) + "'/>";
 			tag += marker_data["firstname"] + " " + marker_data["lastname"] + "<br/>";
 			tag += marker_data["address"] + ", " + marker_data["city"] + ", " + marker_data["country"] + "<br/>";
-			tag += marker_data["topic"] + ", " + marker_data["organization"];
+			tag += marker_data["topic"] + ", " + marker_data["organization"] + "<br/>";
+			tag += marker_data["date_started"] + " to " + marker_data["date_finished"];
 			tag += "</div>";
 			
 			acc += tag;
