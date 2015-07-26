@@ -477,6 +477,9 @@ div.header .header-icon-arrowback {
 	width: 35px;
 	margin: 0px 0px 5px 5px;
 }
+#message-list {
+
+}
 #message-form {
 	display:flex;
 }
