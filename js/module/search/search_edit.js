@@ -26,17 +26,7 @@ var SEARCH_SETTINGS_MODULE = new function() {
     this.getContext = function() {
         return context;
     };
-    
-    this.resetForm = function() {
-        $(context).find("#search-settings-form").find("input[type=text],input[type=date]").val("");
-        
-        try {
-            $(context).find("#search-settings-form").find("input[type=checkbox]").prop("checked", true).checkboxradio( "refresh" );
-        } catch(err) {
-			
-		}
-    };
-    
+
     this.getFormData = function() {
         return $(context).find("#search-settings-form").serialize();
     };

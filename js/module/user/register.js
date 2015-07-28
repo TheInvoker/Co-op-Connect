@@ -24,8 +24,4 @@ var REGISTER_MODULE = new function() {
         $(context).find("#register-form").trigger("reset");
 		changePage(context,function(){});
     };
-    
-    var resetForm = function() {
-        $(context).find("#register-form").find("input").val("");
-    };
 };
