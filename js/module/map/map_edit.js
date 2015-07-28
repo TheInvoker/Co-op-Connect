@@ -2,21 +2,11 @@ var MAP_SETTINGS_MODULE = new function() {
     
     var context = "#map-settings-page";
 
-    $(context).on('submit', "#map-filter-form", function() {
+    $(context).on('click', "#map-accept-button", function() {
 		
-		// configure map form submit
-        runAJAXSerial($(this).serialize(), {
-            page : 'placement/getmapplacements'
-        }, function(response) {
-            MAP_MODULE.showOnMap(response);
-			
-			changePage(MAP_MODULE.getContext(),function(){});
-        }, function(data,status,xhr) {
-            
-        });
-        
-        return false;
-    }).on('click', "#map-cancel-button", function() {
+		makeRequest();
+		
+	}).on('click', "#map-cancel-button", function() {
 		changePage(MAP_MODULE.getContext(),function(){});
 	});
 
@@ -25,11 +15,23 @@ var MAP_SETTINGS_MODULE = new function() {
     };
 
     this.getLocations = function() {
-        $(context).find("#map-filter-form").submit();
+        makeRequest();
     };
     
     this.initDate = function() {
         var elements = $(context).find("#map-filter-form").find("input[type=date]");
         dateHandler(elements, true, MAP_MODULE.getLocations, true);
     };
+	
+	var makeRequest = function() {
+        runAJAXSerial($("#map-filter-form").serialize(), {
+            page : 'placement/getmapplacements'
+        }, function(response) {
+            MAP_MODULE.showOnMap(response, false);
+			
+			changePage(MAP_MODULE.getContext(),function(){});
+        }, function(data,status,xhr) {
+            
+        });
+	};
 };

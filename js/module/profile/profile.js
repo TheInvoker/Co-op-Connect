@@ -15,7 +15,7 @@ var PROFILE_MODULE = new function() {
 		
     }).on('click',"#profile-placements",function() {
 		
-        PLACEMENT_MODULE.getPlacements(user_id);
+        PLACEMENT_MODULE.getPlacements(user_id, true);
 		
     }).on('click',"#profile-message",function() {
 		
@@ -23,7 +23,7 @@ var PROFILE_MODULE = new function() {
 		
     });
 
-    this.getProfile = function(uid) {
+    this.getProfile = function(uid, enableBack) {
         runAJAXSerial('', {
             page : 'user/getprofile',
             id : uid
@@ -38,6 +38,8 @@ var PROFILE_MODULE = new function() {
             
             editProfileHandler();
 			
+			backHandler(enableBack);
+
         }, function(data,status,xhr) {
             
         });
@@ -138,4 +140,12 @@ var PROFILE_MODULE = new function() {
             
         });
     };
+	
+	var backHandler = function(enableBack) {
+		if (enableBack) {
+			$("#profile-back-button").show();
+		} else {
+			$("#profile-back-button").hide();
+		}
+	};
 };

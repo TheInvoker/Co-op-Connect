@@ -13,13 +13,13 @@ var MENU_MODULE = new function() {
 		
 		// configure profile button click
 		var user = GLOBAL_DATA.user;
-		PROFILE_MODULE.getProfile(user['id']);
+		PROFILE_MODULE.getProfile(user['id'], false);
 		
 	}).on('click', "#placement-button", function() {
 		
 		// configure placement button click
 		var user = GLOBAL_DATA.user;
-		PLACEMENT_MODULE.getPlacements(user['id']);
+		PLACEMENT_MODULE.getPlacements(user['id'], false);
 		
 	}).on('click', "#search-button", function() {
 		
@@ -29,7 +29,7 @@ var MENU_MODULE = new function() {
 	}).on('click', "#map-button", function() {
 		
 		// configure map button click
-		MAP_MODULE.showMap();
+		MAP_MODULE.showMap(false);
 		
 	}).on('click', "#message-button", function() {
 		

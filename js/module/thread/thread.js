@@ -12,7 +12,7 @@ var THREAD_MODULE = new function() {
 		
     }).on('click', "#member-list .member-individual", function() {
 		
-        PROFILE_MODULE.getProfile($(this).attr("data-uid"));
+        PROFILE_MODULE.getProfile($(this).attr("data-uid"), true);
 		
     }).on('click', "#thread-list .add-member-button", function() {
 		
@@ -38,7 +38,7 @@ var THREAD_MODULE = new function() {
 		
     }).on('click', "#thread-list .thread-row", function() {
 		
-        PROFILE_MODULE.getProfile($(this).attr("data-uid"));
+        PROFILE_MODULE.getProfile($(this).attr("data-uid"), true);
         return false;
 		
     }).on('click', "#thread-list > table", function() {

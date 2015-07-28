@@ -145,7 +145,7 @@
 							<form id="profile-edit-form">
 								<label for="file">Avatar Image:</label>
 								<br/>
-								<input name="file" type="file" accept="image/*">
+								<input name="file" type="file" accept="image/*;capture=camera" capture="camera">
 								<br/>
 								<label for="firstname">First Name:</label>
 								<br/>
@@ -217,6 +217,7 @@
 					</div>
 				
 					<div class="header noselect">
+					<div class="header-icon header-left header-icon-arrowback" id="placement-back-button"></div>
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						<div class="name">Placements</div>
 						<div class="header-icon header-right header-icon-add" id="placement-add-button"></div>
@@ -502,9 +503,9 @@
 
 				<div id="map-page" class="page" style="display:none;">
 					<div class="header">
+						<div class="header-icon header-left header-icon-arrowback" id="map-back-button"></div>
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						<div class="name">Map</div>
-						<div class="header-icon header-right header-icon-cancel" id="map-cancel-button"></div>
 						<div class="header-icon header-right header-icon-settings" id="map-settings-button"></div>
 					</div>
 
@@ -522,7 +523,7 @@
 					<div class="header">
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						<div class="name">Settings</div>
-						<div class="header-icon header-right header-icon-cancel" id="map-cancel-button"></div>
+						<div class="header-icon header-right header-icon-accept" id="map-accept-button"></div>
 					</div>
 				
 					<section>
@@ -535,9 +536,6 @@
 								<label for="map_date_end">End Date:</label>
 								<br/>
 								<input name="map_date_end" type="date" placeholder="yyyy-mm-dd" pattern="\d\d\d\d-\d\d-\d\d"/>
-								<br/>
-								<br/>
-								<input type="submit" value="Update">
 							</form>
 						</div>
 					</section>
@@ -563,9 +561,9 @@
 				</div>
 				<div id="message-page" class="page" style="display:none;">
 					<div class="header">
+						<div class="header-icon header-left header-icon-arrowback" id="message-back-button"></div>
 						<div class="header-icon header-left header-icon-nav" data-panel="#menu-panel"></div>
 						<div class="name">Messages</div>
-						<div class="header-icon header-right header-icon-cancel" id="message-cancel-button"></div>
 						<div class="header-icon header-right header-icon-arrowdown" id="message-showmore-button"></div>
 					</div>
 

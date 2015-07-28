@@ -23,7 +23,7 @@ var SEARCH_MODULE = new function() {
     }).on("click", ".footable tbody tr td img", function(e) {
 		
 		var id = $(this).attr("data-uid");
-		PROFILE_MODULE.getProfile(id);
+		PROFILE_MODULE.getProfile(id, true);
 		e['_selectedProfile'] = true;
 		
     });

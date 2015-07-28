@@ -2,7 +2,8 @@ var PLACEMENT_MODULE = new function() {
     
     var context = "#placement-page",
         response = null,
-        placement = null;
+        placement = null,
+		callerContext = null;
 
 	$(context).on('click','#placement-list > div', function() {
 
@@ -18,6 +19,10 @@ var PLACEMENT_MODULE = new function() {
 		}
 		
 		return false;
+		
+    }).on('click',"#placement-back-button",function() {
+		
+        changePage(callerContext, function(){});
 		
     }).on('click','#placement-add-button',function() {
 		
@@ -39,7 +44,7 @@ var PLACEMENT_MODULE = new function() {
     }).on('click','#placement-map-button',function() {
 		
 		// set map button
-        MAP_MODULE.showPoint(placement);
+        MAP_MODULE.showPoint(placement, true);
 		
     }).on('click','#placement-delete-button',function() {
 		
@@ -59,7 +64,7 @@ var PLACEMENT_MODULE = new function() {
 		
     });
 
-    this.getPlacements = function(uid) {
+    this.getPlacements = function(uid, enableBack) {
         var user = GLOBAL_DATA.user, me = uid == user['id'];
         
         runAJAXSerial('', {
@@ -69,6 +74,8 @@ var PLACEMENT_MODULE = new function() {
 
             // record response
             response = res;
+			
+			callerContext = getCurrentPage();
             
             changePage(context,function(){});
 
@@ -77,6 +84,8 @@ var PLACEMENT_MODULE = new function() {
             
             // attach click handler on items
             menuHandler(me);
+			
+			backHandler(enableBack);
 
         }, function(data,status,xhr) {
 
@@ -189,8 +198,6 @@ var PLACEMENT_MODULE = new function() {
         
         list.html(myListContent);
     };
-    
-
 
     var menuHandler = function(me) {
         var buttons = $(context).find("#placement-edit-button, #placement-checklist-button, #placement-delete-button, #placement-add-button");
@@ -201,4 +208,12 @@ var PLACEMENT_MODULE = new function() {
             buttons.hide();
         }
     };
+	
+	var backHandler = function(enableBack) {
+		if (enableBack) {
+			$("#placement-back-button").show();
+		} else {
+			$("#placement-back-button").hide();
+		}
+	};
 };

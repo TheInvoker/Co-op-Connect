@@ -58,7 +58,7 @@ var MESSAGE_MODULE = new function() {
 
         return false;
 		
-    }).on('click', '#message-cancel-button', function() {
+    }).on('click', '#message-back-button', function() {
 		changePage(THREAD_MODULE.getContext(),function(){});
 	});
 

@@ -1,25 +1,26 @@
 var MAP_MODULE = new function() {
     
     var context = "#map-page",
-		DEFAULT_LOCATION = [43.784712, -79.185998]; // UTSC
+		DEFAULT_LOCATION = [43.784712, -79.185998], // UTSC
+		callerContext = null;
     
     $(context).on('click', "#map-settings-button", function() {
 		
 		// set map settings button click
         MAP_SETTINGS_MODULE.initSettings();
 		
-    }).on('click', "#map-cancel-button", function() {
+    }).on('click', "#map-back-button", function() {
 		
-		changePage(PLACEMENT_MODULE.getContext(), function() {});
+		changePage(callerContext, function() {});
 		
 	}).on('click', "div.map-person-box > img", function() {
 		
-		PROFILE_MODULE.getProfile($(this).attr("data-id"));
+		PROFILE_MODULE.getProfile($(this).attr("data-id"), true);
 		
 	});
 
-    this.showMap = function() {
-		prepareButtons(false);
+    this.showMap = function(enableBack) {
+		prepareButtons(enableBack);
 		
         changePage(context, function() {
 			if ($(context).find('#map_canvas').prop('init')) {
@@ -32,22 +33,22 @@ var MAP_MODULE = new function() {
 		});
     };
 
-    this.showPoint = function(obj) {
-        prepareButtons(true);
+    this.showPoint = function(obj, enableBack) {
+        prepareButtons(enableBack);
 
 		changePage(context, function() {
 			if ($(context).find('#map_canvas').prop('init')) {
-				MAP_MODULE.showOnMap([obj]);
+				MAP_MODULE.showOnMap([obj], true);
 				setLocation([obj["latitude"],obj["longitude"]]);
 			} else {
 				startMap(true, [obj["latitude"],obj["longitude"]], function() {
-					MAP_MODULE.showOnMap([obj]);
+					MAP_MODULE.showOnMap([obj], true);
 				});
 			}	
 		});
     };
 
-    this.showOnMap = function(locations) {
+    this.showOnMap = function(locations, enableBack) {
 
         // clear markers
 		$(context).find('#map_canvas').gmap3({
@@ -92,6 +93,7 @@ var MAP_MODULE = new function() {
 									click:function(cluster, event, data) {
 										var markers = data.data.markers;
 										showPeople(markers);
+										return false;
 									}
 								}
 							},
@@ -100,7 +102,8 @@ var MAP_MODULE = new function() {
 							},
 							events:{
 								click: function(marker, event, context){
-									showPeople([context]);
+									if (!enableBack) showPeople([context]);
+									return false;
 								}
 							}
 						}
@@ -116,14 +119,16 @@ var MAP_MODULE = new function() {
 
 	
 	var prepareButtons = function(showPoint) {
+		callerContext = getCurrentPage();
+		backHandler(showPoint);
+		
 		if (showPoint) {
 			$(context).find("#map-settings-button").hide();
-			$(context).find("#map-cancel-button").show();
 		} else {
 			$(context).find("#map-settings-button").show();
-			$(context).find("#map-cancel-button").hide();
 			MAP_SETTINGS_MODULE.initDate();
 		}
+		
 		$(context).find("#map-people-panel").html("");
 		$(context).find("#map-people-panel-wrapper").hide();
 	};
@@ -219,5 +224,13 @@ var MAP_MODULE = new function() {
 		
 		$(context).find("#map-people-panel").html(acc);
 		$(context).find("#map-people-panel-wrapper").show();
+	};
+	
+	var backHandler = function(enableBack) {
+		if (enableBack) {
+			$("#map-back-button").show();
+		} else {
+			$("#map-back-button").hide();
+		}
 	};
 };

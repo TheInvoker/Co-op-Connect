@@ -13,8 +13,10 @@ research realtime html5
 normalize field names
 use jquery.text for encoding
 update map infowindow
-
 seperate clear screen function
+
+added camera select                           [DONE]
+fixed back buttons                            [DONE]
 view point on map bug                         [DONE]
 reset forms                                   [DONE]
 MVC                                           [DONE]
