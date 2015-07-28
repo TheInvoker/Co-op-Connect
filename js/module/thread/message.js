@@ -37,7 +37,7 @@ var MESSAGE_MODULE = new function() {
         
         return false;
 		
-    }).on('click','#more-message-button',function() {
+    }).on('click','#message-showmore-button',function() {
 		
 		// set the show more messages button
         runAJAXSerial('', {
