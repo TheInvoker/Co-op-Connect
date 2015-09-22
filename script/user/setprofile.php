@@ -65,7 +65,7 @@
 			}
 
 			$target_path = "images/avatars/{$targetID}/";
-			$filename = $_FILES["file"]["name"];
+			$filename = mysqli_real_escape_string($sqlConnection, $_FILES["file"]["name"]);
 
 			// if not exist
 			if (!is_dir($target_path)) {  

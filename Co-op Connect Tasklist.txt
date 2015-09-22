@@ -2,7 +2,6 @@ charts
 task ordering
 show home page news
 server side validation
-clean picture filename
 private ssl
 captcha
 combine admin view
@@ -12,9 +11,11 @@ url parameters
 research realtime html5
 normalize field names
 use jquery.text for encoding
-update map infowindow
-seperate clear screen function
+scroll down when focus text field in message
+resize image
+clean image filename
 
+update map infowindow                         [DONE]
 added camera select                           [DONE]
 fixed back buttons                            [DONE]
 view point on map bug                         [DONE]
