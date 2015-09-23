@@ -4,7 +4,8 @@ var GLOBAL_DATA = {
     def_image_link : 'images/site/person.png',
 	version: "v1.0.0",
     eventsShow : {},
-    eventsHide : {}
+    eventsHide : {},
+	clientID : null
 };
 
 
@@ -45,6 +46,25 @@ function getFormData(id) {
 function getCurrentPage() {
 	return "#"+$("div.page:visible").attr("id");
 }
+
+
+
+// CLIENT ID
+
+function getClientID() {
+	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);
+	});
+}
+
+if (localStorage.getItem("clientID") === null) {
+	var myClientID = getClientID();
+	GLOBAL_DATA.clientID = myClientID;
+	localStorage.setItem("clientID", myClientID);
+} else {
+	GLOBAL_DATA.clientID = localStorage.getItem("clientID");
+}
+
 
 
 

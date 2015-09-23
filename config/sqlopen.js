@@ -1,7 +1,7 @@
 var mysql = require('mysql');
-var sqlDetails = require('dbinfo');
+var sqlDetails = require('./dbinfo');
 
-exports["runSQL"] = function(callback) {
+exports.runSQL = function(callback) {
 	var connection = mysql.createConnection(sqlDetails);
 	connection.connect();
 	

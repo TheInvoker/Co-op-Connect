@@ -11,10 +11,25 @@
 
 		<!-- Include the jQuery library -->
 		<script src="js/plugin/jquery-3.0.0-alpha1.min.js"></script>
-
+		
+		<!-- Include the sockets library -->
+		<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+	
 		<!-- My code -->
 		<script src="js/custom/common.js"></script>
-
+		
+		<script>
+			var socket = io();
+			/*
+			socket.on('isLoggedIn', function(msg){
+				window.location.href = 'coopconnect.html';
+			});
+			socket.emit('checklogin', {
+				'clientid' : GLOBAL_DATA.clientID
+			});
+			*/
+		</script>
+		
 		<!-- Icon -->
 		<link rel="icon" type="image/x-icon" href="images/site/favicon.png">
 		
@@ -93,7 +108,6 @@
 				</div>
 			</section>
 		</div>
-		
 		
 		<!-- Include blockui -->
 		<script src="js/plugin/jquery.blockUI.js"></script>
