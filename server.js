@@ -39,33 +39,24 @@ var io = require('socket.io').listen(server);
 io.on('connection', function(socket){
 	console.log('a user connected');
 	
-	socket.on('disconnect', function(){
-		console.log('user disconnected');
-	});
-	
-	socket.on('checklogin', function(msg){
-
-		var data = JSON.parse(msg);
+	socket.on('checklogin', function(data){
 		var clientsessionID = data.clientid;
-		
 		if (session.isLoggedIn(clientsessionID)) {
-			socket.emit('isLoggedIn');
+			socket.emit('loginSuccess');
 		}
 	});
 	
-	socket.on('login', function(msg){
-
-		var data = JSON.parse(msg);
+	socket.on('login', function(data){
 		var clientsessionID = data.clientid;
 		var email = data.email;
 		var password = data.password;	
 		
 		loginModule.handle(sqlOpen, email, password, function(data) {
-			session.setLoggedIn(clientsessionID, data);
-			socket.emit('loggedInSuccess', data);
+			session.setLoggedIn(clientsessionID);
+			socket.emit('loginSuccess', data);
 		}, function(data) {
 			session.setLoggedOut(clientsessionID);
-			socket.emit('loggedInFail', data);
+			socket.emit('loginFailed', data);
 		});
 	});
 	
@@ -82,6 +73,11 @@ io.on('connection', function(socket){
 		var data = JSON.parse(msg);
 		var clientsessionID = data.clientid;
 		var userObj = session.getUserObj(clientsessionID);
+	});
+	
+	socket.on('disconnect', function() {
+		console.log('user disconnected');
+		session.socketDisconnect(socket.id);
 	});
 });
 

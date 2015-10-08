@@ -2,18 +2,25 @@ var LOGIN_MODULE = new function() {
     
     var context = "#login-page";
 	
+	socket.on('loginSuccess', function(msg){
+		window.location.href = 'coopconnect?clientid=' + GLOBAL_DATA.clientID;
+	});
+	socket.on('loginFailed', function(msg){
+		alert(msg.message);
+	});
+	socket.emit('checklogin', {
+		'clientid' : GLOBAL_DATA.clientID
+	});
+			
 	$(context).on('submit', "#login-form", function() {
 		
 		// configure login button click
-		runAJAXSerial("login", $(this).serialize(), {
-		}, function(response) {
-			
-			window.location.href = "/";
-
-		}, function(data,status,xhr) {
-			
+		socket.emit('login', {
+			email : $(this).find("input[name=email]").val(),
+			password : $(this).find("input[name=password]").val(),
+			clientid : GLOBAL_DATA.clientID
 		});
-
+		
 		return false;
 		
 	});

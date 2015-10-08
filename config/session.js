@@ -1,28 +1,26 @@
 var users = {};
 
-exports.sayHelloInEnglish = function() {
-  return "HELLO";
-};
-
-
-
-
 exports.isLoggedIn = function(clientsessionID) {
-	return clientsessionID in users && users[clientsessionID]["loggedIn"];
+	return clientsessionID in users;
 };
 exports.setLoggedOut = function(clientsessionID) {
-	activeUsers[clientsessionID]["loggedIn"] = false;
+	delete users[clientsessionID];
 };
-exports.setLoggedIn = function(clientsessionID, data) {
+exports.socketDisconnect = function(socketID) {
+    for (var property in users) {
+        if (users.hasOwnProperty(property) && users[property].socketID == socketID) {
+            users[property].online = false;
+			return;
+        }
+    }
+};
+exports.setLoggedIn = function(clientsessionID, socketID) {
 	if (clientsessionID in users) {
-		activeUsers[clientsessionID]["loggedIn"] = true;
+		users[clientsessionID].online = true;
 	} else {
-		activeUsers[clientsessionID] = {
-			'loggedIn' : true,
-			'data' : data
+		users[clientsessionID] = {
+			'online' : true,
+			'socketID' : socketID
 		};
 	}
-};
-exports.getUserObj = function(clientsessionID) {
-	return users[clientsessionID]["data"];
 };

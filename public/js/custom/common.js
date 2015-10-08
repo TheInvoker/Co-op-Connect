@@ -68,8 +68,6 @@ if (localStorage.getItem("clientID") === null) {
 
 
 
-
-
 // DATE/TIME CODE
 
 function getDate() {
@@ -114,6 +112,8 @@ function dateHandler(elements, putCurrentDate, changefunction, showClearButton) 
 
 // AJAX CODE
 
+var socket = io();
+
 function runAJAXHTML5(url, formData, object, sfunc, efunc) {
     for (var property in object) {
         if (object.hasOwnProperty(property)) {
@@ -138,6 +138,8 @@ function runAJAXSerial(url, formData, object, sfunc, efunc) {
 
 function runAJAX(url, formData, sfunc, efunc, hasImage) {
 
+	formData.append("clientid", GLOBAL_DATA.clientID);
+	
     var obj = {
         type: 'POST',
         url: GLOBAL_DATA.server_link + url,
