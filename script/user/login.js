@@ -2,11 +2,10 @@ exports["handle"] = function(sqlOpen, email, password, success, failure) {
 		
 	sqlOpen.runSQL(function(connection) {
 
-		var query = "SELECT u.id, u.active, u.avatar_filename, r.name AS role_name \
+		var query = "SELECT u.id, u.active \
 				     FROM user u \
-				     JOIN role r ON r.id = u.role_id \
-				     WHERE u.email_address = '" + email + "' AND u.password = '" + password + "'";
-						
+				     WHERE u.email_address = " + connection.escape(email) + " AND u.password = " + connection.escape(password);
+
 		connection.query(query, function(err, rows, fields) {
 			if (err) {
 				failure({
@@ -22,11 +21,7 @@ exports["handle"] = function(sqlOpen, email, password, success, failure) {
 						'message' : 'Account is not active'
 					});
 				} else {
-					success({
-						'id' : rows[0].id,
-						'picURL' : FormatImageURL(rows[0].id, rows[0].avatar_filename),
-						'role_name' : rows[0].role_name
-					});
+					success(rows[0].id);
 				}
 			}
 			connection.end();

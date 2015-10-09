@@ -14,13 +14,15 @@ exports.socketDisconnect = function(socketID) {
         }
     }
 };
-exports.setLoggedIn = function(clientsessionID, socketID) {
+exports.setLoggedIn = function(clientsessionID, socketID, userID) {
 	if (clientsessionID in users) {
 		users[clientsessionID].online = true;
+		users[clientsessionID].socketID = socketID;
 	} else {
 		users[clientsessionID] = {
 			'online' : true,
-			'socketID' : socketID
+			'socketID' : socketID,
+			'userID' : userID
 		};
 	}
 };

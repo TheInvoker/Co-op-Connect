@@ -31,7 +31,10 @@ var server = app.listen(3000, function () {
 var io = require('socket.io').listen(server);
 
 
-
+io.use(function(socket, next){
+	console.log("middle");
+	next();
+});
 
 
 
@@ -39,7 +42,11 @@ var io = require('socket.io').listen(server);
 io.on('connection', function(socket){
 	console.log('a user connected');
 	
+	
+	
 	socket.on('checklogin', function(data){
+		console.log("checklogin");
+		
 		var clientsessionID = data.clientid;
 		if (session.isLoggedIn(clientsessionID)) {
 			socket.emit('loginSuccess');
@@ -51,12 +58,12 @@ io.on('connection', function(socket){
 		var email = data.email;
 		var password = data.password;	
 		
-		loginModule.handle(sqlOpen, email, password, function(data) {
-			session.setLoggedIn(clientsessionID);
-			socket.emit('loginSuccess', data);
+		loginModule.handle(sqlOpen, email, password, function(userID) {
+			session.setLoggedIn(clientsessionID, socket.id, userID);
+			socket.emit('loginSuccess', {});
 		}, function(data) {
 			session.setLoggedOut(clientsessionID);
-			socket.emit('loginFailed', data);
+			socket.emit('loginFailed', {});
 		});
 	});
 	

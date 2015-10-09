@@ -165,11 +165,13 @@
 						<br/>
 						<fieldset>
 							<legend>Co-op Department</legend>
+							<!--
 							<?php
 								$_GET['field'] = "department";
 								$_GET['radio'] = '1';
 								include "script/html/printfieldhtml.php";
 							?>
+							-->
 						</fieldset>
 						<br/>
 						<input type="submit" value="Save">
@@ -392,11 +394,13 @@
 								<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
 								<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 							</div>
+							<!--
 							<?php
 								$_GET['field'] = "department";
 								$_GET['radio'] = '0';
 								include "script/html/printfieldhtml.php";
 							?>
+							-->
 						</fieldset>
 
 						<fieldset id="search_role_cb">
@@ -405,11 +409,13 @@
 								<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
 								<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 							</div>
+							<!--
 							<?php
 								$_GET['field'] = "role";
 								$_GET['radio'] = '0';
 								include "script/html/printfieldhtml.php";
 							?>
+							-->
 
 						</fieldset>
 						
@@ -422,11 +428,13 @@
 								<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
 								<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 							</div>
+							<!--
 							<?php
 								$_GET['field'] = "city";
 								$_GET['radio'] = '0';
 								include "script/html/printfieldhtml.php";
 							?>
+							-->
 
 						</fieldset>
 
@@ -436,11 +444,13 @@
 								<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
 								<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 							</div>
+							<!--
 							<?php
 								$_GET['field'] = "country";
 								$_GET['radio'] = '0';
 								include "script/html/printfieldhtml.php";
 							?>
+							-->
 
 						</fieldset>
 
@@ -450,11 +460,13 @@
 								<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
 								<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 							</div>
+							<!--
 							<?php
 								$_GET['field'] = "topic";
 								$_GET['radio'] = '0';
 								include "script/html/printfieldhtml.php";
 							?>
+							-->
 
 						</fieldset>
 
@@ -464,11 +476,13 @@
 								<div class="clear-cb-button"><img class="search-small-icon myicon" src="images/site/svg/circle.svg"/></div>
 								<div class="selectall-cb-button"><img class="search-small-icon myicon" src="images/site/svg/square.svg"/></div>
 							</div>
+							<!--
 							<?php
 								$_GET['field'] = "company";
 								$_GET['radio'] = '0';
 								include "script/html/printfieldhtml.php";
 							?>
+							-->
 
 						</fieldset>
 						<br/>
@@ -693,10 +707,10 @@
 		<script src="js/module/grid/grid.js"></script>
 
 		<script>
-			GLOBAL_DATA.user = {
-				id : <?php print $_SESSION['id']; ?>,
-				picURL : '<?php print $_SESSION['picURL']; ?>'
-			};
+			//GLOBAL_DATA.user = {
+			//	id : <?php print $_SESSION['id']; ?>,
+			//	picURL : '<?php print $_SESSION['picURL']; ?>'
+			//};
 
 			GRID_MODULE.setGrid();
 		</script>
